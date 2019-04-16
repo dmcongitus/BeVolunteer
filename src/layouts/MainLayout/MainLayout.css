@@ -1,0 +1,17 @@
+.MainLayout {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    background: gray;
+    position: relative;
+}
+
+.LeftAside, .RightAside {
+    background: green;
+}
+
+main {
+    background: red;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
