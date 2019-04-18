@@ -7,7 +7,9 @@
     box-shadow: 2px 2px 2px  green;
 
     height: auto;
-  
+    -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+    -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+    box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
 }
 
 .title-widget-sidebar {

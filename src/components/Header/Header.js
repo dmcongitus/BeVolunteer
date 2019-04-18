@@ -24,15 +24,14 @@ const Header = (props) => (
             <ul className="navbar-nav mr-auto"/>
             <ul className="navbar-nav ">
                 <li className="nav-item active">
-                    <a className="nav-link" href="/">
+                    <a className="nav-link">
                         <i className="fa fa-home" />
-                        Home
-                <span className="sr-only">(current)</span>
+                        <NavLink activeStyle={{ color: 'white' }} to="/">Home</NavLink>
                     </a>
                 </li>
 
                 <li className="nav-item active">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link">
                         <i className="fa fa-bell">
                             <span className="badge badge-info">11</span>
                         </i>

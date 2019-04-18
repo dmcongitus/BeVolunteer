@@ -10,6 +10,7 @@ import cancelIcon from '../../images/cancel.png';
 import editIcon from '../../images/edit.png';
 import identityImage from '../../images/identity.png';
 import { userInfo } from 'os';
+import { Button, Alert, Badge} from 'reactstrap';
 
 class MeComponent extends Component {
     constructor(props) {
@@ -110,45 +111,45 @@ class MeComponent extends Component {
                                 <li className="UpdateProfile__Main__FieldItem">
                                     <div className="UpdateProfile__Main__FieldName">Tên</div>
                                     <input className="UpdateProfile__Main__FieldValue" name="name" ref={el => this.name = el} onFocus={this.handleFocus} value={this.state.profiles["name"]} onChange={this.handleChange} />
-                                    <button onClick={this.handleEdit.bind(this, "name")} className="UpdateProfile__Main__FieldEdit">
+                                    <button onClick={this.handleEdit.bind(this, "name")} className="UpdateProfile__Main__FieldEdit btn btn-light">
                                         <img src={editIcon} alt="Edit icon" />
-                                        <div className="UpdateProfile__Main__FieldEdit" >Chỉnh sửa</div>
+                                  
                                     </button>
                                 </li>
                                 
                                 <li className="UpdateProfile__Main__FieldItem">
                                     <div className="UpdateProfile__Main__FieldName">Số điện thoại</div>
                                     <input className="UpdateProfile__Main__FieldValue" name="phone" ref={el => this.phone = el} onFocus={this.handleFocus} value={this.state.profiles["phone"]} onChange={this.handleChange} />
-                                    <button onClick={this.handleEdit.bind(this, "phone")} className="UpdateProfile__Main__FieldEdit">
+                                    <button onClick={this.handleEdit.bind(this, "phone")} className="UpdateProfile__Main__FieldEdit btn btn-light">
                                         <img src={editIcon} alt="Edit icon" />
-                                        <div className="UpdateProfile__Main__FieldEdit" >Chỉnh sửa</div>
+                                     
                                     </button>
                                 </li>
 
                                 <li className="UpdateProfile__Main__FieldItem">
                                     <div className="UpdateProfile__Main__FieldName">Địa chỉ email</div>
                                     <input className="UpdateProfile__Main__FieldValue" name="email" ref={el => this.email = el} onFocus={this.handleFocus} value={this.state.profiles["email"]} onChange={this.handleChange} />
-                                    <button onClick={this.handleEdit.bind(this, "email")} className="UpdateProfile__Main__FieldEdit">
+                                    <button onClick={this.handleEdit.bind(this, "email")} className="UpdateProfile__Main__FieldEdit btn btn-light">
                                         <img src={editIcon} alt="Edit icon" />
-                                        <div className="UpdateProfile__Main__FieldEdit" >Chỉnh sửa</div>
+                                     
                                     </button>
                                 </li>
                                 
                                 <li className="UpdateProfile__Main__FieldItem">
                                     <div className="UpdateProfile__Main__FieldName">Ngày sinh</div>
                                     <input className="UpdateProfile__Main__FieldValue" name="dob" ref={el => this.dob = el} onFocus={this.handleFocus} value={this.state.profiles["dob"]} onChange={this.handleChange} />
-                                    <button onClick={this.handleEdit.bind(this, "dob")} className="UpdateProfile__Main__FieldEdit">
+                                    <button onClick={this.handleEdit.bind(this, "dob")} className="UpdateProfile__Main__FieldEdit btn btn-light">
                                         <img src={editIcon} alt="Edit icon" />
-                                        <div className="UpdateProfile__Main__FieldEdit" >Chỉnh sửa</div>
+    
                                     </button>
                                 </li>
 
                                 <li className="UpdateProfile__Main__FieldItem">
                                     <div className="UpdateProfile__Main__FieldName">Địa chỉ</div>
                                     <input className="UpdateProfile__Main__FieldValue" name="address" ref={el => this.address = el} onFocus={this.handleFocus} value={this.state.profiles["address"]} onChange={this.handleChange} />
-                                    <button onClick={this.handleEdit.bind(this, "address")} className="UpdateProfile__Main__FieldEdit">
+                                    <button onClick={this.handleEdit.bind(this, "address")} className="UpdateProfile__Main__FieldEdit btn btn-light">
                                         <img src={editIcon} alt="Edit icon" />
-                                        <div className="UpdateProfile__Main__FieldEdit" >Chỉnh sửa</div>
+                                       
                                     </button>
                                 </li>
 
@@ -158,34 +159,34 @@ class MeComponent extends Component {
                                     <div className="UpdateProfile__Main__FieldValue">
                                         <img src={this.state.profiles["identityCard"] || identityImage} alt="Identity" />
                                         <input type="file" accept="image/*" style={{ display: 'none' }} ref={el => this.identityCard = el} onClick={e => e.target.value = null} onChange={this.handleImageChange} />
-                                        {this.state.profiles["identityCard"] === undefined && <div className="UpdateProfile__Main__FieldValue__Warning">Vui lòng cập nhật CMND để xác thực tài khoản</div>}
+                                        {this.state.profiles["identityCard"] === undefined && <div className="UpdateProfile__Main__FieldValue__Warning">
+                                        <Alert color="danger">
+                                        Cập nhật CMND để xác thực !!!
+                                        </Alert></div>}
                                     </div>
-                                    <button onClick={this.handleEdit.bind(this, "identityCard")} className="UpdateProfile__Main__FieldEdit">
-                                        <img src={editIcon} alt="Edit icon" />
-                                        <div className="UpdateProfile__Main__FieldEdit" >Chỉnh sửa</div>
+                                    <button onClick={this.handleEdit.bind(this, "identityCard")} className="btn btn-light">
+                                        <img src={editIcon} alt="Edit icon" height="20px"/>
+                        
                                     </button>
                                 </li>
 
                                 <li className="UpdateProfile__Main__FieldItem">
-                                    <div className="UpdateProfile__Main__FieldName">Loại tài khoản</div>
-                                    <div className="UpdateProfile__Main__FieldValue" >
-                                        <select ref={el => this.accountType = el} name="accountType" onChange={this.handleChange} value={this.state.profiles["accountType"]} >
-                                            <option value="private">Cá nhân</option>
-                                            <option value="group">Nhóm</option>
-                                        </select>
+                                    <div className="UpdateProfile__Main__FieldName">Loại TK</div>
+                                    <div className="type-user"  >
+                                            Cá Nhân
                                     </div>
-                                    <button onClick={this.handleEdit.bind(this, "accountType")} className="UpdateProfile__Main__FieldEdit">
-                                        <img src={editIcon} alt="Edit icon" />
-                                        <div className="UpdateProfile__Main__FieldEdit" >Chỉnh sửa</div>
-                                    </button>
+                                  
                                 </li>
 
                             </ul>
                         </section>
                     
                         {this.state.profileChanged && <div className="UpdateProfile__Footer">
-                            <button className="UpdateProfile__Footer__Update" onClick={this.handleUpdate}>Cập nhật</button>
-                            <button className="UpdateProfile__Footer__Cancel" onClick={this.handleCancel}>Hủy</button></div>}
+                        
+                            <Button className="UpdateProfile__Footer__Update" onClick={this.handleUpdate}>
+                                <i class="fas fa-check-circle ml-1"/>  Cập nhật</Button>
+                            <Button className="UpdateProfile__Footer__Cancel" onClick={this.handleCancel}>
+                                <i class="fas fa-trash-alt ml-1"/> Hủy</Button></div>}
                     </div>
               
                 </div>
