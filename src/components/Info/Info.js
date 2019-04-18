@@ -14,23 +14,8 @@ import { userInfo } from 'os';
 class MeComponent extends Component {
     constructor(props) {
         super(props)
-        // this.state = {
-        //     postContent: '',
-        //     isLoading: false,
-        //     isOpenModal: false,
-        //     profileChanged: false,
-        //     profiles: {
-        //         name: 'Nguyễn Trọng Nghĩa',
-        //         phone: '0339190971',
-        //         email: 'ntncsebku@gmail.com',
-        //         dob: '22/03/1998',
-        //         address: '264 Lý Thường Kiệt',
-        //         identityCard: undefined,
-        //         accountType: 'personal'
-        //     }
-        // }
 
-                this.state = {
+            this.state = {
             postContent: '',
             isLoading: false,
             isOpenModal: false,
@@ -101,28 +86,11 @@ class MeComponent extends Component {
                     <div className="updateStatus">
                         <div >
                             <div >
-                                <div className="posttweettacontainer">
-                                    <textarea
-                                        id="posttweetta"
-                                        className="posttweetta"
-                                        placeholder="What's happening?"
-                                        rows="5"
-                                        cols="50"
-                                        value={this.state.postContent}
-                                        onChange={this.handlePostChange}>
-                                        </textarea>
-                                    <div className="posttweetcountcont">
-                                    </div>
-                                </div>
-                                <div className="posttweetbutcont">
-                                    <button id="posttweetbut" className="posttweetbut" onClick={this.sentPost}>Post</button>
-                                </div>
+                                
+                               
                             </div>
                         </div>
-                        <div>
-                            <ul id="tweetscontainer" className="tweetscontainer">
-                            </ul>
-                        </div>
+
                     </div>
             
                     <div className="UpdateProfile" >
