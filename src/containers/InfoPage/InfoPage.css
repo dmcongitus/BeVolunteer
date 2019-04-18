@@ -1,0 +1,106 @@
+.UpdateProfile__Header {
+    display: flex;
+    padding-bottom: 1em;
+    justify-content: space-between;
+}
+
+.UpdateProfile__Header__Left,
+.UpdateProfile__Header__Right {
+    display: flex;
+    align-items: center;
+}
+
+.UpdateProfile__Header__Left div {
+    font-size: 1.25em;
+}
+
+.UpdateProfile__Header__Left img {
+    margin-left: 1em;
+}
+
+.UpdateProfile__Header__Right img {
+    margin-right: 0.5em;
+}
+
+.UpdateProfile__Header__Right div {
+    color: crimson;
+}
+
+.UpdateProfile__Main__FieldItem {
+    display: flex;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    align-items: center;
+    border-top: 1.5px solid rgba(114, 110, 110, 0.5);
+}
+
+.UpdateProfile__Main__FieldItem:last-child {
+    padding-bottom: 0;
+}
+
+.UpdateProfile__Main__FieldName {
+    flex-basis: 100px;
+}
+
+.UpdateProfile__Main__FieldValue {
+    flex-grow: 1;
+    border: 0;
+}
+
+.UpdateProfile__Main__FieldValue select {
+    width: 150px;
+    padding: 5px;
+}
+
+.UpdateProfile__Main__FieldValue img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid #afafaf;
+}
+
+.UpdateProfile__Main__FieldEdit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+    color: #38a89d;
+}
+
+.UpdateProfile__Main__FieldValue__Warning {
+    color: crimson;
+    padding-top: 1em;
+}
+
+.UpdateProfile__Footer {
+    text-align: right;
+}
+
+.UpdateProfile__Footer__Update {
+    background: #38a89d;
+    color: rgb(255, 255, 255);
+    padding: 0.5em 1em;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: opacity 0.5s ease;
+}
+
+.UpdateProfile__Footer__Update:hover {
+    opacity: 0.9;
+}
+
+.UpdateProfile__Footer__Cancel {
+    background: crimson;
+    color: rgb(255, 255, 255);
+    padding: 0.5em 1em;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 0.5em;
+    transition: opacity 0.5s ease;
+}
+
+.UpdateProfile__Footer__Cancel:hover {
+    opacity: 0.9;
+}
