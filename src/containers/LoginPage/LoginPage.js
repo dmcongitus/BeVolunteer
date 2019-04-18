@@ -29,7 +29,7 @@ class LoginPage extends Component {
         }
 
         return (
-            <div class="container-fluid">
+            <div class="container-fluid mylogin">
                 <div class="d-flex justify-content-center h-100">
                     <div class="card">
                         <div class="card-header">

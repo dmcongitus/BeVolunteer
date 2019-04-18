@@ -1,17 +1,3 @@
-.MainLayout {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    background: gray;
-    position: relative;
+.my-layout{
+    background-color: rgb(236, 236, 241);
 }
-
-.LeftAside, .RightAside {
-    background: green;
-}
-
-main {
-    background: red;
-    margin-left: 2em;
-    margin-right: 2em;
-}
-
