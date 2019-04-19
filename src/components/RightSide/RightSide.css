@@ -14,14 +14,14 @@
 
 .title-widget-sidebar {
     font-size: 14pt;
-    border-bottom: 2px solid #e5ebef;
+    border-bottom: 2px solid #b0b5b8;
     margin-bottom: 15px;
     padding-bottom: 10px;    
     margin-top: 0px;
 }
 
 .title-widget-sidebar:after {
-    border-bottom: 2px solid #f1c40f;
+    border-bottom: 2px solid green;
     width: 150px;
     display: block;
     position: absolute;

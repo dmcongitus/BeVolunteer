@@ -8,7 +8,7 @@ const LeftSide = (props) => (
     
           <div className="sidebar1">
             <div className="logo">
-              <img src="http://lorempixel.com/output/people-q-g-64-64-1.jpg" className="img-responsive center-block" alt="Logo" />
+              <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.15752-9/57393041_305492127011755_8740904577945042944_n.jpg?_nc_cat=105&_nc_oc=AQn7GUnB8UXlqMTogNJWDlqNjMEYb8gBeMPWreuL7dXQQHbhb9R6_PFCvI5m-de4R8E&_nc_ht=scontent.fsgn2-1.fna&oh=70f6e9461f233111834a04094f2fa45e&oe=5D33B790" className="img-responsive center-block" alt="Logo"/>
           
               <h2 className="title-widget-sidebar">Dương Minh Công</h2>
               
