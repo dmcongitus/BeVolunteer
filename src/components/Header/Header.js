@@ -1,16 +1,21 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../../images/volunteer.png'
 import logoText from '../../images/volunteerText.png'
-import logout from '../../images/logout.jpg'
 import './Header.css';
 
-const Header = (props) => (
-    const log_out = () =>{
-        console.log('log-out');
+
+
+class Header extends React.Component  {
+  
+    log_out = () =>{
+      
         sessionStorage.clear();
-        localStorage.clear();
+        localStorage.clear(); 
+        window.location.reload();
     }
+    render(){
+    return(
     <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark ">
 
         <img src={logo} alt="Logo" height="80" />
@@ -45,8 +50,9 @@ const Header = (props) => (
                 </li>
 
                 <li className="nav-item active">
-                    <a className="nav-link" href="#">
-                        <i className="fa fa-sign-out" />
+                    <a className="nav-link">
+                        <i className="fa fa-sign-out" onClick={this.log_out}
+/>
                         Logout
                     <span className="sr-only">(current)</span>
                     </a>
@@ -55,6 +61,9 @@ const Header = (props) => (
 
         </div>
     </nav>
-);
+    )
+    }
+
+}
 
 export default Header;
