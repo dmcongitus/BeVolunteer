@@ -14,19 +14,21 @@ import './MainLayout.css';
 import { Container, Row, Col } from 'reactstrap';
 
 const MainLayout = (props) => (
-    <div class="my-layout">
+    <div className="my-layout">
         <Header />
         <Row>
             <Col xs="3">
                 <LeftSide />
             </Col>
+
             <Col xs="6">
-            
-        <Info />
+                <Info />
             </Col>
+
             <Col xs="3">
                 <RightSide />
             </Col>
+
         </Row>
 
         <ModalConductor />
