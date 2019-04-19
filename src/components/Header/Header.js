@@ -6,6 +6,11 @@ import logout from '../../images/logout.jpg'
 import './Header.css';
 
 const Header = (props) => (
+    const log_out = () =>{
+        console.log('log-out');
+        sessionStorage.clear();
+        localStorage.clear();
+    }
     <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark ">
 
         <img src={logo} alt="Logo" height="80" />
