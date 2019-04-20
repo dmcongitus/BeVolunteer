@@ -6,14 +6,24 @@ import * as meServices from '../services/me.service';
 export function logInUser(username, password) {
     return async function (dispatch) {
         try {
-            const { data: { token, user } } = await authServices.loginUser(username, password);
-
+            const { 
+                data: { token, user } 
+                } = await authServices.loginUser(username, password);
+            console.log(user);
             setToken(token);
             storeUserData(user);
-            dispatch({ type: actionTypes.LOGIN_USER_SUCCESSFUL, payload: { token, user } });
+
+            dispatch({ 
+                type: actionTypes.LOGIN_USER_SUCCESSFUL, 
+                payload: { token, user } 
+            });
         } catch (e) {
             console.log(e);
-            dispatch({ type: actionTypes.LOGIN_USER_FAILED });
+            dispatch({ 
+                type: actionTypes.LOGIN_USER_FAILED,
+                payload: "Login failed"
+                
+            });
         }
     }
 }
