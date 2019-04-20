@@ -4,24 +4,37 @@
   "private": true,
   "proxy": "http://localhost:3000",
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@material-ui/core": "^3.9.2",
     "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "css-loader": "^2.1.1",
+    "font-awesome": "^4.7.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-datepicker": "^2.4.0",
+    "react-dom": "^16.8.6",
+    "react-fontawesome": "^1.6.1",
     "react-modal": "^3.8.1",
     "react-redux": "^6.0.1",
+    "react-responsive-modal": "^3.6.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
-    "socket.io-client": "^2.2.0"
+    "socket.io-client": "^2.2.0",
+    "stellar-base": "^0.13.1",
+    "tendermint": "^4.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "build:css": "postcss src/styles/index.css -o src/index.css",
+    "watch:css": "postcss src/styles/index.css -o src/index.css -w",
+    "start": "set PORT=3001 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -34,5 +47,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "autoprefixer": "^9.5.1",
+    "postcss-cli": "^6.1.2",
+    "tailwindcss": "^0.7.4"
+  }
 }

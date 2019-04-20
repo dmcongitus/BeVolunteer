@@ -19,25 +19,37 @@ class LoginPage extends Component {
     }
     
     login = (username, password) =>{
+        console.log("Login function");
+        console.log(this.props.isOpenErrorModal);
+        console.log("--------------");
+
         this.props.loginUser(username, password);
+        this.setState({
+            isOpenModal: this.props.isOpenErrorModal,
+            textNoti: this.props.errorMessage
+        })
+
+        console.log(this.state);
     }
 
     errorMessage() {
+        console.log("Login error");
         if (this.props.errorMessage) {
             return (
                 <ErrorModal	
-                    isOpenModal={() =>{this.setState({isOpenModal: true})}}
+                    isOpenModal={this.state.isOpenModal}
                     closeModal={() =>{this.setState({isOpenModal: false})}}
                     text={this.props.errorMessage}>
                 </ErrorModal>
             );
         }
+        else return "";
     }
 
     render() {
-        console.log("AAAAAAAA");
-        console.log("--------------");
-        console.log(this.props.errorMessage)
+        console.log("Main");
+        console.log(this.state);
+
  
         if (this.props.isAuthenticated) {
             return <Redirect to="/" />
@@ -45,7 +57,10 @@ class LoginPage extends Component {
 
         return (
             <div>
-                {this.errorMessage()}
+                {
+                    this.props.isOpenErrorModal === true ?
+                    this.errorMessage():null
+                }
                 <Login
 					login={this.login}>
 				</Login>
@@ -56,7 +71,8 @@ class LoginPage extends Component {
 
 const mapStateToProps = state =>({
     errorMessage : state.auth.error,
-    isAuthenticated : state.auth.isAuthenticated
+    isAuthenticated : state.auth.isAuthenticated,
+    isOpenErrorModal : state.auth.isOpenErrorModal
 });
 
 

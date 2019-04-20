@@ -33,6 +33,7 @@ class ErrorModal extends Component {
     
     render(){
         console.log("Error component");
+        console.log(this.props);
         return( 
             <Modal
                 isOpen={this.props.isOpenModal}

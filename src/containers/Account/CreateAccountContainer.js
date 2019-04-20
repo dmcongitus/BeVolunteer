@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import Home from '.././components/Home'
-import Login from '../components/CreateAcount';
-import axios from 'axios';
-import { API_server } from '../config';
-import ErrorModal from "../components/Modal/ErrorModal";
-import SuccessModal from "../components/Modal/SuccessModal";
-import CreateAcount from '../components/CreateAcount';
+// import Home from '.././components/Home';
+// import Login from '../components/CreateAcount';
+// import axios from 'axios';
+// import { API_server } from '../config';
+import ErrorModal from "../../modals/ErrorModal";
+//import SuccessModal from "../components/Modal/SuccessModal";
+import CreateAcount from '../../components/Account/CreateAccount';
 
 class CreateAccountContainer extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
 			isOpenErrorModal: false,
-			isOpenSuccessModal:false,
+			// isOpenSuccessModal:false,
 			status: false,
             textNoti: ''
 		}
@@ -30,7 +30,7 @@ class CreateAccountContainer extends Component {
 			console.log(check.message);
 			this.setState({
 				isOpenErrorModal: false,
-				isOpenSuccessModal: true,
+				// isOpenSuccessModal: true,
 				status:check.status,
 				textNoti: check.message
 			})
@@ -78,7 +78,7 @@ class CreateAccountContainer extends Component {
 				console.log("ssadsadsa");
 				return {
 					isOpenErrorModal: true,
-					isOpenSuccessModal: false,
+					// isOpenSuccessModal: false,
 					status:check.status,
 					textNoti: check.message
 				};
@@ -146,11 +146,11 @@ class CreateAccountContainer extends Component {
 					text={this.state.textNoti}>
 				</ErrorModal>
 
-				<SuccessModal	
+				{/* <SuccessModal	
 					isOpenModal={this.state.isOpenSuccessModal}
 					closeModal={() =>{this.setState({isOpenSuccessModal: false})}}
 					text={this.state.textNoti}>
-				</SuccessModal>
+				</SuccessModal> */}
 
 				<CreateAcount 
 					flag = "create"

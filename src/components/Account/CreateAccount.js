@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import '../styles/Home.css';
-import "../index.css";
-import axios from 'axios';
-import { API_server } from '../config';
+// import '../styles/Home.css';
+// import "../index.css";
+// import axios from 'axios';
+// import { API_server } from '../config';
 import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
+import "./createAccount.css";
 
-class CreateAcount extends Component {
+class CreateAcount extends Component {  
     
     constructor(props){
         super(props);
         this.state = {
-
                 username:"",
                 password:"",
                 repeatpassword:"",
@@ -21,7 +21,7 @@ class CreateAcount extends Component {
                 email:"",
                 dob: "",
                 phone: "",
-            
+
         }
         this.onHandleChange = this.onHandleChange.bind(this);
         this.onSubmitRegistration = this.onSubmitRegistration.bind(this);
@@ -52,19 +52,19 @@ class CreateAcount extends Component {
 
     render() {
       return (
-        <div className="limiter">
-          <div className="container-register100">
-              <Container className="container-fluid mx-auto flex flex-col wrap-register100 box-shadow-main">
+        <div className="container-fluid limiter">
+            <div className="container-register100">
+  
+              <Container className="card2 mx-auto flex flex-col wrap-register100 box-shadow-main">
                   <Row>
-                        <Col xs={6} md={4}>
+                        <Col xs={6} md={3}>
                             <div className="register100-pic js-tilt" data-tilt>
-                                <img src="images/img-01.png" alt="IMG"/>
+                                <img src="/static/media/volunteer.52c2ef66.png" alt="IMG"/>
                             </div>                            
                         </Col>
 
                         <Col xs={6} md={8}>
-                            <div 
-                                className="register100-form validate-form">
+                            <div className="register100-form validate-form">
                                 <span className="register100-form-title">
                                     CREATE ACCOUNT
                                 </span>
@@ -208,7 +208,7 @@ class CreateAcount extends Component {
                         </Col>
                   </Row>
               </Container>
-          </div>
+              </div>
       </div>
   
       );
