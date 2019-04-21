@@ -43,9 +43,8 @@
  
   .media-body{
     margin-top: 10px;
-    font-family: 'Rokkitt', serif;	
-    font-size: 14px;
-    color: black;
+
+    margin-left: 10px;
   }
   .media-body small span{
     font-family: 'Rokkitt', serif;	
