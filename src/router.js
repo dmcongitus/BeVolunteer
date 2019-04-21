@@ -3,10 +3,10 @@ import { Redirect } from 'react-router-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout/MainLayout';
-import HomePage from './containers/HomePage/HomePage';
-import NotFoundPage from './containers/NotFoundPage/NotFoundPage';
+import HomePage from './containers/user/HomePage/HomePage';
+import NotFoundPage from './containers/user/NotFoundPage/NotFoundPage';
 import LoginPage from './containers/LoginPage/LoginPage';
-import InfoPage from './containers/InfoPage/InfoPage'
+import InfoPage from './containers/user/InfoPage/InfoPage'
 
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => 
     <Route {...rest} render={props => isAuthenticated ? <Component {...props} /> : <Redirect to='/login' />} />; 

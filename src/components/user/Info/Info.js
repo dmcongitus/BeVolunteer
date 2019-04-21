@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as authActions from '../../actions/auth.action';
+import * as authActions from '../../../actions/auth.action';
 
 import './Info.css';
 
-import profileIcon from '../../images/profile.png';
-import cancelIcon from '../../images/cancel.png';
-import editIcon from '../../images/edit.png';
-import identityImage from '../../images/identity.png';
+import profileIcon from '../../../images/profile.png';
+import cancelIcon from '../../../images/cancel.png';
+import editIcon from '../../../images/edit.png';
+import identityImage from '../../../images/identity.png';
 import { userInfo } from 'os';
 import { Button, Alert, Badge} from 'reactstrap';
 

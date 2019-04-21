@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import user from '../../images/user.png'
-import LeftSide from '../LeftSide/LeftSide'
+
+
 
 import './RightSide.css';
 
