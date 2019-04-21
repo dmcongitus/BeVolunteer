@@ -26,6 +26,6 @@ const RightSide = (props) => (
                       </ul>
                     </div>
                   </div>          
-);
+)
 
 export default RightSide;
