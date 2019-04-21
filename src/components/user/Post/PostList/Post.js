@@ -1,14 +1,17 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import PostCard from '../PostCard/PostCard'
 
 
 import './Post.css';
 
 const Post = (props) => (
    
-    <div className="mid-sidebar">
-    <h2 className="title-widget-sidebar"># NEWS</h2>
-    
+    <div>
+     
+      <PostCard></PostCard>
+      <PostCard></PostCard>
+      <PostCard></PostCard>
       
   </div>       
               

@@ -5,7 +5,7 @@ import Footer from '../../components/user/Footer/Footer';
 import ModalConductor from '../../modals/ModalConductor';
 import Snackbar from '../../components/user/Snackbar/Snackbar';
 import LeftSide from '../../components/user/LeftSide/LeftSide';
-import RightSide from '../../components/user/RightSide/RightSide';
+import RightSide from '../../components/user/RightSide/RightSideListCard/RightSide';
 
 
 import './MainLayout.css';

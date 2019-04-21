@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 
-import "./Post.css";
+import "./RightSideCard.css";
 
 const RightSideCard = props => (
   <div>
