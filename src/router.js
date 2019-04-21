@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout/MainLayout';
 import HomePage from './containers/user/HomePage/HomePage';
-import NotFoundPage from './containers/user/NotFoundPage/NotFoundPage';
+import NotFoundPage from './containers/NotFoundPage/NotFoundPage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import InfoPage from './containers/user/InfoPage/InfoPage'
 
