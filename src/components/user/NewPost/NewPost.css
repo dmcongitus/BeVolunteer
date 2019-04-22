@@ -44,3 +44,12 @@
     .imagePost-body{
         margin-left: 10px;
     }
+
+    .Newpost-img img {
+        width: 150px;
+        height: 100px;
+        float: left;
+        margin-right: 15px;
+        border: 5px solid seagreen;
+        transition: 0.5s;
+    }

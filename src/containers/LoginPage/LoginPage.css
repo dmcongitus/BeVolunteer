@@ -7,7 +7,14 @@
     sans-serif;
     align-content: center;
 }
-
+.singup-color{
+    margin-left: 5px;
+    color: #FFC312;
+}
+.singup-color:hover{
+    color: red;
+    cursor: pointer;
+}
 .card {
     height: 370px;
     margin-top: auto;

@@ -65,10 +65,11 @@ class LoginPage extends Component {
                         </div>
                         <div class="card-footer">
                             <div class="d-flex justify-content-center links">
-                                Don't have an account?<a href="#">Sign Up</a>
+                                Don't have an account?<div className="singup-color"> Sign Up</div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <a href="#">Forgot your password?</a>
+                                <div className="singup-color" >Forgot your password?</div>
+                               
                             </div>
                         </div>
                     </div>

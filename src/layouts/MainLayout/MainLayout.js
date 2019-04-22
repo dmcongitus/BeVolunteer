@@ -6,26 +6,28 @@ import ModalConductor from '../../modals/ModalConductor';
 import Snackbar from '../../components/user/Snackbar/Snackbar';
 import LeftSide from '../../components/user/LeftSide/LeftSide';
 import RightSide from '../../components/user/RightSide/RightSideListCard/RightSide';
+import AdminLeftSide from '../../components/admin/AdminLeftSide/AdminLeftSide';
 
 
 import './MainLayout.css';
 
 import { Container, Row, Col } from 'reactstrap';
 
-const MainLayout = (props) => (
+const MainLayout = ({children, permission, username}) => (
     <div class="my-layout">
         <Header />
         <Row>
             <Col xs="3">
-                <LeftSide />
+                {permission < 2 ? <LeftSide username={username} /> : <AdminLeftSide username={username} permission={permission}/>}
             </Col>
 
             <Col xs="6">
-                {props.children}
+                {children}
             </Col>
 
             <Col xs="3">
-                <RightSide />
+                {/* Do not show RightSide if permission is admin */}
+                {permission < 2 ? <RightSide /> : null}
             </Col>
         </Row>
         <ModalConductor />
