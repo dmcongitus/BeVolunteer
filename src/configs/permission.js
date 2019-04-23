@@ -65,6 +65,9 @@ export const mapPermissionToSelections = {
         }, {
             title: 'Xóa tài khoản',
             redirectTo: '/delete-account'
+        }, {
+            title: 'Quản lý bài viết',
+            redirectTo: '/ContentManage'
         }]
     }, {
         header: 'Cộng đồng',
