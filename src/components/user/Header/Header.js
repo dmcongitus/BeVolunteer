@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../images/volunteer.png'
 import logoText from '../../../images/volunteerText.png'
+import * as authActions from '../../../actions/auth.action'
 import './Header.css';
 
 
@@ -10,8 +11,7 @@ class Header extends React.Component  {
   
     log_out = () =>{
       
-        sessionStorage.clear();
-        localStorage.clear(); 
+        authActions.logOutUser();
         window.location.reload();
     }
     render(){

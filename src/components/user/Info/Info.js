@@ -82,29 +82,31 @@ class MeComponent extends Component {
         }
 
         return (
-            <div className="widget-sidebar">
-                <div className="p-3 text-lg font-bold border-b border-solid border-grey-light" >
-                    <div className="updateStatus">
-                        <div >
-                            <div >
-                                
-                               
-                            </div>
-                        </div>
-
-                    </div>
+            <div>
+                <div className="p-3 " >
             
                     <div className="UpdateProfile" >
-                        <section className="UpdateProfile__Header">
-                            <div className="UpdateProfile__Header__Left">
-                                <div>Thông tin cá nhân</div>
-                                <img alt="profile_icon" src={profileIcon} />
-                            </div>
-                            <div className="UpdateProfile__Header__Right">
-                                <img alt="authenticated?" src={cancelIcon} />
-                                <div>Chưa được xác thực</div>
-                            </div>
-                        </section>
+                        
+                           <Alert color="danger"> 
+                          
+                               
+                                Tài khoản - <b>Chưa được xác thực</b>
+                            
+                           </Alert>
+                           <Alert color="success"> 
+                          
+                               
+                                Tài khoản - <b>Đã được xác thực</b>
+                            
+                           </Alert>
+                           <Alert color="info"> 
+                          
+                               
+                                Tài khoản - <b>Đang chờ xác thực</b>
+                            
+                           </Alert>
+                           
+                       
                         <section className="UpdateProfile__Main" >
                             <ul>
 

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import Info from '../../../components/user/Info/Info';
+import PageLayout from "../../../layouts/PageLayout/PageLayout";
 
 class InfoPage extends Component {
     render() {
         return (
-            <Info />
+            <PageLayout title="Thông tin cá nhân">
+                 <Info />
+            </PageLayout>
+           
         );
     }
 }

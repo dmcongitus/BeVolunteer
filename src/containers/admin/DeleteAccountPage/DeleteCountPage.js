@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 
 import PageLayout from '../../../layouts/PageLayout/PageLayout';
 
-import { getAllUsers, deleteUser } from '../../../services/user.service';
+import { getAllUsers, banUser } from '../../../services/user.service';
 
 class DeleteAccountPage extends Component {
     state = {
@@ -14,9 +14,9 @@ class DeleteAccountPage extends Component {
         getAllUsers().then(({ data: { accounts } }) => this.setState({ accounts }));
     }
 
-    onAccountDelete = (username) => {
+    onAccountBan = (username) => {
         this.setState((prevState) => ({ accounts: prevState.accounts.filter((account) => account.username !== username) }));
-        deleteUser(username);
+        banUser(username);
     }
 
     render() {
@@ -35,13 +35,13 @@ class DeleteAccountPage extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.accounts.map((account) => account.isDeleted ? null : (
+                        {this.state.accounts.map((account) => account.isBanned ? null : (
                             <tr key={account.username}>
                                 <th scope="row">{++number}</th>
                                 <td>{account.username}</td>
                                 <td>{account.name}</td>
                                 <td>{account.verify ? "Đã xác thực" : "Chưa xác thực"}</td>
-                                <td><button onClick={() => this.onAccountDelete(account.username)}>Delete</button></td>
+                                <td><button onClick={() => this.onAccountBan(account.username)}>Ban</button></td>
                             </tr>
                         ))}
                     </tbody>

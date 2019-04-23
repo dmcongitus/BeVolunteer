@@ -20,8 +20,8 @@ const MainLayout = ({children, permission, username}) => (
             <Col xs="3">
                 {permission < 2 ? <LeftSide username={username} /> : <AdminLeftSide username={username} permission={permission}/>}
             </Col>
-
-            <Col xs="6">
+            
+            <Col xs="6" >
                 {children}
             </Col>
 

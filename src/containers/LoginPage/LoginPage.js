@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
 import * as authActions from '../../actions/auth.action';
 
 import './LoginPage.css';
@@ -30,6 +30,7 @@ class LoginPage extends Component {
 
         return (
             <div class="container-fluid mylogin">
+            
                 <div class="d-flex justify-content-center h-100">
                     <div class="card">
                         <div class="card-header">
@@ -65,7 +66,9 @@ class LoginPage extends Component {
                         </div>
                         <div class="card-footer">
                             <div class="d-flex justify-content-center links">
-                                Don't have an account?<div className="singup-color"> Sign Up</div>
+                                Don't have an account?
+                                <NavLink to="/signup"><div className="singup-color"> Sign Up</div></NavLink>
+                                
                             </div>
                             <div class="d-flex justify-content-center">
                                 <div className="singup-color" >Forgot your password?</div>

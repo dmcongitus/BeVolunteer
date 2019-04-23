@@ -19,7 +19,7 @@ const LeftSide = ({username}) => (
                 <h5><strong>CÁ NHÂN</strong></h5>
                
                 <li ><NavLink activeStyle={{ color: 'green' }} to="/me">Thông tin cá nhân</NavLink></li>
-                <li >Lịch sử</li>
+                <li ><NavLink activeStyle={{ color: 'green' }} to="/history">Lịch sử hoạt động</NavLink></li>
                 <li>Đang đăng ký</li>
               </ul>
               <br />
