@@ -125,3 +125,7 @@
       top: -7px;
     }
   }
+
+  a.nav-link:hover {
+    color: palegreen !important;
+  }
