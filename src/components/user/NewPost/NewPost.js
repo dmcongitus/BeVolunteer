@@ -50,7 +50,7 @@ class NewPost extends Component {
 
     render() {
         return (
-            <div className="NewPostBox col">
+            <div className="NewPostBox col" style={this.props.style}>
                 <Row>
 
                     <Alert style={{ width: '100%' }} color="success">

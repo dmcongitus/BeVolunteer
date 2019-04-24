@@ -12,3 +12,11 @@ export function createPost(post) {
             }
         });
 }
+
+export function getPosts(type) {
+    if (type === 0) {
+        return Axios.get('/posts', { headers: { "x-access-token": localStorage.getItem("token") } });
+    } else {
+        return Axios.get(`/posts?type=${type}`, { headers: { "x-access-token": localStorage.getItem("token") } });
+    }
+}

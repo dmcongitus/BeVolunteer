@@ -6,7 +6,7 @@ import "./PostCard.css";
 
 const PostCard = props => (
   <div>
-    <div className="row postCard">
+    <div className="row postCard" style={{borderRadius: 5}}>
       <div style={{ width: "100%" }}>
         <div >
           <div> 
@@ -16,28 +16,29 @@ const PostCard = props => (
                 <img
                   className="img-user-postCard rounded-circle"
                   src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
+                  alt="UserAvatar"
                 />
               </a>
 
               <div className="media-body">
                 <p className="m-0">
-                  Khoa Học Tự Nhiên
+                  {props.name}
                   <small>
                     <span style={{ marginLeft: "5px" }}>đã chia sẻ một</span>
                   </small>
                   <span style={{ marginLeft: "5px", color: "green" }}>
-                    Hoạt Động cá nhân
+                    {props.type}
                   </span>
                 </p>
                 <small>
                   <span>
                     <i className="fa fa-calendar" data-original-title title />{" "}
-                    30 Juni 2014
+                    {new Date(props.createdAt).toLocaleTimeString()}
                     <i
                       style={{ marginLeft: "5px" }}
                       class="fas fa-map-marker-alt"
                     />{" "}
-                    450 Nguyễn Thị Minh Khai
+                    {props.address}
                   </span>
                 </small>
                 <small />
@@ -49,18 +50,14 @@ const PostCard = props => (
           <Row>
             <Col>
               <div>
-                <img
-                  className="img-fluid"
-                  src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg"
-                  alt="Image"
-                />
+                {props.filenames.map((filename) => <img  src={`/resources/${filename}`} style={{maxWidth: '100%', height: 'auto', borderRadius: 5, border: '1px solid gray'}} alt="Post album" />)}
+
               </div>
               {/*/ cardbox-item */}
             </Col>
             <Col className="textMedia">
+                {props.description}
               <Alert color="success">
-                Hôm nay giúp đỡ được một cụ già. Thật là vui quá ahihi Lần sau
-                sẽ cố gắng giúp đỡ thật nhiều người nữa ahuhu!!
               </Alert>
             </Col>
           </Row>
