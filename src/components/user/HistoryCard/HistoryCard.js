@@ -7,7 +7,7 @@ import "./HistoryCard.css";
 
 const HistoryCard = props => (
   <div>
-    <div className="row postCard">
+    <div className="row postCard" style={{borderRadius: 5}}>
     <Alert className="Alert-historyCard" color="success">Đã xác thực</Alert>
     <Alert className="Alert-historyCard" color="primary">Đang xác thực</Alert>
     <Alert className="Alert-historyCard" color="danger">Xác thực không thành công</Alert>
@@ -51,20 +51,15 @@ const HistoryCard = props => (
             {/*/ media */}
           </div>
           {/*/ cardbox-heading */}
-          <Row>
-            <Col>
-              <div>
-                {props.filenames.map((filename) => <img className="img-fluid" src={`/resources/${filename}`} alt="Post album" />)}
- 
-              </div>
+          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', padding: '10px 60px'}}>
+            <div style={{marginRight: '10px'}}>
+                {props.filenames.map((filename) => <img  src={`/resources/${filename}`} style={{maxWidth: '100%', height: 'auto', borderRadius: 5, border: '1px solid gray'}} alt="Post album" />)}
               {/*/ cardbox-item */}
-            </Col>
-            <Col className="textMedia">
-              <Alert color="success">
+            </div>
+            <div className="textMedia" >
                 {props.description}
-              </Alert>
-            </Col>
-          </Row>
+            </div>
+          </div>
 
         
           {/*/ cardbox-like */}

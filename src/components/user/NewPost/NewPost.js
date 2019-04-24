@@ -12,7 +12,6 @@ import {
 import "./NewPost.css";
 
 import * as postServices from '../../../services/post.service';
-
 const initialState = {
     image: undefined,
     description: '',
@@ -75,17 +74,18 @@ class NewPost extends Component {
 
                 <Row>
                     <Col xs="8">
-                        <Row >
+                        <Row style={{height:'100%'}}>
                             <Col xs="2">
 
                                 <img
                                     className="img-user-postCard rounded-circle"
                                     src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
+                                    alt="temp"
                                 />
                             </Col>
                             <Col xs="10">
 
-                                <Form >
+                                <Form style={{height:'100%'}}>
                                     <FormGroup >
                                         <Input
                                             className="TextBox-input"
@@ -93,7 +93,7 @@ class NewPost extends Component {
                                             name="description"
                                             id="exampleText"
                                             placeholder="Hãy nói gì về bức ảnh này."
-                                            style={{ height: '100px', width: '100%' }}
+                                            style={{ height: '100%', width: '100%' }}
                                             value={this.state.description}
                                             onChange={this.onFieldChanged}
                                         />
@@ -102,15 +102,10 @@ class NewPost extends Component {
                             </Col>
                         </Row>
                     </Col>
-                    <Col xs="4">
-                        <div className="Newpost-img">
-                            <img onClick={() => console.log(this.inputImage.current.click())}
-                                src={this.state.image ? URL.createObjectURL(this.state.image) : "https://lh3.googleusercontent.com/-ojLI116-Mxk/WM1ZIwdnuwI/AAAAAAAADeo/4K6VpwIPSfgsmlXJB5o0N8scuI3iW4OpwCJoC/w424-h318-n-rw/thumbnail6.jpg"}
-         alt="fucku"
-                            />
-
+                    <Col xs="4" className="Newpost-img">
+                            {!this.state.image ? <div className="Newpost-img__placeholder"onClick={() => this.inputImage.current.click()}><span>+</span></div> : <img src={URL.createObjectURL(this.state.image)} alt="fucku"/>}
                             <input type="file" style={{ display: 'none' }} ref={this.inputImage} onClick={e => e.target.value = null} onChange={this.handleImageChange}/>
-                        </div>
+                       
                     </Col>
                 </Row>
     
