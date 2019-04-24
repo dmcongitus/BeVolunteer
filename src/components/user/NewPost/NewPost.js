@@ -123,7 +123,7 @@ class NewPost extends Component {
    
                 </Row>
     
-                <Row class="float-right">
+                <Row className="float-right">
                     <Col sm={{ size: "auto", offset: 9 }}>
                         <div className="btnPost">
                             <Button color="success" onClick={this.onSubmit}>Đăng tải</Button>

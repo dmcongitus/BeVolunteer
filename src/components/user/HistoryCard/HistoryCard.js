@@ -40,7 +40,7 @@ const HistoryCard = props => (
                     {new Date(props.createdAt).toLocaleTimeString()}
                     <i
                       style={{ marginLeft: "5px" }}
-                      class="fas fa-map-marker-alt"
+                      className="fas fa-map-marker-alt"
                     />{" "}
                     {props.address}
                   </span>

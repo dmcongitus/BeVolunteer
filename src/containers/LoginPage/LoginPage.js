@@ -29,48 +29,48 @@ class LoginPage extends Component {
         }
 
         return (
-            <div class="container-fluid mylogin">
+            <div className="container-fluid mylogin">
             
-                <div class="d-flex justify-content-center h-100">
-                    <div class="card">
-                        <div class="card-header">
+                <div className="d-flex justify-content-center h-100">
+                    <div className="card">
+                        <div className="card-header">
                             <h3>Sign In</h3>
-                            <div class="d-flex justify-content-end social_icon">
-                                <span><i class="fab fa-facebook-square"></i></span>
-                                <span><i class="fab fa-google-plus-square"></i></span>
-                                <span><i class="fab fa-twitter-square"></i></span>
+                            <div className="d-flex justify-content-end social_icon">
+                                <span><i className="fab fa-facebook-square"></i></span>
+                                <span><i className="fab fa-google-plus-square"></i></span>
+                                <span><i className="fab fa-twitter-square"></i></span>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div className="card-body">
                             <form onSubmit={this.onFormSubmit}>
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="username" name="username" onChange={this.onFieldChanged} />
+                                    <input type="text" className="form-control" placeholder="username" name="username" onChange={this.onFieldChanged} />
 						
                                 </div>
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" placeholder="password" name="password" onChange={this.onFieldChanged} />
+                                    <input type="password" className="form-control" placeholder="password" name="password" onChange={this.onFieldChanged} />
                                 </div>
-                                <div class="row align-items-center remember">
+                                <div className="row align-items-center remember">
                                     <input type="checkbox" />Remember Me
 					            </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Login" class="btn float-right login_btn" />
+                                <div className="form-group">
+                                    <input type="submit" value="Login" className="btn float-right login_btn" />
                                 </div>
                             </form>
                         </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-center links">
+                        <div className="card-footer">
+                            <div className="d-flex justify-content-center links">
                                 Don't have an account?
                                 <NavLink to="/signup"><div className="singup-color"> Sign Up</div></NavLink>
                                 
                             </div>
-                            <div class="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center">
                                 <div className="singup-color" >Forgot your password?</div>
                                
                             </div>

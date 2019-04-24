@@ -40,7 +40,7 @@ class DeleteAccountPage extends Component {
                                 <th scope="row">{++number}</th>
                                 <td>{account.username}</td>
                                 <td>{account.name}</td>
-                                <td>{account.verify ? "Đã xác thực" : "Chưa xác thực"}</td>
+                                <td>{account.isVerified ? "Đã xác thực" : "Chưa xác thực"}</td>
                                 <td><button onClick={() => this.onAccountBan(account.username)}>Ban</button></td>
                             </tr>
                         ))}

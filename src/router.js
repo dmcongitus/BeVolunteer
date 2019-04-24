@@ -13,6 +13,7 @@ import ApprovePage from './containers/admin/ApprovePage/AppovePage';
 import DeleteAccountPage from './containers/admin/DeleteAccountPage/DeleteCountPage';
 import HistoryPage from './containers/user/HistoryPage/HistoryPage';
 import ContentManagePage from './containers/admin/ContentManagePage/ContentManagePage';
+import CreateAccountPage from './containers/admin/CreateAcountPage/CreateAccountPage';
 
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => 
     <Route {...rest} render={props => isAuthenticated ? <Component {...props} /> : <Redirect to='/login' />} />; 
@@ -41,6 +42,7 @@ export default function router({ isAuthenticated, permission, username }) {
                         <NeedPermissionRoute path="/approve" routePermisison={[3, 4, 5]} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
                         <NeedPermissionRoute path="/delete-account" routePermisison={[3, 4, 5]} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/ContentManage" routePermisison={[3, 4, 5]} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/CreateAccountAdmin" routePermisison={[3, 4, 5]} component={CreateAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <Route component={NotFoundPage} />
                     </Switch>
                 </MainLayout>

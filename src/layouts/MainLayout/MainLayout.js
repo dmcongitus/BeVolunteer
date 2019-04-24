@@ -14,7 +14,7 @@ import './MainLayout.css';
 import { Container, Row, Col } from 'reactstrap';
 
 const MainLayout = ({children, permission, username}) => (
-    <div class="my-layout">
+    <div className="my-layout">
         <Header />
         <Row style={{marginRight: 0}}>
             <Col xs="3">
