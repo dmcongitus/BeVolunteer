@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { connect } from 'react-redux';
 import { Row, Col, Alert } from "reactstrap";
 
 import "./HistoryCard.css";
@@ -24,24 +25,24 @@ const HistoryCard = props => (
 
               <div className="media-body">
                 <p className="m-0">
-                  Khoa Học Tự Nhiên
+                  {props.name}
                   <small>
                     <span style={{ marginLeft: "5px" }}>đã chia sẻ một</span>
                   </small>
                   <span style={{ marginLeft: "5px", color: "green" }}>
-                    Hoạt Động cá nhân
+                    {props.type}
                   </span>
                   
                 </p>
                 <small>
                   <span>
                     <i className="fa fa-calendar" data-original-title title />{" "}
-                    30 Juni 2014
+                    {new Date(props.createdAt).toLocaleTimeString()}
                     <i
                       style={{ marginLeft: "5px" }}
                       class="fas fa-map-marker-alt"
                     />{" "}
-                    450 Nguyễn Thị Minh Khai
+                    {props.address}
                   </span>
                 </small>
                 <small />
@@ -53,18 +54,14 @@ const HistoryCard = props => (
           <Row>
             <Col>
               <div>
-                <img
-                  className="img-fluid"
-                  src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg"
-                  alt="Image"
-                />
+                {props.filenames.map((filename) => <img className="img-fluid" src={`/resources/${filename}`} alt="Post album" />)}
+ 
               </div>
               {/*/ cardbox-item */}
             </Col>
             <Col className="textMedia">
               <Alert color="success">
-                Hôm nay giúp đỡ được một cụ già. Thật là vui quá ahihi Lần sau
-                sẽ cố gắng giúp đỡ thật nhiều người nữa ahuhu!!
+                {props.description}
               </Alert>
             </Col>
           </Row>
@@ -80,4 +77,6 @@ const HistoryCard = props => (
   </div>
 );
 
-export default HistoryCard;
+const mapStateToProps = ({ auth: { user: { name } } }) => ({ name });
+
+export default connect(mapStateToProps)(HistoryCard);

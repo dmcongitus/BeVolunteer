@@ -20,3 +20,7 @@ export function updateUserInfo(username, userInfo) {
 export function getUserInfo(username) {
     return Axios.get();
 }
+
+export function getMyPosts(userId) {
+    return Axios.get(`/posts/user/${userId}`, { headers: { "x-access-token": localStorage.getItem("token") } } );
+}
