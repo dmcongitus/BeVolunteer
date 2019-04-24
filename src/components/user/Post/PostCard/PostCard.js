@@ -35,7 +35,7 @@ const PostCard = props => (
                     30 Juni 2014
                     <i
                       style={{ marginLeft: "5px" }}
-                      class="fas fa-map-marker-alt"
+                      className="fas fa-map-marker-alt"
                     />{" "}
                     450 Nguyễn Thị Minh Khai
                   </span>

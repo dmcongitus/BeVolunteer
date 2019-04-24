@@ -186,9 +186,9 @@ class MeComponent extends Component {
                         {this.state.profileChanged && <div className="UpdateProfile__Footer">
                         
                             <Button className="UpdateProfile__Footer__Update" onClick={this.handleUpdate}>
-                                <i class="fas fa-check-circle ml-1"/>  Cập nhật</Button>
+                                <i className="fas fa-check-circle ml-1"/>  Cập nhật</Button>
                             <Button className="UpdateProfile__Footer__Cancel" onClick={this.handleCancel}>
-                                <i class="fas fa-trash-alt ml-1"/> Hủy</Button></div>}
+                                <i className="fas fa-trash-alt ml-1"/> Hủy</Button></div>}
                     </div>
               
                 </div>

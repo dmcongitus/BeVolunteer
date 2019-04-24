@@ -68,6 +68,9 @@ export const mapPermissionToSelections = {
         }, {
             title: 'Quản lý bài viết',
             redirectTo: '/ContentManage'
+        }, {
+            title: 'Tạo tài khoản admin',
+            redirectTo: '/CreateAccountAdmin'
         }]
     }, {
         header: 'Cộng đồng',

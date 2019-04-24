@@ -2,7 +2,7 @@
     background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 100vh !important;
     font-family: 'Numans',
     sans-serif;
     align-content: center;
@@ -21,7 +21,7 @@
 .card {
     height: 370px;
     margin-top: auto;
-    margin-bottom: auto;
+    margin-bottom: auto !important;
     width: 400px;
     background-color: rgba(0, 0, 0, 0.5) !important;
 }
@@ -86,3 +86,6 @@ input:focus {
     color: white;
 }
 
+.card-body{
+    flex: unset;
+}
