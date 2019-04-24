@@ -16,7 +16,7 @@ import { Container, Row, Col } from 'reactstrap';
 const MainLayout = ({children, permission, username}) => (
     <div class="my-layout">
         <Header />
-        <Row>
+        <Row style={{marginRight: 0}}>
             <Col xs="3">
                 {permission < 2 ? <LeftSide username={username} /> : <AdminLeftSide username={username} permission={permission}/>}
             </Col>
