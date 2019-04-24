@@ -33,13 +33,14 @@ class Header extends React.Component  {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto"/>
             <ul className="navbar-nav ">
+            <NavLink activeStyle={{ color: 'white' }} to="/">
                 <li className="nav-item active">
                     <a className="nav-link">
                         <i className="fa fa-home" />
-                        <NavLink activeStyle={{ color: 'white' }} to="/">Home</NavLink>
+                        Home
                     </a>
                 </li>
-
+            </NavLink>
                 <li className="nav-item active">
                     <a className="nav-link">
                         <i className="fa fa-bell">
@@ -49,9 +50,9 @@ class Header extends React.Component  {
                     </a>
                 </li>
 
-                <li className="nav-item active">
+                <li className="nav-item active" onClick={this.log_out}>
                     <a className="nav-link">
-                        <i className="fa fa-sign-out" onClick={this.log_out}
+                        <i className="fa fa-sign-out" 
 />
                         Logout
                     <span className="sr-only">(current)</span>

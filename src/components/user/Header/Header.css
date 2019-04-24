@@ -6,13 +6,17 @@
   box-shadow: 2px 2px 2px #666;
 }
 
+
 .navbar-icon-top .navbar-nav .nav-link > .fa {
     position: relative;
     width: 36px;
     font-size: 24px;
     
   }
-  
+  .active:hover{
+    cursor: pointer;
+   
+  }
   .navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
     font-size: 0.75rem;
     position: absolute;
@@ -28,6 +32,7 @@
   .navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
     top: -10px;
   }
+  
   
   @media (min-width: 576px) {
     .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link {
