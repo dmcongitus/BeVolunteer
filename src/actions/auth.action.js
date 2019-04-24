@@ -3,10 +3,10 @@ import { storeUserData, setToken } from '../utils/localStorage';
 import * as authServices from '../services/auth.service';
 import * as meServices from '../services/me.service';
 
-export function logInUser(username, password) {
+export function logInUser(username, password, loginType) {
     return async function (dispatch) {
         try {
-            const { data: { token, user } } = await authServices.loginUser(username, password);
+            const { data: { token, user } } = await authServices.loginUser(username, password, loginType);
 
             setToken(token);
             storeUserData(user);

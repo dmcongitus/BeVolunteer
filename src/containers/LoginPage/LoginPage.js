@@ -9,7 +9,8 @@ import './LoginPage.css';
 class LoginPage extends Component {
     state = {
         username: '',
-        password: ''
+        password: '',
+        loginType: 0
     }
 
     onFieldChanged = (e) => {
@@ -19,8 +20,11 @@ class LoginPage extends Component {
     onFormSubmit = (e) => {
         e.preventDefault();
 
-        this.props.loginUser(this.state.username, this.state.password);
-        console.log('submitform');
+        this.props.loginUser(this.state.username, this.state.password, this.state.loginType);
+    }
+
+    onLoginTypeChange = () => {
+        this.setState((prevState) => ({ loginType: !prevState.loginType }));
     }
 
     render() {
@@ -57,7 +61,7 @@ class LoginPage extends Component {
                                     <input type="password" className="form-control" placeholder="password" name="password" onChange={this.onFieldChanged} />
                                 </div>
                                 <div className="row align-items-center remember">
-                                    <input type="checkbox" />Remember Me
+                                    <input type="checkbox" onChange={this.onLoginTypeChange} value={this.state.loginType}/>Login as admistrator
 					            </div>
                                 <div className="form-group">
                                     <input type="submit" value="Login" className="btn float-right login_btn" />
@@ -85,7 +89,7 @@ class LoginPage extends Component {
 const mapStateToProps = ({ auth: { isAuthenticated } }) => ({ isAuthenticated });
 
 const mapDispatchToProps = dispatch => ({
-    loginUser: (username, password) => dispatch(authActions.logInUser(username, password))
+    loginUser: (username, password, loginType) => dispatch(authActions.logInUser(username, password, loginType))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
