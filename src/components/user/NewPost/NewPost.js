@@ -50,7 +50,8 @@ class NewPost extends Component {
 
     render() {
         return (
-            <div className="NewPostBox col" style={this.props.style}>
+            <Col className="NewPostBox" style={this.props.style}>
+
                 <Row>
 
                     <Alert style={{ width: '100%' }} color="success">
@@ -123,14 +124,12 @@ class NewPost extends Component {
    
                 </Row>
     
-                <Row className="float-right">
-                    <Col sm={{ size: "auto", offset: 9 }}>
-                        <div className="btnPost">
-                            <Button color="success" onClick={this.onSubmit}>Đăng tải</Button>
-                        </div>
-                    </Col>
+                <Row className = "botForm">
+                   
+                            <Button color="success mr-50 mb-10" onClick={this.onSubmit}>Đăng tải</Button>
+                      
                 </Row>
-            </div>
+            </Col>
         );
     
     

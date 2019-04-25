@@ -14,14 +14,14 @@ import './MainLayout.css';
 import { Container, Row, Col } from 'reactstrap';
 
 const MainLayout = ({children, permission, username}) => (
-    <div className="my-layout">
+    <div className="main-layout">
         <Header />
-        <Row style={{marginRight: 0}}>
+        <Row className="px-3">
             <Col xs="3">
                 {permission < 2 ? <LeftSide username={username} /> : <AdminLeftSide username={username} permission={permission}/>}
             </Col>
             
-            <Col xs="6" >
+            <Col xs="6" className="px-0">
                 {children}
             </Col>
 

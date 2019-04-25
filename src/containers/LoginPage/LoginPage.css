@@ -31,7 +31,9 @@
     margin-left: 10px;
     color: #FFC312;
 }
-
+.form-group{
+   margin-bottom: 16px;
+}
 .social_icon span:hover {
     color: white;
     cursor: pointer;

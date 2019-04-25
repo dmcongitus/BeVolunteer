@@ -2,6 +2,7 @@
     -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
     -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
     box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+    height: 100%;
 }
 .img-user-postCard{
     height: 40px;
@@ -9,6 +10,16 @@
     margin-left: 10px;
 }
 
+.botForm{
+    display: flex;
+    justify-content: flex-end;
+}
+.mr-50{
+    margin-right: 50px;
+}
+.mb-10{
+    margin-bottom: 10px;
+}
 #status-overlay {
     height: 100%;
     width: 100%;

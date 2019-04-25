@@ -41,14 +41,16 @@
 .UpdateProfile__Main__FieldName {
     flex-basis: 100px;
     margin-right: 30px;  
+    color: green;
     
-    font-weight: bold;
 
 }
 
 .UpdateProfile__Main__FieldValue {
     flex-grow: 1;
     border: 0;
+    background: unset;
+    color: black;
 }
 
 .UpdateProfile__Main__FieldValue select {
@@ -61,6 +63,7 @@
     height: auto;
     border-radius: 5px;
     border: 1px solid #afafaf;
+    
    
 }
 
@@ -116,7 +119,7 @@
     opacity: 0.9;
 }
 .type-user{
-    color: green;
+    color: #ffb031;
     font-weight: bold;
 
 }
