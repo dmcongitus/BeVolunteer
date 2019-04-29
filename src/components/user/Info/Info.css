@@ -41,7 +41,8 @@
 .UpdateProfile__Main__FieldName {
     flex-basis: 100px;
     margin-right: 30px;  
-    color: green;
+    color: #004916;
+    font-weight: 500;
     
 
 }
@@ -73,7 +74,9 @@
     align-items: center;
     margin-left: 1em;
     color: #38a89d;
-    background-color: white;
+    background-color:unset;
+    border: unset;
+
 }
 .UpdateProfile__Main__FieldEdit img{
     height: 20px;
@@ -91,7 +94,7 @@
 }
 
 .UpdateProfile__Footer__Update {
-    background: green;
+    background: #0D6628;
     color: rgb(255, 255, 255);
     padding: 0.5em 1em;
     border-radius: 2px;
@@ -119,7 +122,7 @@
     opacity: 0.9;
 }
 .type-user{
-    color: #ffb031;
+    color: #004916;
     font-weight: bold;
 
 }

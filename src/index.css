@@ -7,21 +7,28 @@
 
 a {
   text-decoration: none;
-  color: #006363;
+  color: #011D25;
 }
 
 a:hover {
-  color: #006363;
+  color: #011D25;
   text-decoration: none;
 }
 
 b{
-    color: #006363;
+    color: #011D25;
+}
+
+.item-mid{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 .item-center{
     display: flex;
-    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
 }
@@ -36,20 +43,21 @@ b{
 .item-right{
     display: flex;
     justify-content: flex-end;
-    height: 100%;
+    height: auto;
     width: 100%;
 }
 
-.item-center-row{
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
+
 
 .item-column{
     display: flex;
     flex-direction: column;
+}
+
+.item-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
 .text-title-1{
@@ -58,7 +66,9 @@ b{
 }
 .text-title-2{
     font-size: 14pt;
-    color: #006363;
+    /* color: #DB291D; */
+    /* color: #002540; */
+    color:  #004916;
 }
 
 .text-title-3{
@@ -72,6 +82,17 @@ b{
     color: #006363;
 }
 
+.text-color-1{
+    color: #ecf1e5;
+}
+.bg-color-1{
+    background-color: #ecf1e5;
+}
 i{
     margin-right: 10px;
 }
+
+.item-bottom {
+    display: flex;
+    align-items: flex-end;
+  }

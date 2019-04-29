@@ -1,6 +1,13 @@
 .main-layout{
-     background-image: url('../../images/bg.jpg');
+     background-image: url('../../images/bgl.jpg');
      background-size: 100% auto;
      background-attachment: fixed;
+     min-height: 100vh;
+ 
+}
+
+.mr-unset{
+     margin-right: unset;
+     padding-right: unset;
 }
 

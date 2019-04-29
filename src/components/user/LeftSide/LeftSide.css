@@ -5,11 +5,18 @@
     width: 100%;
    
 }
+
+
 .logo>img {
-    border: 2px solid #006363;
+    border: 2px solid #004916;
     border-radius: 100%;
     width: 60px;
     height: 60px;
+}
+.leftSide{
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: white;
+  
 }
 
 
@@ -26,10 +33,19 @@
 
 .list>li:hover {
     background-color: rgba(255, 255, 255, 0.2);
-    border-left: 5px solid #A67500;
+    border-left: 5px solid #004916;
     font-weight: bolder;
     padding-left: 35px;
     
  
 }
 
+.my-small{
+    font-size: 15px;
+    color: black;
+}
+
+.online{
+    color: #0D6628;
+
+}

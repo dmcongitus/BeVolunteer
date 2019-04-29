@@ -29,7 +29,7 @@ const HistoryCard = props => (
                   <small>
                     <span style={{ marginLeft: "5px" }}>đã chia sẻ một</span>
                   </small>
-                  <span style={{ marginLeft: "5px", color: "green" }}>
+                  <span style={{ marginLeft: "5px", color: "#0D6628" }}>
                     {props.type}
                   </span>
                   

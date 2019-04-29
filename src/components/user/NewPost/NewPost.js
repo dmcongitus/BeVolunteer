@@ -54,15 +54,19 @@ class NewPost extends Component {
 
                 <Row>
 
-                    <Alert style={{ width: '100%' }} color="success">
+                    <Alert style={{ width: '100%' }} className="header-1">
                         <Row style={{ display: 'flex', alignItems: 'center' }}>
                             <Col xs="9">
-                                Tạo Bài Viết
+                            <div className= "text1">
+                            <i class="fas fa-pencil-alt"></i>
+                            Tạo Bài Viết
+                            </div>
+                              
       </Col>
                             <Col xs="3">
 
                                 <FormGroup style={{ marginBottom: 0 }}>
-                                    <Input type="select" name="select" id="exampleSelect" onChange={this.onTypeChange} value={this.state.type}>
+                                    <Input type="select"  name="select" id="exampleSelect" onChange={this.onTypeChange} value={this.state.type}>
                                         <option value="Hoạt động cá nhân">Cá nhân</option>
                                         <option value="Địa điểm">Địa điểm</option>
                                     </Input>
@@ -105,7 +109,7 @@ class NewPost extends Component {
                     </Col>
                     <Col xs="4" className="Newpost-img">
                             {!this.state.image ? <div className="Newpost-img__placeholder"onClick={() => this.inputImage.current.click()}><span>+</span></div> : <img src={URL.createObjectURL(this.state.image)} alt="fucku"/>}
-                            <input type="file" style={{ display: 'none' }} ref={this.inputImage} onClick={e => e.target.value = null} onChange={this.handleImageChange}/>
+                            <input type="file" multiple style={{ display: 'none' }} ref={this.inputImage} onClick={e => e.target.value = null} onChange={this.handleImageChange}/>
                        
                     </Col>
                 </Row>
@@ -126,8 +130,8 @@ class NewPost extends Component {
     
                 <Row className = "botForm">
                    
-                            <Button color="success mr-50 mb-10" onClick={this.onSubmit}>Đăng tải</Button>
-                      
+                            <Button  className="success mr-3 mb-10" onClick={this.onSubmit}><i class="fas fa-upload icon-button"></i>Đăng tải</Button>
+                     
                 </Row>
             </Col>
         );

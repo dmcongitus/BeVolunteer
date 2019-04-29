@@ -86,19 +86,29 @@ class MeComponent extends Component {
                 <div className="p-3 " >
             
                     <div className="UpdateProfile" >
-                        
-                           <Alert color="danger"> 
+                    {this.state.profiles["isVerified"] === true && (
+              <div>
+                <Alert color="success"> 
                           
                                
-                                Tài khoản - <b>Chưa được xác thực</b>
-                            
-                           </Alert>
-                           <Alert color="success"> 
+                          Tài khoản - <b>Đã được xác thực</b>
+                      
+                     </Alert>
+              </div>
+            )}
+
+{this.state.profiles["isVerified"] === false && (
+              <div>
+                  <Alert color="danger"> 
                           
-                               
-                                Tài khoản - <b>Đã được xác thực</b>
-                            
-                           </Alert>
+                          
+                          Tài khoản - <b>Chưa được xác thực</b>
+                      
+                     </Alert>
+              </div>
+            )}
+                         
+                           
                            <Alert color="info"> 
                           
                                

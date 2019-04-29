@@ -3,30 +3,42 @@ import { NavLink, Link } from "react-router-dom";
 import user from "../../../images/user.png";
 import { connect } from "react-redux";
 import "./LeftSide.css";
-import { Container, Row, Col, Alert } from "reactstrap";
+import { Container, Row, Col, Alert, Spinner } from "reactstrap";
+
+
+
 const LeftSide = ({ username }) => (
   <div>
   <div className="side-body">
   {/* header */}
-    <Row className="item-center">
+    <Row className="item-mid">
       <div>
-        <div className="logo item-center">
+        <div className="logo ">
+        
           <img
             src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.15752-9/57393041_305492127011755_8740904577945042944_n.jpg?_nc_cat=105&_nc_oc=AQn7GUnB8UXlqMTogNJWDlqNjMEYb8gBeMPWreuL7dXQQHbhb9R6_PFCvI5m-de4R8E&_nc_ht=scontent.fsgn2-1.fna&oh=70f6e9461f233111834a04094f2fa45e&oe=5D33B790"
             className="mx-auto .d-block"
           />
+          
         </div>
       </div>
       <div>
-        <div className="item-center-row">
+        <div className="item-center">
           <div className="item-column ml-3">
             <b>{username} Minh Công</b>
-            <small>Cá nhân</small>
+            <div className="item-row">
+              <div className = "my-small">Cá nhân
+              <span className="ml-3 online">● online</span>
+             
+            </div>
+          
+              </div> 
           </div>
         </div>
       </div>
-    </Row>
   
+    </Row>
+
     {/* end header */}
     </div>
     <div className="side-body">
@@ -43,7 +55,7 @@ const LeftSide = ({ username }) => (
         <ul className="list">
           <li>
             <NavLink
-              activeStyle={{ color: "#006363", fontWeight: "bold" }}
+              activeStyle={{ color: "#004916", fontWeight: "bold" }}
               to="/me"
             >
               <i class="fas fa-user-edit"></i>Thông tin cá nhân
@@ -51,7 +63,7 @@ const LeftSide = ({ username }) => (
           </li>
           <li>
             <NavLink
-              activeStyle={{ color: "#006363", fontWeight: "bold" }}
+              activeStyle={{ color: "#004916", fontWeight: "bold" }}
               to="/history"
             >
              <i class="fas fa-history"></i> Lịch sử hoạt động
@@ -74,7 +86,7 @@ const LeftSide = ({ username }) => (
         <ul className="list">
           <li>
             <NavLink
-              activeStyle={{ color: "#006363", fontWeight: "bold" }}
+              activeStyle={{ color: "#004916", fontWeight: "bold" }}
               to="/home"
             >
               <i class="fas fa-home"></i>Trang chủ
@@ -82,7 +94,7 @@ const LeftSide = ({ username }) => (
           </li>
           <li>
             <NavLink
-              activeStyle={{ color: "#006363", fontWeight: "bold" }}
+              activeStyle={{ color: "#004916", fontWeight: "bold" }}
               to="/rank"
             >
             <i class="fas fa-trophy"></i>  Xếp hạng

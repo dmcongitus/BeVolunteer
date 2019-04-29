@@ -8,11 +8,11 @@
     height: 70px;
     float: left;
     margin-right: 15px;
-    border: 5px solid #006363;
+    border: 3px solid #004916	;
     transition: 0.5s;
 }
 
-.recent-post a {text-decoration: none;color:#34495E;transition: 0.5s;}
-.post-img, .recent-post a:hover{color:#F39C12;}
-.post-img img:hover{border: 5px solid #F39C12;}
+.recent-post a {text-decoration: none;transition: 0.5s;}
+.post-img, .recent-post a:hover{color:#409A5B;}
+.post-img img:hover{border: 3px solid #409A5B;}
 
