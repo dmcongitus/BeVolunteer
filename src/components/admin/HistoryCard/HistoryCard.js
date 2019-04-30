@@ -5,85 +5,96 @@ import { Row, Col, Alert, Button } from "reactstrap";
 import "./HistoryCard.css";
 
 const HistoryCard = props => (
-  <div>
-    <div className="row postCard">
-    <div className="Btn-ContentPage">
-    <Alert>
-    <Button className = "mg-5" color="success">Phê Duyệt</Button>
-    <Button className = "mg-5" color="danger">Từ Chối</Button>
-    </Alert>
-   
-    </div>
-    
-    
-      <div style={{ width: "100%" }}> 
-        <div >
-          <div> 
-            <div className="media">
-              {/* START media*/}
-              <a>
-                <img
-                  className="img-user-postCard rounded-circle"
-                  src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
-                />
-              </a>
+<Row className="postCard mr-5 ml-5">
 
-              <div className="media-body">
-                <p className="m-0">
-                  Khoa Học Tự Nhiên
-                  <small>
-                    <span style={{ marginLeft: "5px" }}>đã chia sẻ một</span>
-                  </small>
-                  <span style={{ marginLeft: "5px", color: "#0D6628" }}>
-                    Hoạt Động cá nhân
-                  </span>
-                  
-                </p>
-                <small>
-                  <span>
-                    <i className="fa fa-calendar" data-original-title title />{" "}
-                    30 Juni 2014
-                    <i
-                      style={{ marginLeft: "5px" }}
-                      className="fas fa-map-marker-alt"
-                    />{" "}
-                    450 Nguyễn Thị Minh Khai
-                  </span>
-                </small>
-                <small />
-              </div>
-            </div>
-            {/*/ media */}
-          </div>
-          {/*/ cardbox-heading */}
-          <Row>
-            <Col>
-              <div>
-                <img
-                  className="img-fluid"
-                  src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg"
-                  alt="Image"
-                />
-              </div>
-              {/*/ cardbox-item */}
-            </Col>
-            <Col className="textMedia">
-              <Alert color="success">
-                Hôm nay giúp đỡ được một cụ già. Thật là vui quá ahihi Lần sau
-                sẽ cố gắng giúp đỡ thật nhiều người nữa ahuhu!!
-              </Alert>
-            </Col>
-          </Row>
-
-        
-          {/*/ cardbox-like */}
+    <Col className="header-col">
+      
+      <Row className="item-center header-postCard pb-3">
+      
+        <div>
+          <img
+            className="img-user-postCard rounded-circle"
+            src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
+            alt="UserAvatar"
+          />
         </div>
-        {/*/ cardbox */}
-      </div>
-      {/*/ col-lg-6 */}
-    </div>
-    {/*/ row */}
-  </div>
+        <div className="ml-2">
+          Dương Minh Công {props.name}
+          <small>
+            <span className="ml-1">đã chia sẻ một</span>
+          </small>
+          <span className="ml-1">
+            <b >{props.type === "Địa điểm"?<span className = "tcl-2">Địa điểm</span>
+            :props.type === "Quyên góp"?<span className = "tcl-3">Quyên góp</span>
+            :props.type === "Hoạt động"?<span className = "tcl-1">Hoạt động</span>
+            :<span className = "tcl-4">{props.type}</span>
+            }
+            
+            </b>
+          </span>
+          <div>
+            <small>
+              <span>
+                <i className="fa fa-calendar" data-original-title title />{" "}
+                {new Date(props.createdAt).toLocaleTimeString()}
+                <i
+                  style={{ marginLeft: "5px" }}
+                  className="fas fa-map-marker-alt ml-3 mr-1"
+                />{" "}
+                {props.address}
+              </span>
+            </small>
+          </div>
+        </div>
+      </Row>
+    </Col>
+    
+      <Row>
+        <Col>
+          <div>
+            {props.filenames.map(filename => (
+              <img
+                src={`/resources/${filename}`}
+                className="post-album"
+                alt="Post album"
+              />
+            ))}
+          </div>
+
+          {/*/ cardbox-item */}
+        </Col>
+
+        <Col className="textMedia">
+          <Alert color="success">{props.description}</Alert>
+
+          <div className="item-right">
+            
+             
+                <Button className="mr-1 new-btn">
+                  <i class="fas fa-lock icon-button" />Khóa bài
+                </Button>
+                <Button className="mr-1 donate-btn">
+                  <i class="fas fa-trash-alt icon-button" />Xóa báo cáo
+                </Button>
+           
+         <Button color="success" className="mr-1 success">
+              <i class="fas fa-angle-double-right icon-button" />    Xem thêm
+            </Button>
+           
+           
+          </div>
+        
+        </Col>
+      </Row>
+      <Alert color="danger" style={{width:"100%"}}>
+      
+      <i class="fas fa-user"></i>
+        Tôi nhận thấy bài viết này không đúng với sự thật, tôi đã đến đó
+      </Alert>
+      {/*/ cardbox-like */}
+   
+    {/*/ col-lg-6 */}
+  </Row>
 );
 
 export default HistoryCard;

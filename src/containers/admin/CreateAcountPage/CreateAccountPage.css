@@ -25,3 +25,11 @@
 .ml-10{
     margin-left: 10px;
 }
+
+.input-group-prepend-midSide{
+    background-color: #FFC312 !important;
+}
+.input-group-text{
+    background-color: unset;
+}
+

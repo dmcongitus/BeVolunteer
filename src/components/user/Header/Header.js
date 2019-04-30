@@ -34,6 +34,7 @@ class Header extends React.Component  {
             <ul className="navbar-nav mr-auto"/>
             <ul className="navbar-nav ">
             <NavLink activeStyle={{ color: 'white' }} to="/">
+            
                 <li className="nav-item active">
                     <a className="nav-link">
                         <i className="fa fa-home" />

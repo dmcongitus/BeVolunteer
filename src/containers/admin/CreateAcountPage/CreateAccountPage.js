@@ -150,8 +150,8 @@ class CreateAccountPage extends Component {
           </div>
           {/*  Giới tính */}
           <div className="input-group form-group">
-            <div className="input-group-prepend-midSide">
-              <span className="input-group-text">
+            <div className="input-group-prepend-midSide ">
+              <span className="input-group-text ">
                 <i className="fas fa-venus-mars" />
               </span>
             </div>

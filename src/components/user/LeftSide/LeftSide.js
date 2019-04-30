@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import user from "../../../images/user.png";
 import { connect } from "react-redux";
 import "./LeftSide.css";
-import { Container, Row, Col, Alert, Spinner } from "reactstrap";
+import {  Row, Col} from "reactstrap";
 
 
 var permissionArr = ['Cá nhân', 'Tổ chức'];
@@ -28,7 +28,7 @@ const LeftSide = props  => (
             <b>{props.name}</b>
             <div className="item-row">
               <div className = "my-small">{permissionArr[props.permission]}
-              <span className="ml-3 online">● online</span>
+              <span className="ml-3 tcl-1"> Level {props.exp}</span>
              
             </div>
           
@@ -68,6 +68,18 @@ const LeftSide = props  => (
             >
              <i class="fas fa-history"></i> Lịch sử hoạt động
             </NavLink>
+
+            
+          </li>
+          <li>
+            <NavLink
+              activeStyle={{ color: "#004916", fontWeight: "bold" }}
+              to="/medal"
+            >
+             <i class="fas fa-medal"></i> Danh hiệu
+            </NavLink>
+
+            
           </li>
         </ul>
       </Col>
@@ -85,7 +97,7 @@ const LeftSide = props  => (
       <Col>
         <ul className="list">
           <li>
-            <NavLink
+            <NavLink exact
               activeStyle={{ color: "#004916", fontWeight: "bold" }}
               to="/"
             >
@@ -93,7 +105,7 @@ const LeftSide = props  => (
             </NavLink>
           </li>
           <li>
-            <NavLink
+            <NavLink 
               activeStyle={{ color: "#004916", fontWeight: "bold" }}
               to="/rank"
             >
@@ -107,6 +119,6 @@ const LeftSide = props  => (
   </div>
 );
 
-const mapStateToProps = ({ auth: { user: { name, permission } } }) => ({ name, permission });
+const mapStateToProps = ({ auth: { user: { name, permission, exp } } }) => ({ name, permission, exp });
 
 export default connect(mapStateToProps)(LeftSide);

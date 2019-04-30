@@ -1,0 +1,19 @@
+.body-medal{
+  
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: center ;
+}
+.medal-card{
+  
+    width: auto;
+    height: 150px;
+    margin: 20px;
+    display: flex;
+    justify-content: center ;
+    
+}
+.medal-card img{
+    width: auto;
+    height: 125px;
+}

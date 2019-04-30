@@ -12,6 +12,7 @@ import identityImage from "../../../images/identity.png";
 import { userInfo } from "os";
 import { Button, Alert, Badge } from "reactstrap";
 
+var permissionArr = ['Cá nhân', 'Tổ chức'];
 class MeComponent extends Component {
   constructor(props) {
     super(props);
@@ -100,7 +101,7 @@ class MeComponent extends Component {
             )}
 
             {this.state.profiles["isVerified"] === false &&
-              this.state.profiles["isRequestVerify"] == false && (
+              this.state.profiles["isRequestVerify"] === false && (
                 <div>
                   <Alert color="danger">
                     Tài khoản - <b>Chưa được xác thực</b>
@@ -109,7 +110,7 @@ class MeComponent extends Component {
               )}
 
             {this.state.profiles["isVerified"] === false &&
-              this.state.profiles["isRequestVerify"] == true && (
+              this.state.profiles["isRequestVerify"] === true && (
                 <div>
                   <Alert color="info">
                     Tài khoản - <b>Đang chờ xác thực</b>
@@ -130,7 +131,7 @@ class MeComponent extends Component {
                     onChange={this.handleChange}
                   />
                    {this.state.profiles["isVerified"] === false &&
-                    this.state.profiles["isRequestVerify"] == false && (
+                    this.state.profiles["isRequestVerify"] === false && (
                   <button
                     onClick={this.handleEdit.bind(this, "name")}
                     className="UpdateProfile__Main__FieldEdit btn btn-light"
@@ -166,6 +167,9 @@ class MeComponent extends Component {
                   <input
                     className="UpdateProfile__Main__FieldValue"
                     name="email"
+                    type="email"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
                     ref={el => (this.email = el)}
                     onFocus={this.handleFocus}
                     value={this.state.profiles["email"]}
@@ -192,7 +196,7 @@ class MeComponent extends Component {
                     onChange={this.handleChange}
                   />
                    {this.state.profiles["isVerified"] === false &&
-                    this.state.profiles["isRequestVerify"] == false && (
+                    this.state.profiles["isRequestVerify"] === false && (
                   <button
                     onClick={this.handleEdit.bind(this, "dob")}
                     className="UpdateProfile__Main__FieldEdit btn btn-light"
@@ -235,7 +239,7 @@ class MeComponent extends Component {
                       onChange={this.handleImageChange}
                     />
                     {this.state.profiles["isVerified"] === false &&
-                      this.state.profiles["isRequestVerify"] == false && (
+                      this.state.profiles["isRequestVerify"] === false && (
                         <div className="UpdateProfile__Main__FieldValue__Warning">
                           <Alert color="danger">
                             Cập nhật CMND để xác thực !!!
@@ -244,7 +248,7 @@ class MeComponent extends Component {
                       )}
                   </div>
                   {this.state.profiles["isVerified"] === false &&
-                    this.state.profiles["isRequestVerify"] == false && (
+                    this.state.profiles["isRequestVerify"] === false && (
                       <button
                         onClick={this.handleEdit.bind(this, "identityCard")}
                         className="btn btn-light UpdateProfile__Main__FieldEdit"
@@ -256,21 +260,21 @@ class MeComponent extends Component {
 
                 <li className="UpdateProfile__Main__FieldItem">
                   <div className="UpdateProfile__Main__FieldName">Loại TK</div>
-                  <div className="type-user">Cá Nhân</div>
+                  <div className="type-user">{permissionArr[this.state.profiles["permission"]]}</div>
                 </li>
               </ul>
             </section>
 
             {this.state.profileChanged && (
               <div className="UpdateProfile__Footer">
-                <Button
-                  className="UpdateProfile__Footer__Update"
+                <Button color = "success"
+                  
                   onClick={this.handleUpdate}
                 >
                   <i className="fas fa-check-circle ml-1" /> Cập nhật
                 </Button>
                 <Button
-                  className="UpdateProfile__Footer__Cancel"
+                  color="danger ml-3"
                   onClick={this.handleCancel}
                 >
                   <i className="fas fa-trash-alt ml-1" /> Hủy
