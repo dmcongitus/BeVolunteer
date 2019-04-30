@@ -23,7 +23,7 @@ export function banUser(username) {
 }
 
 export function verifyUser(username) {
-  return instance.post("/admins/ban/" + username);
+  return instance.post("/admins/verify/" + username);
 }
 
 export async function createUser(params) {
