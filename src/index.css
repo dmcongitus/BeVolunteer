@@ -96,3 +96,36 @@ i{
     display: flex;
     align-items: flex-end;
   }
+
+  tr,th{
+    
+    border-bottom: 2px solid #011D25 !important; 
+    border-top: unset !important; 
+  }
+
+  tbody{
+  
+    border-bottom: 2px solid #011D25 !important; 
+
+  }
+  
+
+  thead{
+    
+    border-bottom: 2px solid #011D25 !important; 
+    border-top: unset !important; 
+  }
+  
+  .tcl-1{
+    color: #004916;
+  }
+  .tcl-2{
+    color: #D01013;
+}
+.tcl-3{
+    color:   #853b92;
+}
+
+.tcl-4{
+    color:   #011D25;
+}

@@ -6,8 +6,8 @@ import "./LeftSide.css";
 import { Container, Row, Col, Alert, Spinner } from "reactstrap";
 
 
-
-const LeftSide = ({ username }) => (
+var permissionArr = ['Cá nhân', 'Tổ chức'];
+const LeftSide = props  => (
   <div>
   <div className="side-body">
   {/* header */}
@@ -25,9 +25,9 @@ const LeftSide = ({ username }) => (
       <div>
         <div className="item-center">
           <div className="item-column ml-3">
-            <b>{username} Minh Công</b>
+            <b>{props.name}</b>
             <div className="item-row">
-              <div className = "my-small">Cá nhân
+              <div className = "my-small">{permissionArr[props.permission]}
               <span className="ml-3 online">● online</span>
              
             </div>
@@ -87,7 +87,7 @@ const LeftSide = ({ username }) => (
           <li>
             <NavLink
               activeStyle={{ color: "#004916", fontWeight: "bold" }}
-              to="/home"
+              to="/"
             >
               <i class="fas fa-home"></i>Trang chủ
             </NavLink>
@@ -107,4 +107,6 @@ const LeftSide = ({ username }) => (
   </div>
 );
 
-export default LeftSide;
+const mapStateToProps = ({ auth: { user: { name, permission } } }) => ({ name, permission });
+
+export default connect(mapStateToProps)(LeftSide);

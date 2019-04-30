@@ -22,6 +22,10 @@ export function banUser(username) {
   return instance.post("/admins/ban/" + username);
 }
 
+export function verifyUser(username) {
+  return instance.post("/admins/ban/" + username);
+}
+
 export async function createUser(params) {
   try {
     const data = await Axios.post("/accounts", { ...params });

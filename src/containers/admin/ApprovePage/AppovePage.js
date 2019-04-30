@@ -3,7 +3,9 @@ import { Table, Button } from "reactstrap";
 
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 
-import { getAllUsers, banUser } from "../../../services/user.service";
+import { getAllUsers, verifyUser } from "../../../services/user.service";
+
+import "./ApprovePage.css";
 
 class appovePage extends Component {
   state = {
@@ -14,54 +16,80 @@ class appovePage extends Component {
     getAllUsers().then(({ data: { accounts } }) => this.setState({ accounts }));
   };
 
-  onAccountBan = username => {
+  onAccountVerify = username => {
     this.setState(prevState => ({
       accounts: prevState.accounts.filter(
         account => account.username !== username
       )
     }));
-    banUser(username);
+    verifyUser(username);
   };
 
   render() {
     let number = 0;
 
     return (
-      <PageLayout title="xóa tài khoản">
-        <div className="mr-5 ml-5">
+      <PageLayout title="Xác thực tài khoản">
+        <div className="mr-2 ml-2">
           <Table>
             <thead>
               <tr>
                 <th>#</th>
-                <th>Tên người dùng</th>
-                <th>Họ và tên</th>
-                <th>Tình trạng</th>
+                <th>
+                  <div className="item-mid">Tên người dùng</div>
+                </th>
+                <th>
+                  <div className="item-mid">Họ và tên</div>
+                </th>
+                <th>
+                  {" "}
+                  <div className="item-mid">Tình trạng</div>
+                </th>
                 <th />
               </tr>
             </thead>
             <tbody>
               {this.state.accounts.map(account =>
-                account.isBanned ? null : (
-                  <tr key={account.username}>
-                    <th scope="row">{++number}</th>
-                    <td>{account.username}</td>
-                    <td>{account.name}</td>
+                account.isRequestVerify && account.isVerified === false ? (
+                  <tr key={account.username} className="table-row">
+                    <td scope="row">{++number}</td>
                     <td>
-                      {account.isVerified ? "Đã xác thực" : "Chưa xác thực"}
+                      <div className="item-mid">{account.username}</div>
                     </td>
                     <td>
-                      <div>
+                      <div className="item-mid">{account.name}</div>
+                    </td>
+                    <td>
+                      <div className="item-mid">
                         <Button
-                          className="mr-1 new-btn"
-                          onClick={() => this.onAccountBan(account.username)}
+                          className="ml-2 donate-btn"
+                          onClick={() => this.onAccountVerify(account.username)}
                         >
-                          <i class="fas fa-lock icon-button" />
-                          Khóa
+                          <i class="fas fa-eye icon-button" />
+                          Xem
+                        </Button>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="item-mid">
+                        <Button
+                          className="ml-2 success"
+                          onClick={() => this.onAccountVerify(account.username)}
+                        >
+                          <i class="fas fa-check-circle icon-button" />
+                          Đồng ý
+                        </Button>
+                        <Button
+                          className="ml-2 new-btn"
+                          onClick={() => this.onAccountVerify(account.username)}
+                        >
+                          <i class="fas fa-times-circle icon-button" />
+                          Hủy
                         </Button>
                       </div>{" "}
                     </td>
                   </tr>
-                )
+                ) : null
               )}
             </tbody>
           </Table>

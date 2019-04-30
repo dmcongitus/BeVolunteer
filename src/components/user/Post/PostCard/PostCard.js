@@ -21,7 +21,13 @@ const PostCard = props => (
             <span className="ml-1">đã chia sẻ một</span>
           </small>
           <span className="ml-1">
-            <b style={{ color: "#0D6628" }}>{props.type}</b>
+            <b >{props.type === "Địa điểm"?<span className = "tcl-2">Địa điểm</span>
+            :props.type === "Quyên góp"?<span className = "tcl-3">Quyên góp</span>
+            :props.type === "Hoạt động"?<span className = "tcl-1">Hoạt động</span>
+            :<span className = "tcl-4">{props.type}</span>
+            }
+            
+            </b>
           </span>
           <div>
             <small>

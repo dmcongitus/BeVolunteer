@@ -42,12 +42,18 @@ class DeleteAccountPage extends Component {
             <tbody>
               {this.state.accounts.map(account =>
                 account.isBanned ? null : (
-                  <tr key={account.username}>
+                  <tr key={account.username} className="table-row">
                     <th scope="row">{++number}</th>
                     <td>{account.username}</td>
                     <td>{account.name}</td>
                     <td>
-                      {account.isVerified ? "Đã xác thực" : "Chưa xác thực"}
+                      {account.isVerified ? (
+                        <div className="tcl-1">Đã xác thực</div>
+                      ) : account.isRequestVerify ? (
+                        <div className="tcl-3">Đang xác thực</div>
+                      ) : (
+                        <div className="tcl-2">Chưa xác thực</div>
+                      )}
                     </td>
                     <td>
                       <div>
