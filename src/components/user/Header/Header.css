@@ -2,8 +2,9 @@
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
 .navbar{
-  background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
-  box-shadow: 2px 2px 2px #666;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+    
+
 }
 
 
@@ -127,5 +128,5 @@
   }
 
   a.nav-link:hover {
-    color: palegreen !important;
+    color: #04ff71 !important;
   }

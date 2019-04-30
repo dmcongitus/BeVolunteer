@@ -7,7 +7,7 @@ export const mapPermissionToText = {
 
 export const mapPermissionToSelections = {
     2: [{
-        header: 'Cộng đồng',
+        header:  ' Cộng đồng',
         navigations: [{
             title: 'Trang chủ',
             redirectTo: '/home'

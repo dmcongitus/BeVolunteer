@@ -12,7 +12,7 @@ const RightSideCard = props => (
           className="img-responsive"
         />
       </div>
-      <a href="#">
+      <a >
         <h6>Giúp đỡ cũ già tại ngã 6 lý thái tổ</h6>
       </a>
       <p>

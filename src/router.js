@@ -45,7 +45,7 @@ export default function router({ isAuthenticated, permission, username }) {
                         <NeedPermissionRoute path="/delete-account" routePermisison={[3, 4, 5]} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/ContentManage" routePermisison={[3, 4, 5]} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/CreateAccountAdmin" routePermisison={[3, 4, 5]} component={CreateAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
-                        <Route component={NotFoundPage} />
+                        <Route path="*" component={NotFoundPage} />
                     </Switch>
                 </MainLayout>
             </Switch>

@@ -5,7 +5,7 @@ import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import "./CreateAccountPage.css";
 
 import { createAdmin } from "../../../services/admin.service";
-
+import { ReactReduxContext } from 'react-redux'
 class CreateAccountPage extends Component {
     state = {
         permission: 2,
@@ -16,7 +16,8 @@ class CreateAccountPage extends Component {
         phone: "",
         dob: "",
         email: "",
-        gender: "Nam"
+        gender: "Nam",
+        
       };
     
       onFieldChanged = e => {
@@ -41,6 +42,7 @@ class CreateAccountPage extends Component {
     return (
       <PageLayout title="Tạo tài khoản admin">
         <form onSubmit={this.onFormSubmit} className="body-midForm">
+         
           {/*  Tên đăng nhập */}
           <div className="input-group form-group">
             <div className="input-group-prepend-midSide">
