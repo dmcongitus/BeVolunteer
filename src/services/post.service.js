@@ -20,3 +20,7 @@ export function getPosts(type) {
         return Axios.get(`/posts?type=${type}`, { headers: { "x-access-token": localStorage.getItem("token") } });
     }
 }
+
+export function getSpecificPost(postId) {
+    return Axios.get(`/posts/${postId}`, { headers: { "x-access-token": localStorage.getItem("token") } });
+}
