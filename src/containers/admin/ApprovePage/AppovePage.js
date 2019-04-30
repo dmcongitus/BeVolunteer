@@ -3,7 +3,7 @@ import { Table, Button } from "reactstrap";
 
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 
-import { getAllUsers, verifyUser } from "../../../services/user.service";
+import { getAllUsers, verifyUser, unVerifyUser } from "../../../services/user.service";
 
 import "./ApprovePage.css";
 
@@ -23,6 +23,14 @@ class appovePage extends Component {
       )
     }));
     verifyUser(username);
+  };
+  onAccountUnVerify = username => {
+    this.setState(prevState => ({
+      accounts: prevState.accounts.filter(
+        account => account.username !== username
+      )
+    }));
+    unVerifyUser(username);
   };
 
   render() {
@@ -81,7 +89,7 @@ class appovePage extends Component {
                         </Button>
                         <Button
                           className="ml-2 new-btn"
-                          onClick={() => this.onAccountVerify(account.username)}
+                          onClick={() => this.onAccountUnVerify(account.username)}
                         >
                           <i class="fas fa-times-circle icon-button" />
                           Hủy

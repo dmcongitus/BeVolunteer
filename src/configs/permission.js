@@ -21,10 +21,10 @@ export const mapPermissionToSelections = {
         header: 'Quản lí tài khoản',
         navigations: [{
             title: 'Duyệt tài khoản',
-            redirectTo: '/delete-account'
+            redirectTo: '/approve'
         }, {
             title: 'Xóa tài khoản',
-            redirectTo: '/manage'
+            redirectTo: '/delete-account'
         }]
     }, {
         header: 'Cộng đồng',
