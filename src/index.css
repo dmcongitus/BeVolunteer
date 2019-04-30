@@ -128,3 +128,7 @@ i{
 .tcl-4{
     color:   #011D25;
 }
+
+.pointer:hover{
+    cursor: pointer;
+}

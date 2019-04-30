@@ -18,8 +18,11 @@ const instance = Axios.create({
   headers: { "x-access-token": localStorage.getItem("token") }
 });
 
-export function banUser(username) {
-  return instance.post("/admins/ban/" + username);
+export async function banUser(username) {
+  return await instance.post("/admins/ban/" + username);
+}
+export async function unbanUser(username) {
+  return await instance.post("/admins/unban/" + username);
 }
 
 export function verifyUser(username) {

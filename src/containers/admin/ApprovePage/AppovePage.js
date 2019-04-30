@@ -8,6 +8,7 @@ import { getAllUsers, verifyUser, unVerifyUser } from "../../../services/user.se
 import "./ApprovePage.css";
 
 class appovePage extends Component {
+  
   state = {
     accounts: []
   };
@@ -89,7 +90,7 @@ class appovePage extends Component {
                         </Button>
                         <Button
                           className="ml-2 new-btn"
-                          onClick={() => this.onAccountUnVerify(account.username)}
+                          onClick={() => this.onAccountUnVerifyg(account.username)}
                         >
                           <i class="fas fa-times-circle icon-button" />
                           Hủy
