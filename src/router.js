@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout/MainLayout';
 import HomePage from './containers/user/HomePage/HomePage';
+import EventPage from './containers/admin/EventPage/EventPage';
+import EventList from './containers/admin/EventPage/EventList/EventList';
 import NotFoundPage from './containers/NotFoundPage/NotFoundPage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import SignupPage from './containers/SignupPage/SignUp';
@@ -36,6 +38,8 @@ export default function router({ isAuthenticated, permission, username }) {
                     <Switch>
                         <PrivateRoute path='/' exact component={HomePage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path='/me' exact component={InfoPage} isAuthenticated={isAuthenticated} />
+                        <PrivateRoute path='/event' exact component={EventPage} isAuthenticated={isAuthenticated} />
+                        <PrivateRoute path='/eventList' exact component={EventList} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/no-permission" component={NoPermissionPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/history" exact component={HistoryPage} isAuthenticated={isAuthenticated} />
                         

@@ -49,10 +49,10 @@ const PostCard = props => (
           {/*/ cardbox-heading */}
           <Row>
             <Col>
-              <div>
+              {/* <div>
                 {props.filenames.map((filename) => <img  src={`/resources/${filename}`} style={{maxWidth: '100%', height: 'auto', borderRadius: 5, border: '1px solid gray'}} alt="Post album" />)}
 
-              </div>
+              </div> */}
               {/*/ cardbox-item */}
             </Col>
             <Col className="textMedia">

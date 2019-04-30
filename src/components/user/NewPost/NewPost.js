@@ -12,6 +12,7 @@ import {
 import "./NewPost.css";
 
 import * as postServices from '../../../services/post.service';
+
 const initialState = {
     image: undefined,
     description: '',
@@ -58,14 +59,14 @@ class NewPost extends Component {
                         <Row style={{ display: 'flex', alignItems: 'center' }}>
                             <Col xs="9">
                                 Tạo Bài Viết
-      </Col>
+                            </Col>
                             <Col xs="3">
 
                                 <FormGroup style={{ marginBottom: 0 }}>
-                                    <Input type="select" name="select" id="exampleSelect" onChange={this.onTypeChange} value={this.state.type}>
+                                    <fie type="select" name="select" id="exampleSelect" onChange={this.onTypeChange} value={this.state.type}>
                                         <option value="Hoạt động cá nhân">Cá nhân</option>
                                         <option value="Địa điểm">Địa điểm</option>
-                                    </Input>
+                                    </fie>
                                 </FormGroup>
                             </Col>
                         </Row>
