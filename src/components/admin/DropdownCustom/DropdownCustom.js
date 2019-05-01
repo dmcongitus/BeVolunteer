@@ -14,6 +14,8 @@ import {
     DropdownItem,
     ButtonDropdown
 } from "reactstrap";
+import "./DropdownCustom.css";
+
 import { mapPermissionToText, mapPermissionToSelections } from '../../../configs/permission';
 
 class DropdownCustom extends Component {
@@ -42,21 +44,20 @@ class DropdownCustom extends Component {
     }
 
     render(){
-        console.log(this.props.sub);
         return(
             <Dropdown 
+                
                 onMouseOver={this.onMouseEnter} 
                 isOpen={this.state.dropdownOpen} 
                 toggle={this.toggle}>
-                <DropdownToggle caret>
+                <DropdownToggle className="dropdownButton" caret>
                     {this.props.children}
-                </DropdownToggle>
+                </DropdownToggle >
                 {
-                    
                         <DropdownMenu>
                             {
                             this.props.sub.map((navigation) => (
-                                <DropdownItem>
+                                <DropdownItem className="dropdownItem">
                                     <NavLink 
                                         activeStyle={{ color: 'green' }} 
                                         to={navigation.redirectTo}>{navigation.title}
@@ -67,8 +68,10 @@ class DropdownCustom extends Component {
 
                         </DropdownMenu>
                       
-                 }
+                }
             </Dropdown>
+
+            
         );
     }
 }

@@ -6,9 +6,13 @@ import PostCard from '../PostCard/PostCard'
 import './Post.css';
 
 const Post = ({ posts }) => (
-  <div>
-    {posts.map((post) => <PostCard key={post.id} {...post}></PostCard>)}
-  </div>
+    <div>
+        {
+            posts.map((post) => 
+                <PostCard key={post.id} {...post}>
+                </PostCard>)
+            }
+    </div>
 );
 
 export default Post;
