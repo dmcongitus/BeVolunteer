@@ -65,9 +65,7 @@ class NewEvent extends Component {
 
 	onFormSubmit = async (e) => {
 		console.log("submitform");
-		console.log(this.checkFormPost(this.state).message);
-		console.log(this.state.infor);
-
+		alert(this.checkFormPost(this.state).message);
 		e.preventDefault();
 		try {
 			const data = await postEvent({...this.state.infor});
@@ -75,7 +73,7 @@ class NewEvent extends Component {
 		} catch (error) {
 			console.error(error);
 		}
-		//this.props.loginUser(this.state.username, this.state.password);
+		
 	};
 
 	checkFormPost = (state) =>{	
