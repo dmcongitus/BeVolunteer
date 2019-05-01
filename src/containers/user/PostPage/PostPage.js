@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
+import PostCardMore from '../../../components/user/Post/PostCardMore/PostCardMore'
 import { getSpecificPost } from '../../../services/post.service';
 
 class PostPage extends Component {
@@ -23,9 +24,14 @@ class PostPage extends Component {
             return <Redirect to="/404"/>
         }
 
+        if (this.state.post !== undefined) {
+            console.log(this.state.post);
         return (
-            <div>{this.state.post && JSON.stringify(this.state.post)} </div>
+            <PostCardMore {...this.state.post.post}/>
         );
+        }
+
+        return null;
     }
 }
 
