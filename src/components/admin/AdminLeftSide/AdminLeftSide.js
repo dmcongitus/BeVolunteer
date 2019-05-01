@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 import { Row, Col } from "reactstrap";
 import {
   mapPermissionToText,
@@ -65,4 +66,4 @@ const adminLeftSide = ({ username, permission }) => (
   </div>
 );
 
-export default adminLeftSide;
+export default withRouter(adminLeftSide);

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { withRouter } from "react-router"
 import user from "../../../images/user.png";
 import { connect } from "react-redux";
 import "./LeftSide.css";
@@ -54,16 +55,18 @@ const LeftSide = props  => (
       <Col>
         <ul className="list">
           <li>
-            <NavLink
-              activeStyle={{ color: "#004916", fontWeight: "bold" }}
+              <NavLink
+                exact
+              activeClassName="NavLink--active"
               to="/me"
             >
               <i class="fas fa-user-edit"></i>Thông tin cá nhân
             </NavLink>
           </li>
           <li>
-            <NavLink
-              activeStyle={{ color: "#004916", fontWeight: "bold" }}
+              <NavLink
+                exact
+              activeClassName="NavLink--active"
               to="/history"
             >
              <i class="fas fa-history"></i> Lịch sử hoạt động
@@ -72,8 +75,9 @@ const LeftSide = props  => (
             
           </li>
           <li>
-            <NavLink
-              activeStyle={{ color: "#004916", fontWeight: "bold" }}
+              <NavLink
+                exact
+              activeClassName="NavLink--active"
               to="/medal"
             >
              <i class="fas fa-medal"></i> Danh hiệu
@@ -98,15 +102,16 @@ const LeftSide = props  => (
         <ul className="list">
           <li>
             <NavLink exact
-              activeStyle={{ color: "#004916", fontWeight: "bold" }}
+              activeClassName="NavLink--active"
               to="/"
             >
               <i class="fas fa-home"></i>Trang chủ
             </NavLink>
           </li>
           <li>
-            <NavLink 
-              activeStyle={{ color: "#004916", fontWeight: "bold" }}
+              <NavLink 
+                exact
+              activeClassName="NavLink--active"
               to="/rank"
             >
             <i class="fas fa-trophy"></i>  Xếp hạng
@@ -121,4 +126,4 @@ const LeftSide = props  => (
 
 const mapStateToProps = ({ auth: { user: { name, permission, exp } } }) => ({ name, permission, exp });
 
-export default connect(mapStateToProps)(LeftSide);
+export default withRouter(connect(mapStateToProps)(LeftSide));
