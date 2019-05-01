@@ -6,6 +6,8 @@ import MainLayout from './layouts/MainLayout/MainLayout';
 import HomePage from './containers/user/HomePage/HomePage';
 import NotFoundPage from './containers/NotFoundPage/NotFoundPage';
 import LoginPage from './containers/LoginPage/LoginPage';
+import CreateEvent from './containers/admin/EventPage/CreateEvent/CreateEvent';
+import EventList from './containers/admin/EventPage/EventList/EventList.js';
 import SignupPage from './containers/SignupPage/SignUp';
 import InfoPage from './containers/user/InfoPage/InfoPage'
 import NoPermissionPage from './containers/NoPermissionPage/NoPermissionPage';
@@ -39,6 +41,8 @@ export default function router({ isAuthenticated, permission, username }) {
                     <Switch>
                         <PrivateRoute path='/' exact component={HomePage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path='/me' exact component={InfoPage} isAuthenticated={isAuthenticated} />
+                        <PrivateRoute path='/event' exact component={CreateEvent} isAuthenticated={isAuthenticated} />
+                        <PrivateRoute path='/eventList' exact component={EventList} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/no-permission" component={NoPermissionPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/history" exact component={HistoryPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/rank" exact component={RankPage} isAuthenticated={isAuthenticated} />

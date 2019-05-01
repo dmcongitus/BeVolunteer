@@ -1,0 +1,175 @@
+.UpdateProfile__Header {
+    display: flex;
+    padding-bottom: 1em;
+    justify-content: space-between;
+}
+
+.UpdateProfile__Header__Left,
+.UpdateProfile__Header__Right {
+    display: flex;
+    align-items: center;
+}
+
+.UpdateProfile__Header__Left div {
+    font-size: 1.25em;
+}
+
+.UpdateProfile__Header__Left img {
+    margin-left: 1em;
+}
+
+.UpdateProfile__Header__Right img {
+    margin-right: 0.5em;
+}
+
+.UpdateProfile__Header__Right div {
+    color: crimson;
+}
+
+.UpdateProfile__Main__FieldItem {
+    display: flex;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    align-items: center;
+    border-top: 1.5px solid rgba(114, 110, 110, 0.5);
+}
+
+.UpdateProfile__Main__FieldItem:last-child {
+    padding-bottom: 0;
+}
+
+.UpdateProfile__Main__FieldName {
+    flex-basis: 100px;
+    margin-right: 30px;  
+    font-weight: bold;
+}
+
+.UpdateProfile__Main__FieldValue {
+    flex-grow: 1;
+    border: 0;
+}
+
+.UpdateProfile__Main__FieldValue select {
+    width: 150px;
+    padding: 5px;
+}
+
+.UpdateProfile__Main__FieldValue img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid #afafaf;
+
+}
+
+.UpdateProfile__Main__FieldEdit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+    color: #38a89d;
+    background-color: white;
+}
+.UpdateProfile__Main__FieldEdit img{
+    height: 20px;   
+}
+
+.UpdateProfile__Main__FieldValue__Warning {
+    color: crimson;
+    padding-top: 1em;
+}
+
+.UpdateProfile__Footer {
+    text-align: center;
+    margin-top: 30px;
+
+}
+
+.UpdateProfile__Footer__Update {
+    background: green;
+    color: rgb(255, 255, 255);
+    padding: 0.5em 1em;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: opacity 0.5s ease;
+}
+
+.UpdateProfile__Footer__Update:hover {
+    opacity: 0.9;
+}
+
+.UpdateProfile__Footer__Cancel {
+    background: crimson;
+    color: rgb(255, 255, 255);
+    padding: 0.5em 1em;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 0.5em;
+    transition: opacity 0.5s ease;
+}
+
+.UpdateProfile__Footer__Cancel:hover {
+    opacity: 0.9;
+}
+.type-user{
+    color: green;
+    font-weight: bold;
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.event-form{
+    padding: 0px 20px 5px 5px;
+}
+  
+.checkInPost{
+    margin: 10px;
+    margin-top:10px;
+    padding-bottom: 8px;
+}
+
+.btn-edit{
+    width: 150px;
+}
+
+.btn-edit button{
+    width: 95%;
+    text-align: right;
+}
+
+.date-picker{
+    width: 185px;
+}
+/* 
+.checkInPost .form-control{
+    width: 375.5px;
+} */

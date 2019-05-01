@@ -203,7 +203,7 @@ class PostCard extends React.Component {
                 {this.props.type === "Hoạt động" && (
                   <div>
                     <Button className="mr-1 add-btn">
-                      <i class="fas fa-angle-double-right icon-button" />
+                      <i className="fas fa-angle-double-right icon-button" />
                       Tham gia
                     </Button>
                   </div>
@@ -211,7 +211,7 @@ class PostCard extends React.Component {
                 {this.props.type === "Địa điểm" && (
                   <div>
                     <Button className="mr-1 new-btn">
-                      <i class="fas fa-edit icon-button" />
+                      <i className="fas fa-edit icon-button" />
                       Tạo event
                     </Button>
                   </div>
@@ -219,14 +219,14 @@ class PostCard extends React.Component {
                 {this.props.type === "Quyên góp" && (
                   <div>
                     <Button className="mr-1 donate-btn">
-                      <i class="fas fa-donate icon-button" />
+                      <i className="fas fa-donate icon-button" />
                       Quyên góp
                     </Button>
                   </div>
                 )}
                 <Link to={`post/${this.props.id}`}>
                   <Button color="success" className="mr-1 success">
-                    <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                    <i className="fas fa-angle-double-right icon-button" /> Xem thêm
                   </Button>
                 </Link>
               </div>
