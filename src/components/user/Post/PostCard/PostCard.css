@@ -66,3 +66,8 @@
 .new-btn:hover{
   background-color: rgba(208, 16, 19, 0.7);
 }
+
+.img-slide-style{
+  height: 500px;
+  width: 100%;
+}

@@ -16,6 +16,7 @@ class Header extends React.Component  {
     }
     render(){
     return(
+        <div>
     <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark ">
 
         <img src={logo} alt="Logo" height="80" />
@@ -63,6 +64,7 @@ class Header extends React.Component  {
 
         </div>
     </nav>
+    </div>
     )
     }
 

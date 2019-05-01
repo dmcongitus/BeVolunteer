@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 export function getAllUsers() {
-  return Axios.get("/accounts/users", {
+  return Axios.get("/accounts/", {
     headers: { "x-access-token": localStorage.getItem("token") }
   });
 }

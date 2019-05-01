@@ -8,12 +8,12 @@ const RightSideCard = props => (
     <li className="recent-post">
       <div className="post-img">
         <img
-          src="https://lh3.googleusercontent.com/-ojLI116-Mxk/WM1ZIwdnuwI/AAAAAAAADeo/4K6VpwIPSfgsmlXJB5o0N8scuI3iW4OpwCJoC/w424-h318-n-rw/thumbnail6.jpg"
+          src="https://static.ybox.vn/2015/12/30/o-HELPING-OTHERS-facebook.jpg"
           className="img-responsive"
         />
       </div>
       <a >
-        <h6>Giúp đỡ cũ già tại ngã 6 lý thái tổ</h6>
+        <h6>Giúp đỡ cụ già tại ngã 6 lý thái tổ</h6>
       </a>
       <p>
         <small>

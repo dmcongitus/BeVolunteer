@@ -3,7 +3,12 @@
      background-size: 100% auto;
      background-attachment: fixed;
      min-height: 100vh;
- 
+     font-family: Arial, Tahoma, Verdana, sans-serif;
+     overflow: hidden;
+     margin: 0;
+padding: 0;
+height: 100%;
+
 }
 
 .mr-unset{

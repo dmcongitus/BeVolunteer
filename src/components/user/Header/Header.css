@@ -2,8 +2,11 @@
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
 .navbar{
-  background-color: rgba(0, 0, 0, 0.7) !important;
-    
+  background-color: rgba(0, 0, 0, 0.7) !important; 
+  padding: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
 
 }
 

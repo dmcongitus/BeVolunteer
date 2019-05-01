@@ -5,7 +5,9 @@ import {
   mapPermissionToText,
   mapPermissionToSelections
 } from "../../../configs/permission";
-import { ReactReduxContext } from 'react-redux'
+
+var permissionArr = ['Cá nhân', 'Tổ chức', 'Acount Mod', 'Content Mod', 'Super Admin' ]
+
 const adminLeftSide = ({ username, permission }) => (
     
   <div>
@@ -22,11 +24,11 @@ const adminLeftSide = ({ username, permission }) => (
         <div>
           <div className="item-center">
             <div className="item-column ml-3">
-              <b>{username} Minh Công</b>
+              <b>{username}</b>
               <div className="item-row">
                 <div className="my-small">
-                  Cá nhân
-                  <span className="ml-3 online">● online</span>
+                {permissionArr[permission-1]}
+                  
                 </div>
               </div>
             </div>

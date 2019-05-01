@@ -3,46 +3,62 @@ import { Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import "./CreateAccountPage.css";
-
+import { connect } from "react-redux";
 import { createAdmin } from "../../../services/admin.service";
-import { ReactReduxContext } from 'react-redux'
+import { ReactReduxContext } from "react-redux";
+import { stat } from "fs";
 class CreateAccountPage extends Component {
-    state = {
-        permission: 2,
-        email: "",
-        username: "",
-        password: "",
-        name: "",
-        phone: "",
-        dob: "",
-        email: "",
-        gender: "Nam",
-        
-      };
-    
-      onFieldChanged = e => {
-        this.setState({ [e.target.name]: e.target.value });
-      };
-    
-      onFormSubmit = async e => {
-        e.preventDefault();
-        try {
-          const data = await createAdmin({ ...this.state });
-          console.log(data);
-        } catch (error) {
-          console.error(error);
-        }
-        // this.props.loginUser(this.state.username, this.state.password);
-        console.log("submitform");
-      };
+  constructor(props) {
+    super(props);
+    this.state = {
+      permission: 4,
+      email: "",
+      username: "",
+      password: "",
+      name: "",
+      phone: "",
+      dob: "",
+      email: "",
+      gender: "Nam"
+    };
+  }
+
+  onFieldChanged = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onFormSubmit = async e => {
+    e.preventDefault();
+    try {
+      const data = await createAdmin({ ...this.state });
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+    // this.props.loginUser(this.state.username, this.state.password);
+    console.log("submitform");
+  };
 
   render() {
-    
-
     return (
       <PageLayout title="Tạo tài khoản admin">
         <form onSubmit={this.onFormSubmit} className="body-midForm">
-         
+          {this.state.permission === 4 ? (
+            <div className="input-group form-group">
+              <div className="input-group-prepend-midSide">
+                <span className="input-group-text">
+                  <i className="fas fa-school" />
+                </span>
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Tên Đơn Vị"
+                name="org"
+                onChange={this.onFieldChanged}
+              />
+            </div>
+          ) : null}
           {/*  Tên đăng nhập */}
           <div className="input-group form-group">
             <div className="input-group-prepend-midSide">
@@ -156,7 +172,13 @@ class CreateAccountPage extends Component {
               </span>
             </div>
 
-            <select className="form-control" id="exampleFormControlSelect1" name="gender" onChange={this.onFieldChanged} value={this.state.gender}>
+            <select
+              className="form-control"
+              id="exampleFormControlSelect1"
+              name="gender"
+              onChange={this.onFieldChanged}
+              value={this.state.gender}
+            >
               <option>Nam</option>
               <option>Nữ</option>
             </select>
@@ -168,19 +190,37 @@ class CreateAccountPage extends Component {
                 <i className="fas fa-user-secret" />
               </span>
             </div>
-
-            <select className="form-control" id="exampleFormControlSelect1" name="permission" onChange={this.onFieldChanged} value={this.state.permission}>
-              <option value={2}>Content Admin</option>
-              <option value={3}>Account Admin</option>
-              <option value= {4}>Unit Admin</option>
-            </select>
+            {this.props.permission === 5 ? (
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                name="permission"
+                onChange={this.onFieldChanged}
+                value={this.state.permission}
+              >
+                <option value={2}>Content Admin</option>
+                <option value={3}>Account Admin</option>
+                <option value={4}>Unit Admin</option>
+              </select>
+            ) : this.props.permission === 4 ? (
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                name="permission"
+                onChange={this.onFieldChanged}
+                value={this.state.permission}
+              >
+                <option value={2}>Content Admin</option>
+                <option value={3}>Account Admin</option>
+              </select>
+            ) : null}
           </div>
         </form>
         <div className="fooder-crAccAdmin">
           <Button color="success" onClick={this.onFormSubmit}>
             <i className="fas fa-check-circle ml-1" /> Tạo
           </Button>
-          <Button color="danger ml-10" >
+          <Button color="danger ml-10">
             <i className="fas fa-trash-alt ml-1" /> Hủy
           </Button>
         </div>
@@ -189,4 +229,10 @@ class CreateAccountPage extends Component {
   }
 }
 
-export default CreateAccountPage;
+const mapStateToProps = ({
+  auth: {
+    user: { name, permission, exp }
+  }
+}) => ({ name, permission, exp });
+
+export default connect(mapStateToProps)(CreateAccountPage);
