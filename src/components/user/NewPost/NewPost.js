@@ -63,13 +63,13 @@ class NewPost extends Component {
               </Col>
               <Col xs="3">
                 <FormGroup style={{ marginBottom: 0 }}>
-                  <Input
+                <Input
                     type="select"
                     name="select"
                     id="exampleSelect"
                     onChange={this.onTypeChange}
                     value={this.state.type}
-                    multiple
+                    
                   >
                     <option value="Hoạt động cá nhân">Cá nhân</option>
                     <option value="Địa điểm">Địa điểm</option>

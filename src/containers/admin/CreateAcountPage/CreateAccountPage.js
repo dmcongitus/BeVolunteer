@@ -101,7 +101,7 @@ class CreateAccountPage extends Component {
               className="form-control"
               placeholder="Nhập lại mật khẩu"
               name="repassword"
-              onChange={this.onFieldChanged}
+             
             />
           </div>
           {/*  Họ và tên */}

@@ -7,13 +7,10 @@ export const mapPermissionToText = {
 
 export const mapPermissionToSelections = {
     2: [{
-        header:  ' Cộng đồng',
-        navigations: [{
-            title: 'Trang chủ',
-            redirectTo: '/home'
-        }, {
-            title: 'Bảng xếp hạng',
-            redirectTo: '/leaderboard'
+        header:  ' Quản lý',
+        navigations: [ {
+            title: 'Quản lý bài viết',
+            redirectTo: '/ContentManage'
         }]
         }],
     

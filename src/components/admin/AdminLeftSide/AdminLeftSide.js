@@ -6,7 +6,7 @@ import {
   mapPermissionToSelections
 } from "../../../configs/permission";
 
-var permissionArr = ['Cá nhân', 'Tổ chức', 'Acount Mod', 'Content Mod', 'Super Admin' ]
+var permissionArr = ['Cá nhân', 'Tổ chức', 'Content Mod','Acount Mod', 'Unit Admin', 'Super Admin' ]
 
 const adminLeftSide = ({ username, permission }) => (
     
@@ -27,7 +27,7 @@ const adminLeftSide = ({ username, permission }) => (
               <b>{username}</b>
               <div className="item-row">
                 <div className="my-small">
-                {permissionArr[permission-1]}
+                {permissionArr[permission]}
                   
                 </div>
               </div>

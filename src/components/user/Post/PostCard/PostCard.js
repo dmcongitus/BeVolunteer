@@ -19,29 +19,14 @@ import img1 from "../../../../images/1.jpg";
 import img2 from "../../../../images/2.jpg";
 import img3 from "../../../../images/3.jpg";
 import "./PostCard.css";
-const items = [
-  {
-    src: img1,
-    altText: "Slide 1",
-    caption: "Slide 1"
-  },
-  {
-    src: img2,
-    altText: "Slide 2",
-    caption: "Slide 2"
-  },
-  {
-    src: img3,
-    altText: "Slide 3",
-    caption: "Slide 3"
-  }
-];
+
 class PostCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
-      activeIndex: 0
+      activeIndex: 0,
+      items: []
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -49,6 +34,9 @@ class PostCard extends React.Component {
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
     this.toggle = this.toggle.bind(this);
+  }
+  clearArray() {
+    this.state.items = [];
   }
   onExiting() {
     this.animating = true;
@@ -61,7 +49,7 @@ class PostCard extends React.Component {
   next() {
     if (this.animating) return;
     const nextIndex =
-      this.state.activeIndex === items.length - 1
+      this.state.activeIndex === this.state.items.length - 1
         ? 0
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
@@ -71,7 +59,7 @@ class PostCard extends React.Component {
     if (this.animating) return;
     const nextIndex =
       this.state.activeIndex === 0
-        ? items.length - 1
+        ? this.state.items.length - 1
         : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
@@ -89,18 +77,14 @@ class PostCard extends React.Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = items.map(item => {
+    const slides = this.state.items.map(item => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.src}
+          key={item}
         >
-          <img src={item.src} alt={item.altText} className = "img-slide-style" />
-          <CarouselCaption
-            captionText={item.caption}
-            captionHeader={item.caption}
-          />
+          <img src={item} className="img-slide-style" />
         </CarouselItem>
       );
     });
@@ -153,15 +137,29 @@ class PostCard extends React.Component {
         <div style={{ width: "100%" }}>
           <Row>
             <Col>
-              <div>
-                {this.props.filenames.map(filename => (
+              <div onClick={this.toggle}>
+                {this.clearArray()}
+                {this.props.filenames.map(filename => {
+                  this.state.items.push(`/resources/${filename}`);
+                })}
+                {this.state.items.length < 2 ? (
                   <img
-                    src={`/resources/${filename}`}
+                    style={{ cursor: "pointer" }}
+                    src={`/resources/${this.props.filenames[0]}`}
+          
                     className="post-album"
-                    alt="Post album"
-                    onClick={this.toggle}
                   />
-                ))}
+                ) : (
+                  <div className="Newpost-img__more">
+                    <img
+                      style={{ cursor: "pointer" }}
+                      src={`/resources/${this.props.filenames[0]}`}
+                    
+                      className="post-album"
+                    />
+                    <div>+{this.state.items.length - 1}</div>
+                  </div>
+                )}
               </div>
               <Modal
                 isOpen={this.state.modal}
@@ -175,7 +173,7 @@ class PostCard extends React.Component {
                     previous={this.previous}
                   >
                     <CarouselIndicators
-                      items={items}
+                      items={this.state.items}
                       activeIndex={activeIndex}
                       onClickHandler={this.goToIndex}
                     />
