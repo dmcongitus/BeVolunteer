@@ -55,8 +55,7 @@
     }
 
     .Newpost-img img {
-        width: 150px;
-        height: 100px;
+        width: 100%;
         float: left;
         margin-right: 15px;
         transition: 0.5s;
@@ -159,4 +158,23 @@ font-size: 64px;
 
     .text1{
         color: #ecf1e5;
+    }
+
+    .Newpost-img__more {
+        position: relative;
+        overflow:auto;
+    }
+
+    .Newpost-img__more div {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        top :0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.50);
+        color: white;
+        font-size: 1.5rem;
     }

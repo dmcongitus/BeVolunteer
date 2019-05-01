@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 import { Row, Col } from "reactstrap";
 import {
   mapPermissionToText,
@@ -7,10 +8,9 @@ import {
 } from "../../../configs/permission";
 import DropdownCustom from '../DropdownCustom/DropdownCustom';
 
-var permissionArr = ['Cá nhân', 'Tổ chức', 'Acount Mod', 'Content Mod', 'Super Admin' ]
+var permissionArr = ['Cá nhân', 'Tổ chức', 'Content Mod','Acount Mod', 'Unit Admin', 'Super Admin' ]
 
 const adminLeftSide = ({ username, permission }) => (
-    
     <div>
         <div className="side-body">
             <Row className="item-mid">
@@ -22,18 +22,18 @@ const adminLeftSide = ({ username, permission }) => (
                         />
                     </div>
                 </div>
+
                 <div>
                     <div className="item-center">
                         <div className="item-column ml-3">
-                        <b>{username}</b>
-                        <div className="item-row">
-                            <div className="my-small">
-                            {permissionArr[permission-1]}
-                            
+                            <b>{username}</b>
+                            <div className="item-row">
+                                <div className="my-small">
+                                    {permissionArr[permission]}
+                                </div>
                             </div>
                         </div>
-                        </div>
-                    </div>
+                    </div> 
                 </div>
             </Row>
 
@@ -78,4 +78,4 @@ const adminLeftSide = ({ username, permission }) => (
     </div>
 );
 
-export default adminLeftSide;
+export default withRouter(adminLeftSide);

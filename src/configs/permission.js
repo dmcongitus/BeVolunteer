@@ -8,27 +8,24 @@ export const mapPermissionToText = {
 export const mapPermissionToSelections = {
     2: [
         {
-            header:  ' Cộng đồng',
-            navigations: [
+            header:  ' Quản lý',
+            navigations: [ 
                 {
-                    title: 'Trang chủ',
-                    redirectTo: '/home'
-                }, {
-                    title: 'Bảng xếp hạng',
-                    redirectTo: '/leaderboard'
+                    title: 'Quản lý bài viết',
+                    redirectTo: '/ContentManage'
+                }
+            ]
+        },
+        {
+            title: 'Sự kiện',
+            subPermission: [
+                {
+                    title: 'Tạo sự kiện',
+                    redirectTo: '/event'
                 },
                 {
-                    title: 'Sự kiện',
-                    subPermission: [
-                        {
-                            title: 'Tạo sự kiện',
-                            redirectTo: '/event'
-                        },
-                        {
-                            title: 'Danh sách sự kiện',
-                            redirectTo: '/eventList'
-                        }
-                    ]
+                    title: 'Danh sách sự kiện',
+                    redirectTo: '/eventList'
                 }
             ]
         }

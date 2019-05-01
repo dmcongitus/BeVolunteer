@@ -14,7 +14,7 @@ import "./NewPost.css";
 
 import * as postServices from "../../../services/post.service";
 const initialState = {
-  image: undefined,
+  image: [],
   description: "",
   address: "",
   type: "Hoạt động cá nhân"
@@ -31,7 +31,7 @@ class NewPost extends Component {
 
   handleImageChange = e => {
     e.persist();
-    this.setState({ image: e.target.files[0] });
+    this.setState({ image: e.target.files });
   };
 
   onTypeChange = e => {
@@ -63,12 +63,13 @@ class NewPost extends Component {
               </Col>
               <Col xs="3">
                 <FormGroup style={{ marginBottom: 0 }}>
-                  <Input
+                <Input
                     type="select"
                     name="select"
                     id="exampleSelect"
                     onChange={this.onTypeChange}
                     value={this.state.type}
+                    
                   >
                     <option value="Hoạt động cá nhân">Cá nhân</option>
                     <option value="Địa điểm">Địa điểm</option>
@@ -108,16 +109,19 @@ class NewPost extends Component {
             </Row>
           </Col>
           <Col xs="4" className="Newpost-img">
-            {!this.state.image ? (
+            {this.state.image.length < 1 ? (
               <div
                 className="Newpost-img__placeholder"
                 onClick={() => this.inputImage.current.click()}
               >
                 <span>+</span>
               </div>
-            ) : (
-              <img src={URL.createObjectURL(this.state.image)} alt="fucku" />
-            )}
+            ) : (this.state.image.length < 2 ? (
+              <img style={{cursor: "pointer"}} src={URL.createObjectURL(this.state.image[0])} alt="fucku"   onClick={() => this.inputImage.current.click()}/>
+              ) : (<div className="Newpost-img__more">
+              <img style={{cursor: "pointer"}} src={URL.createObjectURL(this.state.image[0])} alt="fucku"   onClick={() => this.inputImage.current.click()}/>
+                  <div>+{this.state.image.length - 1}</div>
+              </div>))}
             <input
               type="file"
               multiple

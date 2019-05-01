@@ -5,7 +5,9 @@ export function createPost(post) {
         .then(({ data: { id } }) => {
             if (post.image) {
                 const formData = new FormData();
-                formData.append('postimage', post.image);
+                for (let i = 0; i < post.image.length; i++) {
+                    formData.append('postimage', post.image[i]);
+                }
                 return Axios.put(`/posts/${id}/img`, formData, { headers: { "x-access-token": localStorage.getItem("token") } })
             } else {
                 return Promise.resolve();

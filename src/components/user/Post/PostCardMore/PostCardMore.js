@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Container, Row, Col, Alert, Button } from "reactstrap";
 
-import "./PostCard.css";
+import "./PostCardMore.css";
 
 const PostCard = props => (
   <Row className="postCard">

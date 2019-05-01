@@ -30,7 +30,7 @@
   margin-bottom: 20px;
   border-radius: 3px;
   max-Width: 100%;
-  height: "auto";
+  height: auto;
   border: 1px solid #0D6628;
 }
 
@@ -71,3 +71,4 @@
   height: 500px;
   width: 100%;
 }
+
