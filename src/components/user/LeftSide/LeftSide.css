@@ -49,3 +49,7 @@
     color: #0D6628;
 
 }
+
+.NavLink--active {
+    font-weight: bold !important;
+}
