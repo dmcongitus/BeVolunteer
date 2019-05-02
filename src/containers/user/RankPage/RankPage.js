@@ -3,7 +3,7 @@ import { Table, Button } from "reactstrap";
 
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 
-import { getAllUsers, banUser } from "../../../services/user.service";
+import { getAllUsersRank, banUser } from "../../../services/user.service";
 
 class RankPage extends Component {
   state = {
@@ -11,7 +11,7 @@ class RankPage extends Component {
   };
 
   componentDidMount = () => {
-    getAllUsers().then(({ data: { accounts } }) => this.setState({ accounts }));
+    getAllUsersRank().then(({ data: { accounts } }) => this.setState({ accounts }));
   };
 
   onAccountBan = username => {
@@ -36,7 +36,7 @@ class RankPage extends Component {
                 <th>Tên người dùng</th>
                 <th>Họ và tên</th>
                 <th>Exp</th>
-                <th />
+             
               </tr>
             </thead>
             <tbody>
@@ -47,25 +47,9 @@ class RankPage extends Component {
                     <td>{account.username}</td>
                     <td>{account.name}</td>
                     <td>
-                      {account.isVerified ? (
-                        <div className="tcl-1">Đã xác thực</div>
-                      ) : account.isRequestVerify ? (
-                        <div className="tcl-3">Đang xác thực</div>
-                      ) : (
-                        <div className="tcl-2">Chưa xác thực</div>
-                      )}
+                      {account.exp}
                     </td>
-                    <td>
-                      <div>
-                        <Button
-                          className="mr-1 new-btn"
-                          onClick={() => this.onAccountBan(account.username)}
-                        >
-                          <i class="fas fa-lock icon-button" />
-                          Khóa
-                        </Button>
-                      </div>{" "}
-                    </td>
+                  
                   </tr>
                 )
               )}

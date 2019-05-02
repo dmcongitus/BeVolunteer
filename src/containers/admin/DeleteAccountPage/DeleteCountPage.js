@@ -238,7 +238,7 @@ class DeleteAccountPage extends Component {
                 : null}
               {/* End tab Chưa Khóa*/}
               {/* Start tab Đã Khóa*/}
-              {this.state.accounts.map(account =>
+              {this.state.activeTab === "3"?this.state.accounts.map(account =>
                 account.permission >=
                 this.props.permission ? null : !account.isBanned ? null : (
                   <tr key={account.username} className="table-row">
@@ -278,7 +278,7 @@ class DeleteAccountPage extends Component {
                     </td>
                   </tr>
                 )
-              )}
+              ):null}
               {/* End tab Đã Khóa*/}
             </tbody>
           </Table>

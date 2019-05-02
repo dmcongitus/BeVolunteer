@@ -13,7 +13,7 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
+  CarouselCaption,  Dropdown, DropdownMenu, DropdownToggle
 } from "reactstrap";
 import img1 from "../../../../images/1.jpg";
 import img2 from "../../../../images/2.jpg";
@@ -26,7 +26,8 @@ class PostCard extends React.Component {
     this.state = {
       modal: false,
       activeIndex: 0,
-      items: []
+      items: [],
+      dropdownOpen: false
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -34,6 +35,12 @@ class PostCard extends React.Component {
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.toggleMenuPost = this.toggleMenuPost.bind(this);
+  }
+  toggleMenuPost() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
   }
   clearArray() {
     this.state.items = [];
@@ -68,7 +75,7 @@ class PostCard extends React.Component {
     if (this.animating) return;
     this.setState({ activeIndex: newIndex });
   }
-  toggle(filename) {
+  toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
@@ -90,16 +97,18 @@ class PostCard extends React.Component {
     });
     return (
       <Row className="postCard">
-        <Col className="header-col">
+        <Col className="header-col" xs="11">
           <Row className="item-center header-postCard pb-3">
-            <div>
+          <Col xs="1">
+          <div>
               <img
                 className="img-user-postCard rounded-circle"
                 src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
                 alt="UserAvatar"
               />
             </div>
-
+            </Col>
+          <Col xs="11">
             <div className="ml-2">
               Dương Minh Công {this.props.name}
               <small>
@@ -130,10 +139,35 @@ class PostCard extends React.Component {
                     {this.props.address}
                   </span>
                 </small>
+              
               </div>
+            
             </div>
+         
+          </Col>
+         
+       
+            
           </Row>
         </Col>
+        <Col xs="1">   <div className="menu-post">
+        
+        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleMenuPost}>
+        <DropdownToggle
+          tag="span"
+          onClick={this.toggleMenuPost}
+          data-toggle="dropdown"
+          aria-expanded={this.state.dropdownOpen}
+        >
+          <i class="fas fa-bars"></i>
+        </DropdownToggle>
+        <DropdownMenu className = "menu-post-item p-1" >
+          <div onClick={this.toggleMenuPost}><i class="fas fa-flag ml-3"></i>Lưu</div>
+          <div onClick={this.toggleMenuPost}><i class="fas fa-bug ml-3"></i>Báo cáo</div>
+        </DropdownMenu>
+      </Dropdown>
+          </div>
+         </Col>
         <div style={{ width: "100%" }}>
           <Row>
             <Col>
@@ -164,8 +198,9 @@ class PostCard extends React.Component {
               <Modal
                 isOpen={this.state.modal}
                 toggle={this.toggle}
-                className={this.props.className}
+                className="slide-image-post"
               >
+              <ModalHeader toggle={this.toggle}>Album </ModalHeader>
                 <ModalBody>
                   <Carousel
                     activeIndex={activeIndex}
