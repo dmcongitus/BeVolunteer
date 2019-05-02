@@ -28,35 +28,35 @@ class MoreVerticalButtonEvents extends Component {
     handleClose0 = (event) => {
         if (!this.anchorEl.contains(event.target)) {
             this.setState({ open: false, selection: 0 });
-            this.props.onPostTypeChanged(0);
+            this.props.onStatusEventChanged(0);
         }
     };
 
     handleClose1 = (event) => {
         if (!this.anchorEl.contains(event.target)) {
             this.setState({ open: false, selection: 1 });
-            this.props.onPostTypeChanged(1);
+            this.props.onStatusEventChanged(1);
         }
     };
 
     handleClose3 = (event) => {
         if (!this.anchorEl.contains(event.target)) {
             this.setState({ open: false, selection: 3 });
-            this.props.onPostTypeChanged(3);
+            this.props.onStatusEventChanged(3);
         }
     };
 
     handleClose4 = (event) => {
         if (!this.anchorEl.contains(event.target)) {
             this.setState({ open: false, selection: 4 });
-            this.props.onPostTypeChanged(4);
+            this.props.onStatusEventChanged(4);
         }
     };
 
     handleClose2 = (event) => {
         if (!this.anchorEl.contains(event.target)) {
             this.setState({ open: false, selection: 2 });
-            this.props.onPostTypeChanged(2);
+            this.props.onStatusEventChanged(2);
         }
     };
 

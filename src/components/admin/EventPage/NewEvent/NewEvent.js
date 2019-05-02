@@ -77,6 +77,8 @@ class NewEvent extends Component {
 
 	onFormSubmit = async (e) => {
 		console.log("submitform");
+		console.log(this.state);
+
 		alert(this.checkFormPost(this.state).message);
 		e.preventDefault();
 		try {
@@ -403,9 +405,9 @@ class NewEvent extends Component {
 											id="exampleFormControlSelect1"
 											type="select">
 												<option>Chọn trạng thái</option>
-												<option>Sắp diễn ra</option>
-												<option>Đang diễn ra</option>
-												<option>Kết thúc</option>
+												<option value="Sắp diễn ra">Sắp diễn ra</option>
+												<option value="Đang diễn ra">Đang diễn ra</option>
+												<option value="Kết thúc">Kết thúc</option>
 										</Input>
 									</InputGroup>
 								</Row>

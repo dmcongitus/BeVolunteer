@@ -56,8 +56,8 @@ class DropdownCustom extends Component {
                 {
                         <DropdownMenu>
                             {
-                            this.props.sub.map((navigation) => (
-                                <DropdownItem className="dropdownItem">
+                            this.props.sub.map((navigation,index) => (
+                                <DropdownItem key={index} className="dropdownItem">
                                     <NavLink 
                                         activeStyle={{ color: 'green' }} 
                                         to={navigation.redirectTo}>{navigation.title}

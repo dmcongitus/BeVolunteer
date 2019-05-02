@@ -8,8 +8,8 @@ import './List.css';
 const List = ({ events }) => (
     <div>
         {
-            events.map((post) => 
-                <EventCard key={post.id} {...post}>
+            events.map((event) => 
+                <EventCard key={event.id} {...event}>
                 </EventCard>)
             }
     </div>

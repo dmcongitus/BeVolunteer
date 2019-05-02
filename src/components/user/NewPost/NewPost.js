@@ -45,6 +45,7 @@ class NewPost extends Component {
     };
 
     onSubmit = e => {
+        console.log(this.state);
         postServices.createPost(this.state).then(() => {
         this.setState({ ...initialState });
         alert("Tạo bài viết thành công");

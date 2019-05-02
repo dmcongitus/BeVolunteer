@@ -40,8 +40,8 @@ class EventCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        modal: false,
-        activeIndex: 0
+            modal: false,
+            activeIndex: 0
         };
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
@@ -92,18 +92,20 @@ class EventCard extends React.Component {
         const slides = items.map(item => {
         return (
             <CarouselItem
-            onExiting={this.onExiting}
-            onExited={this.onExited}
-            key={item.src}
-            >
-            <img src={item.src} alt={item.altText} className = "img-slide-style" />
-            <CarouselCaption
-                captionText={item.caption}
-                captionHeader={item.caption}
-            />
+                onExiting={this.onExiting}
+                onExited={this.onExited}
+                key={item.src}>
+                <img 
+                    src={item.src} 
+                    alt={item.altText} 
+                    className = "img-slide-style"/>
+                <CarouselCaption
+                    captionText={item.caption}
+                    captionHeader={item.caption}/>
             </CarouselItem>
         );
     });
+
     return (
         <Row className="postCard">
             <div style={{ width: "100%" }}>
@@ -117,10 +119,10 @@ class EventCard extends React.Component {
                     <Col xs="8" className="textMedia">
                         <div >
                             {
-                                (this.props.type === "Quyên góp")  && (
+                                (this.props.statusEvent === "Sắp diễn ra")  && (
                                 <div>
-                                    <Alert color="success">Mùa Đông Yêu Thương (5 người đăng kí)</Alert>
-                                    <Alert color="success">Thứ 2, ngày 6-5-2019</Alert>
+                                    <Alert color="success">{this.props.title}</Alert>
+                                    <Alert color="success">{this.props.starttime}</Alert>
                                     <Button className="mr-1 new-btn">
                                     <i className="fas fa-edit icon-button" />
                                     Tham gia
@@ -128,31 +130,20 @@ class EventCard extends React.Component {
                                 </div>
                             )}
                             {
-                                (this.props.type === "Địa điểm")  && (
+                                this.props.statusEvent === "Đang diễn ra" && (
                                 <div>
-                                    <Alert color="success">Trung thu ấm áp (15 người đăng kí)</Alert>
-                                    <Alert color="success">Tháng 9-2019</Alert>
-                                    <Button className="mr-1 new-btn">
-                                    <i className="fas fa-edit icon-button" />
-                                    Tham gia
-                                    </Button>
+                                    <Alert color="success">{this.props.title}</Alert>
+                                    <Alert color="warning">{this.props.starttime}</Alert>
                                 </div>
                             )}
                             {
-                                this.props.type === "Hoạt động" && (
+                                this.props.statusEvent === "Đã kết thúc" && (
                                 <div>
-                                    <Alert color="success">Xuân Tình Nguyện (15 người đang tham gia)</Alert>
-                                    <Alert color="warning">Từ Thứ 2, ngày 29-4-2019 đến Thứ 5, ngày 9-5-2019</Alert>
+                                    <Alert color="success">{this.props.title}</Alert>
+                                    <Alert color="danger">{this.props.starttime}</Alert>
                                 </div>
                             )}
-                            {
-                                this.props.type === "Hoạt động cá nhân" && (
-                                <div>
-                                    <Alert color="success">Mùa Đông Yêu Thương (20 đã tham gia)</Alert>
-                                    <Alert color="danger">Thứ 3, ngày 23-4-2019</Alert>
-                                </div>
-                            )}
-                            <Link to={`post/${this.props.id}`}>
+                            <Link to={`events/${this.props.id}`}>
                                 <Button color="success" className="mr-1 success">
                                     <i className="fas fa-angle-double-right icon-button" /> Xem thêm
                                 </Button>
