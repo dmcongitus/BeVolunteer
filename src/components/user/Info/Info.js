@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import * as authActions from "../../../actions/auth.action";
+import * as userActions from "../../../actions/user.actions";
 
 import "./Info.css";
 
@@ -41,7 +42,7 @@ class MeComponent extends Component {
     const profiles = { ...this.state.profiles };
 
     e.persist();
-    profiles.identityCard = URL.createObjectURL(e.target.files[0]);
+    profiles.identityCard = e.target.files;
     this.setState({ profiles, profileChanged: true });
   };
 
@@ -76,6 +77,9 @@ class MeComponent extends Component {
       this.state.profiles.username,
       this.state.profiles
     );
+    
+    this.props.verifyUser(this.state.profiles["identityCard"]);
+    
     this.setState({ profileChanged: false });
   };
 
@@ -100,7 +104,7 @@ class MeComponent extends Component {
               </div>
             )}
 
-            {this.state.profiles["isVerified"] === false &&
+            {this.props.user.isVerified === false &&
               this.state.profiles["isRequestVerify"] === false && (
                 <div>
                   <Alert color="danger">
@@ -130,7 +134,7 @@ class MeComponent extends Component {
                     value={this.state.profiles["name"]}
                     onChange={this.handleChange}
                   />
-                   {this.state.profiles["isVerified"] === false &&
+                   {this.props.user.isVerified === false &&
                     this.state.profiles["isRequestVerify"] === false && (
                   <button
                     onClick={this.handleEdit.bind(this, "name")}
@@ -227,11 +231,12 @@ class MeComponent extends Component {
                   <div className="UpdateProfile__Main__FieldName">CMND</div>
                   <div className="UpdateProfile__Main__FieldValue">
                     <img
-                      src={this.state.profiles["identityCard"] || identityImage}
+                      src={(this.state.profiles["identityCard"] !== undefined && URL.createObjectURL(this.state.profiles["identityCard"][0])) || identityImage}
                       alt="Identity"
                     />
                     <input
                       type="file"
+                      multiple
                       accept="image/*"
                       style={{ display: "none" }}
                       ref={el => (this.identityCard = el)}
@@ -292,7 +297,8 @@ const mapStateToProps = ({ auth: { user } }) => ({ user });
 
 const mapDispatchToProps = dispatch => ({
   updateUserInfo: (username, userInfo) =>
-    dispatch(authActions.updateUser(username, userInfo))
+    dispatch(authActions.updateUser(username, userInfo)),
+  verifyUser: (identityCard) => dispatch(userActions.verifyUser(identityCard))
 });
 
 export default connect(

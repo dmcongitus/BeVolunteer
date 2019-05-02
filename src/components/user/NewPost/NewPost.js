@@ -118,8 +118,8 @@ class NewPost extends Component {
               </div>
             ) : (this.state.image.length < 2 ? (
               <img style={{cursor: "pointer"}} src={URL.createObjectURL(this.state.image[0])} alt="fucku"   onClick={() => this.inputImage.current.click()}/>
-              ) : (<div className="Newpost-img__more">
-              <img style={{cursor: "pointer"}} src={URL.createObjectURL(this.state.image[0])} alt="fucku"   onClick={() => this.inputImage.current.click()}/>
+              ) : (<div className="Newpost-img__more" style={{cursor: "pointer"}}  onClick={() => this.inputImage.current.click()}>
+              <img  src={URL.createObjectURL(this.state.image[0])} alt="fucku"  />
                   <div>+{this.state.image.length - 1}</div>
               </div>))}
             <input

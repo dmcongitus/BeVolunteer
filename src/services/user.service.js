@@ -1,9 +1,9 @@
 import Axios from "axios";
 
 export function getAllUsers() {
-  return Axios.get("/accounts/", {
-    headers: { "x-access-token": localStorage.getItem("token") }
-  });
+    return Axios.get("/accounts/", {
+        headers: { "x-access-token": localStorage.getItem("token") }
+    });
 }
 export function getAllUsersRank() {
   return Axios.get("/ranking/", {
@@ -36,6 +36,15 @@ export function verifyUser(username) {
 export function unVerifyUser(username) {
   return instance.post("/admins/unVerify/" + username);
 }
+
+export function verify(identityCard) {
+    let formData = new FormData()
+    for (let i = 0; i < identityCard.length; i++){
+        formData.append("resourceVerify", identityCard[i]);
+    }
+    return Axios.post("/accounts/verify", formData, { headers: { "x-access-token": localStorage.getItem("token") } });
+}
+
 export async function createUser(params) {
   try {
     const data = await Axios.post("/accounts", { ...params });
