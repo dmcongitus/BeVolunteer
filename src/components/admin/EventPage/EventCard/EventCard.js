@@ -109,15 +109,8 @@ class EventCard extends React.Component {
             <div style={{ width: "100%" }}>
                 <Row>
                     <Col xs="4">
-                        <div>
-                            {this.props.filenames.map(filename => (
-                            <img
-                                src={`/resources/${filename}`}
-                                className="post-album"
-                                alt="Post album"
-                                onClick={this.toggle}
-                            />
-                            ))}
+                        <div className="">
+
                         </div>
                     </Col>
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as authActions from '../../../../actions/auth.action';
@@ -29,7 +29,8 @@ import {
 
 class NewEvent extends Component {
     constructor(props) {
-        super(props)
+		super(props);
+		this.inputImage = createRef();
         this.state = {
 			infor:{
 				permission: 2,
@@ -45,14 +46,25 @@ class NewEvent extends Component {
 				num_volunteer: 1,
 				statusEvent: "",
 				deadline: "",
-				isDelete: false
+				isDelete: false,
+				image: []
 			},
 			statusForm: false,
 			isOpenErrorModal: false,
 			messageError: ""
         }
 
-    }
+	}
+	
+	handleImageChange = e => {
+        e.persist();
+        this.setState({ 
+			infor:{
+				...this.state.infor,
+				image: e.target.files 
+			}
+		});
+    };
 
 	onFieldChanged = e => {
 		this.setState({ 
@@ -169,10 +181,10 @@ class NewEvent extends Component {
         }
 
         return (
-            <div className="widget-sidebar">
+            <div style={{marginTop: "1.3rem"}} className="widget-sidebar">
 				<div className="NewPostBox col">
 					<Row>
-						<Alert style={{width: '100%'}} color="success">
+						<Alert className="headerEvent" style={{width: '100%'}} color="success">
 							<Row>
 								<Col xs="9">
 									<img alt="profile_icon" src={profileIcon} /> THÔNG TIN SỰ KIỆN
@@ -186,49 +198,114 @@ class NewEvent extends Component {
 				
 					<Row>
 						<div className="event-form w-100 text-lg font-bold border-b border-solid border-grey-light" >            
-							<div className="UpdateProfile" >
-								{/* <section className="UpdateProfile__Header">
-									<div className="UpdateProfile__Header__Left">
-									<div>Thông tin cá nhân</div>
-									<img alt="profile_icon" src={profileIcon} />
-									</div>
-									<div className="UpdateProfile__Header__Right">
-										<img alt="authenticated?" src={cancelIcon} />
-										<div>Chưa được xác thực</div>
-									</div>
-								</section> */}
-								
-								{/* Tên sự kiện */}
-								<div className="checkInPost" style={{width: '100%'}}>
-									<InputGroup >
-										<InputGroupAddon 
-											className="btn-edit" 
-											addonType="prepend">
-											<Button outline color="success">Tên sự kiện</Button>
-										</InputGroupAddon>
-										<Input 
-											onChange={this.onFieldChanged}
-											name="title"/>
-									</InputGroup>
-								</div>
+							<div className="UpdateProfile" >	
 
-								{/* Tổ chức */}
-								<div className="checkInPost" style={{width: '100%'}}>
-									<InputGroup >
-										<InputGroupAddon className="btn-edit" addonType="prepend">
+								<Row className="Row1" style={{width: '100%'}}>
+									<Col xs="7">
+										{/* Tên sự kiện */}
+										<Row className="subEventRow1" style={{width: '100%'}}>									
+											<InputGroup >
+												<InputGroupAddon 
+													className="btn-edit" 
+													addonType="prepend">
+													<Button outline color="success">Tên sự kiện</Button>
+												</InputGroupAddon>
+												<Input 
+													onChange={this.onFieldChanged}
+													name="title"/>
+											</InputGroup>
+										</Row>
+
+										{/* Tổ chức */}
+										<Row className="subEventRow1" style={{width: '100%'}}>
+											<InputGroup >
+													<InputGroupAddon className="btn-edit" addonType="prepend">
+													
+														<Button outline color="success">Tổ chức</Button>
+													</InputGroupAddon>
+													<Input
+														type="text" 
+														name="publisher"
+														defaultValue="Admin" 
+														disabled/>
+											</InputGroup>
+										</Row>
 										
-											<Button outline color="success">Tổ chức</Button>
-										</InputGroupAddon>
-										<Input
-											type="text" 
-											name="publisher"
-											defaultValue="Admin" 
-											disabled/>
-									</InputGroup>
-								</div>
+										{/* Địa điểm */}
+										<Row className="subEventRow1" style={{width: '100%'}}>
+											<InputGroup >
+												<InputGroupAddon className="btn-edit" addonType="prepend">
+												
+													<Button outline color="success">Địa điểm</Button>
+												</InputGroupAddon>
+												<Input 
+													onChange={this.onFieldChanged}
+													name="address"/>
+											</InputGroup>
+										</Row>
 
+										{/* Người chia sẻ */}
+										<Row className="subEventRow1" style={{width: '100%'}}>
+											<InputGroup >
+												<InputGroupAddon className="btn-edit" addonType="prepend">
+												
+													<Button outline color="success">Người chia sẻ</Button>
+												</InputGroupAddon>
+												<Input 
+													onChange={this.onFieldChanged}
+													name="sharer"/>
+											</InputGroup>
+										</Row>
+									</Col>
+									<Col className="Newpost-img" xs="5">
+										{
+											this.state.infor.image.length < 1 ? 
+											(
+												<div
+													className="Newpost-img__placeholder"
+													onClick={() => this.inputImage.current.click()}>
+													<span>+</span>
+												</div>
+											) : 
+											(
+												this.state.infor.image.length < 2 ? 
+												(
+													<img 
+														style={{cursor: "pointer"}} 
+														src={URL.createObjectURL(this.state.infor.image[0])} 
+														alt="fucku"   
+														onClick={() => this.inputImage.current.click()}
+													/>
+												) : 
+												(
+													<div className="Newpost-img__more">
+														<img 
+															style={{cursor: "pointer"}} 
+															src={URL.createObjectURL(this.state.infor.image[0])} 
+															alt="fucku"   
+															onClick={() => this.inputImage.current.click()}
+														/>
+														<div>
+															+{this.state.infor.image.length - 1}
+														</div>
+													</div>
+												)
+											)
+										}
+										<input
+										type="file"
+										multiple
+										style={{ display: "none" }}
+										ref={this.inputImage}
+										onClick={e => (e.target.value = null)}
+										onChange={this.handleImageChange}
+										/>
+									</Col>
+
+								</Row>
+								
 								{/* Miêu tả sự kiện */}
-								<div className="checkInPost" style={{width: '100%'}}>
+								<Row className="eventRow" style={{width: '96.5%'}}>
 									<InputGroup >
 										<InputGroupAddon className="btn-edit" addonType="prepend">
 											<Button outline color="success">Nội dung</Button>
@@ -239,60 +316,55 @@ class NewEvent extends Component {
 											name="description" 
 											id="exampleText"/>
 									</InputGroup>
-								</div>
-
-								{/* Người chia sẻ */}
-								<div className="checkInPost" style={{width: '100%'}}>
-									<InputGroup >
-										<InputGroupAddon className="btn-edit" addonType="prepend">
-										
-											<Button outline color="success">Người chia sẻ</Button>
-										</InputGroupAddon>
-										<Input 
-											onChange={this.onFieldChanged}
-											name="sharer"/>
-									</InputGroup>
-								</div>
-
-								{/* Địa điểm */}
-								<div className="checkInPost" style={{width: '100%'}}>
-									<InputGroup >
-										<InputGroupAddon className="btn-edit" addonType="prepend">
-										
-											<Button outline color="success">Địa điểm</Button>
-										</InputGroupAddon>
-										<Input 
-											onChange={this.onFieldChanged}
-											name="address"/>
-									</InputGroup>
-								</div>
+								</Row>
 
 								{/* Thời gian diễn ra */}
-								<div className="checkInPost" style={{width: '100%'}}>
+								<Row className="eventRow2" style={{width: '100%'}}>
+									<InputGroup>
+										<Col xs="2">										
+										<InputGroupAddon className="btn-edit" addonType="prepend">
+											
+											<Button outline color="success">Thời gian diễn ra</Button>
+										</InputGroupAddon>
+										</Col>
+
+
+										<Col xs="5" style={{marginLeft: "4px"}}>										
+											<Input 												
+												id="starttime"
+												type="date"
+												placeholder="Click to select start date"
+												name="starttime"
+												onChange={this.onFieldChanged}/>
+										</Col>
+										<Col style={{width: "300px"}}>										
+											<Input 		
+												id="endtime"										
+												type="date"
+												placeholder="Click to select end date"
+												name="endtime"
+												onChange={this.onFieldChanged}/>
+										</Col>
+									</InputGroup>
+								</Row>
+								
+								{/* Hạn chót đăng kí */}
+								<Row className="eventRow" style={{width: '55.5%'}}>
 									<InputGroup >
 										<InputGroupAddon className="btn-edit" addonType="prepend">
 										
-											<Button outline color="success">Thời gian diễn ra</Button>
+											<Button outline color="success">Hạn chót đăng kí</Button>
 										</InputGroupAddon>
-										
-										<Input 												
-											id="starttime"
+										<Input 
+											id="deadline"											
 											type="date"
-											placeholder="Click to select start date"
-											name="starttime"
-											onChange={this.onFieldChanged}/>
-
-										<Input 		
-											id="endtime"										
-											type="date"
-											placeholder="Click to select end date"
-											name="endtime"
+											name="deadline"
 											onChange={this.onFieldChanged}/>
 									</InputGroup>
-								</div>
+								</Row>
 
 								{/* Liên hệ */}
-								<div className="checkInPost" style={{width: '100%'}}>
+								<Row className="eventRow" style={{width: '55.5%'}}>
 									<InputGroup >
 										<InputGroupAddon className="btn-edit" addonType="prepend">
 										
@@ -302,10 +374,10 @@ class NewEvent extends Component {
 											onChange={this.onFieldChanged}
 											name="contact"/>
 									</InputGroup>
-								</div>
+								</Row>
 
 								{/* Số lượng TNV */}
-								<div className="checkInPost" style={{width: '100%'}}>
+								<Row className="eventRow" style={{width: '55.5%'}}>
 									<InputGroup >
 										<InputGroupAddon className="btn-edit" addonType="prepend">
 										
@@ -316,10 +388,10 @@ class NewEvent extends Component {
 											onChange={this.onFieldChanged}
 											name="num_volunteer"/>
 									</InputGroup>
-								</div>
+								</Row>
 
 								{/* Trạng thái sự kiện*/}
-								<div className="checkInPost" style={{width: '100%'}}>
+								<Row className="eventRow" style={{width: '55.5%'}}>
 									<InputGroup >
 										<InputGroupAddon className="btn-edit" addonType="prepend">
 										
@@ -336,81 +408,7 @@ class NewEvent extends Component {
 												<option>Kết thúc</option>
 										</Input>
 									</InputGroup>
-								</div>
-
-								{/* Hạn chót đăng kí */}
-								<div className="checkInPost" style={{width: '100%'}}>
-									<InputGroup >
-										<InputGroupAddon className="btn-edit" addonType="prepend">
-										
-											<Button outline color="success">Hạn chót đăng kí</Button>
-										</InputGroupAddon>
-										<Input 
-											id="deadline"											
-											type="date"
-											name="deadline"
-											onChange={this.onFieldChanged}/>
-									</InputGroup>
-								</div>
-										
-								{/* <section className="UpdateProfile__Main" >
-									<ul>										
-										<li className="UpdateProfile__Main__FieldItem">
-											<div className="UpdateProfile__Main__FieldName">Số điện thoại</div>
-											<input className="UpdateProfile__Main__FieldValue" name="phone" ref={el => this.phone = el} onFocus={this.handleFocus} value={this.state.profiles["phone"]} onChange={this.handleChange} />
-											<button onClick={this.handleEdit.bind(this, "phone")} className="UpdateProfile__Main__FieldEdit btn btn-light">
-												<img src={editIcon} alt="Edit icon" />
-											
-											</button>
-										</li>
-										<li className="UpdateProfile__Main__FieldItem">
-											<div className="UpdateProfile__Main__FieldName">Địa chỉ email</div>
-											<input className="UpdateProfile__Main__FieldValue" name="email" ref={el => this.email = el} onFocus={this.handleFocus} value={this.state.profiles["email"]} onChange={this.handleChange} />
-											<button onClick={this.handleEdit.bind(this, "email")} className="UpdateProfile__Main__FieldEdit btn btn-light">
-												<img src={editIcon} alt="Edit icon" />
-											
-											</button>
-										</li>
-										
-										<li className="UpdateProfile__Main__FieldItem">
-											<div className="UpdateProfile__Main__FieldName">Ngày sinh</div>
-											<input className="UpdateProfile__Main__FieldValue" name="dob" ref={el => this.dob = el} onFocus={this.handleFocus} value={this.state.profiles["dob"]} onChange={this.handleChange} />
-											<button onClick={this.handleEdit.bind(this, "dob")} className="UpdateProfile__Main__FieldEdit btn btn-light">
-												<img src={editIcon} alt="Edit icon" />
-			
-											</button>
-										</li>
-										<li className="UpdateProfile__Main__FieldItem">
-											<div className="UpdateProfile__Main__FieldName">Địa chỉ</div>
-											<input className="UpdateProfile__Main__FieldValue" name="address" ref={el => this.address = el} onFocus={this.handleFocus} value={this.state.profiles["address"]} onChange={this.handleChange} />
-											<button onClick={this.handleEdit.bind(this, "address")} className="UpdateProfile__Main__FieldEdit btn btn-light">
-												<img src={editIcon} alt="Edit icon" />
-											
-											</button>
-										</li>
-										<li className="UpdateProfile__Main__FieldItem">
-											<div className="UpdateProfile__Main__FieldName">CMND</div>
-											<div className="UpdateProfile__Main__FieldValue">
-												<img src={this.state.profiles["identityCard"] || identityImage} alt="Identity" />
-												<input type="file" accept="image/*" style={{ display: 'none' }} ref={el => this.identityCard = el} onClick={e => e.target.value = null} onChange={this.handleImageChange} />
-												{this.state.profiles["identityCard"] === undefined && <div className="UpdateProfile__Main__FieldValue__Warning">
-												<Alert color="danger">
-												Cập nhật CMND để xác thực !!!
-												</Alert></div>}
-											</div>
-											<button onClick={this.handleEdit.bind(this, "identityCard")} className="btn btn-light">
-												<img src={editIcon} alt="Edit icon" height="20px"/>
-								
-											</button>
-										</li>
-										<li className="UpdateProfile__Main__FieldItem">
-											<div className="UpdateProfile__Main__FieldName">Loại TK</div>
-											<div className="type-user"  >
-													Cá Nhân
-											</div>
-										</li>
-									</ul>
-								</section> */}
+								</Row>
 						
 								{this.state.profileChanged && <div className="UpdateProfile__Footer">
 							
