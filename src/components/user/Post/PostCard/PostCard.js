@@ -18,9 +18,7 @@ import {
   DropdownMenu,
   DropdownToggle
 } from "reactstrap";
-import img1 from "../../../../images/1.jpg";
-import img2 from "../../../../images/2.jpg";
-import img3 from "../../../../images/3.jpg";
+
 import "./PostCard.css";
 import Payment from "../../Payment/Payment";
 
@@ -30,7 +28,7 @@ class PostCard extends React.Component {
     this.state = {
       modal: false,
       activeIndex: 0,
-      items: [],
+      items: props.filenames.map(filename  => `/resources/${filename}`),
       dropdownOpen: false,
       paymentOpen: false
     };
@@ -187,10 +185,8 @@ class PostCard extends React.Component {
           <Row>
             <Col>
               <div onClick={this.toggle}>
-                {this.clearArray()}
-                {this.props.filenames.map(filename => {
-                  this.state.items.push(`/resources/${filename}`);
-                })}
+                {/* {this.clearArray()} */}
+
                 {this.state.items.length < 2 ? (
                   <img
                     style={{ cursor: "pointer" }}

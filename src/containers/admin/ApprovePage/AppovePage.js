@@ -5,7 +5,9 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter, Col, Row
+  ModalFooter,
+  Col,
+  Row
 } from "reactstrap";
 
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
@@ -17,7 +19,7 @@ import {
 } from "../../../services/user.service";
 
 import "./ApprovePage.css";
-import imgTest from '../../../images/1.jpg'
+import imgTest from "../../../images/1.jpg";
 class appovePage extends Component {
   constructor(props) {
     super(props);
@@ -112,55 +114,68 @@ class appovePage extends Component {
                           <ModalBody>
                             <Row>
                               <Col>
-                              <img src= "http://image.sggp.org.vn/w1200/Uploaded/2019/nkdkswkqoc/original/2015/12/images597493_cmnd-6.jpg" className = "img-Model"></img>
+                                <img
+                                  src="http://image.sggp.org.vn/w1200/Uploaded/2019/nkdkswkqoc/original/2015/12/images597493_cmnd-6.jpg"
+                                  className="img-Model"
+                                />
                               </Col>
                               <Col>
-                              <Row>
-                                <Col xs="5">
-                                <div className="item-column item-mb">
-                                  <div><b className="m-3 tcl-1">Họ và tên:</b></div>
-                                  <div><b className="m-3  tcl-1">Ngày sinh:</b></div>
-                                  <div><b className="m-3  tcl-1">Giới tính:</b></div>
-                                  <div><b className="m-3  tcl-1">Số điện thoại</b></div>
-                                  <div><b className="m-3  tcl-1">Loại tài khoản</b></div>
-                                  
-                                  
-                              </div>
-                                </Col>
-                                <Col xs="auto">
-                                <div className="item-column item-mb">
-                                  <div >Công Anh Kiệt</div>
-                                  <div>09/11/2001</div>
-                                  <div>Nam</div>
-                                  <div>0123456789</div>
-                                  <div>Cá nhân</div>
-                                  
-                                  
-                              </div>
-                                </Col>
-                              </Row>
-                              
+                                <Row>
+                                  <Col xs="5">
+                                    <div className="item-column item-mb">
+                                      <div>
+                                        <b className="m-3 tcl-1">Họ và tên:</b>
+                                      </div>
+                                      <div>
+                                        <b className="m-3  tcl-1">Ngày sinh:</b>
+                                      </div>
+                                      <div>
+                                        <b className="m-3  tcl-1">Giới tính:</b>
+                                      </div>
+                                      <div>
+                                        <b className="m-3  tcl-1">
+                                          Số điện thoại
+                                        </b>
+                                      </div>
+                                      <div>
+                                        <b className="m-3  tcl-1">
+                                          Loại tài khoản
+                                        </b>
+                                      </div>
+                                    </div>
+                                  </Col>
+                                  <Col xs="auto">
+                                    <div className="item-column item-mb">
+                                      <div>Công Anh Kiệt</div>
+                                      <div>09/11/2001</div>
+                                      <div>Nam</div>
+                                      <div>0123456789</div>
+                                      <div>Cá nhân</div>
+                                    </div>
+                                  </Col>
+                                </Row>
                               </Col>
-                             
                             </Row>
                           </ModalBody>
                           <ModalFooter>
-                          <Button
-                          className="ml-2 success"
-                          onClick={() => this.onAccountVerify(account.username)}
-                        >
-                          <i class="fas fa-check-circle icon-button" />
-                          Đồng ý
-                        </Button>
-                        <Button
-                          className="ml-2 new-btn"
-                          onClick={() =>
-                            this.onAccountUnVerify(account.username)
-                          }
-                        >
-                          <i class="fas fa-times-circle icon-button" />
-                          Hủy
-                        </Button>
+                            <Button
+                              className="ml-2 success"
+                              onClick={() =>
+                                this.onAccountVerify(account.username)
+                              }
+                            >
+                              <i class="fas fa-check-circle icon-button" />
+                              Đồng ý
+                            </Button>
+                            <Button
+                              className="ml-2 new-btn"
+                              onClick={() =>
+                                this.onAccountUnVerify(account.username)
+                              }
+                            >
+                              <i class="fas fa-times-circle icon-button" />
+                              Hủy
+                            </Button>
                           </ModalFooter>
                         </Modal>
                       </div>
