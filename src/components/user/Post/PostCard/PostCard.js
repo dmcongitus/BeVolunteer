@@ -13,12 +13,16 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,  Dropdown, DropdownMenu, DropdownToggle
+  CarouselCaption,
+  Dropdown,
+  DropdownMenu,
+  DropdownToggle
 } from "reactstrap";
 import img1 from "../../../../images/1.jpg";
 import img2 from "../../../../images/2.jpg";
 import img3 from "../../../../images/3.jpg";
 import "./PostCard.css";
+import Payment from "../../Payment/Payment";
 
 class PostCard extends React.Component {
   constructor(props) {
@@ -27,7 +31,8 @@ class PostCard extends React.Component {
       modal: false,
       activeIndex: 0,
       items: [],
-      dropdownOpen: false
+      dropdownOpen: false,
+      paymentOpen: false
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -36,10 +41,16 @@ class PostCard extends React.Component {
     this.onExited = this.onExited.bind(this);
     this.toggle = this.toggle.bind(this);
     this.toggleMenuPost = this.toggleMenuPost.bind(this);
+    this.togglePayment = this.togglePayment.bind(this);
   }
   toggleMenuPost() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+  togglePayment() {
+    this.setState({
+      paymentOpen: !this.state.paymentOpen
     });
   }
   clearArray() {
@@ -99,75 +110,79 @@ class PostCard extends React.Component {
       <Row className="postCard">
         <Col className="header-col" xs="11">
           <Row className="item-center header-postCard pb-3">
-          <Col xs="1">
-          <div>
-              <img
-                className="img-user-postCard rounded-circle"
-                src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
-                alt="UserAvatar"
-              />
-            </div>
-            </Col>
-          <Col xs="11">
-            <div className="ml-2">
-              Dương Minh Công {this.props.name}
-              <small>
-                <span className="ml-1">đã chia sẻ một</span>
-              </small>
-              <span className="ml-1">
-                <b>
-                  {this.props.type === "Địa điểm" ? (
-                    <span className="tcl-2">Địa điểm</span>
-                  ) : this.props.type === "Quyên góp" ? (
-                    <span className="tcl-3">Quyên góp</span>
-                  ) : this.props.type === "Hoạt động" ? (
-                    <span className="tcl-1">Hoạt động</span>
-                  ) : (
-                    <span className="tcl-4">{this.props.type}</span>
-                  )}
-                </b>
-              </span>
+            <Col xs="1">
               <div>
-                <small>
-                  <span>
-                    <i className="fa fa-calendar" data-original-title title />{" "}
-                    {new Date(this.props.createdAt).toLocaleTimeString()}
-                    <i
-                      style={{ marginLeft: "5px" }}
-                      className="fas fa-map-marker-alt ml-3 mr-1"
-                    />{" "}
-                    {this.props.address}
-                  </span>
-                </small>
-              
+                <img
+                  className="img-user-postCard rounded-circle"
+                  src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
+                  alt="UserAvatar"
+                />
               </div>
-            
-            </div>
-         
-          </Col>
-         
-       
-            
+            </Col>
+            <Col xs="11">
+              <div className="ml-2">
+                Dương Minh Công {this.props.name}
+                <small>
+                  <span className="ml-1">đã chia sẻ một</span>
+                </small>
+                <span className="ml-1">
+                  <b>
+                    {this.props.type === "Địa điểm" ? (
+                      <span className="tcl-2">Địa điểm</span>
+                    ) : this.props.type === "Quyên góp" ? (
+                      <span className="tcl-3">Quyên góp</span>
+                    ) : this.props.type === "Hoạt động" ? (
+                      <span className="tcl-1">Hoạt động</span>
+                    ) : (
+                      <span className="tcl-4">{this.props.type}</span>
+                    )}
+                  </b>
+                </span>
+                <div>
+                  <small>
+                    <span>
+                      <i className="fa fa-calendar" data-original-title title />{" "}
+                      {new Date(this.props.createdAt).toLocaleTimeString()}
+                      <i
+                        style={{ marginLeft: "5px" }}
+                        className="fas fa-map-marker-alt ml-3 mr-1"
+                      />{" "}
+                      {this.props.address}
+                    </span>
+                  </small>
+                </div>
+              </div>
+            </Col>
           </Row>
         </Col>
-        <Col xs="1">   <div className="menu-post">
-        
-        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleMenuPost}>
-        <DropdownToggle
-          tag="span"
-          onClick={this.toggleMenuPost}
-          data-toggle="dropdown"
-          aria-expanded={this.state.dropdownOpen}
-        >
-          <i class="fas fa-bars"></i>
-        </DropdownToggle>
-        <DropdownMenu className = "menu-post-item p-1" >
-          <div onClick={this.toggleMenuPost}><i class="fas fa-flag ml-3"></i>Lưu</div>
-          <div onClick={this.toggleMenuPost}><i class="fas fa-bug ml-3"></i>Báo cáo</div>
-        </DropdownMenu>
-      </Dropdown>
+        <Col xs="1">
+          {" "}
+          <div className="menu-post">
+            <Dropdown
+              isOpen={this.state.dropdownOpen}
+              toggle={this.toggleMenuPost}
+            >
+              <DropdownToggle
+                tag="span"
+                onClick={this.toggleMenuPost}
+                data-toggle="dropdown"
+                aria-expanded={this.state.dropdownOpen}
+              >
+                <i class="fas fa-bars" />
+              </DropdownToggle>
+              <DropdownMenu className="menu-post-item p-1">
+                <div onClick={this.toggleMenuPost}>
+                  <i class="fas fa-flag ml-3" />
+                  Lưu
+                </div>
+                <div onClick={this.toggleMenuPost}>
+                  <i class="fas fa-bug ml-3" />
+                  Báo cáo
+                </div>
+              </DropdownMenu>
+            </Dropdown>
           </div>
-         </Col>
+        </Col>
         <div style={{ width: "100%" }}>
           <Row>
             <Col>
@@ -180,7 +195,6 @@ class PostCard extends React.Component {
                   <img
                     style={{ cursor: "pointer" }}
                     src={`/resources/${this.props.filenames[0]}`}
-          
                     className="post-album"
                   />
                 ) : (
@@ -188,7 +202,6 @@ class PostCard extends React.Component {
                     <img
                       style={{ cursor: "pointer" }}
                       src={`/resources/${this.props.filenames[0]}`}
-                    
                       className="post-album"
                     />
                     <div>+{this.state.items.length - 1}</div>
@@ -200,7 +213,7 @@ class PostCard extends React.Component {
                 toggle={this.toggle}
                 className="slide-image-post"
               >
-              <ModalHeader toggle={this.toggle}>Album </ModalHeader>
+                <ModalHeader toggle={this.toggle}>Album </ModalHeader>
                 <ModalBody>
                   <Carousel
                     activeIndex={activeIndex}
@@ -251,10 +264,22 @@ class PostCard extends React.Component {
                 )}
                 {this.props.type === "Quyên góp" && (
                   <div>
-                    <Button className="mr-1 donate-btn">
+                    <Button
+                      className="mr-1 donate-btn"
+                      onClick={this.togglePayment}
+                    >
                       <i class="fas fa-donate icon-button" />
                       Quyên góp
                     </Button>
+                    <Modal
+                      isOpen={this.state.paymentOpen}
+                      toggle={this.togglePayment}
+                    >
+                      <ModalHeader>Thanh toán </ModalHeader>
+                      <ModalBody>
+                        <Payment />
+                      </ModalBody>
+                    </Modal>
                   </div>
                 )}
                 <Link to={`post/${this.props.id}`}>

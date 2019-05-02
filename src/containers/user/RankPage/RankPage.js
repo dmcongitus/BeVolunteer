@@ -10,8 +10,13 @@ class RankPage extends Component {
     accounts: []
   };
 
-  componentDidMount = () => {
-    getAllUsersRank().then(({ data: { accounts } }) => this.setState({ accounts }));
+  componentDidMount = async () => {
+    try {
+      const data = await getAllUsersRank();
+      this.setState({ accounts: data.data });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   onAccountBan = username => {
@@ -25,7 +30,8 @@ class RankPage extends Component {
 
   render() {
     let number = 0;
-
+    const { accounts } = this.state;
+    console.log(accounts);
     return (
       <PageLayout title="xóa tài khoản">
         <div>
@@ -36,23 +42,20 @@ class RankPage extends Component {
                 <th>Tên người dùng</th>
                 <th>Họ và tên</th>
                 <th>Exp</th>
-             
               </tr>
             </thead>
             <tbody>
-              {this.state.accounts.map(account =>
-                account.isBanned ? null : (
-                  <tr key={account.username} className="table-row">
-                    <th scope="row">{++number}</th>
-                    <td>{account.username}</td>
-                    <td>{account.name}</td>
-                    <td>
-                      {account.exp}
-                    </td>
-                  
-                  </tr>
-                )
-              )}
+              {this.state.accounts &&
+                this.state.accounts.map(account =>
+                  account.isBanned ? null : (
+                    <tr key={account.username} className="table-row">
+                      <th scope="row">{++number}</th>
+                      <td>{account.username}</td>
+                      <td>{account.name}</td>
+                      <td>{account.exp}</td>
+                    </tr>
+                  )
+                )}
             </tbody>
           </Table>
         </div>
