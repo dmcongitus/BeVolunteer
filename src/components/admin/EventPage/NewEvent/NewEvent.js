@@ -11,7 +11,7 @@ import cancelIcon from '../../../../images/cancel.png';
 import editIcon from '../../../../images/edit.png';
 import identityImage from '../../../../images/identity.png';
 import { userInfo } from 'os';
-import { postEvent } from "../../../../services/admin.service";
+import { createEvent } from "../../../../services/event.service";
 
 import {
     Button,
@@ -33,7 +33,7 @@ class NewEvent extends Component {
 		this.inputImage = createRef();
         this.state = {
 			infor:{
-				permission: 2,
+				permission: 5,
 				title: "",
 				publisher: "Admin",
 				sharer: "",
@@ -82,7 +82,7 @@ class NewEvent extends Component {
 		alert(this.checkFormPost(this.state).message);
 		e.preventDefault();
 		try {
-			const data = await postEvent({...this.state.infor});
+			const data = await createEvent({...this.state.infor});
 			console.log(data);
 		} catch (error) {
 			console.error(error);
@@ -184,7 +184,7 @@ class NewEvent extends Component {
 
         return (
             <div style={{marginTop: "1.3rem"}} className="widget-sidebar">
-				<div className="NewPostBox col">
+				<div className="NewEventBox col">
 					<Row>
 						<Alert className="headerEvent" style={{width: '100%'}} color="success">
 							<Row>
@@ -200,7 +200,7 @@ class NewEvent extends Component {
 				
 					<Row>
 						<div className="event-form w-100 text-lg font-bold border-b border-solid border-grey-light" >            
-							<div className="UpdateProfile" >	
+							<div className="NewEvent" >	
 
 								<Row className="Row1" style={{width: '100%'}}>
 									<Col xs="7">
@@ -259,12 +259,12 @@ class NewEvent extends Component {
 											</InputGroup>
 										</Row>
 									</Col>
-									<Col className="Newpost-img" xs="5">
+									<Col className="NewEvent-img" xs="5">
 										{
 											this.state.infor.image.length < 1 ? 
 											(
 												<div
-													className="Newpost-img__placeholder"
+													className="NewEvent-img__placeholder"
 													onClick={() => this.inputImage.current.click()}>
 													<span>+</span>
 												</div>
@@ -280,7 +280,7 @@ class NewEvent extends Component {
 													/>
 												) : 
 												(
-													<div className="Newpost-img__more">
+													<div className="NewEvent-img__more">
 														<img 
 															style={{cursor: "pointer"}} 
 															src={URL.createObjectURL(this.state.infor.image[0])} 
@@ -412,12 +412,12 @@ class NewEvent extends Component {
 									</InputGroup>
 								</Row>
 						
-								{this.state.profileChanged && <div className="UpdateProfile__Footer">
+								{this.state.profileChanged && <div className="NewEvent__Footer">
 							
-								<Button className="UpdateProfile__Footer__Update" onClick={this.handleUpdate}>
+								<Button className="NewEvent__Footer__Update" onClick={this.handleUpdate}>
 									<i className="fas fa-check-circle ml-1"/>  Cập nhật
 								</Button>
-								<Button className="UpdateProfile__Footer__Cancel" onClick={this.handleCancel}>
+								<Button className="NewEvent__Footer__Cancel" onClick={this.handleCancel}>
 									<i class="fas fa-trash-alt ml-1"/> Hủy
 									</Button></div>}
 							</div>
@@ -426,7 +426,7 @@ class NewEvent extends Component {
 
 					<Row>
 						<Col sm={{ size: "auto", offset: 9 }}>
-							<div className="btnPost">
+							<div className="btnEvent">
 								<Button 
 									type="submit"
 									onClick={this.onFormSubmit}

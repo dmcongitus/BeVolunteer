@@ -3,6 +3,7 @@ import Axios from 'axios';
 export function createEvent(post) {
     return Axios.post('/events', post, { headers: { "x-access-token": localStorage.getItem("token") } })
         .then(({ data: { id } }) => {
+            console.log(post.image);
             if (post.image) {
                 const formData = new FormData();
                 for (let i = 0; i < post.image.length; i++) {
@@ -23,6 +24,6 @@ export function getEvents(statusEvent) {
     }
 }
 
-export function getSpecificPost(postId) {
-    return Axios.get(`/events/${postId}`, { headers: { "x-access-token": localStorage.getItem("token") } });
+export function getSpecificEvent(eventId) {
+    return Axios.get(`/events/${eventId}`, { headers: { "x-access-token": localStorage.getItem("token") } });
 }

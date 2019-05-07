@@ -54,22 +54,37 @@ class DeleteAccountPage extends Component {
   };
 
   onAccountBan = username => {
-    this.setState(prevState => ({
-      accounts: prevState.accounts.filter(
-        account => account.username !== username
-      )
-    }));
+    this.setState(prevState => {
+      const newAccounts = [...prevState.accounts];
+      for (let i = 0; i < newAccounts.length; i++) {
+        if (newAccounts[i].username == username) {
+          newAccounts[i].isBanned = true;
+        }
+      }
+      return {accounts: newAccounts};
+    });
     banUser(username);
-    window.location.reload();
+    //window.location.reload();// sao cho nay` lai reload v a?
+
   };
   onAccountUnBan = username => {
-    this.setState(prevState => ({
-      accounts: prevState.accounts.filter(
-        account => account.permission !== username
-      )
-    }));
+    // this.setState(prevState => ({
+    //   accounts: prevState.accounts.filter(
+    //     account => account.permission !== username
+    //   )
+    // }));
+    this.setState(prevState => {
+      const newAccounts = [...prevState.accounts];
+      for (let i = 0; i < newAccounts.length; i++) {
+        console.log(newAccounts[i]);
+        if (newAccounts[i].username == username) {
+          newAccounts[i].isBanned = false;
+        }
+      }
+      return {accounts: newAccounts};
+    });
     unbanUser(username);
-    window.location.reload();
+    // window.location.reload();
   };
   render() {
     let number = 0;
@@ -238,7 +253,7 @@ class DeleteAccountPage extends Component {
                 : null}
               {/* End tab Chưa Khóa*/}
               {/* Start tab Đã Khóa*/}
-              {this.state.accounts.map(account =>
+              {this.state.activeTab === "3"?this.state.accounts.map(account =>
                 account.permission >=
                 this.props.permission ? null : !account.isBanned ? null : (
                   <tr key={account.username} className="table-row">
@@ -278,7 +293,7 @@ class DeleteAccountPage extends Component {
                     </td>
                   </tr>
                 )
-              )}
+              ):null}
               {/* End tab Đã Khóa*/}
             </tbody>
           </Table>

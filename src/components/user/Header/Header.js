@@ -5,12 +5,9 @@ import logoText from '../../../images/volunteerText.png'
 import * as authActions from '../../../actions/auth.action'
 import './Header.css';
 
-
-
 class Header extends React.Component  {
   
     log_out = () =>{
-      
         authActions.logOutUser();
         window.location.reload();
     }

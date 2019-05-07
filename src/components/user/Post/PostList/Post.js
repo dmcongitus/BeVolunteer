@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import PostCard from '../PostCard/PostCard'
-
-
 import './Post.css';
 
 const Post = ({ posts }) => (

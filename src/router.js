@@ -17,6 +17,7 @@ import HistoryPage from './containers/user/HistoryPage/HistoryPage';
 import ContentManagePage from './containers/admin/ContentManagePage/ContentManagePage';
 import CreateAccountPage from './containers/admin/CreateAcountPage/CreateAccountPage';
 import PostPage from './containers/user/PostPage/PostPage';
+import EventDetail from './containers/admin/EventPage/EventDetail/EventDetail';
 import RankPage from './containers/user/RankPage/RankPage';
 import MedalPage from './containers/user/MedalPage/MedalPage';
 
@@ -48,7 +49,8 @@ export default function router({ isAuthenticated, permission, username }) {
                         <PrivateRoute path="/rank" exact component={RankPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/medal" exact component={MedalPage} isAuthenticated={isAuthenticated} />
                         
-                        <NeedPermissionRoute path="/post/:postId" routePermisison={[0, 1]} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/post/:postId" routePermisison={[0, 1,2,4,5]} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/event/:eventId" routePermisison={[0, 1,2,4,5]} component={EventDetail} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/approve" routePermisison={[3, 4, 5]} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
                         <NeedPermissionRoute path="/delete-account" routePermisison={[3, 4, 5]} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/ContentManage" routePermisison={[2, 4, 5]} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />

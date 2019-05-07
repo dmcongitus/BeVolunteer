@@ -36,12 +36,17 @@ const items = [
         caption: "Slide 3"
     }
 ];
+
+
 class EventCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             modal: false,
-            activeIndex: 0
+            activeIndex: 0,
+            items: props.filenames.map(filename  => `/resources/${filename}`),
+            dropdownOpen: false,
+            paymentOpen: false
         };
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
@@ -49,6 +54,21 @@ class EventCard extends React.Component {
         this.onExiting = this.onExiting.bind(this);
         this.onExited = this.onExited.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.toggleMenuEvent = this.toggleMenuEvent.bind(this);
+        this.togglePayment = this.togglePayment.bind(this);
+    }
+    toggleMenuEvent() {
+        this.setState({
+        dropdownOpen: !this.state.dropdownOpen
+        });
+    }
+    togglePayment() {
+        this.setState({
+        paymentOpen: !this.state.paymentOpen
+        });
+    }
+    clearArray() {
+        this.state.items = [];
     }
     onExiting() {
         this.animating = true;
@@ -61,7 +81,7 @@ class EventCard extends React.Component {
     next() {
         if (this.animating) return;
         const nextIndex =
-        this.state.activeIndex === items.length - 1
+        this.state.activeIndex === this.state.items.length - 1
             ? 0
             : this.state.activeIndex + 1;
         this.setState({ activeIndex: nextIndex });
@@ -71,7 +91,7 @@ class EventCard extends React.Component {
         if (this.animating) return;
         const nextIndex =
         this.state.activeIndex === 0
-            ? items.length - 1
+            ? this.state.items.length - 1
             : this.state.activeIndex - 1;
         this.setState({ activeIndex: nextIndex });
     }
@@ -80,9 +100,15 @@ class EventCard extends React.Component {
         if (this.animating) return;
         this.setState({ activeIndex: newIndex });
     }
-    toggle(filename) {
+    toggle() {
         this.setState(prevState => ({
         modal: !prevState.modal
+        }));
+    }
+
+    toggle(filename) {
+        this.setState(prevState => ({
+            modal: !prevState.modal
         }));
     }
 
@@ -107,13 +133,61 @@ class EventCard extends React.Component {
     });
 
     return (
-        <Row className="postCard">
+        <Row className="eventCard">
             <div style={{ width: "100%" }}>
                 <Row>
                     <Col xs="4">
-                        <div className="">
+                        <div onClick={this.toggle}>
+                            {/* {this.clearArray()} */}
 
+                            {this.state.items.length < 2 ? (
+                            <img
+                                style={{ cursor: "pointer" }}
+                                src={`/resources/${this.props.filenames[0]}`}
+                                className="event-album"
+                            />
+                            ) : (
+                            <div className="NewEvent-img__more">
+                                <img
+                                style={{ cursor: "pointer" }}
+                                src={`/resources/${this.props.filenames[0]}`}
+                                className="event-album"
+                                />
+                                <div>+{this.state.items.length - 1}</div>
+                            </div>
+                            )}
                         </div>
+                        <Modal
+                            isOpen={this.state.modal}
+                            toggle={this.toggle}
+                            className="slide-image-post"
+                        >
+                            <ModalHeader toggle={this.toggle}>Album </ModalHeader>
+                            <ModalBody>
+                            <Carousel
+                                activeIndex={activeIndex}
+                                next={this.next}
+                                previous={this.previous}
+                            >
+                                <CarouselIndicators
+                                items={this.state.items}
+                                activeIndex={activeIndex}
+                                onClickHandler={this.goToIndex}
+                                />
+                                {slides}
+                                <CarouselControl
+                                direction="prev"
+                                directionText="Previous"
+                                onClickHandler={this.previous}
+                                />
+                                <CarouselControl
+                                direction="next"
+                                directionText="Next"
+                                onClickHandler={this.next}
+                                />
+                            </Carousel>
+                            </ModalBody>
+                        </Modal>
                     </Col>
 
                     <Col xs="8" className="textMedia">
@@ -143,7 +217,7 @@ class EventCard extends React.Component {
                                     <Alert color="danger">{this.props.starttime}</Alert>
                                 </div>
                             )}
-                            <Link to={`events/${this.props.id}`}>
+                            <Link to={`event/${this.props.id}`}>
                                 <Button color="success" className="mr-1 success">
                                     <i className="fas fa-angle-double-right icon-button" /> Xem thêm
                                 </Button>

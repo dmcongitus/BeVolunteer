@@ -136,10 +136,10 @@ font-size: 64px;
         border-radius: 50%;
     }
 
-    .form-group {
+    /* .form-group {
         margin-bottom: 0;
         height: 100%;
-    }
+    } */
 
     .success{
         background-color: #0D6628;

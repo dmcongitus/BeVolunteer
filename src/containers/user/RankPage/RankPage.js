@@ -3,15 +3,20 @@ import { Table, Button } from "reactstrap";
 
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 
-import { getAllUsers, banUser } from "../../../services/user.service";
+import { getAllUsersRank, banUser } from "../../../services/user.service";
 
 class RankPage extends Component {
   state = {
     accounts: []
   };
 
-  componentDidMount = () => {
-    getAllUsers().then(({ data: { accounts } }) => this.setState({ accounts }));
+  componentDidMount = async () => {
+    try {
+      const data = await getAllUsersRank();
+      this.setState({ accounts: data.data });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   onAccountBan = username => {
@@ -25,7 +30,8 @@ class RankPage extends Component {
 
   render() {
     let number = 0;
-
+    const { accounts } = this.state;
+    console.log(accounts);
     return (
       <PageLayout title="xóa tài khoản">
         <div>
@@ -36,39 +42,20 @@ class RankPage extends Component {
                 <th>Tên người dùng</th>
                 <th>Họ và tên</th>
                 <th>Exp</th>
-                <th />
               </tr>
             </thead>
             <tbody>
-              {this.state.accounts.map(account =>
-                account.isBanned ? null : (
-                  <tr key={account.username} className="table-row">
-                    <th scope="row">{++number}</th>
-                    <td>{account.username}</td>
-                    <td>{account.name}</td>
-                    <td>
-                      {account.isVerified ? (
-                        <div className="tcl-1">Đã xác thực</div>
-                      ) : account.isRequestVerify ? (
-                        <div className="tcl-3">Đang xác thực</div>
-                      ) : (
-                        <div className="tcl-2">Chưa xác thực</div>
-                      )}
-                    </td>
-                    <td>
-                      <div>
-                        <Button
-                          className="mr-1 new-btn"
-                          onClick={() => this.onAccountBan(account.username)}
-                        >
-                          <i class="fas fa-lock icon-button" />
-                          Khóa
-                        </Button>
-                      </div>{" "}
-                    </td>
-                  </tr>
-                )
-              )}
+              {this.state.accounts &&
+                this.state.accounts.map(account =>
+                  account.isBanned ? null : (
+                    <tr key={account.username} className="table-row">
+                      <th scope="row">{++number}</th>
+                      <td>{account.username}</td>
+                      <td>{account.name}</td>
+                      <td>{account.exp}</td>
+                    </tr>
+                  )
+                )}
             </tbody>
           </Table>
         </div>

@@ -25,9 +25,8 @@
     
 
 }
+
 .post-album{
-  margin-left: 10px;
-  margin-bottom: 20px;
   border-radius: 3px;
   max-Width: 100%;
   height: auto;
@@ -72,3 +71,52 @@
   width: 100%;
 }
 
+.menu-post{
+  height: 100%;
+  width: 100%;
+  text-align: right;
+  margin-right: -20px;
+}
+
+.btn-down{
+  list-style: unset;
+  background-color: unset;
+  border: unset;
+  color: #042C38;
+  padding: 5px;
+  text-align: center;
+
+}
+
+.btn-down:hover{
+  background-color: unset;
+  border: unset;
+  color: #042C38;
+ 
+  padding: 5px;
+}
+
+.menu-post:hover{
+  color: #D01013;
+  cursor: pointer;
+}
+
+.slide-image-post{
+  max-width: 800px;
+
+}
+
+.menu-post-item div:hover{
+
+  background-color: silver;
+  font-weight: bold;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;
+ 
+ 
+}
+
+.menu-post-item div{
+ padding: 0.25rem;
+}
