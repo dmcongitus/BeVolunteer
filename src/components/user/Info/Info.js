@@ -13,7 +13,7 @@ import identityImage from "../../../images/identity.png";
 import { userInfo } from "os";
 import { Button, Alert, Badge } from "reactstrap";
 
-var permissionArr = ['Cá nhân', 'Tổ chức'];
+var permissionArr = ["Cá nhân", "Tổ chức"];
 class MeComponent extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +23,7 @@ class MeComponent extends Component {
       isLoading: false,
       isOpenModal: false,
       profileChanged: false,
+      imageChange: false,
       profiles: props.user
     };
 
@@ -43,7 +44,7 @@ class MeComponent extends Component {
 
     e.persist();
     profiles.identityCard = e.target.files;
-    this.setState({ profiles, profileChanged: true });
+    this.setState({ profiles, profileChanged: true, imageChange: true });
   };
 
   handleFocus = e => {
@@ -55,8 +56,6 @@ class MeComponent extends Component {
 
   handleChange = e => {
     const profiles = { ...this.state.profiles };
-
-    profiles[e.target.name] = e.target.value;
     this.setState({ profiles, profileChanged: true });
   };
 
@@ -77,10 +76,11 @@ class MeComponent extends Component {
       this.state.profiles.username,
       this.state.profiles
     );
-    
+
     this.props.verifyUser(this.state.profiles["identityCard"]);
-    
-    this.setState({ profileChanged: false });
+    this.setState({
+      profiles: { ...this.state.profiles, isRequestVerify: true }
+    });
   };
 
   handlePostChange = e => {
@@ -134,14 +134,15 @@ class MeComponent extends Component {
                     value={this.state.profiles["name"]}
                     onChange={this.handleChange}
                   />
-                   {this.props.user.isVerified === false &&
+                  {this.props.user.isVerified === false &&
                     this.state.profiles["isRequestVerify"] === false && (
-                  <button
-                    onClick={this.handleEdit.bind(this, "name")}
-                    className="UpdateProfile__Main__FieldEdit btn btn-light"
-                  >
-                    <img src={editIcon} alt="Edit icon" />
-                  </button>)}
+                      <button
+                        onClick={this.handleEdit.bind(this, "name")}
+                        className="UpdateProfile__Main__FieldEdit btn btn-light"
+                      >
+                        <img src={editIcon} alt="Edit icon" />
+                      </button>
+                    )}
                 </li>
 
                 <li className="UpdateProfile__Main__FieldItem">
@@ -199,14 +200,15 @@ class MeComponent extends Component {
                     value={this.state.profiles["dob"]}
                     onChange={this.handleChange}
                   />
-                   {this.state.profiles["isVerified"] === false &&
+                  {this.state.profiles["isVerified"] === false &&
                     this.state.profiles["isRequestVerify"] === false && (
-                  <button
-                    onClick={this.handleEdit.bind(this, "dob")}
-                    className="UpdateProfile__Main__FieldEdit btn btn-light"
-                  >
-                    <img src={editIcon} alt="Edit icon" />
-                  </button>)}
+                      <button
+                        onClick={this.handleEdit.bind(this, "dob")}
+                        className="UpdateProfile__Main__FieldEdit btn btn-light"
+                      >
+                        <img src={editIcon} alt="Edit icon" />
+                      </button>
+                    )}
                 </li>
 
                 <li className="UpdateProfile__Main__FieldItem">
@@ -231,7 +233,13 @@ class MeComponent extends Component {
                   <div className="UpdateProfile__Main__FieldName">CMND</div>
                   <div className="UpdateProfile__Main__FieldValue">
                     <img
-                      src={(this.state.profiles["identityCard"] !== undefined && URL.createObjectURL(this.state.profiles["identityCard"][0])) || identityImage}
+                      src={
+                        (this.state.profiles["identityCard"] !== undefined &&
+                          URL.createObjectURL(
+                            this.state.profiles["identityCard"][0]
+                          )) ||
+                        identityImage
+                      }
                       alt="Identity"
                     />
                     <input
@@ -265,23 +273,19 @@ class MeComponent extends Component {
 
                 <li className="UpdateProfile__Main__FieldItem">
                   <div className="UpdateProfile__Main__FieldName">Loại TK</div>
-                  <div className="type-user">{permissionArr[this.state.profiles["permission"]]}</div>
+                  <div className="type-user">
+                    {permissionArr[this.state.profiles["permission"]]}
+                  </div>
                 </li>
               </ul>
             </section>
 
             {this.state.profileChanged && (
               <div className="UpdateProfile__Footer">
-                <Button color = "success"
-                  
-                  onClick={this.handleUpdate}
-                >
+                <Button color="success" onClick={this.handleUpdate}>
                   <i className="fas fa-check-circle ml-1" /> Cập nhật
                 </Button>
-                <Button
-                  color="danger ml-3"
-                  onClick={this.handleCancel}
-                >
+                <Button color="danger ml-3" onClick={this.handleCancel}>
                   <i className="fas fa-trash-alt ml-1" /> Hủy
                 </Button>
               </div>
@@ -298,7 +302,7 @@ const mapStateToProps = ({ auth: { user } }) => ({ user });
 const mapDispatchToProps = dispatch => ({
   updateUserInfo: (username, userInfo) =>
     dispatch(authActions.updateUser(username, userInfo)),
-  verifyUser: (identityCard) => dispatch(userActions.verifyUser(identityCard))
+  verifyUser: identityCard => dispatch(userActions.verifyUser(identityCard))
 });
 
 export default connect(

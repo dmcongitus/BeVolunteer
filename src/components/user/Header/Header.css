@@ -133,3 +133,9 @@
   a.nav-link:hover {
     color: #04ff71 !important;
   }
+
+  .notifi-header{
+    background-color:  rgba(29, 129, 218, 0.1);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.157);
+   
+  }

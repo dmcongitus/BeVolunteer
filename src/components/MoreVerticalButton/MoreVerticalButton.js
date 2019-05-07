@@ -64,12 +64,15 @@ class MoreVerticalButton extends Component {
     render() {
     const { open } = this.state;
         return (
-            <div>
+            <div> 
                 <Button buttonRef={node => {this.anchorEl = node; }}
+                
                     aria-owns={open ? 'menu-list-grow' : undefined}
                     aria-haspopup="true"
                     onClick={this.handleToggle}>
-                    {mapType2Text[this.state.selection]}
+                    <i class="fas fa-filter"></i>
+                    Loại
+                    
                 </Button>
 
                 <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
