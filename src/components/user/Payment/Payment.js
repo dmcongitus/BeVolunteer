@@ -8,15 +8,31 @@ import {
   Input,
   FormText,
   Col,
-  Row
+  Row, Alert
 } from "reactstrap";
 
 import "./Payment.css";
 
 class Payment extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      submited: false
+    };
+
+    this.toggle = this.toggle.bind(this);
+  }
+  toggle() {
+    this.setState({
+      submited: !this.state.submited
+    });
+  }
   render() {
     return (
-      <div className="item-mid">
+      <div>
+        {console.log(this.state.submited)}
+     { this.state.submited === false ?
+     ( <div className="item-mid">
         <span className="anchor" id="formPayment" />
         <hr className="my-5" />
         {/* form card cc payment */}
@@ -190,6 +206,7 @@ class Payment extends React.Component {
                   <button
                     type="submit"
                     className="btn btn-success btn-lg btn-block"
+                    onClick= {this.toggle}
                   >
                     Thanh Toán
                   </button>
@@ -199,7 +216,11 @@ class Payment extends React.Component {
           </div>
         </div>
       </div>
+     ):(<div></div>)}
+        <Alert color ="primary">Thanh toán thành công</Alert>
+     </div>
     );
+    
   }
 }
 
