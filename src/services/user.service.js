@@ -12,13 +12,13 @@ export function getAllUsersRank() {
 }
 
 export function deleteUser(username) {
-  return Axios.delete("/accounts/" + username, {
+  return Axios.delete("/accounts/u/" + username, {
     headers: { "x-access-token": localStorage.getItem("token") }
   });
 }
 
 const instance = Axios.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'https://bevolunteers.herokuapp.com/',
   timeout: 1000,
   headers: { "x-access-token": localStorage.getItem("token") }
 });

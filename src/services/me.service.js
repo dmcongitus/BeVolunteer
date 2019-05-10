@@ -5,7 +5,7 @@ import { getToken } from '../utils/localStorage';
  * @param {Object} userInfo User's information
  */
 export function updateUserInfo(username, userInfo) {
-    return Axios.put('/accounts/' + username,
+    return Axios.put('/accounts/u/' + username,
         userInfo, {
             headers: {
                 "x-access-token": getToken()
