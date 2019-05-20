@@ -8,6 +8,7 @@ import NotFoundPage from './containers/NotFoundPage/NotFoundPage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import CreateEvent from './containers/admin/EventPage/CreateEvent/CreateEvent';
 import EventList from './containers/admin/EventPage/EventList/EventList.js';
+import EventEditPage from './containers/admin/EventPage/EventEdit/EventEditPage.js';
 import SignupPage from './containers/SignupPage/SignUp';
 import InfoPage from './containers/user/InfoPage/InfoPage'
 import NoPermissionPage from './containers/NoPermissionPage/NoPermissionPage';
@@ -51,6 +52,7 @@ export default function router({ isAuthenticated, permission, username }) {
                         
                         <NeedPermissionRoute path="/post/:postId" routePermisison={[0, 1,2,4,5]} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/event/:eventId" routePermisison={[0, 1,2,4,5]} component={EventDetail} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/eventEdit/:eventId/" routePermisison={[0, 1,2,4,5]} component={EventEditPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/approve" routePermisison={[3, 4, 5]} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
                         <NeedPermissionRoute path="/delete-account" routePermisison={[3, 4, 5]} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/ContentManage" routePermisison={[2, 4, 5]} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />

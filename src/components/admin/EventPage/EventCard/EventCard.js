@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import moment from 'moment';
+
 import {
     Modal,
     ModalHeader,
@@ -106,12 +108,6 @@ class EventCard extends React.Component {
         }));
     }
 
-    toggle(filename) {
-        this.setState(prevState => ({
-            modal: !prevState.modal
-        }));
-    }
-
     render() {
         const { activeIndex } = this.state;
 
@@ -196,7 +192,7 @@ class EventCard extends React.Component {
                                 (this.props.statusEvent === "Sắp diễn ra")  && (
                                 <div>
                                     <Alert color="success">{this.props.title}</Alert>
-                                    <Alert color="success">{this.props.starttime}</Alert>
+                                    <Alert color="success">{moment(this.props.starttime).format('DD-MM-YYYY')}</Alert>
                                     <Button className="mr-1 new-btn">
                                     <i className="fas fa-edit icon-button" />
                                     Tham gia
@@ -207,14 +203,14 @@ class EventCard extends React.Component {
                                 this.props.statusEvent === "Đang diễn ra" && (
                                 <div>
                                     <Alert color="success">{this.props.title}</Alert>
-                                    <Alert color="warning">{this.props.starttime}</Alert>
+                                    <Alert color="warning">{moment(this.props.starttime).format('DD-MM-YYYY')}</Alert>
                                 </div>
                             )}
                             {
                                 this.props.statusEvent === "Đã kết thúc" && (
                                 <div>
                                     <Alert color="success">{this.props.title}</Alert>
-                                    <Alert color="danger">{this.props.starttime}</Alert>
+                                    <Alert color="danger">{moment(this.props.starttime).format('DD-MM-YYYY')}</Alert>
                                 </div>
                             )}
                             <Link to={`event/${this.props.id}`}>

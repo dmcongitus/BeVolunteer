@@ -1,13 +1,13 @@
 import Axios from 'axios';
 
-export function createEvent(post) {
-    return Axios.post('/events', post, { headers: { "x-access-token": localStorage.getItem("token") } })
+export function createEvent(event) {
+    return Axios.post('/events', event, { headers: { "x-access-token": localStorage.getItem("token") } })
         .then(({ data: { id } }) => {
-            console.log(post.image);
-            if (post.image) {
+            console.log(event.image);
+            if (event.image) {
                 const formData = new FormData();
-                for (let i = 0; i < post.image.length; i++) {
-                    formData.append('eventimage', post.image[i]);
+                for (let i = 0; i < event.image.length; i++) {
+                    formData.append('eventimage', event.image[i]);
                 }
                 return Axios.put(`/events/${id}/img`, formData, { headers: { "x-access-token": localStorage.getItem("token") } })
             } else {

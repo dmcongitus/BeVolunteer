@@ -53,11 +53,11 @@ class NewEvent extends Component {
 			isOpenErrorModal: false,
 			messageError: ""
         }
-
 	}
 	
 	handleImageChange = e => {
-        e.persist();
+		e.persist();
+		console.log(e);
         this.setState({ 
 			infor:{
 				...this.state.infor,
@@ -82,6 +82,7 @@ class NewEvent extends Component {
 		alert(this.checkFormPost(this.state).message);
 		e.preventDefault();
 		try {
+			console.log("try");
 			const data = await createEvent({...this.state.infor});
 			console.log(data);
 		} catch (error) {
@@ -93,6 +94,8 @@ class NewEvent extends Component {
 	checkFormPost = (state) =>{	
 		console.log("BBBBBBB");
 		console.log(state);
+		console.log(state.infor.starttime);
+
 		var d1 = new Date(document.getElementById("starttime").value);
 		var d2 = new Date(document.getElementById("endtime").value);
 		var d3 = new Date(document.getElementById("deadline").value);
@@ -178,6 +181,11 @@ class NewEvent extends Component {
 	}
 
     render() {
+		console.log("State---------")
+		console.log('BBBBBBBBBB')
+		console.log(this.state);
+		console.log(this.state.infor.image.length);
+
         if (this.state.isLoading) {
             return null;
         }
@@ -221,15 +229,15 @@ class NewEvent extends Component {
 										{/* Tổ chức */}
 										<Row className="subEventRow1" style={{width: '100%'}}>
 											<InputGroup >
-													<InputGroupAddon className="btn-edit" addonType="prepend">
-													
-														<Button outline color="success">Tổ chức</Button>
-													</InputGroupAddon>
-													<Input
-														type="text" 
-														name="publisher"
-														defaultValue="Admin" 
-														disabled/>
+												<InputGroupAddon className="btn-edit" addonType="prepend">
+												
+													<Button outline color="success">Tổ chức</Button>
+												</InputGroupAddon>
+												<Input
+													type="text" 
+													name="publisher"
+													defaultValue="Admin" 
+													disabled/>
 											</InputGroup>
 										</Row>
 										

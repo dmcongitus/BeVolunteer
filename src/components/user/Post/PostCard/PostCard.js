@@ -94,15 +94,15 @@ class PostCard extends React.Component {
         const { activeIndex } = this.state;
 
         const slides = this.state.items.map(item => {
-        return (
-            <CarouselItem
-            onExiting={this.onExiting}
-            onExited={this.onExited}
-            key={item}
-            >
-            <img src={item} className="img-slide-style" />
-            </CarouselItem>
-        );
+            return (
+                <CarouselItem
+                    onExiting={this.onExiting}
+                    onExited={this.onExited}
+                    key={item}
+                    >
+                    <img src={item} className="img-slide-style" />
+                </CarouselItem>
+            );
         });
 
         return (
@@ -283,9 +283,9 @@ class PostCard extends React.Component {
                             </div>
                             )}
                             <Link to={`post/${this.props.id}`}>
-                            <Button color="success" className="mr-1 success">
-                                <i class="fas fa-angle-double-right icon-button" /> Xem thêm
-                            </Button>
+                                <Button color="success" className="mr-1 success">
+                                    <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                                </Button>
                             </Link>
                         </div>
                         </Col>

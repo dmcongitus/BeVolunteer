@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const instance = Axios.create({
-    baseURL: 'https://bevolunteers.herokuapp.com/',
+    baseURL: 'http://localhost:3000/',
     timeout: 1000,
     headers: { "x-access-token": localStorage.getItem("token") }
   });

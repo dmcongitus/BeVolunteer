@@ -2,7 +2,7 @@
   "name": "authentication",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://bevolunteers.herokuapp.com",
+  "proxy": "http://localhost:3000/",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
@@ -12,6 +12,7 @@
     "react-datepicker": "^2.5.0",
     "react-dom": "^16.8.3",
     "react-modal": "^3.8.1",
+    "react-moment": "^0.9.2",
     "react-redux": "^6.0.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",

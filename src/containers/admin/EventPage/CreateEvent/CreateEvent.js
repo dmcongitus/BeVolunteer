@@ -6,7 +6,6 @@ class CreateEvent extends Component {
   	render() {
 		return (
 			<NewEvent>
-
 			</NewEvent>
 		);
   	}

@@ -1,5 +1,8 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import Moment from 'react-moment';
+import profileIcon from '../../../../images/profile.png';
+
 import {
     Modal,
     ModalHeader,
@@ -29,7 +32,7 @@ class EventDetailCard extends React.Component {
         this.state = {
             modal: false,
             activeIndex: 0,
-            items: [],
+            items: props.filenames.map(filename  => `/resources/${filename}`),
             dropdownOpen: false,
             paymentOpen: false
         };
@@ -118,71 +121,104 @@ class EventDetailCard extends React.Component {
 
         return (
             <div className="side-body">
-                <Row className="postCard">
-                    <Col className="header-col" xs="11">
-                        <Row className="item-center header-postCard pb-3">
-                            <Col xs="1">
-                            <div>
-                                <img
-                                className="img-user-postCard rounded-circle"
-                                src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
-                                alt="UserAvatar"
-                                />
-                            </div>
+            	<Row>
+                    <Alert className="event-detail-header" style={{width: '100%'}} color="success">
+                        <Row>
+                            <Col>
+                                <img alt="profile_icon" src={profileIcon} /> {this.props.title}
                             </Col>
-                            <Col xs="11">
-                            <div className="ml-2">
-                                Dương Minh Công {this.props.name}
-                                <small>
-                                <span className="ml-1">đã tổ chức một sự kiện</span>
-                                </small>
-                                {/* <span className="ml-1">
-                                <b>
-                                    {this.props.type === "Địa điểm" ? (
-                                    <span className="tcl-2">Địa điểm</span>
-                                    ) : this.props.type === "Quyên góp" ? (
-                                    <span className="tcl-3">Quyên góp</span>
-                                    ) : this.props.type === "Hoạt động" ? (
-                                    <span className="tcl-1">Hoạt động</span>
-                                    ) : (
-                                    <span className="tcl-4">{this.props.type}</span>
-                                    )}
-                                </b>
-                                </span> */}
+
+                        </Row>
+                    </Alert>
+				</Row>
+
+                <Row className="detailCard">
+                    <Col className="header-col hr-border-bottom" xs="12">
+                        <Row className="item-center header-postCard pb-3">
+                            <Col xs="1" className="event-detail-logo">
                                 <div>
-                                    <small>
-                                        <span>
-                                        <i className="fa fa-calendar mr-2" data-original-title title />{" "}
-                                        {
-                                            new Date(this.props.createdAt).toLocaleTimeString()
-                                        }
-                                        </span><br/>
-                                        <span>
-                                        <i
-                                            className="fas fa-map-marker-alt mr-2"
-                                        />
-                                        {" "}
-                                        {
-                                            this.props.address
-                                        }
-                                        </span><br/>
-                                        <span>
-                                        <i
-                                            className="fas fa-map-marker-alt mr-2"
-                                        />
-                                        {" "}
-                                        {
-                                            "Sắp diễn ra"
-                                        }
-                                        </span>
-                                    </small>
+                                    <img
+                                    className="img-user-postCard rounded-circle"
+                                    src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
+                                    alt="UserAvatar"
+                                    />
                                 </div>
-                            </div>
+                            </Col>
+                            <Col xs="6" className="event-detail-info">
+                                <div className="ml-2">
+                                    <span style={{fontStyle: "inherit", fontSize: "18px", color: "blue"}}>Dương Minh Công </span>
+                                    {this.props.name}
+                                    <span className="ml-1">đã tổ chức một sự kiện</span>
+                                    <div>
+                                        <small>
+                                            <span>
+                                                <i className="fa fa-calendar mr-2" data-original-title title />{" "}
+                                                {
+                                                    new Date(this.props.createdAt).toLocaleTimeString()
+                                                }
+                                                </span><br/>
+                                                <span>
+                                                <i
+                                                    className="fas fa-map-marker-alt mr-2"
+                                                />
+                                                {" "}
+                                                {
+                                                    this.props.address
+                                                }
+                                            </span><br/>
+
+                                            <span>
+                                                <i
+                                                    className="fas fa-map-marker-alt mr-2"
+                                                />
+                                                {" "}
+                                                {"Ngày "} 
+                                                {
+                                                    <Moment format="DD/MM/YYYY">
+                                                        {this.props.starttime}
+                                                    </Moment>
+                                                    
+                                                } {" đến "} 
+                                                {
+                                                    <Moment format="DD/MM/YYYY">
+                                                    {this.props.endtime}
+                                                    </Moment>                                            }
+                                            </span><br/>
+
+                                            <span>
+                                                <i
+                                                    className="fas fa-map-marker-alt mr-2"
+                                                />
+                                                {" "}
+                                                {
+                                                    "Số người tham gia: "
+                                                }
+                                                {
+                                                    this.props.num_volunteer
+                                                }
+                                            </span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </Col>
+                            <Col xs="5" className="event-detail-img">
+                                <img
+                                    style={{ cursor: "pointer" }}
+                                    src={`/resources/${this.props.filenames}`}
+                                    className="event-edit-image"
+                                    />
                             </Col>
                         </Row>
                     </Col>
 
-                    <div className="p-2">{this.props.description}</div>
+                    <Row className="ml-93 pt-2">
+                        <p>
+                            {"Mô tả sự kiện: "}
+                        </p> 
+                        <p className="ml-1">
+                            {this.props.description}
+                        </p>
+                    </Row>
                     <div style={{ width: "100%" }}>
                     <Row>
                         <Col>
@@ -239,23 +275,20 @@ class EventDetailCard extends React.Component {
                                 />
                             </Carousel>
                             </ModalBody>
-                        </Modal>
+                        </Modal>    
                         {/*/ cardbox-item */}
                         </Col>
-                            <div className="item-right pb-2 m-2 hr-border-bottom">
-                                <div>
+                            <div className="item-right pb-2 mg-2 hr-border-bottom">
+                                <Link to={`/eventEdit/${this.props.id}`}>
                                     <Button className="mr-1 add-btn">
-                                    <i class="fas fa-angle-double-right icon-button" />
-                                    Chỉnh sửa
+                                        Chỉnh sửa
                                     </Button>
-                                </div>
+                                </Link>
                                 <div>
                                     <Button
                                     className="mr-1 donate-btn"
                                     onClick={this.togglePayment}
-                                    >
-                                    <i class="fas fa-donate icon-button" />
-                                    Xóa
+                                    >Xóa
                                     </Button>
                                 </div>
                             </div>            
