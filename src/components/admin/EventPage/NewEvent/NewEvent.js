@@ -181,11 +181,6 @@ class NewEvent extends Component {
 	}
 
     render() {
-		console.log("State---------")
-		console.log('BBBBBBBBBB')
-		console.log(this.state);
-		console.log(this.state.infor.image.length);
-
         if (this.state.isLoading) {
             return null;
         }

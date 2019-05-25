@@ -12,7 +12,7 @@ import cancelIcon from '../../../../images/cancel.png';
 import editIcon from '../../../../images/edit.png';
 import identityImage from '../../../../images/identity.png';
 import { userInfo } from 'os';
-import { createEvent } from "../../../../services/event.service";
+import { editEvent } from "../../../../services/event.service";
 import {
     Modal,
     ModalHeader,
@@ -46,7 +46,7 @@ class EditEvent extends Component {
 				title: this.props.title,
 				publisher: this.props.publisher,
 				sharer: this.props.sharer,
-				program_id: this.props.program_id,
+				program_id: this.props.id,
 				description: this.props.description,
 				address: this.props.address,
 				starttime: this.props.starttime,
@@ -64,38 +64,25 @@ class EditEvent extends Component {
         }
 	}
 
-	// componentWillMount = async () =>{
-	// 	console.log("Will Mount");
-	// 	await this.setState({
-	// 		infor:{
-	// 			...this.state.infor,
-	// 			permission: 5,
-	// 			title: this.props.title,
-	// 			publisher: this.props.publisher,
-	// 			sharer: this.props.sharer,
-	// 			program_id: this.props.program_id,
-	// 			description: this.props.description,
-	// 			address: this.props.address,
-	// 			starttime: this.props.starttime,
-	// 			endtime: this.props.endtime,
-	// 			contact: this.props.contact,
-	// 			num_volunteer: this.props.num_volunteer,
-	// 			statusEvent: this.props.statusEvent,
-	// 			deadline: this.props.deadline,
-	// 			isDelete: this.props.isDelete,
-	// 			image: this.props.filenames
-	// 		}
-	// 	})
-	// 	console.log("State")
-	// 	console.log(this.state);
-	// }
+	clearArray() {
+        this.setState({
+			infor:{
+				...this.state.infor,
+				image: []
+			}
+		})
+    }
 	
 	handleImageChange = e => {
+		console.log("Update img");
+		this.clearArray();
+		console.log(this.state);
+		console.log(e);
         e.persist();
         this.setState({ 
 			infor:{
 				...this.state.infor,
-				image: e.target.files 
+				image: e.target.files
 			}
 		});
     };
@@ -113,14 +100,15 @@ class EditEvent extends Component {
 		console.log("submitform");
 		console.log(this.state);
 
-		// alert(this.checkFormPost(this.state).message);
-		// e.preventDefault();
-		// try {
-		// 	const data = await createEvent({...this.state.infor});
-		// 	console.log(data);
-		// } catch (error) {
-		// 	console.error(error);
-		// }
+		alert(this.checkFormPost(this.state).message);
+
+		e.preventDefault();
+		try {
+			const data = await editEvent({...this.state.infor});
+			console.log(data);
+		} catch (error) {
+			console.error(error);
+		}
 		
 	};
 
@@ -215,6 +203,7 @@ class EditEvent extends Component {
 		console.log("State---------")
 		console.log('aaaaaaa')
 		console.log(this.state);
+
 		console.log(this.state.infor.image.length);
 
         if (this.state.isLoading) {
@@ -297,36 +286,75 @@ class EditEvent extends Component {
 										className="event-edit-image"
 										/> */}
 										{
-											this.state.infor.image.length < 1 ? 
+											typeof(this.state.infor.image[0]) === "string"?
 											(
-												<div
-													className="NewEvent-img__placeholder"
-													onClick={() => this.inputImage.current.click()}>
-													<span>+</span>
-												</div>
-											) : 
-											(
-												this.state.infor.image.length < 2 ? 
+												this.state.infor.image.length < 1 ? 
 												(
-													<img 
-														style={{cursor: "pointer"}} 
-														src={URL.createObjectURL(this.state.infor.image[0])} 
-														alt="fucku"   
-														onClick={() => this.inputImage.current.click()}
-													/>
+													<div
+														className="EventEdit-img__placeholder"
+														onClick={() => this.inputImage.current.click()}>
+														<span>+</span>
+													</div>
 												) : 
 												(
-													<div className="NewEvent-img__more">
+													this.state.infor.image.length < 2 ? 
+													(
+														<img 
+															style={{cursor: "pointer"}} 
+															src={`/resources/${this.state.infor.image[0]}`}
+															alt="load"   
+															onClick={() => this.inputImage.current.click()}
+														/>
+													) : 
+													(
+														<div className="EventEdit-img__more"
+															style={{cursor: "pointer"}} 
+															onClick={() => this.inputImage.current.click()}>
+															<img 
+																src={`/resources/${this.state.infor.image[0]}`}
+																alt="load"   
+																
+															/>
+															<div>
+																+{this.state.infor.image.length - 1}
+															</div>
+														</div>
+													)
+												)
+											):
+											
+											(
+												this.state.infor.image.length < 1 ? 
+												(
+													<div
+														className="EventEdit-img__placeholder"
+														onClick={() => this.inputImage.current.click()}>
+														<span>+</span>
+													</div>
+												) : 
+												(
+													this.state.infor.image.length < 2 ? 
+													(
 														<img 
 															style={{cursor: "pointer"}} 
 															src={URL.createObjectURL(this.state.infor.image[0])} 
-															alt="fucku"   
+															alt="newupload"   
 															onClick={() => this.inputImage.current.click()}
 														/>
-														<div>
-															+{this.state.infor.image.length - 1}
+													) : 
+													(
+														<div 
+															className="EventEdit-img__more"
+															style={{cursor: "pointer"}}
+															onClick={() => this.inputImage.current.click()}>
+															<img 
+																src={URL.createObjectURL(this.state.infor.image[0])} 
+																alt="newupload"   />
+															<div>
+																+{this.state.infor.image.length - 1}
+															</div>
 														</div>
-													</div>
+													)
 												)
 											)
 										}
@@ -338,7 +366,6 @@ class EditEvent extends Component {
 										onClick={e => (e.target.value = null)}
 										onChange={this.handleImageChange}
 										/>
-									/>
 								</Col>
 
 							</Row>

@@ -1,9 +1,12 @@
 import Axios from 'axios';
 
 export function createEvent(event) {
-    return Axios.post('/events', event, { headers: { "x-access-token": localStorage.getItem("token") } })
-        .then(({ data: { id } }) => {
-            console.log(event.image);
+    return Axios.post('/events', event, { 
+        headers: { 
+                "x-access-token": localStorage.getItem("token") 
+            } 
+        }
+    ).then(({ data: { id } }) => {
             if (event.image) {
                 const formData = new FormData();
                 for (let i = 0; i < event.image.length; i++) {
@@ -13,7 +16,30 @@ export function createEvent(event) {
             } else {
                 return Promise.resolve();
             }
-        });
+        }
+    );
+}
+
+export function editEvent(event) {
+    console.log("Log event");
+    console.log(event);
+    // return Axios.put(`/events/${event.program_id}`, event, { 
+    //     headers: { 
+    //             "x-access-token": localStorage.getItem("token") 
+    //         } 
+    //     }
+    // ).then(({ data: { id } }) => {
+    //         if (event.image) {
+    //             const formData = new FormData();
+    //             for (let i = 0; i < event.image.length; i++) {
+    //                 formData.append('eventimage', event.image[i]);
+    //             }
+    //             return Axios.put(`/events/${id}/img`, formData, { headers: { "x-access-token": localStorage.getItem("token") } })
+    //         } else {
+    //             return Promise.resolve();
+    //         }
+    //     }
+    // );
 }
 
 export function getEvents(statusEvent) {
