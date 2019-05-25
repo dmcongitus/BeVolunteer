@@ -14,7 +14,7 @@ import './MainLayout.css';
 import { Container, Row, Col } from 'reactstrap';
 
 const MainLayout = ({children, permission, username}) => (
-    <div className="main-layout">
+    <div className="my-layout">
         <Header />
         {
             permission < 2 ?

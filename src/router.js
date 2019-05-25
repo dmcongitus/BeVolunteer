@@ -4,10 +4,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout/MainLayout';
 import HomePage from './containers/user/HomePage/HomePage';
+import EventPage from './containers/admin/EventPage/EventPage';
+import EventList from './containers/admin/EventPage/EventList/EventList';
 import NotFoundPage from './containers/NotFoundPage/NotFoundPage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import CreateEvent from './containers/admin/EventPage/CreateEvent/CreateEvent';
-import EventList from './containers/admin/EventPage/EventList/EventList.js';
 import EventEditPage from './containers/admin/EventPage/EventEdit/EventEditPage.js';
 import SignupPage from './containers/SignupPage/SignUp';
 import InfoPage from './containers/user/InfoPage/InfoPage'

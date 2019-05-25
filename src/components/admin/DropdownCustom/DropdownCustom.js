@@ -15,7 +15,6 @@ import {
     ButtonDropdown
 } from "reactstrap";
 import "./DropdownCustom.css";
-
 import { mapPermissionToText, mapPermissionToSelections } from '../../../configs/permission';
 
 class DropdownCustom extends Component {

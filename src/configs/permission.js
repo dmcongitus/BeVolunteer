@@ -6,30 +6,31 @@ export const mapPermissionToText = {
 };
 
 export const mapPermissionToSelections = {
-    2: [
-        {
-            header:  ' Quản lý',
-            navigations: [ 
-                {
-                    title: 'Quản lý bài viết',
-                    redirectTo: '/ContentManage'
-                }
-            ]
-        },
-        {
-            title: 'Sự kiện',
-            subPermission: [
-                {
-                    title: 'Tạo sự kiện',
-                    redirectTo: '/event'
-                },
-                {
-                    title: 'Danh sách sự kiện',
-                    redirectTo: '/eventList'
-                }
-            ]
-        }
-    ],
+    2: [{
+        header: 'Cộng đồng',
+        navigations: [
+            {
+                title: 'Trang chủ',
+                redirectTo: '/home'
+            }, 
+            {
+                title: 'Bảng xếp hạng',
+                redirectTo: '/leaderboard'
+            },
+            {
+                title: 'Sự kiện',
+                subPermission: [
+                    {
+                        title: 'Tạo sự kiện',
+                        redirectTo: '/event'
+                    },
+                    {
+                        title: 'Danh sách sự kiện',
+                        redirectTo: '/eventList'
+                    }
+                ]
+            },]
+        }],
     
     3: [
         {
