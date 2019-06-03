@@ -1,19 +1,41 @@
 import Axios from 'axios';
+import request from './request'
 
 export function createPost(post) {
-    return Axios.post('/posts', post, { headers: { "x-access-token": localStorage.getItem("token") } })
-        .then(({ data: { id } }) => {
-            if (post.image) {
-                const formData = new FormData();
-                for (let i = 0; i < post.image.length; i++) {
-                    formData.append('postimage', post.image[i]);
-                }
-                return Axios.put(`/posts/${id}/img`, formData, { headers: { "x-access-token": localStorage.getItem("token") } })
-            } else {
-                return Promise.resolve();
-            }
-        });
+    return request({
+        url: `posts`,
+        method: 'post',
+        data: post
+    })
 }
+
+export function updateImage(id, image) {
+    const formData = new FormData();
+            for (let i = 0; i < image.length; i++) {
+                formData.append('resources', image[i]);
+    }
+    return request({
+        url: `posts/${id}/resources`,
+        method: 'put',
+        data: formData
+    })
+}
+
+
+// export function createPost(post) {
+//     return Axios.post('/posts', post, { headers: { "x-access-token": localStorage.getItem("token") } })
+//         .then(({ data: { id } }) => {
+//             if (post.image) {
+//                 const formData = new FormData();
+//                 for (let i = 0; i < post.image.length; i++) {
+//                     formData.append('resources', post.image[i]);
+//                 }
+//                 return Axios.put(`/posts/${id}/resources`, formData, { headers: { "x-access-token": localStorage.getItem("token") } })
+//             } else {
+//                 return Promise.resolve();
+//             }
+//         });
+// }
 
 export function getPosts(type) {
     if (type === 0) {
@@ -24,5 +46,9 @@ export function getPosts(type) {
 }
 
 export function getSpecificPost(postId) {
-    return Axios.get(`/posts/${postId}`, { headers: { "x-access-token": localStorage.getItem("token") } });
+    return request({
+        url: `posts/${postId}`,
+        method: 'get',
+        
+    })
 }

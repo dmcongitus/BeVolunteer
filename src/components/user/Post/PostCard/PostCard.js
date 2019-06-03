@@ -125,14 +125,14 @@ class PostCard extends React.Component {
                 </small>
                 <span className="ml-1">
                   <b>
-                    {this.props.type === "Địa điểm" ? (
+                    {this.props.type === "PLACE" ? (
                       <span className="tcl-2">Địa điểm</span>
-                    ) : this.props.type === "Quyên góp" ? (
+                    ) : this.props.type === "DONATION" ? (
                       <span className="tcl-3">Quyên góp</span>
-                    ) : this.props.type === "Hoạt động" ? (
-                      <span className="tcl-1">Hoạt động</span>
+                    ) : this.props.type === "ACTIVITY" ? (
+                      <span className="tcl-1">Sự kiện</span>
                     ) : (
-                      <span className="tcl-4">{this.props.type}</span>
+                      <span className="tcl-4">Kỉ niệm</span>
                     )}
                   </b>
                 </span>
@@ -242,7 +242,7 @@ class PostCard extends React.Component {
               <Alert color="success">{this.props.description}</Alert>
 
               <div className="item-right">
-                {this.props.type === "Hoạt động" && (
+                {this.props.type === "ACTIVITY" && (
                   <div>
                     <Button className="mr-1 add-btn">
                       <i class="fas fa-angle-double-right icon-button" />
@@ -250,7 +250,7 @@ class PostCard extends React.Component {
                     </Button>
                   </div>
                 )}
-                {this.props.type === "Địa điểm" && (
+                {this.props.type === "PLACE" && (
                   <div>
                     <Button className="mr-1 new-btn">
                       <i class="fas fa-edit icon-button" />
@@ -258,7 +258,7 @@ class PostCard extends React.Component {
                     </Button>
                   </div>
                 )}
-                {this.props.type === "Quyên góp" && (
+                {this.props.type === "DONATION" && (
                   <div>
                     <Button
                       className="mr-1 donate-btn"
@@ -278,7 +278,7 @@ class PostCard extends React.Component {
                     </Modal>
                   </div>
                 )}
-                <Link to={`post/${this.props.id}`}>
+                <Link to={`post/${this.props._id}`}>
                   <Button color="success" className="mr-1 success">
                     <i class="fas fa-angle-double-right icon-button" /> Xem thêm
                   </Button>

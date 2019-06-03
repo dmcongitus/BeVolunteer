@@ -1,12 +1,12 @@
 export const mapPermissionToText = {
-    2: 'Content Moderator',
-    3: 'Account Moderator',
-    4: 'Unit Administrator',
-    5: 'Super Administrator'
+    'CONTENT_MOD': 'Content Moderator',
+    'ACOUNT_MOD ': 'Account Moderator',
+    'UNIT_MOD': 'Unit Administrator',
+    'SUPER_ADMIN': 'Super Administrator'
 };
 
 export const mapPermissionToSelections = {
-    2: [{
+    'CONTENT_MOD': [{
         header:  ' Quản lý',
         navigations: [ {
             title: 'Quản lý bài viết',
@@ -14,7 +14,7 @@ export const mapPermissionToSelections = {
         }]
         }],
     
-    3: [{
+    'ACOUNT_MOD': [{
         header: 'Quản lí tài khoản',
         navigations: [{
             title: 'Duyệt tài khoản',
@@ -34,7 +34,7 @@ export const mapPermissionToSelections = {
         }]
         }],
     
-    4: [{
+    'UNIT_MOD': [{
         header: 'Quản lí tài khoản',
         navigations: [{
             title: 'Duyệt tài khoản',
@@ -54,7 +54,7 @@ export const mapPermissionToSelections = {
         }]
         }],
     
-    5: [{
+    'SUPER_ADMIN': [{
         header: 'Quản lí tài khoản',
         navigations: [{
             title: 'Duyệt tài khoản',

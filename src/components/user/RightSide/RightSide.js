@@ -8,7 +8,7 @@ import './RightSide.css';
 const RightSide = (props) => (
           
                   <div className="side-body">
-                    <h2 className="title-side-body">// Sự kiện xắp diễn ra</h2>
+                    <h2 className="title-side-body">// Sự kiện sắp diễn ra</h2>
                     <div className="content-side-body">
                       <ul>
                        

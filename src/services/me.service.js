@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { getToken } from '../utils/localStorage';
+import request from './request'
 /**
  * Update user's info
  * @param {Object} userInfo User's information
@@ -22,5 +23,10 @@ export function getUserInfo(username) {
 }
 
 export function getMyPosts(userId) {
-    return Axios.get(`/posts/user/${userId}`, { headers: { "x-access-token": localStorage.getItem("token") } } );
+    return request({
+        url: `/posts/user/${userId}`,
+        method: 'get',
+       
+    })
+    // return Axios.get(`/posts/user/${userId}`, { headers: { "x-access-token": localStorage.getItem("token") } } );
 }

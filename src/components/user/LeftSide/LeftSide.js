@@ -7,7 +7,7 @@ import "./LeftSide.css";
 import {  Row, Col} from "reactstrap";
 
 
-var permissionArr = ['Cá nhân', 'Tổ chức'];
+var permissionArr = { 'USER': 'Cá nhân', 'ORG': 'Tổ chức' };
 const LeftSide = props  => (
   <div>
   <div className="side-body">

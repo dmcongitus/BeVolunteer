@@ -1,6 +1,9 @@
-import Axios from 'axios';
+import request from './request'
 
 export function loginUser(username, password, loginType) {
-    return Axios.post(`/${loginType ? "admins" : "accounts"}/login`, {username, password})
+    return request({
+        url: `${loginType ? "admins" : "accounts"}/login`,
+        method: 'post',
+        data: { username, password }
+    })
 }
-

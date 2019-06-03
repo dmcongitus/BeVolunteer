@@ -253,7 +253,7 @@ class HistoryCard extends React.Component {
                 </Button>
           
            
-                <Link to={`post/${this.props.id}`}>
+                <Link to={`post/${this.props._id}`}>
                   <Button color="success" className="mr-1 success">
                     <i class="fas fa-angle-double-right icon-button" /> Xem thêm
                   </Button>
@@ -265,10 +265,15 @@ class HistoryCard extends React.Component {
           {/*/ cardbox-like */}
         </div>
         {/*/ col-lg-6 */}
-        <Alert color="danger" style={{width:"100%"}}>
+        <Alert className = "mt-2" color="danger" style={{width:"100%"}}>
       
       <i class="fas fa-user"></i>
         Tôi nhận thấy bài viết này không đúng với sự thật, tôi đã đến đó
+      </Alert>
+      <Alert color="danger" style={{width:"100%"}}>
+      
+      <i class="fas fa-user"></i>
+        Tôi nhận thấy bài viết này không đúng.
       </Alert>
       </Row>
     );

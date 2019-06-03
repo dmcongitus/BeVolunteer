@@ -126,14 +126,14 @@ class PostCardMore extends React.Component {
                 </small>
                 <span className="ml-1">
                   <b>
-                    {this.props.type === "Địa điểm" ? (
+                    {this.props.type === "PLACE" ? (
                       <span className="tcl-2">Địa điểm</span>
-                    ) : this.props.type === "Quyên góp" ? (
+                    ) : this.props.type === "DONATION" ? (
                       <span className="tcl-3">Quyên góp</span>
-                    ) : this.props.type === "Hoạt động" ? (
-                      <span className="tcl-1">Hoạt động</span>
+                    ) : this.props.type === "ACTIVITY" ? (
+                      <span className="tcl-1">Sự kiện</span>
                     ) : (
-                      <span className="tcl-4">{this.props.type}</span>
+                      <span className="tcl-4">Kỉ niệm</span>
                     )}
                   </b>
                 </span>

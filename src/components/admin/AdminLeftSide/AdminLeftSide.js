@@ -7,7 +7,7 @@ import {
   mapPermissionToSelections
 } from "../../../configs/permission";
 
-var permissionArr = ['Cá nhân', 'Tổ chức', 'Content Mod','Acount Mod', 'Unit Admin', 'Super Admin' ]
+var permissionArr = { 'CONTENT_MOD': 'Content Admin', 'ACCOUNT_MOD': 'Account Admin', 'UNIT_MOD': 'Unit Admin', 'SUPER': 'Super Admin' };
 
 const adminLeftSide = ({ username, permission }) => (
     

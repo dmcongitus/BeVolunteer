@@ -13,7 +13,7 @@ import identityImage from "../../../images/identity.png";
 import { userInfo } from "os";
 import { Button, Alert, Badge } from "reactstrap";
 
-var permissionArr = ["Cá nhân", "Tổ chức"];
+var permissionArr = { 'USER': 'Cá nhân', 'ORG': 'Tổ chức' };
 class MeComponent extends Component {
   constructor(props) {
     super(props);
@@ -67,6 +67,11 @@ class MeComponent extends Component {
     });
   };
 
+  getDate = (date) =>{
+    let current_datetime = new Date(date)
+    let formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear()
+   return formatted_date
+  }
   componentDidMount = () => {
     this.setState({ isLoading: false });
   };
@@ -197,7 +202,7 @@ class MeComponent extends Component {
                     name="dob"
                     ref={el => (this.dob = el)}
                     onFocus={this.handleFocus}
-                    value={this.state.profiles["dob"]}
+                    value={this.getDate(this.state.profiles["dob"])}
                     onChange={this.handleChange}
                   />
                   {this.state.profiles["isVerified"] === false &&

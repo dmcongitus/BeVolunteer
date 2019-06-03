@@ -50,7 +50,11 @@ class DeleteAccountPage extends Component {
   }
 
   componentDidMount = () => {
-    getAllUsers().then(({ data: { accounts } }) => this.setState({ accounts }));
+    getAllUsers().then(data => {
+      const accounts = data.data
+      this.setState({ accounts })
+      });
+   
   };
 
   onAccountBan = username => {
@@ -154,11 +158,7 @@ class DeleteAccountPage extends Component {
                         <th scope="row">{++number}</th>
                         <td>{account.username}</td>
                         <td>{account.name}</td>
-                        {account.permission > 1 ? (
-                          <td className="tcl-2">
-                            <b>{permissionArr[account.permission]}</b>
-                          </td>
-                        ) : account.permission == 1 ? (
+                        {account.permission === 'ORG' ? (
                           <td className="tcl-1">
                             <b>{permissionArr[account.permission]}</b>
                           </td>

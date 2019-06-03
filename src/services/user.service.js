@@ -1,9 +1,15 @@
 import Axios from "axios";
+import request from './request'
 
 export function getAllUsers() {
-    return Axios.get("/accounts/", {
-        headers: { "x-access-token": localStorage.getItem("token") }
-    });
+  return request({
+    url: `/accounts/`,
+    method: 'get',
+   
+  })
+    // return Axios.get("/accounts/", {
+    //     headers: { "x-access-token": localStorage.getItem("token") }
+    // });
 }
 export function getAllUsersRank() {
   return Axios.get("/ranking/", {

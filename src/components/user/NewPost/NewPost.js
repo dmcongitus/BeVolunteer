@@ -11,13 +11,13 @@ import {
   InputGroup
 } from "reactstrap";
 import "./NewPost.css";
-
+import { Message } from 'element-react'
 import * as postServices from "../../../services/post.service";
 const initialState = {
   image: [],
   description: "",
   address: "",
-  type: "Hoạt động cá nhân"
+  type: "PERSONAL_ACTIVITY"
 };
 
 class NewPost extends Component {
@@ -43,9 +43,15 @@ class NewPost extends Component {
   };
 
   onSubmit = e => {
-    postServices.createPost(this.state).then(() => {
-      this.setState({ ...initialState });
-      alert("Tạo bài viết thành công");
+    postServices.createPost(this.state).then(({ data: { _id } }) => {
+      postServices.updateImage(_id, this.state.image).then(() => {
+        this.setState({ ...initialState });
+        Message({
+          message: 'Tạo bài viết thành công.',
+          type: 'success'
+        });
+      })
+      
     });
   };
 
@@ -71,8 +77,8 @@ class NewPost extends Component {
                     value={this.state.type}
                     
                   >
-                    <option value="Hoạt động cá nhân">Cá nhân</option>
-                    <option value="Địa điểm">Địa điểm</option>
+                    <option value="PERSONAL_ACTIVITY">Cá nhân</option>
+                    <option value="PLACE">Địa điểm</option>
                   </Input>
                 </FormGroup>
               </Col>

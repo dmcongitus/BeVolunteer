@@ -190,7 +190,7 @@ class CreateAccountPage extends Component {
                 <i className="fas fa-user-secret" />
               </span>
             </div>
-            {this.props.permission === 5 ? (
+            {this.props.permission === 'SUPER_ADMIN' ? (
               <select
                 className="form-control"
                 id="exampleFormControlSelect1"
@@ -198,11 +198,11 @@ class CreateAccountPage extends Component {
                 onChange={this.onFieldChanged}
                 value={this.state.permission}
               >
-                <option value={2}>Content Admin</option>
-                <option value={3}>Account Admin</option>
-                <option value={4}>Unit Admin</option>
+                <option value={'CONTENT_MOD'}>Content Admin</option>
+                <option value={'ACCOUNT_MOD'}>Account Admin</option>
+                <option value={'UNIT_MOD'}>Unit Admin</option>
               </select>
-            ) : this.props.permission === 4 ? (
+            ) : this.props.permission === 'UNIT_MOD' ? (
               <select
                 className="form-control"
                 id="exampleFormControlSelect1"
@@ -210,8 +210,8 @@ class CreateAccountPage extends Component {
                 onChange={this.onFieldChanged}
                 value={this.state.permission}
               >
-                <option value={2}>Content Admin</option>
-                <option value={3}>Account Admin</option>
+                <option value={'CONTENT_MOD'}>Content Admin</option>
+                <option value={'ACCOUNT_MOD'}>Account Admin</option>
               </select>
             ) : null}
           </div>
