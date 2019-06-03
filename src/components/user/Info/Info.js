@@ -202,6 +202,7 @@ class MeComponent extends Component {
                     name="dob"
                     ref={el => (this.dob = el)}
                     onFocus={this.handleFocus}
+                    //value = {new Date(this.state.profiles["dob"]).toLocaleDateString()}
                     value={this.getDate(this.state.profiles["dob"])}
                     onChange={this.handleChange}
                   />

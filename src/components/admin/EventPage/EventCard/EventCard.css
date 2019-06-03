@@ -1,0 +1,77 @@
+/*
+*
+* ===========================================================
+*     HERO SECTION
+* ===========================================================
+*
+*/
+.img-fluid{
+    margin-left: 60px;
+    height: 200px;
+    width: auto;
+    margin-bottom: 20px;
+   
+}
+.eventCard{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: white;
+    box-shadow:0  1px 2px gray;
+  
+    border-top: 10px solid #004916;
+    
+
+}
+.event-album{
+  margin-left: 10px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  width: 220px;
+  height: 160px;
+  border: 1px solid #0D6628;
+}
+
+.header-col{
+  max-height: 100%;
+}
+
+.icon-button{
+  border-right: 1px solid white;
+  padding: 5px;
+  padding-right: 10px;
+  position: 0;
+
+}
+
+.add-btn{
+  background-color: #042C38;
+}
+.add-btn:hover{
+  background-color: #387282;
+}
+
+.donate-btn{
+  background-color: #853b92;
+}
+.donate-btn:hover{
+  background-color: #853b92b9;
+}
+
+.new-btn{
+  background-color: #D01013;
+}
+.new-btn:hover{
+  background-color: rgba(208, 16, 19, 0.7);
+}
+
+.img-slide-style{
+  height: 500px;
+  width: 100%;
+}
+
+.item-right{
+  display: block;
+}

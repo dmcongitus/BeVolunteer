@@ -17,6 +17,8 @@ import CreateAccountPage from './containers/admin/CreateAcountPage/CreateAccount
 import PostPage from './containers/user/PostPage/PostPage';
 import RankPage from './containers/user/RankPage/RankPage';
 import MedalPage from './containers/user/MedalPage/MedalPage';
+import CreateEvent from './containers/admin/EventPage/CreateEvent/CreateEvent';
+import EventList from './containers/admin/EventPage/EventList/EventList.js';
 
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => 
     <Route {...rest} render={props => isAuthenticated ? <Component {...props} /> : <Redirect to='/login' />} />; 
@@ -43,6 +45,9 @@ export default function router({ isAuthenticated, permission, username }) {
                         <PrivateRoute path="/history" exact component={HistoryPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/rank" exact component={RankPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/medal" exact component={MedalPage} isAuthenticated={isAuthenticated} />
+                        <PrivateRoute path='/event' exact component={CreateEvent} isAuthenticated={isAuthenticated} />
+                        <PrivateRoute path='/eventList' exact component={EventList} isAuthenticated={isAuthenticated} />
+
                         
                         <NeedPermissionRoute path="/post/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/approve" routePermisison={['ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
