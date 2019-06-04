@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import List from "../../../../components/admin/EventPage/List/List";
+import List from "../../../components/EventPage/List/List";
 import "./EventList.css";
-import { getEvents } from '../../../../services/event.service';
-import MoreVerticalButtonEvents from '../../../MoreVerticalButton/MoreVerticalButtonEvents';
+import { getEvents } from '../../../services/event.service';
+import MoreVerticalButtonEvents from '../../Layout/MoreVerticalButton/MoreVerticalButtonEvents';
 
 class HomePage extends Component {
 	state = {

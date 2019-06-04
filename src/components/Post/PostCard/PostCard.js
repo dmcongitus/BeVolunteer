@@ -20,7 +20,7 @@ import {
 } from "reactstrap";
 
 import "./PostCard.css";
-import Payment from "../../Payment/Payment";
+import Payment from "../Payment/Payment";
 import HeaderPost from "../HeaderPost/HeaderPost";
 
 class PostCard extends React.Component {

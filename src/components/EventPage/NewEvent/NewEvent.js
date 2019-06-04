@@ -1,17 +1,17 @@
 import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as authActions from '../../../../actions/auth.action';
+import * as authActions from '../../../actions/auth.action';
 import { Container, Row, Col, Alert } from "reactstrap";
 import DatePicker from "react-datepicker";
 import './NewEvent.css';
 import moment from 'moment';
-import profileIcon from '../../../../images/profile.png';
-import cancelIcon from '../../../../images/cancel.png';
-import editIcon from '../../../../images/edit.png';
-import identityImage from '../../../../images/identity.png';
+import profileIcon from '../../../images/profile.png';
+import cancelIcon from '../../../images/cancel.png';
+import editIcon from '../../../images/edit.png';
+import identityImage from '../../../images/identity.png';
 import { userInfo } from 'os';
-import { createEvent } from "../../../../services/event.service";
+import { createEvent } from "../../../services/event.service";
 
 import {
     Button,

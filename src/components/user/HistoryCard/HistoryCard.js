@@ -20,7 +20,7 @@ import {
 } from "reactstrap";
 
 import "./HistoryCard.css";
-import Payment from "../Payment/Payment";
+import Payment from "../../Post/Payment/Payment";
 
 class HistoryCard extends React.Component {
   constructor(props) {

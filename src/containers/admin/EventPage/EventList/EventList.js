@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PageLayout from '../../../../components/admin/EventPage/EventList/EventList';
+import PageLayout from '../../../../components/EventPage/EventList/EventList';
 import "./EventList.css";
 
 class EventList extends Component {

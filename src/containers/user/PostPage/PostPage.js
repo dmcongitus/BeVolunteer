@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import PostCardMore from '../../../components/user/Post/PostCardMore/PostCardMore'
+import PostCardMore from '../../../components/Post/PostCardMore/PostCardMore'
 import { getSpecificPost } from '../../../services/post.service';
 
 class PostPage extends Component {

@@ -1,5 +1,5 @@
 import React from 'react';
-import MoreVerticalButton from '../../components/MoreVerticalButton/MoreVerticalButton';
+import MoreVerticalButton from '../../components/Layout/MoreVerticalButton/MoreVerticalButton';
 import './PageLayout.css'
 const pageLayout = ({ title, children, hasMoreButton, onPostTypeChanged }) => (
     <div className="side-body" style={{ position: 'relative' , minHeight: '84vh'}}>

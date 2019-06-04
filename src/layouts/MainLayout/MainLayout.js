@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Header from '../../components/user/Header/Header';
+import Header from '../../components/Layout/Header/Header';
 import ModalConductor from '../../modals/ModalConductor';
-import Snackbar from '../../components/user/Snackbar/Snackbar';
-import LeftSide from '../../components/user/Layout/LeftSide/LeftSide';
-import RightSide from '../../components/user/RightSide/RightSideListCard/RightSide';
+import Snackbar from '../../components/Layout/Snackbar/Snackbar';
+import LeftSide from '../../components/Layout/LeftSide/LeftSide';
+import RightSide from '../../components/Layout/RightSide/RightSideListCard/RightSide';
 import AdminLeftSide from '../../components/admin/AdminLeftSide/AdminLeftSide';
 
 

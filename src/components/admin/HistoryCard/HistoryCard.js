@@ -21,7 +21,7 @@ import {
 } from "reactstrap";
 
 import "./HistoryCard.css";
-import Payment from "../../../components/user/Payment/Payment";
+import Payment from "../../Post/Payment/Payment";
 
 class HistoryCard extends React.Component {
   constructor(props) {

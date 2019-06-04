@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Post from "../../../components/user/Post/PostCard/PostCard";
-import NewPost from "../../../components/user/Post/NewPost/NewPost";
+import Post from "../../../components/Post/PostCard/PostCard";
+import NewPost from "../../../components/Post/NewPost/NewPost";
 import "./HomePage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { getPosts } from "../../../services/post.service";
