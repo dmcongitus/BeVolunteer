@@ -36,11 +36,23 @@ class appovePage extends Component {
       modal: !prevState.modal
     }));
   }
-
-  componentDidMount = () => {
-    getAllUsers().then(({ data: { accounts } }) => this.setState({ accounts }));
+  
+  componentDidMount = async () => {
+    try {
+      const data = await getAllUsers();
+      this.setState({ accounts: data.data });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
+  // componentDidMount = () => {
+  //   getAllUsers().then(data =>
+  //     this.setState({ accounts: data.data  })
+  //   );
+   
+  // };
+ 
   onAccountVerify = username => {
     this.setState(prevState => ({
       accounts: prevState.accounts.filter(
@@ -84,6 +96,7 @@ class appovePage extends Component {
               </tr>
             </thead>
             <tbody>
+              
               {this.state.accounts.map(account =>
                 account.isRequestVerify && account.isVerified === false ? (
                   <tr key={account.username} className="table-row">
@@ -192,7 +205,7 @@ class appovePage extends Component {
                         <Button
                           className="ml-2 new-btn"
                           onClick={() =>
-                            this.onAccountUnVerifyg(account.username)
+                            this.onAccountUnVerify(account.username)
                           }
                         >
                           <i class="fas fa-times-circle icon-button" />

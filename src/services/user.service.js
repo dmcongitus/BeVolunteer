@@ -7,21 +7,32 @@ export function getAllUsers() {
     method: 'get',
    
   })
-    // return Axios.get("/accounts/", {
-    //     headers: { "x-access-token": localStorage.getItem("token") }
-    // });
-}
-export function getAllUsersRank() {
-  return Axios.get("/ranking/", {
-    headers: { "x-access-token": localStorage.getItem("token") }
-  });
 }
 
-export function deleteUser(username) {
-  return Axios.delete("/accounts/" + username, {
-    headers: { "x-access-token": localStorage.getItem("token") }
-  });
+export function getAllUsersRank() {
+  return request({
+    url: `/rankings/`,
+    method: 'get',
+   
+  })
 }
+
+export function verifyUser(username) {
+  return request({
+    url: `/admins/verify/`+ username,
+    method: 'put',
+  })
+}
+
+export function unVerifyUser(username) {
+  return request({
+    url: `/admins/unverify/`+ username,
+    method: 'put',
+  })
+}
+
+
+
 
 const instance = Axios.create({
   baseURL: 'http://localhost:3000/',
@@ -36,12 +47,7 @@ export async function unbanUser(username) {
   return await instance.post("/admins/unban/" + username);
 }
 
-export function verifyUser(username) {
-  return instance.post("/admins/verify/" + username);
-}
-export function unVerifyUser(username) {
-  return instance.post("/admins/unVerify/" + username);
-}
+
 
 export function verify(identityCard) {
     let formData = new FormData()
