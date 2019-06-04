@@ -5,10 +5,10 @@ import PostCard from '../PostCard/PostCard'
 
 import './Post.css';
 
-const Post = ({ posts }) => (
+const PostList = ({ posts }) => (
   <div>
     {posts.map((post) => <PostCard key={post.id} {...post}></PostCard>)}
   </div>
 );
 
-export default Post;
+export default PostList;

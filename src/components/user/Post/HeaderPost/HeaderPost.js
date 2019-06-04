@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
+import "./HeaderPost.css";
 
 function headerPost(props) {
   return (
@@ -14,9 +15,12 @@ function headerPost(props) {
             />
           </div>
         </Col>
-        <Col xs="11">
+        <Col xs="auto">
           <div className="ml-2">
-            {props.userPost}
+            {props.user.name} 
+           
+            {props.user.isVerified === true && (<i className="ml-1 small fas fa-check-circle check-user"></i>)}
+            
             <span className="ml-1 small">đã chia sẻ một</span>
             <span className="ml-1">
               <b>

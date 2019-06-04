@@ -18,8 +18,8 @@ import {
   DropdownMenu,
   DropdownToggle, Input
 } from "reactstrap";
-import Payment from "../../Payment/Payment";
-
+import Payment from "../Payment/Payment";
+import HeaderPost from "../HeaderPost/HeaderPost"
 import "./PostCardMore.css";
 
 class PostCardMore extends React.Component {
@@ -107,53 +107,7 @@ class PostCardMore extends React.Component {
     return (
       <div className="side-body">
       <Row className="postCard">
-        <Col className="header-col" xs="11">
-          <Row className="item-center header-postCard pb-3">
-            <Col xs="1">
-              <div>
-                <img
-                  className="img-user-postCard rounded-circle"
-                  src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
-                  alt="UserAvatar"
-                />
-              </div>
-            </Col>
-            <Col xs="11">
-              <div className="ml-2">
-                Dương Minh Công {this.props.name}
-                <small>
-                  <span className="ml-1">đã chia sẻ một</span>
-                </small>
-                <span className="ml-1">
-                  <b>
-                    {this.props.type === "PLACE" ? (
-                      <span className="tcl-2">Địa điểm</span>
-                    ) : this.props.type === "DONATION" ? (
-                      <span className="tcl-3">Quyên góp</span>
-                    ) : this.props.type === "ACTIVITY" ? (
-                      <span className="tcl-1">Sự kiện</span>
-                    ) : (
-                      <span className="tcl-4">Kỉ niệm</span>
-                    )}
-                  </b>
-                </span>
-                <div>
-                  <small>
-                    <span>
-                      <i className="fa fa-calendar" data-original-title title />{" "}
-                      {new Date(this.props.createdAt).toLocaleTimeString()}
-                      <i
-                        style={{ marginLeft: "5px" }}
-                        className="fas fa-map-marker-alt ml-3 mr-1"
-                      />{" "}
-                      {this.props.address}
-                    </span>
-                  </small>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Col>
+        <HeaderPost {...this.props}></HeaderPost>
         <Col xs="1">
           {" "}
           <div className="menu-post">

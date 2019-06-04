@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Header from '../../components/user/Header/Header';
-import Footer from '../../components/user/Footer/Footer';
 import ModalConductor from '../../modals/ModalConductor';
 import Snackbar from '../../components/user/Snackbar/Snackbar';
-import LeftSide from '../../components/user/LeftSide/LeftSide';
+import LeftSide from '../../components/user/Layout/LeftSide/LeftSide';
 import RightSide from '../../components/user/RightSide/RightSideListCard/RightSide';
 import AdminLeftSide from '../../components/admin/AdminLeftSide/AdminLeftSide';
 
@@ -53,7 +52,7 @@ const MainLayout = ({children, permission, username}) => (
         }
         <ModalConductor />
         <Snackbar />
-        <Footer />
+       
     </div>
 );
 

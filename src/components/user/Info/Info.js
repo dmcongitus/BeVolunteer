@@ -56,6 +56,7 @@ class MeComponent extends Component {
 
   handleChange = e => {
     const profiles = { ...this.state.profiles };
+    profiles[e.target.name] = e.target.value;
     this.setState({ profiles, profileChanged: true });
   };
 
@@ -182,7 +183,7 @@ class MeComponent extends Component {
                     placeholder="Enter email"
                     ref={el => (this.email = el)}
                     onFocus={this.handleFocus}
-                    value={this.state.profiles["email"]}
+                   value={this.state.profiles["email"]}
                     onChange={this.handleChange}
                   />
                   <button

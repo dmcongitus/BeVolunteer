@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { withRouter } from "react-router"
-import user from "../../../images/user.png";
+import user from "../../../../images/user.png";
 import { connect } from "react-redux";
 import "./LeftSide.css";
 import {  Row, Col} from "reactstrap";

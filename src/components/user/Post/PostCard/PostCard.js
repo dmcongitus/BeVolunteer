@@ -21,7 +21,7 @@ import {
 
 import "./PostCard.css";
 import Payment from "../../Payment/Payment";
-import HeaderPost from "../HeaderPost/HeaderPost"
+import HeaderPost from "../HeaderPost/HeaderPost";
 
 class PostCard extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class PostCard extends React.Component {
     this.state = {
       modal: false,
       activeIndex: 0,
-      items: props.filenames.map(filename  => `/resources/${filename}`),
+      items: props.filenames.map(filename => `/resources/${filename}`),
       dropdownOpen: false,
       paymentOpen: false
     };
@@ -51,9 +51,6 @@ class PostCard extends React.Component {
     this.setState({
       paymentOpen: !this.state.paymentOpen
     });
-  }
-  clearArray() {
-    this.state.items = [];
   }
   onExiting() {
     this.animating = true;
@@ -93,7 +90,6 @@ class PostCard extends React.Component {
 
   render() {
     const { activeIndex } = this.state;
-
     const slides = this.state.items.map(item => {
       return (
         <CarouselItem
@@ -107,10 +103,9 @@ class PostCard extends React.Component {
     });
     return (
       <Row className="postCard">
-        <HeaderPost {...this.props} userPost = "DuongMinhCong"></HeaderPost>
-        
+        <HeaderPost {...this.props} />
+
         <Col xs="1">
-          {" "}
           <div className="menu-post">
             <Dropdown
               isOpen={this.state.dropdownOpen}
