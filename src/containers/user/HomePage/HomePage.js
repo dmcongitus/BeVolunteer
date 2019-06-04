@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Post from "../../../components/user/Post/PostList/Post";
-import NewPost from "../../../components/user/NewPost/NewPost";
+import Post from "../../../components/user/Post/PostCard/PostCard";
+import NewPost from "../../../components/user/Post/NewPost/NewPost";
 import "./HomePage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { getPosts } from "../../../services/post.service";
@@ -35,7 +35,8 @@ class HomePage extends Component {
         {this.props.permission === "USER" && (
           <NewPost style={{ zIndex: 50, position: "relative" }} />
         )}
-        <Post posts={this.state.posts} />
+        {this.state.posts.map((post) => <Post key={post.id} {...post}></Post>)}
+   
       </PageLayout>
     );
   }

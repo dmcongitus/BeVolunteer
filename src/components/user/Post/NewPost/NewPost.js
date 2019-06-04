@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import "./NewPost.css";
 import { Message } from 'element-react'
-import * as postServices from "../../../services/post.service";
+import * as postServices from "../../../../services/post.service";
 const initialState = {
   image: [],
   description: "",
