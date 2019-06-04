@@ -18,7 +18,7 @@ export function deleteUser(username) {
 }
 
 const instance = Axios.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'http://172.104.39.161:3000/',
   timeout: 1000,
   headers: { "x-access-token": localStorage.getItem("token") }
 });

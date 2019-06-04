@@ -1,12 +1,12 @@
 export const mapPermissionToText = {
-    2: 'Content Moderator',
-    3: 'Account Moderator',
-    4: 'Unit Administrator',
-    5: 'Super Administrator'
+    "CONTENT_MOD": 'Content Moderator',
+    "ACCOUNT_MOD": 'Account Moderator',
+    "UNIT_ADMIN": 'Unit Administrator',
+    "SUPER_ADMIN": 'Super Administrator'
 };
 
 export const mapPermissionToSelections = {
-    2: [{
+    "CONTENT_MOD": [{
         header: 'Cộng đồng',
         navigations: [
             {
@@ -32,7 +32,7 @@ export const mapPermissionToSelections = {
             },]
         }],
     
-    3: [
+    "ACCOUNT_MOD": [
         {
             header: 'Quản lí tài khoản',
             navigations: [
@@ -74,7 +74,7 @@ export const mapPermissionToSelections = {
         
     ],
     
-    4: [
+    "UNIT_ADMIN": [
         {
             header: 'Quản lí tài khoản',
             navigations: [{
@@ -113,7 +113,7 @@ export const mapPermissionToSelections = {
         }
     ],
     
-    5: [
+    "SUPER_ADMIN": [
         {
             header: 'Quản lí tài khoản',
             navigations: [

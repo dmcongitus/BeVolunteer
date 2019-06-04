@@ -2,7 +2,7 @@
   "name": "authentication",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000/",
+  "proxy": "http://172.104.39.161:3000/",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
