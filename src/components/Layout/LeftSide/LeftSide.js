@@ -25,7 +25,8 @@ const LeftSide = props  => (
       <div>
         <div className="item-center">
           <div className="item-column ml-3">
-            <b>{props.name}</b>
+            <b>{props.name}{props.isVerified === true && (<i className="ml-1 small fas fa-check-circle check-user"></i>)}</b>
+            
             <div className="item-row">
               <div className = "my-small">{permissionArr[props.permission]}
               <span className="ml-3 tcl-1"> Level {props.exp}</span>
@@ -123,6 +124,6 @@ const LeftSide = props  => (
   </div>
 );
 
-const mapStateToProps = ({ auth: { user: { name, permission, exp } } }) => ({ name, permission, exp });
+const mapStateToProps = ({ auth: { user: { name, permission, exp, isVerified } } }) => ({ name, permission, exp, isVerified });
 
 export default withRouter(connect(mapStateToProps)(LeftSide));
