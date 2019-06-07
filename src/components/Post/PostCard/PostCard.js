@@ -226,7 +226,7 @@ class PostCard extends React.Component {
                     >
                       <ModalHeader>Thanh toán </ModalHeader>
                       <ModalBody>
-                        <Payment />
+                        <Payment close = {this.togglePayment}/>
                       </ModalBody>
                     </Modal>
                   </div>

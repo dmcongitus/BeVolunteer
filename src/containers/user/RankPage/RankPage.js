@@ -3,7 +3,7 @@ import { Table, Button } from "reactstrap";
 
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 
-import { getAllUsersRank, banUser } from "../../../services/user.service";
+import { getAllUsersRank } from "../../../services/user.service";
 
 class RankPage extends Component {
   state = {
@@ -19,15 +19,7 @@ class RankPage extends Component {
     }
   };
 
-  onAccountBan = username => {
-    this.setState(prevState => ({
-      accounts: prevState.accounts.filter(
-        account => account.username !== username
-      )
-    }));
-    banUser(username);
-  };
-
+  
   render() {
     let number = 0;
     const { accounts } = this.state;

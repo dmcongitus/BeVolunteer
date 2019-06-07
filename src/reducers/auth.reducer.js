@@ -18,7 +18,7 @@ export default function authReducer(state = initialState, action) {
             return { ...state, isAuthenticated: false, user: undefined };
         
         case actionTypes.UPDATE_USER_INFO:
-            return { ...state, user: { ...action.payload } };
+            return { ...state, user: { ...state.user} };
         
         case actionTypes.UPLOAD_AVATAR:
             const user = state.user

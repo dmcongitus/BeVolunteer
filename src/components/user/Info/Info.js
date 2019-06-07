@@ -89,9 +89,9 @@ class MeComponent extends Component {
 
     if (this.state.profiles["identityCard"] !== undefined) {
       this.props.verifyUser(this.state.profiles["identityCard"]);
-      this.setState({ profiles: { ...this.state.profiles, isRequestVerify: true } });
+      this.setState({ profiles: { ...this.state.profiles } });
     } else {
-      this.setState({  profiles: { ...this.state.profiles } });
+      this.setState({ profiles: { ...this.state.profiles } });
     }
   };
 
@@ -126,7 +126,7 @@ class MeComponent extends Component {
               )}
 
             {
-            this.props.user.isRequestVerify === true && (
+              this.props.user.isRequestVerify === true && (
                 <div>
                   <Alert color="info">
                     Tài khoản - <b>Đang chờ xác thực</b>
@@ -148,14 +148,14 @@ class MeComponent extends Component {
                     disabled={this.props.user.isVerified === true}
                   />
                   {this.props.user.isVerified === false &&
-                  this.state.profiles["isRequestVerify"] === false ? (
-                    <button
-                      onClick={this.handleEdit.bind(this, "name")}
-                      className="UpdateProfile__Main__FieldEdit btn btn-light"
-                    >
-                      <img src={editIcon} alt="Edit icon" />
-                    </button>
-                  ) : null}
+                    this.state.profiles["isRequestVerify"] === false ? (
+                      <button
+                        onClick={this.handleEdit.bind(this, "name")}
+                        className="UpdateProfile__Main__FieldEdit btn btn-light"
+                      >
+                        <img src={editIcon} alt="Edit icon" />
+                      </button>
+                    ) : null}
                 </li>
 
                 <li className="UpdateProfile__Main__FieldItem">
@@ -195,14 +195,14 @@ class MeComponent extends Component {
                     disabled={this.props.user.isVerified === true}
                   />
                   {this.props.user.isVerified === false &&
-                  this.state.profiles["isRequestVerify"] === false ? (
-                    <button
-                      onClick={this.handleEdit.bind(this, "email")}
-                      className="UpdateProfile__Main__FieldEdit btn btn-light"
-                    >
-                      <img src={editIcon} alt="Edit icon" />
-                    </button>
-                  ) : null}
+                    this.state.profiles["isRequestVerify"] === false ? (
+                      <button
+                        onClick={this.handleEdit.bind(this, "email")}
+                        className="UpdateProfile__Main__FieldEdit btn btn-light"
+                      >
+                        <img src={editIcon} alt="Edit icon" />
+                      </button>
+                    ) : null}
                 </li>
 
                 <li className="UpdateProfile__Main__FieldItem">
@@ -221,14 +221,14 @@ class MeComponent extends Component {
                     disabled={this.props.user.isVerified === true}
                   />
                   {this.state.profiles["isVerified"] === false &&
-                  this.state.profiles["isRequestVerify"] === false ? (
-                    <button
-                      onClick={this.handleEdit.bind(this, "dob")}
-                      className="UpdateProfile__Main__FieldEdit btn btn-light"
-                    >
-                      <img src={editIcon} alt="Edit icon" />
-                    </button>
-                  ) : null}
+                    this.state.profiles["isRequestVerify"] === false ? (
+                      <button
+                        onClick={this.handleEdit.bind(this, "dob")}
+                        className="UpdateProfile__Main__FieldEdit btn btn-light"
+                      >
+                        <img src={editIcon} alt="Edit icon" />
+                      </button>
+                    ) : null}
                 </li>
 
                 {this.state.profiles["isVerified"] === true ? null : (
@@ -313,7 +313,7 @@ const mapStateToProps = ({ auth: { user } }) => ({ user });
 
 const mapDispatchToProps = dispatch => ({
   updateUserInfo: (username, userInfo) => dispatch(authActions.updateUser(username, userInfo)),
-  verifyUser: identityCard =>  dispatch(userActions.verifyUser(identityCard)) 
+  verifyUser: identityCard => dispatch(userActions.verifyUser(identityCard))
 });
 
 export default connect(

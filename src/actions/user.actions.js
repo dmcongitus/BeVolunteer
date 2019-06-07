@@ -2,10 +2,6 @@ import * as userServices from "../services/user.service";
 import * as actionTypes from "../constants/actionTypes";
 
 export function verifyUser(identityCard) {
-    if (!identityCard) {
-        return;
-    }
-
     return async (dispatch, getState) => {
         const { auth: { user } } = getState();
         const { isVerified } = user;    
