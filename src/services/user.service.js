@@ -31,6 +31,12 @@ export function verifyUser(username) {
   })
 }
 
+export function getUsersVerify() {
+  return request({
+    url: `/admins/verify`,
+    method: 'get',
+  })
+}
 export function unVerifyUser(username) {
   return request({
     url: `/admins/unverify/`+ username,
