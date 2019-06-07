@@ -20,6 +20,11 @@ export default function authReducer(state = initialState, action) {
         case actionTypes.UPDATE_USER_INFO:
             return { ...state, user: { ...action.payload } };
         
+        case actionTypes.UPLOAD_AVATAR:
+            const user = state.user
+            user.avatar = action.payload
+            return {...state, user}
+
         default:
             return initialState;
     }

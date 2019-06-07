@@ -8,3 +8,5 @@ export const OPEN_MODAL = "OPEN_MODAL";
 
 export const OPEN_SNACKBAR = "OPEN_SNACKBAR";
 export const CLOSE_SNACKBAR = "CLOSE_SNACKBAR";
+
+export const UPLOAD_AVATAR = "UPLOAD_AVATAR";

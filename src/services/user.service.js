@@ -65,3 +65,10 @@ export async function createUser(params) {
       throw e;
   }
 }
+
+
+export function uploadAvatar(username, avatar) {
+  const formData = new FormData()
+  formData.append("avatar", avatar)
+  return Axios.put(`/accounts/u/${username}/avatar`, formData, {headers: {"x-access-token": localStorage.getItem("token")}})
+}

@@ -19,3 +19,11 @@ export function verifyUser(identityCard) {
         }
     }
 }
+
+export function uploadAvatar(avatar) {
+    return async (dispatch, getState) => {
+        const {auth:{user:{username}}} = getState()
+        const {data: avatarURL} = await userServices.uploadAvatar(username, avatar)
+        dispatch({type: actionTypes.UPLOAD_AVATAR, payload: avatarURL});
+    }
+}
