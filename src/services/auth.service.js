@@ -7,3 +7,10 @@ export function loginUser(username, password, loginType) {
         data: { username, password }
     })
 }
+
+export function getUser(username, password, loginType) {
+    return request({
+        url: `/me`,
+        method: 'get'
+    });
+}

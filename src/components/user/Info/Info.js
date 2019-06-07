@@ -87,10 +87,12 @@ class MeComponent extends Component {
       this.state.profiles
     );
 
-    this.props.verifyUser(this.state.profiles["identityCard"]);
-    this.setState({
-      profiles: { ...this.state.profiles, isRequestVerify: true }
-    });
+    if (this.state.profiles["identityCard"] !== undefined) {
+      this.props.verifyUser(this.state.profiles["identityCard"]);
+      this.setState({ profiles: { ...this.state.profiles, isRequestVerify: true } });
+    } else {
+      this.setState({  profiles: { ...this.state.profiles } });
+    }
   };
 
   handlePostChange = e => {
@@ -106,7 +108,7 @@ class MeComponent extends Component {
       <div>
         <div className="p-3 ">
           <div className="UpdateProfile">
-            {this.state.profiles["isVerified"] === true && (
+            {this.props.user.isVerified === true && (
               <div>
                 <Alert color="success">
                   Tài khoản - <b>Đã được xác thực</b>
@@ -114,8 +116,8 @@ class MeComponent extends Component {
               </div>
             )}
 
-            {this.props.user.isVerified === false &&
-              this.state.profiles["isRequestVerify"] === false && (
+            {
+              this.props.user.isRequestVerify === false && (
                 <div>
                   <Alert color="danger">
                     Tài khoản - <b>Chưa được xác thực</b>
@@ -123,8 +125,8 @@ class MeComponent extends Component {
                 </div>
               )}
 
-            {this.state.profiles["isVerified"] === false &&
-              this.state.profiles["isRequestVerify"] === true && (
+            {
+            this.props.user.isRequestVerify === true && (
                 <div>
                   <Alert color="info">
                     Tài khoản - <b>Đang chờ xác thực</b>
@@ -310,9 +312,8 @@ class MeComponent extends Component {
 const mapStateToProps = ({ auth: { user } }) => ({ user });
 
 const mapDispatchToProps = dispatch => ({
-  updateUserInfo: (username, userInfo) =>
-    dispatch(authActions.updateUser(username, userInfo)),
-  verifyUser: identityCard => dispatch(userActions.verifyUser(identityCard))
+  updateUserInfo: (username, userInfo) => dispatch(authActions.updateUser(username, userInfo)),
+  verifyUser: identityCard =>  dispatch(userActions.verifyUser(identityCard)) 
 });
 
 export default connect(

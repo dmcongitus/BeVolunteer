@@ -12,7 +12,7 @@ export function verifyUser(identityCard) {
         if (!isVerified) {
             try {
                 await userServices.verify(identityCard);
-                dispatch({ type: actionTypes.UPDATE_USER_INFO, payload: {...user, isVerified: true} });
+                dispatch({ type: actionTypes.UPDATE_USER_INFO, payload: {...user, isRequestVerify: true} });
             } catch(err) {
                 window.alert("Verify failed" + err);
             }

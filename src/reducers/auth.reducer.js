@@ -1,10 +1,10 @@
 import * as actionTypes from '../constants/actionTypes';
-import { loadUserData } from '../utils/localStorage';
 
 const initialState = {
-    isAuthenticated: Boolean(loadUserData()),
-    user: loadUserData()
+    isAuthenticated: false,
+    user: undefined
 };
+
 
 export default function authReducer(state = initialState, action) {
     switch (action.type) {
@@ -24,6 +24,12 @@ export default function authReducer(state = initialState, action) {
             const user = state.user
             user.avatar = action.payload
             return {...state, user}
+
+        case actionTypes.GET_ME_SUCCESSFULLY:
+            return { ...state, isAuthenticated: true, ...action.payload };
+
+        case actionTypes.GET_ME_FAILED:
+                return { ...state, isAuthenticated: false, user: {} };
 
         default:
             return initialState;

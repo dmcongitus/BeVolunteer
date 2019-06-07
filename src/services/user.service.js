@@ -73,7 +73,7 @@ export async function unbanUser(username) {
 export function verify(identityCard) {
     let formData = new FormData()
     for (let i = 0; i < identityCard.length; i++){
-        formData.append("resourceVerify", identityCard[i]);
+      formData.append("verify", identityCard[i]);
     }
     return Axios.post("/accounts/verify", formData, { headers: { "x-access-token": localStorage.getItem("token") } });
 }

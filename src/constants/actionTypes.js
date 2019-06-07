@@ -9,4 +9,8 @@ export const OPEN_MODAL = "OPEN_MODAL";
 export const OPEN_SNACKBAR = "OPEN_SNACKBAR";
 export const CLOSE_SNACKBAR = "CLOSE_SNACKBAR";
 
+export const INITIAL_LOADING = "INITIAL_LOADING";
+
 export const UPLOAD_AVATAR = "UPLOAD_AVATAR";
+export const GET_ME_SUCCESSFULLY = "GET_ME_SUCCESSFULLY";
+export const GET_ME_FAILED = "GET_ME_FAILED";
