@@ -9,8 +9,6 @@ import * as userActions from '../../../actions/user.actions';
 
 var permissionArr = { 'USER': 'Cá nhân', 'ORG': 'Tổ chức' };
 
-
-
 class LeftSide extends Component {
 	handleImageChange = e => {  
 		e.persist();
@@ -21,7 +19,7 @@ class LeftSide extends Component {
 
   render() {
     return  (
-      <div>s
+      <div>
       <div className="side-body">
       {/* header */}
         <Row className="item-mid">
@@ -149,7 +147,7 @@ class LeftSide extends Component {
     }
 }
 
-const mapStateToProps = ({ auth: { user: { name, permission, exp, username, avatar } } }) => ({ name, permission, exp, username, avatar });
+const mapStateToProps = ({ auth: { user: { name, permission, exp, username, avatar, isVerified } } }) => ({ name, permission, exp, username, avatar, isVerified });
 
 const mapDispatchToProps = dispatch => ({
 	uploadAvatar: avatar => dispatch(userActions.uploadAvatar(avatar))

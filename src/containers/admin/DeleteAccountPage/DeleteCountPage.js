@@ -153,7 +153,7 @@ class DeleteAccountPage extends Component {
               {/* Start tab Tất cả */}
               {this.state.activeTab === "1"
                 ? this.state.accounts.map(account =>
-                    account.permission >= this.props.permission ? null : (
+                    (account.permission === 'ORG' ||  account.permission === 'USER') && (
                       <tr key={account.username} className="table-row">
                         <th scope="row">{++number}</th>
                         <td>{account.username}</td>
@@ -208,8 +208,7 @@ class DeleteAccountPage extends Component {
               {/* Start tab Chưa Khóa*/}
               {this.state.activeTab === "2"
                 ? this.state.accounts.map(account =>
-                    account.permission >=
-                    this.props.permission ? null : account.isBanned ? null : (
+                  (account.permission === 'ORG' ||  account.permission === 'USER') && !account.isBanned && (
                       <tr key={account.username} className="table-row">
                         <th scope="row">{++number}</th>
                         <td>{account.username}</td>
@@ -254,8 +253,8 @@ class DeleteAccountPage extends Component {
               {/* End tab Chưa Khóa*/}
               {/* Start tab Đã Khóa*/}
               {this.state.activeTab === "3"?this.state.accounts.map(account =>
-                account.permission >=
-                this.props.permission ? null : !account.isBanned ? null : (
+    
+                (account.permission === 'ORG' ||  account.permission === 'USER') && account.isBanned && (
                   <tr key={account.username} className="table-row">
                     <th scope="row">{++number}</th>
                     <td>{account.username}</td>

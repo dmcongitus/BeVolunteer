@@ -5,6 +5,11 @@
 .input-group-text{
     display: flex;
     justify-content: center;
+    background-color: unset;
+
+}
+.input-group-text i{
+    margin-right: unset;
 }
 
 .singup-color{

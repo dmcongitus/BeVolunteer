@@ -9,9 +9,16 @@ export function getAllUsers() {
   })
 }
 
+export function getAllOrgs() {
+  return request({
+    url: `/orgs/`,
+    method: 'get',
+   
+  })
+}
 export function getAllUsersRank() {
   return request({
-    url: `/rankings/`,
+    url: `/ranking`,
     method: 'get',
    
   })
@@ -31,7 +38,21 @@ export function unVerifyUser(username) {
   })
 }
 
-
+export function createUser(params) {
+  return request({
+    url: `"/accounts/u`,
+    method: 'post',
+    data: {...params}
+  })
+}
+// export async function createUser(params) {
+//   try {
+//     const data = await Axios.post("/accounts", { ...params });
+//     return data; 
+//   } catch (e) {
+//       throw e;
+//   }
+// }
 
 
 const instance = Axios.create({
@@ -56,16 +77,6 @@ export function verify(identityCard) {
     }
     return Axios.post("/accounts/verify", formData, { headers: { "x-access-token": localStorage.getItem("token") } });
 }
-
-export async function createUser(params) {
-  try {
-    const data = await Axios.post("/accounts", { ...params });
-    return data; 
-  } catch (e) {
-      throw e;
-  }
-}
-
 
 export function uploadAvatar(username, avatar) {
   const formData = new FormData()

@@ -17,6 +17,7 @@ function headerPost(props) {
         </Col>
         <Col xs="auto">
           <div className="ml-2">
+            
             {props.user.name} 
            
             {props.user.isVerified === true && (<i className="ml-1 small fas fa-check-circle check-user"></i>)}

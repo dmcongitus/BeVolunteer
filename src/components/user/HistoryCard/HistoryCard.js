@@ -125,15 +125,9 @@ class HistoryCard extends React.Component {
                 </small>
                 <span className="ml-1">
                   <b>
-                    {this.props.type === "Địa điểm" ? (
-                      <span className="tcl-2">Địa điểm</span>
-                    ) : this.props.type === "Quyên góp" ? (
-                      <span className="tcl-3">Quyên góp</span>
-                    ) : this.props.type === "Hoạt động" ? (
-                      <span className="tcl-1">Hoạt động</span>
-                    ) : (
-                      <span className="tcl-4">{this.props.type}</span>
-                    )}
+                   
+                      <span className={this.props.type}>{this.props.type}</span>
+                    
                   </b>
                 </span>
                 <div>
