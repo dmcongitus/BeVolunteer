@@ -18,7 +18,7 @@ export function getAllOrgs() {
 }
 export function getAllUsersRank() {
   return request({
-    url: `/rankings/`,
+    url: `/ranking`,
     method: 'get',
    
   })

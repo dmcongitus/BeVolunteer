@@ -8,7 +8,7 @@ import {  Row, Col} from "reactstrap";
 
 var permissionArr = { 'USER': 'Cá nhân', 'ORG': 'Tổ chức' };
 const LeftSide = props  => (
-  <div>s
+  <div>
   <div className="side-body">
   {/* header */}
     <Row className="item-mid">

@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import request from './request'
 
 export function createEvent(post) {
     return Axios.post('/events', post, { headers: { "x-access-token": localStorage.getItem("token") } })
@@ -18,12 +19,20 @@ export function createEvent(post) {
 
 export function getEvents(statusEvent) {
     if (statusEvent === 0) {
+        return request({
+            url: `/events`,
+            method: 'get'
+        })
         return Axios.get('/events', { headers: { "x-access-token": localStorage.getItem("token") } });
     } else {
-        return Axios.get(`/events?statusEvent=${statusEvent}`, { headers: { "x-access-token": localStorage.getItem("token") } });
+        return request({
+            url: `/events?statusEvent=${statusEvent}`,
+            method: 'get'
+        })
     }
 }
 
 export function getSpecificEvent(eventId) {
     return Axios.get(`/events/${eventId}`, { headers: { "x-access-token": localStorage.getItem("token") } });
 }
+

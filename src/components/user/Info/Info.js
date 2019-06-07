@@ -30,7 +30,7 @@ class MeComponent extends Component {
     /* WARNING: JSON.parse(JSON.stringify(...)) is intended for deep copy */
     this.initialProfiles = JSON.parse(JSON.stringify(this.state.profiles));
   }
- 
+
   handleEdit = (field, e) => {
     if (field === "identityCard") {
       this[field].click();
@@ -139,12 +139,11 @@ class MeComponent extends Component {
                   <input
                     className="UpdateProfile__Main__FieldValue"
                     name="name"
-                    id="name"
                     ref={el => (this.name = el)}
                     onFocus={this.handleFocus}
                     value={this.state.profiles["name"]}
                     onChange={this.handleChange}
-                    disabled = {this.props.user.isVerified === false}
+                    disabled={this.props.user.isVerified === true}
                   />
                   {this.props.user.isVerified === false &&
                   this.state.profiles["isRequestVerify"] === false ? (
@@ -154,7 +153,7 @@ class MeComponent extends Component {
                     >
                       <img src={editIcon} alt="Edit icon" />
                     </button>
-                  ):null}
+                  ) : null}
                 </li>
 
                 <li className="UpdateProfile__Main__FieldItem">
@@ -184,7 +183,6 @@ class MeComponent extends Component {
                   <input
                     className="UpdateProfile__Main__FieldValue"
                     name="email"
-                    id="email"
                     type="email"
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
@@ -192,6 +190,7 @@ class MeComponent extends Component {
                     onFocus={this.handleFocus}
                     value={this.state.profiles["email"]}
                     onChange={this.handleChange}
+                    disabled={this.props.user.isVerified === true}
                   />
                   {this.props.user.isVerified === false &&
                   this.state.profiles["isRequestVerify"] === false ? (
@@ -201,13 +200,7 @@ class MeComponent extends Component {
                     >
                       <img src={editIcon} alt="Edit icon" />
                     </button>
-                  ) : (
-                    document.addEventListener("DOMContentLoaded", function(
-                      event
-                    ) {
-                      document.getElementById("email").disabled = true;
-                    })
-                  )}
+                  ) : null}
                 </li>
 
                 <li className="UpdateProfile__Main__FieldItem">
@@ -223,6 +216,7 @@ class MeComponent extends Component {
                     //value = {new Date(this.state.profiles["dob"]).toLocaleDateString()}
                     value={this.getDate(this.state.profiles["dob"])}
                     onChange={this.handleChange}
+                    disabled={this.props.user.isVerified === true}
                   />
                   {this.state.profiles["isVerified"] === false &&
                   this.state.profiles["isRequestVerify"] === false ? (
@@ -232,68 +226,66 @@ class MeComponent extends Component {
                     >
                       <img src={editIcon} alt="Edit icon" />
                     </button>
-                  ) : (
-                    document.addEventListener("DOMContentLoaded", function(
-                      event
-                    ) {
-                      document.getElementById("dob").disabled = true;
-                    })
-                  )}
+                  ) : null}
                 </li>
 
-                {this.state.profiles["isVerified"] === false &&
-                  this.state.profiles["isRequestVerify"] === false && (
-                    <li className="UpdateProfile__Main__FieldItem">
-                      <div className="UpdateProfile__Main__FieldName">CMND</div>
-                      <div className="UpdateProfile__Main__FieldValue">
-                        <img
-                          src={
-                            (this.state.profiles["identityCard"] !==
-                              undefined &&
-                              URL.createObjectURL(
-                                this.state.profiles["identityCard"][0]
-                              )) ||
-                            identityImage
-                          }
-                          alt="Identity"
-                        />
-                        <input
-                          type="file"
-                          multiple
-                          accept="image/*"
-                          style={{ display: "none" }}
-                          ref={el => (this.identityCard = el)}
-                          onClick={e => (e.target.value = null)}
-                          onChange={this.handleImageChange}
-                        />
-                        {this.state.profiles["isVerified"] === false &&
-                          this.state.profiles["isRequestVerify"] === false && (
-                            <div className="UpdateProfile__Main__FieldValue__Warning">
-                              <Alert color="danger">
-                                Cập nhật CMND để xác thực !!!
-                              </Alert>
-                            </div>
-                          )}
-                      </div>
+                {this.state.profiles["isVerified"] === true ? null : (
+                  <li className="UpdateProfile__Main__FieldItem">
+                    <div className="UpdateProfile__Main__FieldName">CMND</div>
+                    <div className="UpdateProfile__Main__FieldValue">
+                      <img
+                        src={
+                          (this.state.profiles["identityCard"] !== undefined &&
+                            URL.createObjectURL(
+                              this.state.profiles["identityCard"][0]
+                            )) ||
+                          identityImage
+                        }
+                        alt="Identity"
+                      />
+                      <input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        style={{ display: "none" }}
+                        ref={el => (this.identityCard = el)}
+                        onClick={e => (e.target.value = null)}
+                        onChange={this.handleImageChange}
+                      />
+                      {this.state.profiles["isVerified"] === false &&
+                        this.state.profiles["isRequestVerify"] === false && (
+                          <div className="UpdateProfile__Main__FieldValue__Warning">
+                            <Alert color="danger">
+                              Cập nhật CMND để xác thực !!!
+                            </Alert>
+                          </div>
+                        )}
+                    </div>
 
-                      <button
-                        onClick={this.handleEdit.bind(this, "identityCard")}
-                        className="btn btn-light UpdateProfile__Main__FieldEdit"
-                      >
-                        <img src={editIcon} alt="Edit icon" height="20px" />
-                      </button>
-                    </li>
-                  )}
+                    <button
+                      onClick={this.handleEdit.bind(this, "identityCard")}
+                      className="btn btn-light UpdateProfile__Main__FieldEdit"
+                    >
+                      <img src={editIcon} alt="Edit icon" height="20px" />
+                    </button>
+                  </li>
+                )}
 
                 <li className="UpdateProfile__Main__FieldItem">
                   <div className="UpdateProfile__Main__FieldName">Loại TK</div>
                   <FormGroup>
-                    <Input type="select" name="permission" id="permission" onChange={this.handleChange} value={this.state.profiles["permission"]}>
-                      <option value = "USER">Cá Nhân</option>
-                      <option value = "ORG">Tổ Chức</option>
+                    <Input
+                      type="select"
+                      name="permission"
+
+                      onChange={this.handleChange}
+                      value={this.state.profiles["permission"]}
+                      disabled={this.props.user.isVerified === true}
+                    >
+                      <option value="USER">Cá Nhân</option>
+                      <option value="ORG">Tổ Chức</option>
                     </Input>
                   </FormGroup>
-                
                 </li>
               </ul>
             </section>

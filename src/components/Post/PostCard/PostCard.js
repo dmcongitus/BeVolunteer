@@ -103,7 +103,8 @@ class PostCard extends React.Component {
     });
     return (
       <Row className="postCard">
-        <HeaderPost {...this.props} />
+        {this.props.publisher ? (<HeaderPost type="ACTIVITY" user = {this.props.publisher}{...this.props}/>) :( <HeaderPost {...this.props} />)}
+       
 
         <Col xs="1">
           <div className="menu-post">
@@ -193,6 +194,7 @@ class PostCard extends React.Component {
               <Alert color="success">{this.props.description}</Alert>
 
               <div className="item-right">
+                
                 {this.props.type === "ACTIVITY" && (
                   <div>
                     <Button className="mr-1 add-btn">

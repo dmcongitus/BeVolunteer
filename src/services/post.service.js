@@ -26,7 +26,21 @@ export function getUserPosts(username) {
         method: 'get'
     })
 }
-
+export function getPosts(type) {
+    if (type === 0) {
+        return request({
+            url:`posts`,
+            method: 'get'
+        })
+        //return Axios.get('/posts', { headers: { "x-access-token": localStorage.getItem("token") } });
+    } else {
+        return request({
+            url:`/posts?type=${type}`,
+            method: 'get'
+        })
+        //return Axios.get(`/posts?type=${type}`, { headers: { "x-access-token": localStorage.getItem("token") } });
+    }
+}
 // export function createPost(post) {
 //     return Axios.post('/posts', post, { headers: { "x-access-token": localStorage.getItem("token") } })
 //         .then(({ data: { id } }) => {
@@ -42,13 +56,7 @@ export function getUserPosts(username) {
 //         });
 // }
 
-export function getPosts(type) {
-    if (type === 0) {
-        return Axios.get('/posts', { headers: { "x-access-token": localStorage.getItem("token") } });
-    } else {
-        return Axios.get(`/posts?type=${type}`, { headers: { "x-access-token": localStorage.getItem("token") } });
-    }
-}
+
 
 export function getSpecificPost(postId) {
     return request({

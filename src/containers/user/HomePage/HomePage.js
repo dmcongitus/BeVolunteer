@@ -4,25 +4,29 @@ import Post from "../../../components/Post/PostCard/PostCard";
 import NewPost from "../../../components/Post/NewPost/NewPost";
 import "./HomePage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
-import { getPosts } from "../../../services/post.service";
+import { getNewfeed } from "../../../services/newfeed";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 class HomePage extends Component {
   state = {
-    posts: []
+    data: []
   };
 
   componentDidMount = () => {
-    getPosts(0)
-      .then(({ data: { posts } }) => this.setState({ posts }))
+    getNewfeed(0)
+      .then(data => {
+        this.setState(data);
+      })
       .catch(e => console.log(e));
   };
 
   onPostTypeChanged = postType => {
-    getPosts(postType)
-      .then(({ data: { posts } }) => this.setState({ posts }))
-      .catch(e => console.log(e));
+    getNewfeed(postType)
+    .then(data => {
+      this.setState(data);
+    })
+    .catch(e => console.log(e));
   };
 
   render() {
@@ -35,8 +39,10 @@ class HomePage extends Component {
         {this.props.permission === "USER" && (
           <NewPost style={{ zIndex: 50, position: "relative" }} />
         )}
-        {this.state.posts.map((post) => <Post key={post.id} {...post}></Post>)}
-   
+        {console.log(this.state.data)}
+        {this.state.data.map(post => (
+          <Post key={post.id} {...post} />
+        ))}
       </PageLayout>
     );
   }
