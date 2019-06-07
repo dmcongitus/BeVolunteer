@@ -20,7 +20,12 @@ export function updateImage(id, image) {
         data: formData
     })
 }
-
+export function getUserPosts(username) {
+    return request({
+        url: `accounts/u/` + username +`/posts`,
+        method: 'get'
+    })
+}
 
 // export function createPost(post) {
 //     return Axios.post('/posts', post, { headers: { "x-access-token": localStorage.getItem("token") } })

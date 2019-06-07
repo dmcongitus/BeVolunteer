@@ -130,3 +130,17 @@ i{
 .pointer:hover{
     cursor: pointer;
 }
+
+/* type post css */
+.PLACE{
+    color: #D01013;
+}
+.ACTIVITY{
+    color: #004916;
+}
+.DONATION{
+    color:   #853b92;
+}
+.PERSONAL_ACTIVITY{
+    color:   #011D25;
+}

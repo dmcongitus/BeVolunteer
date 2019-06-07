@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import HistoryCard from "../../../components/user/HistoryCard/HistoryCard";
 import "./HistoryPage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
-import { getMyPosts } from '../../../services/me.service';
+import { getUserPosts } from '../../../services/post.service';
 
 class History extends Component {
     state = {
@@ -12,7 +12,7 @@ class History extends Component {
     }
 
     componentDidMount = async () => {
-        const { data: {posts} } = await getMyPosts(this.props.id);
+        const { data: {posts} } = await getUserPosts(this.props.username);
         console.log(posts);
         this.setState({ posts });
     }
@@ -26,6 +26,6 @@ class History extends Component {
   }
 }
 
-const mapStateToProps = ({ auth: { user: {id} } }) => ({ id });
+const mapStateToProps = ({ auth: { user: {username} } }) => ({ username });
 
 export default connect(mapStateToProps)(History);

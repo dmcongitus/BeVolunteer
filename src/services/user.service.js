@@ -40,7 +40,7 @@ export function unVerifyUser(username) {
 
 export function createUser(params) {
   return request({
-    url: `"/accounts/`,
+    url: `"/accounts/u`,
     method: 'post',
     data: {...params}
   })
