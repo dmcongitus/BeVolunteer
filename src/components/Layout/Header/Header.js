@@ -4,7 +4,14 @@ import logo from "../../../images/volunteer.png";
 import logoText from "../../../images/volunteerText.png";
 import * as authActions from "../../../actions/auth.action";
 import "./Header.css";
-import { Button,Row, Popover, PopoverHeader, PopoverBody } from "reactstrap";
+import {
+  Button,
+  Row,
+  Popover,
+  UncontrolledPopover,
+  PopoverHeader,
+  PopoverBody
+} from "reactstrap";
 
 class Header extends React.Component {
   constructor(props) {
@@ -70,78 +77,71 @@ class Header extends React.Component {
                   </a>
                 </li>
               </NavLink>
-              <li className="nav-item active" id="Popover1">
+              <Button
+                className="nav-item active"
+                style={{ all: "unset" }}
+                id="PopoverFocus"
+              >
                 <a className="nav-link">
                   <i className="fa fa-bell">
                     <span className="badge badge-info">11</span>
                   </i>
                   Thông báo
                 </a>
-              </li>
-              <Popover
+              </Button>
+
+              <UncontrolledPopover
+                trigger="focus"
                 placement="bottom"
-                isOpen={this.state.popoverOpen}
-                target="Popover1"
-                toggle={this.toggle}
-                
-              
+                target="PopoverFocus"
               >
                 <PopoverHeader>Thông báo</PopoverHeader>
-                <PopoverBody className = "notifi-header">
-                 
-         
-            <div className="item-center">
-              <div >
-                <img
-                  className="img-user-postCard rounded-circle"
-                  src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
-                  alt="UserAvatar"
-                  style={{ width: "30px", height: "30px" }}
-                />
-              </div>
-              <div className="ml-2">
-                Sự kiện  <b>Xuân tình nguyện</b> đã bắt đầu
-              </div>
-            </div>
-        
+                <PopoverBody className="notifi-header">
+                  <div className="item-center">
+                    <div>
+                      <img
+                        className="img-user-postCard rounded-circle"
+                        src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
+                        alt="UserAvatar"
+                        style={{ width: "30px", height: "30px" }}
+                      />
+                    </div>
+                    <div className="ml-2">
+                      Sự kiện <b>Xuân tình nguyện</b> đã bắt đầu
+                    </div>
+                  </div>
                 </PopoverBody>
-                <PopoverBody className = "notifi-header">
-                 
-         
-            <div className="item-center">
-              <div >
-                <img
-                  className="img-user-postCard rounded-circle"
-                  src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
-                  alt="UserAvatar"
-                  style={{ width: "30px", height: "30px" }}
-                />
-              </div>
-              <div className="ml-2">
-                tài khoản đã được  <b>Xác thực</b>
-              </div>
-            </div>
-        
+                <PopoverBody className="notifi-header">
+                  <div className="item-center">
+                    <div>
+                      <img
+                        className="img-user-postCard rounded-circle"
+                        src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
+                        alt="UserAvatar"
+                        style={{ width: "30px", height: "30px" }}
+                      />
+                    </div>
+                    <div className="ml-2">
+                      tài khoản đã được <b>Xác thực</b>
+                    </div>
+                  </div>
                 </PopoverBody>
-                <PopoverBody className = "notifi-header">
-                 
-         
-                 <div className="item-center">
-                   <div >
-                     <img
-                       className="img-user-postCard rounded-circle"
-                       src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
-                       alt="UserAvatar"
-                       style={{ width: "30px", height: "30px" }}
-                     />
-                   </div>
-                   <div className="ml-2">
-                     Sự kiện  <b>Xuân tình nguyện</b> đã bắt đầu
-                   </div>
-                 </div>
-             
-                     </PopoverBody>
-              </Popover>
+                <PopoverBody className="notifi-header">
+                  <div className="item-center">
+                    <div>
+                      <img
+                        className="img-user-postCard rounded-circle"
+                        src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
+                        alt="UserAvatar"
+                        style={{ width: "30px", height: "30px" }}
+                      />
+                    </div>
+                    <div className="ml-2">
+                      Sự kiện <b>Xuân tình nguyện</b> đã bắt đầu
+                    </div>
+                  </div>
+                </PopoverBody>
+              </UncontrolledPopover>
 
               <li className="nav-item active" onClick={this.log_out}>
                 <a className="nav-link">

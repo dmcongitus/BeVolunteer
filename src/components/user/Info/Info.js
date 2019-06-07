@@ -6,11 +6,8 @@ import * as userActions from "../../../actions/user.actions";
 
 import "./Info.css";
 
-import profileIcon from "../../../images/profile.png";
-import cancelIcon from "../../../images/cancel.png";
 import editIcon from "../../../images/edit.png";
 import identityImage from "../../../images/identity.png";
-import { userInfo } from "os";
 import { Alert, Badge } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 var permissionArr = { USER: "Cá nhân", ORG: "Tổ chức" };

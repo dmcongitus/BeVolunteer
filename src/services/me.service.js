@@ -6,12 +6,11 @@ import request from './request'
  * @param {Object} userInfo User's information
  */
 export function updateUserInfo(username, userInfo) {
-    return Axios.put('/accounts/' + username,
-        userInfo, {
-            headers: {
-                "x-access-token": getToken()
-            }
-        });
+  return request({
+    url: `/accounts/u/`+ username,
+    method: 'put',
+    data: userInfo
+  })
 }
 
 /**

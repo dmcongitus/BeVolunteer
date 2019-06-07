@@ -198,6 +198,7 @@ class Payment extends React.Component {
                   <button
                     type="reset"
                     className="btn btn-default btn-lg btn-block"
+                    onClick= {this.props.close}
                   >
                     Hủy
                   </button>
@@ -206,7 +207,7 @@ class Payment extends React.Component {
                   <button
                     type="submit"
                     className="btn btn-success btn-lg btn-block"
-                    onClick= {this.toggle}
+                    onClick= {this.props.close}
                   >
                     Thanh Toán
                   </button>
