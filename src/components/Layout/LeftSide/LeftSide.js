@@ -29,7 +29,7 @@ class LeftSide extends Component {
             <div className="logo ">
             
               <img alt="avatar" onClick={() => this.avatar.click()}
-                src={"resources/" + (this.props.avatar || 
+                src={"/resources/" + (this.props.avatar || 
 				"https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.15752-9/57393041_305492127011755_8740904577945042944_n.jpg?_nc_cat=105&_nc_oc=AQn7GUnB8UXlqMTogNJWDlqNjMEYb8gBeMPWreuL7dXQQHbhb9R6_PFCvI5m-de4R8E&_nc_ht=scontent.fsgn2-1.fna&oh=70f6e9461f233111834a04094f2fa45e&oe=5D33B790")}
                 className="mx-auto .d-block"
 				style={{cursor:"pointer"}}

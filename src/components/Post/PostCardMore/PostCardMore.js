@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux';
 import { NavLink, Link } from "react-router-dom";
 import {
   Modal,
@@ -20,7 +21,9 @@ import {
 } from "reactstrap";
 import Payment from "../Payment/Payment";
 import HeaderPost from "../HeaderPost/HeaderPost"
+import Comment from './Comment/Comment';
 import "./PostCardMore.css";
+import Axios from "axios";
 
 class PostCardMore extends React.Component {
   constructor(props) {
@@ -30,7 +33,15 @@ class PostCardMore extends React.Component {
       activeIndex: 0,
       items: [],
       dropdownOpen: false,
-      paymentOpen: false
+      paymentOpen: false,
+      comments: [{
+        name:"NTN",
+        content:"lkajsdkjdsfoiwer"
+      }, {
+        name: "afsdif",
+        content:"asdl;kjfu9308"
+      }],
+      comment: ""
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -88,6 +99,44 @@ class PostCardMore extends React.Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
+  }
+
+  componentDidMount = () => {
+    Axios.get(`/posts/${this.props._id}/comments`, {headers: {"x-access-token": localStorage.getItem("token")}})
+    .then(({data}) => {
+      this.setState({comments: data});
+    }).catch((err) => {
+      alert(err);
+    });
+  }
+
+  handleCommentOnChange = (e) => {
+    this.setState({comment: e.target.value});
+  }
+
+  handleCommentOnSubmit = (e) => {
+    e.preventDefault();
+
+    const {_id, permisison, avatar} = this.props.user;
+    Axios.post("/comments", {
+      user:_id, 
+      userModel: permisison, 
+      object: this.props._id, 
+      objectModel:"Post",
+      content:this.state.comment,
+    },
+      {
+        headers: {
+          "x-access-token": localStorage.getItem("token")
+        }
+      }).then(() => {
+        this.setState(prevState => ({
+          comments: [{name:this.props.user.name, content: prevState.comment, avatar}, ...prevState.comments],
+          comment: ''
+        }));
+      }).catch((err) => {
+        alert(err);
+      })
   }
 
   render() {
@@ -256,52 +305,21 @@ class PostCardMore extends React.Component {
               </div>
               <div className="ml-2 my-Comment ">
                 <div className="item-row item-center d-flex">
-                  <b className="tcl-1">Minh Công</b>
-                  <div className="flex-grow-1 ml-3">
+                  <b className="tcl-1">{this.props.user.name}</b>
+                  <form className="flex-grow-1 ml-3" onSubmit={this.handleCommentOnSubmit}>
                     <Input
                       type="text"
                       id="exampleEmail"
                       placeholder="Bình luận"
+                      onChange={this.handleCommentOnChange}
+                      value={this.state.comment}
                     />
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
           </Row>
-          <Row className="pb-2 ml-3">
-            <div className="item-center">
-              <div>
-                <img
-                  className="img-user-postCard rounded-circle"
-                  src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
-                  alt="UserAvatar"
-                  style={{ width: "30px", height: "30px" }}
-                />
-              </div>
-              <div className="ml-2 border-Comment">
-                <b>DH Sài Gòn {this.props.name}</b> Text messaging, or texting,
-                is the act of composing and sending electronic messages,
-              </div>
-            </div>
-          </Row>
-
-       
-          <Row className="header-postCard pb-3 ml-3">
-            <div className="item-center">
-              <div>
-                <img
-                  className="img-user-postCard rounded-circle"
-                  src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
-                  alt="UserAvatar"
-                  style={{ width: "30px", height: "30px" }}
-                />
-              </div>
-              <div className="ml-2 border-Comment">
-                <b>Yasuo {this.props.name}</b> is the act of composing and
-                sending electronic
-              </div>
-            </div>
-          </Row>
+          {this.state.comments.map(comment => <Comment {...comment}/>)}
         </Col>
       </Row>
           {/*/ cardbox-like */}
@@ -313,5 +331,7 @@ class PostCardMore extends React.Component {
   }
 }
 
-export default PostCardMore;
+const mapStateToProps = ({auth:{user}}) => ({user});
+
+export default connect(mapStateToProps)(PostCardMore);
 
