@@ -15,13 +15,25 @@ class SearchPage extends Component {
 
   
   componentDidMount = () => {
-    this.setState({ searchTxt: this.props.match.params });
+    alert("get")
+    this.setState({ searchTxt: this.props.match.params.searchText });
     getNewfeed(0)
       .then(data => {
         this.setState(data);
       })
       .catch(e => console.log(e));
   };
+
+  componentDidUpdate = (prevProps) => {
+    if (this.props.match.params.searchText !== prevProps.match.params.searchText) {
+      console.log("get",  this.props.match.params)
+      getNewfeed(0)
+      .then(data => {
+        this.setState(data);
+      })
+      .catch(e => console.log(e));
+    }
+  }
 
   onPostTypeChanged = postType => {
     getNewfeed(postType)
@@ -56,7 +68,7 @@ class SearchPage extends Component {
         onPostTypeChanged={this.onPostTypeChanged}
       >
         {this.state.data.map(post =>
-          this.mySearch(post, this.state.searchTxt.searchText) === true ? (
+          this.mySearch(post, this.props.match.params.searchText) === true ? (
             <Post key={post.id} {...post} />
           ) : null
         )}

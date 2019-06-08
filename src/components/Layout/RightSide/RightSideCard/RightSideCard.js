@@ -13,7 +13,7 @@ const RightSideCard = props => (
         />
       </div>
       <a>
-        <h6>Giúp đỡ cụ già tại ngã 6 lý thái tổ</h6>
+        <h6>{props.title}</h6>
       </a>
       <p>
         <small>
