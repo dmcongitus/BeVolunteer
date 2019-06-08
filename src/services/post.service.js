@@ -34,10 +34,10 @@ export function getPosts(type) {
         })
         //return Axios.get('/posts', { headers: { "x-access-token": localStorage.getItem("token") } });
     } else {
-        return request({
-            url:`/posts?type=${type}`,
-            method: 'get'
-        })
+        // return request({
+        //     url:`/posts?type=${type}`,
+        //     method: 'get'
+        // })
         //return Axios.get(`/posts?type=${type}`, { headers: { "x-access-token": localStorage.getItem("token") } });
     }
 }

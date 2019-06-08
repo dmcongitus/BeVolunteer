@@ -155,7 +155,7 @@ class PostCard extends React.Component {
                     <Input
                       type="textarea"
                       name = "reportText"
-                      placeholder="Giải thích vì sao bạn báo cáo bài viết"
+                      placeholder="Hãy cho chúng tôi biết điều gì đang xảy ra?"
                       rows={5}
                       onChange={this.onChange}
                     />

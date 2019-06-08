@@ -40,7 +40,7 @@ export function getUsersVerify() {
 }
 export function unVerifyUser(username) {
   return request({
-    url: `/admins/unverify/`+ username,
+    url: `/admins/verify/`+ username + `?accept=false`,
     method: 'put',
   })
 }
