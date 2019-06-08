@@ -1,8 +1,27 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
 import "./HeaderPost.css";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+class headerPost extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+     
+    };
 
-function headerPost(props) {
+    this.toggle = this.toggle.bind(this);
+   
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
+  }
+ 
+
+  render() {
   return (
     <Col className="header-col" xs="11">
       <Row className="item-center header-postCard pb-3">
@@ -10,26 +29,41 @@ function headerPost(props) {
           <div>
             <img
               className="img-user-postCard rounded-circle"
-              src={"/resources/"+props.user.avatar}
+              src={"/resources/"+this.props.user.avatar}
               alt="UserAvatar"
+              style={{}}
+              onClick={this.toggle}
             />
           </div>
+          {this.state.modal?( <Modal isOpen="true" toggle={this.toggle} className={this.props.className}>
+          <ModalBody>
+          <img
+              className="img-slide-postCard"
+              src={"/resources/"+this.props.user.avatar}
+              alt="UserAvatar"
+              style={{}}
+              onClick={this.toggle}
+            />
+          </ModalBody>
+         
+        </Modal>):null}
+         
         </Col>
         <Col xs="auto">
           <div className="ml-2">
             
-            {props.user.name} 
+            {this.props.user.name} 
            
-            {props.user.isVerified === true && (<i className="ml-1 small fas fa-check-circle check-user"></i>)}
+            {this.props.user.isVerified === true && (<i className="ml-1 small fas fa-check-circle check-user"></i>)}
             
             <span className="ml-1 small">đã chia sẻ một</span>
             <span className="ml-1">
               <b>
-                {props.type === "PLACE" ? (
+                {this.props.type === "PLACE" ? (
                   <span className="tcl-2">Địa điểm</span>
-                ) : props.type === "DONATION" ? (
+                ) : this.props.type === "DONATION" ? (
                   <span className="tcl-3">Quyên góp</span>
-                ) : props.type === "ACTIVITY" ? (
+                ) : this.props.type === "ACTIVITY" ? (
                   <span className="tcl-1">Sự kiện</span>
                 ) : (
                   <span className="tcl-4">Kỉ niệm</span>
@@ -38,9 +72,9 @@ function headerPost(props) {
             </span>
             <div className="small">
               <i className="fa fa-calendar" data-original-title title />
-              {new Date(props.createdAt).toLocaleDateString()}
+              {new Date(this.props.createdAt).toLocaleDateString()}
               <i className="fas fa-map-marker-alt ml-3" />
-              {props.address}
+              {this.props.address}
             </div>
           </div>
         </Col>
@@ -48,4 +82,7 @@ function headerPost(props) {
     </Col>
   );
 }
+}
 export default headerPost;
+
+

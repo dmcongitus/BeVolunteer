@@ -25,7 +25,7 @@ class PostPage extends Component {
         }
 
         if (this.state.post !== undefined) {
-            console.log(this.state.post);
+          
         return (
             <PostCardMore {...this.state.post.post}/>
         );

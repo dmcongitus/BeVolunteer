@@ -5,7 +5,7 @@ import HistoryCard from "../../../components/user/HistoryCard/HistoryCard";
 import "./HistoryPage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { getUserPosts } from '../../../services/post.service';
-
+ import PostCard from "../../../components/Post/PostCard/PostCard"
 class History extends Component {
     state = {
         posts: []
@@ -20,7 +20,7 @@ class History extends Component {
   render() {
       return (
           <PageLayout title="Lịch sử họat động">
-              {this.state.posts.map((post) => <HistoryCard key={post.id} {...post}></HistoryCard>)}
+              {this.state.posts.map((post) => <PostCard key={post.id} {...post}></PostCard>)}
           </PageLayout>
       );
   }

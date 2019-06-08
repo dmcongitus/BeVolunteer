@@ -13,7 +13,7 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,
+  Input,
   Dropdown,
   DropdownMenu,
   DropdownToggle
@@ -31,8 +31,11 @@ class PostCard extends React.Component {
       activeIndex: 0,
       items: props.filenames.map(filename => `/resources/${filename}`),
       dropdownOpen: false,
-      paymentOpen: false
+      paymentOpen: false,
+      modalReport: false,
+      reportText: ""
     };
+    this.toggleReport = this.toggleReport.bind(this);
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
@@ -41,6 +44,11 @@ class PostCard extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.toggleMenuPost = this.toggleMenuPost.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
+  }
+  toggleReport() {
+    this.setState(prevState => ({
+      modalReport: !prevState.modalReport
+    }));
   }
   toggleMenuPost() {
     this.setState({
@@ -59,7 +67,9 @@ class PostCard extends React.Component {
   onExited() {
     this.animating = false;
   }
-
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
   next() {
     if (this.animating) return;
     const nextIndex =
@@ -97,11 +107,12 @@ class PostCard extends React.Component {
           onExited={this.onExited}
           key={item}
         >
-          <img src={item} className="img-slide-style" />
+          <img src={item} className="img-slide-style img-slide-postCard" />
         </CarouselItem>
       );
     });
     return (
+      
       <div className="postCard">
         <Row>
           {this.props.publisher ? (
@@ -129,20 +140,41 @@ class PostCard extends React.Component {
                   <i class="fas fa-bars" />
                 </DropdownToggle>
                 <DropdownMenu className="menu-post-item p-1">
-                  <div onClick={this.toggleMenuPost}>
-                    <i class="fas fa-flag ml-3" />
-                    Lưu
-                  </div>
-                  <div onClick={this.toggleMenuPost}>
+                  <div onClick={this.toggleReport}>
                     <i class="fas fa-bug ml-3" />
                     Báo cáo
                   </div>
                 </DropdownMenu>
               </Dropdown>
+              {this.state.modalReport && (
+                <Modal isOpen="true" toggle={this.toggleReport}>
+                  <ModalHeader toggle={this.toggleReport}>
+                    Báo cáo bài viết
+                  </ModalHeader>
+                  <ModalBody>
+                    <Input
+                      type="textarea"
+                      name = "reportText"
+                      placeholder="Giải thích vì sao bạn báo cáo bài viết"
+                      rows={5}
+                      onChange={this.onChange}
+                    />
+                    {console.log(this.state.reportText)}
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button className="mr-1 new-btn">
+                      <i class="fas fa-bug icon-button" />
+                      Báo cáo
+                    </Button>
+                    <Button color="secondary" onClick={this.toggleReport}>
+                      Cancel
+                    </Button>
+                  </ModalFooter>
+                </Modal>
+              )}
             </div>
           </Col>
         </Row>
-
         <Row>
           <Col xs="6">
             <div onClick={this.toggle}>
@@ -199,7 +231,7 @@ class PostCard extends React.Component {
             {/*/ cardbox-item */}
           </Col>
 
-          <Col xs="6" className="textMedia pl-0" >
+          <Col xs="6" className="textMedia pl-0">
             <Alert color="success">{this.props.description}</Alert>
 
             <div className="item-right">

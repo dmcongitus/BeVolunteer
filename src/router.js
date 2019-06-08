@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout/MainLayout';
+import SearchPage from './containers/user/SearchPage/SearchPage';
 import HomePage from './containers/user/HomePage/HomePage';
 import NotFoundPage from './containers/NotFoundPage/NotFoundPage';
 import LoginPage from './containers/LoginPage/LoginPage';
@@ -39,7 +40,7 @@ export default function router({ isAuthenticated, permission, username }) {
                 <Route path='/login' exact component={LoginPage} isAuthenticated={isAuthenticated} />
                 <MainLayout permission={permission} username={username}>
                     <Switch>
-                        <PrivateRoute path='/' exact component={HomePage} isAuthenticated={isAuthenticated} />
+                    <PrivateRoute path='/' exact component={HomePage} isAuthenticated={isAuthenticated} />                       
                         <PrivateRoute path='/me' exact component={InfoPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/no-permission" component={NoPermissionPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/history" exact component={HistoryPage} isAuthenticated={isAuthenticated} />
@@ -47,6 +48,8 @@ export default function router({ isAuthenticated, permission, username }) {
                         <PrivateRoute path="/medal" exact component={MedalPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path='/event' exact component={CreateEvent} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path='/eventList' exact component={EventList} isAuthenticated={isAuthenticated} />
+                       
+                        <PrivateRoute path='/searchPage/:searchText' exact component={SearchPage} isAuthenticated={isAuthenticated} />
 
                         
                         <NeedPermissionRoute path="/post/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />

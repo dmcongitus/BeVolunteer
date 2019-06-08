@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import logo from "../../../images/volunteer.png";
 import logoText from "../../../images/volunteerText.png";
 import * as authActions from "../../../actions/auth.action";
@@ -19,10 +19,13 @@ class Header extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      popoverOpen: false
+      popoverOpen: false,
+      searchText: ""
     };
   }
-
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
   toggle() {
     this.setState({
       popoverOpen: !this.state.popoverOpen
@@ -46,13 +49,17 @@ class Header extends React.Component {
               type="text"
               placeholder="Search"
               aria-label="Search"
+              name="searchText"
+              onChange={this.onChange}
             />
+             <Link to={`/searchPage/${this.state.searchText}`}>
             <button
               className="btn btn-outline-success my-2 my-sm-0"
               type="submit"
             >
               Search
             </button>
+            </Link>
           </form>
 
           <button

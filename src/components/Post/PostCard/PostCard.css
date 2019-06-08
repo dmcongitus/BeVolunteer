@@ -5,122 +5,124 @@
 * ===========================================================
 *
 */
-.img-fluid{
-    margin-left: 60px;
-    height: 200px;
-    width: auto;
-    margin-bottom: 20px;
-   
+.img-fluid {
+  margin-left: 60px;
+  height: 200px;
+  width: auto;
+  margin-bottom: 20px;
 }
-.postCard{
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    margin: 0px;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: white;
-    box-shadow:0  1px 2px gray;
-    border-top: 10px solid #004916;
-   
-    
-
+.postCard {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin: 0px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 1px 2px gray;
+  border-top: 10px solid #004916;
 }
-.post-album{
- 
+.post-album {
   border-radius: 3px;
   width: 100%;
   height: 200px;
-  border: 1px solid #0D6628;
+  border: 1px solid #0d6628;
   object-fit: cover;
- 
 }
-
-.header-col{
+.post-album-more {
+  border-radius: 3px;
+  width: 100%;
+  border: 1px solid #0d6628;
+  object-fit: cover;
+}
+.header-col {
   max-height: 100%;
 }
 
-.icon-button{
+.icon-button {
   border-right: 1px solid white;
   padding: 5px;
   padding-right: 10px;
   position: 0;
-
 }
 
-.add-btn{
-  background-color: #042C38;
+.add-btn {
+  background-color: #042c38;
 }
-.add-btn:hover{
+.add-btn:hover {
   background-color: #387282;
 }
 
-.donate-btn{
+.donate-btn {
   background-color: #853b92;
 }
-.donate-btn:hover{
+.donate-btn:hover {
   background-color: #853b92b9;
 }
 
-.new-btn{
-  background-color: #D01013;
+.new-btn {
+  background-color: #d01013;
 }
-.new-btn:hover{
+.new-btn:hover {
   background-color: rgba(208, 16, 19, 0.7);
 }
 
-.img-slide-style{
+.img-slide-style {
   height: 500px;
   width: 100%;
 }
 
-.menu-post{
+.menu-post {
   height: 100%;
   width: 100%;
   text-align: right;
   margin-right: -20px;
 }
 
-.btn-down{
+.btn-down {
   list-style: unset;
   background-color: unset;
   border: unset;
-  color: #042C38;
+  color: #042c38;
   padding: 5px;
   text-align: center;
-
 }
 
-.btn-down:hover{
+.btn-down:hover {
   background-color: unset;
   border: unset;
-  color: #042C38;
- 
+  color: #042c38;
+
   padding: 5px;
 }
 
-.menu-post:hover{
-  color: #D01013;
+.menu-post:hover {
+  color: #d01013;
   cursor: pointer;
 }
 
-.slide-image-post{
+.slide-image-post {
   max-width: 800px;
-
 }
 
-.menu-post-item div:hover{
-
+.menu-post-item div:hover {
   background-color: silver;
   font-weight: bold;
   border-bottom: 1px solid gray;
   border-top: 1px solid gray;
-  box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;
- 
- 
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
-.menu-post-item div{
-
- padding: 0.25rem;
+.menu-post-item div {
+  padding: 0.25rem;
 }
 
+.img-slide-postCard {
+  border-radius: 3px;
+  width: 100%;
+  height: 500px;
+  border: 1px solid #0d6628;
+  object-fit: contain;
+  border: unset;
+}

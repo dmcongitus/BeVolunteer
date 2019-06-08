@@ -1,5 +1,5 @@
 import React from "react";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import {
   Modal,
@@ -17,11 +17,12 @@ import {
   CarouselCaption,
   Dropdown,
   DropdownMenu,
-  DropdownToggle, Input
+  DropdownToggle,
+  Input
 } from "reactstrap";
 import Payment from "../Payment/Payment";
-import HeaderPost from "../HeaderPost/HeaderPost"
-import Comment from './Comment/Comment';
+import HeaderPost from "../HeaderPost/HeaderPost";
+import Comment from "./Comment/Comment";
 import "./PostCardMore.css";
 import Axios from "axios";
 
@@ -34,13 +35,16 @@ class PostCardMore extends React.Component {
       items: [],
       dropdownOpen: false,
       paymentOpen: false,
-      comments: [{
-        name:"NTN",
-        content:"lkajsdkjdsfoiwer"
-      }, {
-        name: "afsdif",
-        content:"asdl;kjfu9308"
-      }],
+      comments: [
+        {
+          name: "NTN",
+          content: "lkajsdkjdsfoiwer"
+        },
+        {
+          name: "afsdif",
+          content: "asdl;kjfu9308"
+        }
+      ],
       comment: ""
     };
     this.next = this.next.bind(this);
@@ -102,42 +106,53 @@ class PostCardMore extends React.Component {
   }
 
   componentDidMount = () => {
-    Axios.get(`/posts/${this.props._id}/comments`, {headers: {"x-access-token": localStorage.getItem("token")}})
-    .then(({data}) => {
-      this.setState({comments: data});
-    }).catch((err) => {
-      alert(err);
-    });
-  }
+    Axios.get(`/posts/${this.props._id}/comments`, {
+      headers: { "x-access-token": localStorage.getItem("token") }
+    })
+      .then(({ data }) => {
+        this.setState({ comments: data });
+      })
+      .catch(err => {
+        alert(err);
+      });
+  };
 
-  handleCommentOnChange = (e) => {
-    this.setState({comment: e.target.value});
-  }
+  handleCommentOnChange = e => {
+    this.setState({ comment: e.target.value });
+  };
 
-  handleCommentOnSubmit = (e) => {
+  handleCommentOnSubmit = e => {
     e.preventDefault();
 
-    const {_id, permisison, avatar} = this.props.user;
-    Axios.post("/comments", {
-      user:_id, 
-      userModel: permisison, 
-      object: this.props._id, 
-      objectModel:"Post",
-      content:this.state.comment,
-    },
+    const { _id, permisison, avatar } = this.props.user;
+    Axios.post(
+      "/comments",
+      {
+        user: _id,
+        userModel: permisison,
+        object: this.props._id,
+        objectModel: "Post",
+        content: this.state.comment
+      },
       {
         headers: {
           "x-access-token": localStorage.getItem("token")
         }
-      }).then(() => {
+      }
+    )
+      .then(() => {
         this.setState(prevState => ({
-          comments: [{name:this.props.user.name, content: prevState.comment, avatar}, ...prevState.comments],
-          comment: ''
+          comments: [
+            { name: this.props.user.name, content: prevState.comment, avatar },
+            ...prevState.comments
+          ],
+          comment: ""
         }));
-      }).catch((err) => {
-        alert(err);
       })
-  }
+      .catch(err => {
+        alert(err);
+      });
+  };
 
   render() {
     const { activeIndex } = this.state;
@@ -155,98 +170,95 @@ class PostCardMore extends React.Component {
     });
     return (
       <div className="side-body">
-      <Row className="postCard">
-        <HeaderPost {...this.props}></HeaderPost>
-        <Col xs="1">
-          {" "}
-          <div className="menu-post">
-            <Dropdown
-              isOpen={this.state.dropdownOpen}
-              toggle={this.toggleMenuPost}
-            >
-              <DropdownToggle
-                tag="span"
-                onClick={this.toggleMenuPost}
-                data-toggle="dropdown"
-                aria-expanded={this.state.dropdownOpen}
+        <Row className="postCard">
+          <HeaderPost {...this.props} />
+          <Col xs="1">
+            {" "}
+            <div className="menu-post">
+              <Dropdown
+                isOpen={this.state.dropdownOpen}
+                toggle={this.toggleMenuPost}
               >
-                <i class="fas fa-bars" />
-              </DropdownToggle>
-              <DropdownMenu className="menu-post-item p-1">
-                <div onClick={this.toggleMenuPost}>
-                  <i class="fas fa-flag ml-3" />
-                  Lưu
-                </div>
-                <div onClick={this.toggleMenuPost}>
-                  <i class="fas fa-bug ml-3" />
-                  Báo cáo
-                </div>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        </Col>
-        <div className="p-2">{this.props.description}</div>
-        <div style={{ width: "100%" }}>
-          <Row>
-            <Col>
-              <div onClick={this.toggle}>
-                {this.clearArray()}
-                {this.props.filenames.map(filename => {
-                  this.state.items.push(`/resources/${filename}`);
-                })}
-                {this.state.items.length < 2 ? (
-                  <img
-                    style={{ cursor: "pointer" }}
-                    src={`/resources/${this.props.filenames[0]}`}
-                    className="post-album-more"
-                  />
-                ) : (
-                  <div className="Newpost-img__more">
+                <DropdownToggle
+                  tag="span"
+                  onClick={this.toggleMenuPost}
+                  data-toggle="dropdown"
+                  aria-expanded={this.state.dropdownOpen}
+                >
+                  <i class="fas fa-bars" />
+                </DropdownToggle>
+                <DropdownMenu className="menu-post-item p-1">
+                  <div onClick={this.toggleMenuPost}>
+                    <i class="fas fa-flag ml-3" />
+                    Lưu
+                  </div>
+                  <div onClick={this.toggleMenuPost}>
+                    <i class="fas fa-bug ml-3" />
+                    Báo cáo
+                  </div>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+          </Col>
+          <div className="p-2">{this.props.description}</div>
+          <div style={{ width: "100%" }}>
+            <Row>
+              <Col>
+                <div onClick={this.toggle}>
+                  {this.clearArray()}
+                  {this.props.filenames.map(filename => {
+                    this.state.items.push(`/resources/${filename}`);
+                  })}
+                  {this.state.items.length < 2 ? (
                     <img
                       style={{ cursor: "pointer" }}
                       src={`/resources/${this.props.filenames[0]}`}
-                      className="post-album"
+                      className="post-album-more"
                     />
-                    <div>+{this.state.items.length - 1}</div>
-                  </div>
-                )}
-              </div>
-              <Modal
-                isOpen={this.state.modal}
-                toggle={this.toggle}
-                className="slide-image-post"
-              >
-                <ModalHeader toggle={this.toggle}>Album </ModalHeader>
-                <ModalBody>
-                  <Carousel
-                    activeIndex={activeIndex}
-                    next={this.next}
-                    previous={this.previous}
-                  >
-                    <CarouselIndicators
-                      items={this.state.items}
+                  ) : (
+                    <div className="Newpost-img__more">
+                      <img
+                        style={{ cursor: "pointer" }}
+                        src={`/resources/${this.props.filenames[0]}`}
+                        className="post-album-more"
+                      />
+                      <div>+{this.state.items.length - 1}</div>
+                    </div>
+                  )}
+                </div>
+                <Modal
+                  isOpen={this.state.modal}
+                  toggle={this.toggle}
+                  className="slide-image-post"
+                >
+                  <ModalHeader toggle={this.toggle}>Album </ModalHeader>
+                  <ModalBody>
+                    <Carousel
                       activeIndex={activeIndex}
-                      onClickHandler={this.goToIndex}
-                    />
-                    {slides}
-                    <CarouselControl
-                      direction="prev"
-                      directionText="Previous"
-                      onClickHandler={this.previous}
-                    />
-                    <CarouselControl
-                      direction="next"
-                      directionText="Next"
-                      onClickHandler={this.next}
-                    />
-                  </Carousel>
-                </ModalBody>
-              </Modal>
-              {/*/ cardbox-item */}
-            </Col>
-
-            
-             
+                      next={this.next}
+                      previous={this.previous}
+                    >
+                      <CarouselIndicators
+                        items={this.state.items}
+                        activeIndex={activeIndex}
+                        onClickHandler={this.goToIndex}
+                      />
+                      {slides}
+                      <CarouselControl
+                        direction="prev"
+                        directionText="Previous"
+                        onClickHandler={this.previous}
+                      />
+                      <CarouselControl
+                        direction="next"
+                        directionText="Next"
+                        onClickHandler={this.next}
+                      />
+                    </Carousel>
+                  </ModalBody>
+                </Modal>
+                {/*/ cardbox-item */}
+              </Col>
 
               <div className="item-right pb-2 m-2 hr-border-bottom">
                 {this.props.type === "Hoạt động" && (
@@ -285,53 +297,54 @@ class PostCardMore extends React.Component {
                     </Modal>
                   </div>
                 )}
-               
               </div>
-           
-          </Row>
-        
-          <Row>
-            
-        <Col>
-          <Row className="pb-2 ml-3">
-            <div className="item-center">
-              <div>
-                <img
-                  className="img-user-postCard rounded-circle"
-                  src={"/resources/"+this.props.user.avatar}
-                  alt="UserAvatar"
-                  style={{ width: "30px", height: "30px" }}
-                />
-              </div>
-              <div className="ml-2 my-Comment ">
-                <div className="item-row item-center d-flex">
-                  <b className="tcl-1">{this.props.user.name}</b>
-                  <form className="flex-grow-1 ml-3" onSubmit={this.handleCommentOnSubmit}>
-                    <Input
-                      type="text"
-                      id="exampleEmail"
-                      placeholder="Bình luận"
-                      onChange={this.handleCommentOnChange}
-                      value={this.state.comment}
-                    />
-                  </form>
-                </div>
-              </div>
-            </div>
-          </Row>
-          {this.state.comments.map(comment => <Comment {...comment}/>)}
-        </Col>
-      </Row>
-          {/*/ cardbox-like */}
-        </div>
-        {/*/ col-lg-6 */}
-      </Row>
+            </Row>
+
+            <Row>
+              <Col>
+                <Row className="pb-2 ml-3">
+                  <div className="item-center">
+                    <div>
+                      <img
+                        className="img-user-postCard rounded-circle"
+                        src={"/resources/" + this.props.user.avatar}
+                        alt="UserAvatar"
+                        style={{ width: "30px", height: "30px" }}
+                      />
+                    </div>
+                    <div className="ml-2 my-Comment ">
+                      <div className="item-row item-center d-flex">
+                        <b className="tcl-1">{this.props.user.name}</b>
+                        <form
+                          className="flex-grow-1 ml-3"
+                          onSubmit={this.handleCommentOnSubmit}
+                        >
+                          <Input
+                            type="text"
+                            id="exampleEmail"
+                            placeholder="Bình luận"
+                            onChange={this.handleCommentOnChange}
+                            value={this.state.comment}
+                          />
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </Row>
+                {this.state.comments.map(comment => (
+                  <Comment {...comment} />
+                ))}
+              </Col>
+            </Row>
+            {/*/ cardbox-like */}
+          </div>
+          {/*/ col-lg-6 */}
+        </Row>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({auth:{user}}) => ({user});
+const mapStateToProps = ({ auth: { user } }) => ({ user });
 
 export default connect(mapStateToProps)(PostCardMore);
-
