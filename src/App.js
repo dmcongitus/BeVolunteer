@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Button } from 'reactstrap';
 import * as authActions from './actions/auth.action';
 
 import Router from './router';
@@ -14,7 +14,7 @@ class App extends Component {
 
     render() {
         if (this.props.isLoading) {
-            return "Loading...";
+            return ( <div>Loading</div>);
         }
 
         return (

@@ -8,7 +8,8 @@
      margin: 0;
 padding: 0;
 height: 100%;
-
+ background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .mr-unset{

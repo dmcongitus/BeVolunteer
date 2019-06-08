@@ -29,9 +29,13 @@ class SignUp extends Component {
     e.preventDefault();
     try {
       if (this.state.password === this.state.rePassword){
-        const data = await createUser({ ...this.state }).then(
+        const data = await createUser({ ...this.state }).then(response => { 
+          console.log(response +"a")
           Message.success("Tạo tài khoản thành công")
-        );
+        })
+        .catch(error => {
+          Message.error("Tạo tài khoản thất bại")
+        });
       }else{
         Message.error("Mật khẩu nhập lại không đúng")
       }

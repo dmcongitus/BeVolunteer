@@ -127,14 +127,14 @@ class appovePage extends Component {
                     <div className="item-mid">
                       <Button
                         className="ml-2 success"
-                        onClick={() => this.onAccountVerify(account.username)}
+                        onClick={() => this.onAccountVerify(this.state.activeAccount.username)}
                       >
                         <i class="fas fa-check-circle icon-button" />
                         Đồng ý
                       </Button>
                       <Button
                         className="ml-2 new-btn"
-                        onClick={() => this.onAccountUnVerify(account.username)}
+                        onClick={() => this.onAccountUnVerify(this.state.activeAccount.username)}
                       >
                         <i class="fas fa-times-circle icon-button" />
                         Hủy
@@ -151,15 +151,15 @@ class appovePage extends Component {
             className="modal-approve"
           >
             <ModalHeader toggle={this.toggle}>Xác thực người dùng</ModalHeader>
-            <ModalBody>
-              <Row>
+            <ModalBody style={{background: "#E6E6E6"}}>
+              
                 {/* Thong tin user */}
 
                 <InfoUser
                   {...this.state.activeAccount}
                   isOpen={this.state.modal}
                 />
-              </Row>
+            
             </ModalBody>
             <ModalFooter>
               <Button

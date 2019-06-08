@@ -298,7 +298,7 @@ class PostCardMore extends React.Component {
               <div>
                 <img
                   className="img-user-postCard rounded-circle"
-                  src="https://vignette.wikia.nocookie.net/leagueoflegends/images/a/a0/Xin_Zhao_OriginalCentered.jpg/revision/latest/scale-to-width-down/1215?cb=20180414203730"
+                  src={"/resources/"+this.props.user.avatar}
                   alt="UserAvatar"
                   style={{ width: "30px", height: "30px" }}
                 />

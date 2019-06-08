@@ -9,7 +9,7 @@ export default class Comment extends Component {
               <div>
                 <img
                   className="img-user-postCard rounded-circle"
-                  src={"resources/" + this.props.avatar}
+                  src={"/resources/" + this.props.avatar}
                   alt="UserAvatar"
                   style={{ width: "30px", height: "30px" }}
                 />

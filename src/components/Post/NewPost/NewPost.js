@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import {connect} from 'react-redux';
 import { NavLink, Link } from "react-router-dom";
 import { Container, Row, Col, Alert } from "reactstrap";
 import {
@@ -92,7 +93,7 @@ class NewPost extends Component {
               <Col xs="2">
                 <img
                   className="img-user-postCard rounded-circle"
-                  src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
+                  src={"/resources/"+this.props.user.avatar}
                   alt="temp"
                 />
               </Col>
@@ -166,4 +167,7 @@ class NewPost extends Component {
   }
 }
 
-export default NewPost;
+const mapStateToProps = ({auth:{user}}) => ({user});
+
+export default connect(mapStateToProps)(NewPost);
+

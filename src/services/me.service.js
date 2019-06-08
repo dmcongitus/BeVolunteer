@@ -1,17 +1,24 @@
 import Axios from 'axios';
 import { getToken } from '../utils/localStorage';
 import request from './request'
+import { Message } from 'element-react';
 /**
  * Update user's info
  * @param {Object} userInfo User's information
  */
 export function updateUserInfo(username, userInfo) {
-    return Axios.put('/accounts/u/' + username,
-        userInfo, {
-            headers: {
-                "x-access-token": getToken()
-            }
-        });
+    return request({
+        url: `/accounts/u/` + username,
+        method: 'put',
+       
+    })
+    // return Axios.put('/accounts/u/' + username,
+    //     userInfo, {
+    //         headers: {
+    //             "x-access-token": getToken()
+    //         }
+    //     })
+    .then(Message.success("Cập nhật thành công"));
 }
 
 /**

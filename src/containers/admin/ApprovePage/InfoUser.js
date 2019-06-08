@@ -1,62 +1,139 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Col, Row } from "reactstrap";
-
+import {
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselCaption
+} from "reactstrap";
+import { Table } from "reactstrap";
+import "./ApprovePage.css"
 class InfoUser extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      activeIndex: 0,
+      listImg: [
+        "resources/" + this.props.verifyImages[0],
+        "resources/" + this.props.verifyImages[1]
+      ]
+    };
+    this.next = this.next.bind(this);
+    this.previous = this.previous.bind(this);
+    this.goToIndex = this.goToIndex.bind(this);
+    this.onExiting = this.onExiting.bind(this);
+    this.onExited = this.onExited.bind(this);
+  }
+  onExiting() {
+    this.animating = true;
   }
 
+  onExited() {
+    this.animating = false;
+  }
+
+  next() {
+    if (this.animating) return;
+    const nextIndex =
+      this.state.activeIndex === this.state.listImg.length - 1
+        ? 0
+        : this.state.activeIndex + 1;
+    this.setState({ activeIndex: nextIndex });
+  }
+
+  previous() {
+    if (this.animating) return;
+    const nextIndex =
+      this.state.activeIndex === 0
+        ? this.state.listImg.length - 1
+        : this.state.activeIndex - 1;
+    this.setState({ activeIndex: nextIndex });
+  }
+
+  goToIndex(newIndex) {
+    if (this.animating) return;
+    this.setState({ activeIndex: newIndex });
+  }
   render() {
+    const { activeIndex } = this.state;
+    const slides = this.state.listImg.map(item => {
+      return (
+        <CarouselItem
+          onExiting={this.onExiting}
+          onExited={this.onExited}
+          key={item.src}
+
+        >
+          <img src={item} className = "img-cardID"  />
+        </CarouselItem>
+      );
+    });
+
     return (
-      <div>
+      <Row>
+        <Col xs="6">
+          <Carousel
+            activeIndex={activeIndex}
+            next={this.next}
+            previous={this.previous}
+          >
+            <CarouselIndicators
+              items={this.state.listImg}
+              activeIndex={activeIndex}
+              onClickHandler={this.goToIndex}
+            />
+            {slides}
+            <CarouselControl
+              direction="prev"
+              directionText="Previous"
+              onClickHandler={this.previous}
+            />
+            <CarouselControl
+              direction="next"
+              directionText="Next"
+              onClickHandler={this.next}
+            />
+          </Carousel>
+        </Col>
+        <Col xs="6">
           <Row>
-        <Col>
-            
-          <img
-            src={"resources/" + this.props.verifyImages[0]}
-            className="img-Model"
-          />
-          
-        </Col>
-        <Col>
-        <img
-            src={"resources/" + this.props.verifyImages[1]}
-            className="img-Model"
-          />
-        </Col>
-        </Row>
-        <Row style={{display:"flex", justifyContent:"center"}}>
-            <Col xs="auto">
-              <div className="item-column item-mb">
-                <div>
-                  <b className="m-3 tcl-1">Họ và tên:</b>
-                </div>
-                <div>
-                  <b className="m-3  tcl-1">Ngày sinh:</b>
-                </div>
-                <div>
-                  <b className="m-3  tcl-1">Giới tính:</b>
-                </div>
-                <div>
-                  <b className="m-3  tcl-1">Số điện thoại</b>
-                </div>
-                <div>
-                  <b className="m-3  tcl-1">Loại tài khoản</b>
-                </div>
-              </div>
-            </Col>
-            <Col xs="auto">
-              <div className="item-column item-mb">
-                <div>{this.props.name}</div>
-                <div>{this.props.dob}</div>
-                <div>{this.props.gender}</div>
-                <div>{this.props.phone}</div>
-                <div>{this.props.permission}</div>
-              </div>
+            <Col>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Loại</th>
+                    <th>Thông tin</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Họ và tên</td>
+                    <td>{this.props.name}</td>
+                  </tr>
+                  <tr>
+                    <td>Ngày sinh:</td>
+                    <td>{this.props.dob}</td>
+                  </tr>
+                  <tr>
+                    <td>Giới tính:</td>
+                    <td>{this.props.gender}</td>
+                  </tr>
+                  <tr>
+                    <td>Số điện thoại</td>
+                    <td>{this.props.phone}</td>
+                  </tr>
+                  <tr>
+                    <td>Loại tài khoản</td>
+                    <td>{this.props.permission}</td>
+                  </tr>
+                </tbody>
+              </Table>
             </Col>
           </Row>
-      </div>
+        </Col>
+      </Row>
     );
   }
 }

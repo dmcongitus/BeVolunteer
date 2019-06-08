@@ -10,7 +10,7 @@ function headerPost(props) {
           <div>
             <img
               className="img-user-postCard rounded-circle"
-              src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
+              src={"/resources/"+props.user.avatar}
               alt="UserAvatar"
             />
           </div>

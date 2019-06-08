@@ -1,5 +1,6 @@
 import Axios from "axios";
 import request from './request'
+import { Message } from "element-react";
 
 export function getAllUsers() {
   return request({
@@ -26,7 +27,7 @@ export function getAllUsersRank() {
 
 export function verifyUser(username) {
   return request({
-    url: `/admins/verify/`+ username,
+    url: `/admins/verify/`+ username + `?accept=true`,
     method: 'put',
   })
 }
@@ -46,19 +47,13 @@ export function unVerifyUser(username) {
 
 export function createUser(params) {
   return request({
-    url: `"/accounts/u`,
+    url: `/accounts`,
     method: 'post',
     data: {...params}
   })
+
 }
-// export async function createUser(params) {
-//   try {
-//     const data = await Axios.post("/accounts", { ...params });
-//     return data; 
-//   } catch (e) {
-//       throw e;
-//   }
-// }
+
 
 
 const instance = Axios.create({
