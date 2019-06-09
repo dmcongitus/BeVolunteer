@@ -125,7 +125,7 @@ class PostCard extends React.Component {
             <HeaderPost {...this.props} />
           )}
 
-          <Col xs="1">
+          <Col xs="1" className = "p-0 pr-3">
             <div className="menu-post">
               <Dropdown
                 isOpen={this.state.dropdownOpen}

@@ -170,7 +170,7 @@ class PostCardMore extends React.Component {
     });
     return (
       <div className="side-body">
-        <Row className="postCard">
+        <Row className="postCard mt-0">
           <HeaderPost {...this.props} />
           <Col xs="1">
             {" "}

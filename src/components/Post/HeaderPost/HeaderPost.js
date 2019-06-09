@@ -23,7 +23,7 @@ class headerPost extends React.Component {
 
   render() {
   return (
-    <Col className="header-col" xs="11">
+    <Col className="header-col pr-0" xs="11">
       <Row className="item-center header-postCard pb-3">
         <Col xs="1">
           <div>
