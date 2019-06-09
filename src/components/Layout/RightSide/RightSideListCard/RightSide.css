@@ -4,12 +4,13 @@
 
 .recent-post{width: 100%;height: 80px;list-style-type: none;}
 .post-img img {
-    width: 100px;
-    height: 70px;
+    width: 100%;
+    height: 4.25rem;
     float: left;
-    margin-right: 15px;
+    margin-right: 5.25rem;
     border: 3px solid #004916	;
     transition: 0.5s;
+    object-fit: cover;
 }
 
 .recent-post a {text-decoration: none;transition: 0.5s;}

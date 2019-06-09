@@ -51,9 +51,9 @@ class headerPost extends React.Component {
         </Col>
         <Col xs="auto">
           <div className="ml-2">
-            
+            <span className= {this.props.user.permission}>
             {this.props.user.name} 
-           
+            </span>              
             {this.props.user.isVerified === true && (<i className="ml-1 small fas fa-check-circle check-user"></i>)}
             
             <span className="ml-1 small">đã chia sẻ một</span>

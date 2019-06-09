@@ -1,6 +1,6 @@
 .NewPostBox{
     background-color: white;
-    border-radius: 5px;
+    border-radius: 0.25rem;
     box-shadow:0  1px 2px gray;
 }
 
@@ -10,10 +10,10 @@
     justify-content: flex-end;
 }
 .mr-50{
-    margin-right: 50px;
+    margin-right: 3rem;
 }
 .mb-10{
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
 }
 #status-overlay {
     height: 100%;
@@ -32,29 +32,29 @@
     }
 
     .imagePost-input{
-        margin-left: 10px;
-        height: 100px;
+        margin-left: 0.5rem;
+        height: 6.25rem;
         width: auto;
     
     }
 
     .checkInPost{
-        margin: 10px;
-        margin-top:10px;
+        margin: 0.5rem;
+        margin-top:0.5rem;
     }
     .btnPost{
         text-align: right;
-        margin-bottom: 10px;
-        margin-right: 50px;
+        margin-bottom: 0.5rem;
+        margin-right: 3rem;
     }
     .imagePost-body{
-        margin-left: 10px;
+        margin-left: 0.5rem;
     }
 
     .Newpost-img img {
         width: 100%;
         float: left;
-        margin-right: 15px;
+        margin-right: 10.25rem;
         transition: 0.5s;
     }
 
@@ -76,7 +76,7 @@ font-size: 64px;
     .switch {
         position: relative;
         display: inline-block;
-        width: 60px;
+        width: 3.75rem;
         height: 34px;
     }
 

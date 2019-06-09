@@ -136,7 +136,7 @@ class HistoryCard extends React.Component {
                       <i className="fa fa-calendar" data-original-title title />{" "}
                       {new Date(this.props.createdAt).toLocaleTimeString()}
                       <i
-                        style={{ marginLeft: "5px" }}
+                        style={{ marginLeft: "0.25rem" }}
                         className="fas fa-map-marker-alt ml-3 mr-1"
                       />{" "}
                       {this.props.address}

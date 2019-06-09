@@ -24,3 +24,8 @@
   object-fit: contain;
   border: unset;
 }
+
+.my-ModalHeader{
+    background: #0B3B0B;
+    color: gainsboro;
+}

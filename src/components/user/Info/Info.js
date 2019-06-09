@@ -262,7 +262,7 @@ class MeComponent extends Component {
                       onClick={this.handleEdit.bind(this, "identityCard")}
                       className="btn btn-light UpdateProfile__Main__FieldEdit"
                     >
-                      <img src={editIcon} alt="Edit icon" height="20px" />
+                      <img src={editIcon} alt="Edit icon" height="1.25rem" />
                     </button>
                   </li>
                 )}

@@ -6,25 +6,25 @@
 *
 */
 .img-fluid {
-  margin-left: 60px;
-  height: 200px;
+  margin-left: 3.75rem;
+  height: 12.5rem;
   width: auto;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 .postCard {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
   margin: 0px;
-  margin-top: 20px;
-  padding: 10px;
+  margin-top: 1.25rem;
+  padding: 0.5rem;
   background-color: white;
   box-shadow: 0 1px 2px gray;
-  border-top: 10px solid #004916;
+  border-top: 0.5rem solid #004916;
 }
 .post-album {
   border-radius: 3px;
   width: 100%;
-  height: 200px;
+  height: 12.5rem;
   border: 1px solid #0d6628;
   object-fit: cover;
 }
@@ -38,14 +38,16 @@
   max-height: 100%;
 }
 
-.icon-button {
+.icon-button{
   border-right: 1px solid white;
-  padding: 5px;
-  padding-right: 10px;
+  padding: 0.25rem;
+  padding-right: 0.5rem;
   position: 0;
+
 }
 
 .add-btn {
+  padding: 0.5rem;
   background-color: #042c38;
 }
 .add-btn:hover {
@@ -53,6 +55,7 @@
 }
 
 .donate-btn {
+  padding: 0.5rem;
   background-color: #853b92;
 }
 .donate-btn:hover {
@@ -60,6 +63,7 @@
 }
 
 .new-btn {
+  padding: 0.5rem;
   background-color: #d01013;
 }
 .new-btn:hover {
@@ -67,7 +71,7 @@
 }
 
 .img-slide-style {
-  height: 500px;
+  height: 30rem;
   width: 100%;
 }
 
@@ -75,7 +79,7 @@
   height: 100%;
   width: 100%;
   text-align: right;
-  margin-right: -20px;
+  margin-right: -1.25rem;
 }
 
 .btn-down {
@@ -83,7 +87,7 @@
   background-color: unset;
   border: unset;
   color: #042c38;
-  padding: 5px;
+  padding: 0.25rem;
   text-align: center;
 }
 
@@ -92,7 +96,7 @@
   border: unset;
   color: #042c38;
 
-  padding: 5px;
+  padding: 0.25rem;
 }
 
 .menu-post:hover {

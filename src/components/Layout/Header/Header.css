@@ -34,7 +34,7 @@
   }
   
   .navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
-    top: -10px;
+    top: -0.5rem;
   }
   
   
@@ -42,7 +42,7 @@
     .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link {
       text-align: center;
       display: table-cell;
-      height: 70px;
+      height: 4.25rem;
       vertical-align: middle;
       padding-top: 0;
       padding-bottom: 0;
@@ -65,7 +65,7 @@
     .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link {
       text-align: center;
       display: table-cell;
-      height: 70px;
+      height: 4.25rem;
       vertical-align: middle;
       padding-top: 0;
       padding-bottom: 0;
@@ -88,7 +88,7 @@
     .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
       text-align: center;
       display: table-cell;
-      height: 70px;
+      height: 4.25rem;
       vertical-align: middle;
       padding-top: 0;
       padding-bottom: 0;
@@ -107,11 +107,11 @@
     }
   }
   
-  @media (min-width: 1200px) {
+  @media (min-width: 112.5rem) {
     .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link {
       text-align: center;
       display: table-cell;
-      height: 70px;
+      height: 4.25rem;
       vertical-align: middle;
       padding-top: 0;
       padding-bottom: 0;
@@ -131,7 +131,7 @@
   }
 
   a.nav-link:hover {
-    color: #04ff71 !important;
+    color: palegreen !important;
   }
 
   .notifi-header{

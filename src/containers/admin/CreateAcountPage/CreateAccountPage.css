@@ -1,29 +1,27 @@
 .body-midSide{
-    margin: 20px;
+    margin: 1.25rem;
     
     
 }
 .body-midForm{
-    margin-top: 30px;
-    margin-right: 50px;
-    margin-left: 50px;
+    margin-top: 1.75rem;
+    margin-right: 3rem;
+    margin-left: 3rem;
 }
 
 .input-group-prepend-midSide span {
-    width: 50px;
+    width: 3rem;
     background-color: pale#0D6628;
     color: black;
     border: 0 !important;
-    height: 100%;
-    font-size: 20px;
-    
+    height: 100%;    
 }
 .fooder-crAccAdmin{
     width: 100%;
     text-align: center;
 }
 .ml-10{
-    margin-left: 10px;
+    margin-left: 0.5rem;
 }
 
 .input-group-prepend-midSide{

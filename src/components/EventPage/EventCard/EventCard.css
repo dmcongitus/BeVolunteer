@@ -6,31 +6,31 @@
 *
 */
 .img-fluid{
-    margin-left: 60px;
-    height: 200px;
+    margin-left: 3.75rem;
+    height: 12.5rem;
     width: auto;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
    
 }
 .eventCard{
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
     margin: 0px;
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 1.25rem;
+    padding: 0.5rem;
     background-color: white;
     box-shadow:0  1px 2px gray;
   
-    border-top: 10px solid #004916;
+    border-top: 0.5rem solid #004916;
     
 
 }
 .event-album{
-  margin-left: 10px;
-  margin-bottom: 20px;
+  margin-left: 0.5rem;
+  margin-bottom: 1.25rem;
   border-radius: 3px;
-  width: 220px;
-  height: 160px;
+  width: 21.25rem;
+  height: 13.75rem;
   border: 1px solid #0D6628;
 }
 
@@ -38,20 +38,7 @@
   max-height: 100%;
 }
 
-.icon-button{
-  border-right: 1px solid white;
-  padding: 5px;
-  padding-right: 10px;
-  position: 0;
 
-}
-
-.add-btn{
-  background-color: #042C38;
-}
-.add-btn:hover{
-  background-color: #387282;
-}
 
 .donate-btn{
   background-color: #853b92;

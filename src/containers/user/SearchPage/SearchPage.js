@@ -15,7 +15,6 @@ class SearchPage extends Component {
 
   
   componentDidMount = () => {
-    alert("get")
     this.setState({ searchTxt: this.props.match.params.searchText });
     getNewfeed(0)
       .then(data => {
@@ -26,7 +25,6 @@ class SearchPage extends Component {
 
   componentDidUpdate = (prevProps) => {
     if (this.props.match.params.searchText !== prevProps.match.params.searchText) {
-      console.log("get",  this.props.match.params)
       getNewfeed(0)
       .then(data => {
         this.setState(data);

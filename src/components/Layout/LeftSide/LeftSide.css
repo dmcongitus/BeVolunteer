@@ -1,56 +1,54 @@
-
 .logo {
-   
-    text-align: center;
-    width: 100%;
-   
+  text-align: center;
+  width: 100%;
 }
 
-
-.logo>img {
-    border: 2px solid #004916;
-    border-radius: 100%;
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
+.leftSide {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: white;
 }
-.leftSide{
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    color: white;
-  
-}
-
-
 
 .list {
-    list-style: none;
-    
+  list-style: none;
 }
 
-.list> li {
-    margin-left: 20px;
-    padding: 0.5rem;
-}
 
-.list>li:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-left: 5px solid #004916;
-    font-weight: bolder;
-    padding-left: 35px;
-    
- 
-}
 
-.my-small{
-    font-size: 15px;
-    color: black;
-}
-
-.online{
-    color: #0D6628;
-
+.online {
+  color: #0d6628;
 }
 
 .NavLink--active {
-    font-weight: bold !important;
+  font-weight: bold !important;
 }
+
+
+
+
+.logo > img {
+    border: 2px solid #004916;
+    border-radius: 100%;
+    width: 3.75rem;
+    height: 3.75rem;
+    object-fit: cover;
+  }
+
+  .list > li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-left: 0.25rem solid #004916;
+    font-weight: bolder;
+    padding-left: 30.25rem;
+  }
+  .list > li {
+    margin-left: 1.25rem;
+    padding: 0.5rem;
+  }
+  .side-body {
+    background-color: #fff;
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    border-radius: 3px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+

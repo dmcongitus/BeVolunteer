@@ -58,7 +58,7 @@ class NewPost extends Component {
 
   render() {
     return (
-      <Col className="NewPostBox" style={this.props.style}>
+      <Col className="NewPostBox pr-3 lf-3" style={this.props.style}>
         <Row>
           <Alert style={{ width: "100%" }} className="header-1">
             <Row style={{ display: "flex", alignItems: "center" }}>
@@ -68,7 +68,7 @@ class NewPost extends Component {
                   Tạo Bài Viết
                 </div>
               </Col>
-              <Col xs="3">
+              <Col xs="3" className = "pr-3 lf-3">
                 <FormGroup style={{ marginBottom: 0 }}>
                 <Input
                     type="select"
@@ -76,6 +76,7 @@ class NewPost extends Component {
                     id="exampleSelect"
                     onChange={this.onTypeChange}
                     value={this.state.type}
+                    className="pl-2 pr-2"
                     
                   >
                     <option value="PERSONAL_ACTIVITY">Cá nhân</option>

@@ -76,13 +76,13 @@ class Header extends React.Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto" />
             <ul className="navbar-nav ">
-              <NavLink activeStyle={{ color: "white" }} to="/">
-                <li className="nav-item active">
+              <NavLink activeStyle={{ color: "green" }} className="nav-link" to="/">
+                
                   <a className="nav-link">
                     <i className="fa fa-home" />
                     Home
                   </a>
-                </li>
+               
               </NavLink>
               <Button
                 className="nav-item active"

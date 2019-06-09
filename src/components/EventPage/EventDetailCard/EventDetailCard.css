@@ -6,52 +6,50 @@
 *
 */
 .img-fluid{
-    margin-left: 60px;
-    height: 200px;
+    margin-left: 3.75rem;
+    height: 12.5rem;
     width: auto;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
    
 }
 .border-Comment{
   background-color: rgba(148, 192, 221, 0.2);
-  padding: 5px;
-  padding-right: 20px;
-  padding-left: 20px;
-  font-size: 15px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  margin-right: 20px;
+  padding: 0.25rem;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+  border-top-left-radius: 10.25rem;
+  border-bottom-left-radius: 10.25rem;
+  border-top-right-radius: 10.25rem;
+  border-bottom-right-radius: 10.25rem;
+  margin-right: 1.25rem;
 }
 
 .my-Comment{
-  margin-right: 20px;
+  margin-right: 1.25rem;
   width: 100%;
   background-color: rgba(148, 192, 221, 0.2);
-  padding: 5px;
-  padding-right: 20px;
-  padding-left: 20px;
-  font-size: 15px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  padding: 0.25rem;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+  border-top-left-radius: 10.25rem;
+  border-bottom-left-radius: 10.25rem;
+  border-top-right-radius: 10.25rem;
+  border-bottom-right-radius: 10.25rem;
 }
 .border-Comment b{
   color: #004916;
-  margin-right: 10px;
+  margin-right: 0.5rem;
 }
 .postCard{
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
     margin: 0px;
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 1.25rem;
+    padding: 0.5rem;
     background-color: white;
     box-shadow:0  1px 2px gray;
   
-    border-top: 10px solid #004916;
+    border-top: 0.5rem solid #004916;
     
 
 }
@@ -64,22 +62,9 @@
 .hr-border-bottom{
   border-bottom: 1px solid gray;
  
-  padding-right: 5px !important;
-}
-.icon-button{
-  border-right: 1px solid white;
-  padding: 5px;
-  padding-right: 10px;
-  position: 0;
-
+  padding-right: 0.25rem !important;
 }
 
-.add-btn{
-  background-color: #042C38;
-}
-.add-btn:hover{
-  background-color: #387282;
-}
 
 .donate-btn{
   background-color: #853b92;

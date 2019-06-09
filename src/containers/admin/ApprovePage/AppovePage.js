@@ -150,16 +150,17 @@ class appovePage extends Component {
             toggle={this.toggle}
             className="modal-approve"
           >
-            <ModalHeader toggle={this.toggle}>Xác thực người dùng</ModalHeader>
-            <ModalBody style={{background: "#E6E6E6"}}>
-              
-                {/* Thong tin user */}
-                
-                <InfoUser
-                  {...this.state.activeAccount}
-                  isOpen={this.state.modal}
-                />
-            
+            <ModalHeader className="my-ModalHeader" toggle={this.toggle}>
+            <i class="fas fa-user-check"></i>
+              Xác thực người dùng
+            </ModalHeader>
+            <ModalBody style={{ background: "#E6E6E6" }}>
+              {/* Thong tin user */}
+
+              <InfoUser
+                {...this.state.activeAccount}
+                isOpen={this.state.modal}
+              />
             </ModalBody>
             <ModalFooter>
               <Button

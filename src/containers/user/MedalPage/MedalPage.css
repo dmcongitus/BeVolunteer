@@ -7,13 +7,13 @@
 .medal-card{
   
     width: auto;
-    height: 150px;
-    margin: 20px;
+    height: 9.375rem;
+    margin: 0.625rem;
     display: flex;
     justify-content: center ;
     
 }
 .medal-card img{
     width: auto;
-    height: 125px;
+    height: 7.8rem;
 }

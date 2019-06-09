@@ -1,19 +1,15 @@
-.main-layout{
-     background-image: url('../../images/bgl.jpg');
-     background-size: 100% auto;
-     background-attachment: fixed;
-     min-height: 100vh;
-     font-family: Arial, Tahoma, Verdana, sans-serif;
-     overflow: hidden;
-     margin: 0;
-padding: 0;
-height: 100%;
- background-position: center center;
-  background-repeat: no-repeat;
+.main-layout {
+  background-image: url("../../images/bgl.jpg");
+  background-size: 100% auto;
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-.mr-unset{
-     margin-right: unset;
-     padding-right: unset;
+.mr-unset {
+  margin-right: unset;
+  padding-right: unset;
 }
-
