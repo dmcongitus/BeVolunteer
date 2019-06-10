@@ -30,7 +30,7 @@ class Payment extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.state.submited)}
+
      { this.state.submited === false ?
      ( <div className="item-mid">
         <span className="anchor" id="formPayment" />

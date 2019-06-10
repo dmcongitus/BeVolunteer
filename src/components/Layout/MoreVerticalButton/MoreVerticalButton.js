@@ -69,7 +69,8 @@ class MoreVerticalButton extends Component {
                 
                     aria-owns={open ? 'menu-list-grow' : undefined}
                     aria-haspopup="true"
-                    onClick={this.handleToggle}>
+                    onClick={this.handleToggle}
+                    className = "p-2">
                     <i class="fas fa-filter"></i>
                     Loại
                     

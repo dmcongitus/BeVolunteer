@@ -123,7 +123,7 @@ thead {
 .PLACE {
   color: #004916;
 }
-.ACTIVITY {
+.EVENT {
   color: #d01013;
 }
 .DONATION {
@@ -135,29 +135,32 @@ thead {
 /* type user */
 .USER {
   color: #011d25;
-  font-weight: bold;
+  font-weight: 500;
 }
 .ORG {
   color: #b40404;
-  font-weight: bold;
+  font-weight: 500;
 }
 .UNIT_MOD {
-  font-weight: bold;
+  font-weight: 500;
   color: #df3a01;
 }
 .CONTENT_MOD {
-  font-weight: bold;
+  font-weight: 500;
   color: #011d25;
 }
 .ACCOUNT_MOD {
-  font-weight: bold;
+  font-weight: 500;
   color: #011d25;
 }
 .SUPER_ADMIN {
-  font-weight: bold;
+  font-weight: 500;
   color: #d01013;
 }
 
+b{
+  font-weight: 500;
+}
 
 
 
@@ -165,13 +168,26 @@ thead {
 
 /* reponsive */
 html{
-  font-size: 6pt;
+  font-size: 3pt;
   font-family: Arial, Tahoma, Verdana, sans-serif;
+}
+@media (min-width: 320px){
+  html{
+    font-size: 2.5pt;
+    font-family: Arial, Tahoma, Verdana, sans-serif;
+  }
+}
+
+@media (min-width: 600px){
+  html{
+    font-size: 6pt;
+    font-family: Arial, Tahoma, Verdana, sans-serif;
+  }
 }
 
 @media (min-width: 768px){
   html{
-    font-size: 8pt;
+    font-size: 7pt;
     font-family: Arial, Tahoma, Verdana, sans-serif;
   }
 }
@@ -179,6 +195,13 @@ html{
 @media (min-width: 1280px) {
   html{
     font-size: 12pt;
+    font-family: Arial, Tahoma, Verdana, sans-serif;
+  }
+}
+
+@media (min-width: 1900px) {
+  html{
+    font-size: 18pt;
     font-family: Arial, Tahoma, Verdana, sans-serif;
   }
 }

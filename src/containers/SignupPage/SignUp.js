@@ -30,7 +30,6 @@ class SignUp extends Component {
     try {
       if (this.state.password === this.state.rePassword){
         const data = await createUser({ ...this.state }).then(response => { 
-          console.log(response +"a")
           Message.success("Tạo tài khoản thành công")
         })
         .catch(error => {

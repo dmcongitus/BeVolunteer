@@ -11,7 +11,7 @@ export default class Comment extends Component {
                   className="img-user-postCard rounded-circle"
                   src={"/resources/" + this.props.avatar}
                   alt="UserAvatar"
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "2rem", height: "2rem" }}
                 />
               </div>
               <div className="ml-2 border-Comment">

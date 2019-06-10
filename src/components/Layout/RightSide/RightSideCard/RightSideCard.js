@@ -15,12 +15,11 @@ const getDate = date => {
 };
 const RightSideCard = props => (
   
-  console.log("thís í test"),
-  console.log(props),
+
   <div>
     <li className="recent-post">
-      <Row>
-      <Col xs = "6" className = "pl-3 pr-3">
+      <Row className = "ml-0">
+      <Col xs = "6" className = "pl-0 pr-3">
        
         <div className="post-img">
         <img

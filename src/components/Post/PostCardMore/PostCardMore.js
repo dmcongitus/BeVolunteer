@@ -124,7 +124,7 @@ class PostCardMore extends React.Component {
   handleCommentOnSubmit = e => {
     e.preventDefault();
 
-    const { _id, permisison, avatar } = this.props.user;
+    const { _id, permisison, avatar } = this.props.myUser;
     Axios.post(
       "/comments",
       {
@@ -170,36 +170,11 @@ class PostCardMore extends React.Component {
     });
     return (
       <div className="side-body">
-        <Row className="postCard mt-0">
-          <HeaderPost {...this.props} />
-          <Col xs="1">
-            {" "}
-            <div className="menu-post">
-              <Dropdown
-                isOpen={this.state.dropdownOpen}
-                toggle={this.toggleMenuPost}
-              >
-                <DropdownToggle
-                  tag="span"
-                  onClick={this.toggleMenuPost}
-                  data-toggle="dropdown"
-                  aria-expanded={this.state.dropdownOpen}
-                >
-                  <i class="fas fa-bars" />
-                </DropdownToggle>
-                <DropdownMenu className="menu-post-item p-1">
-                  <div onClick={this.toggleMenuPost}>
-                    <i class="fas fa-flag ml-3" />
-                    Lưu
-                  </div>
-                  <div onClick={this.toggleMenuPost}>
-                    <i class="fas fa-bug ml-3" />
-                    Báo cáo
-                  </div>
-                </DropdownMenu>
-              </Dropdown>
-            </div>
-          </Col>
+        <div className="postCard mt-0">
+         
+        <HeaderPost
+          {...this.props}
+        />
           <div className="p-2">{this.props.description}</div>
           <div style={{ width: "100%" }}>
             <Row>
@@ -307,14 +282,14 @@ class PostCardMore extends React.Component {
                     <div>
                       <img
                         className="img-user-postCard rounded-circle"
-                        src={"/resources/" + this.props.user.avatar}
+                        src={"/resources/" + this.props.myUser.avatar}
                         alt="UserAvatar"
-                        style={{ width: "30px", height: "30px" }}
+                        style={{ width: "3rem", height: "3rem" }}
                       />
                     </div>
                     <div className="ml-2 my-Comment ">
                       <div className="item-row item-center d-flex">
-                        <b className="tcl-1">{this.props.user.name}</b>
+                        <b className="tcl-1">{this.props.myUser.name}</b>
                         <form
                           className="flex-grow-1 ml-3"
                           onSubmit={this.handleCommentOnSubmit}
@@ -339,12 +314,12 @@ class PostCardMore extends React.Component {
             {/*/ cardbox-like */}
           </div>
           {/*/ col-lg-6 */}
-        </Row>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ auth: { user } }) => ({ user });
+const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 
 export default connect(mapStateToProps)(PostCardMore);

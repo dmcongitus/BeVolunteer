@@ -13,7 +13,7 @@ class History extends Component {
 
     componentDidMount = async () => {
         const { data: {posts} } = await getUserPosts(this.props.username);
-        console.log(posts);
+      
         this.setState({ posts });
     }
 

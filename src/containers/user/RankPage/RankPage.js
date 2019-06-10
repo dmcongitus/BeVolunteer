@@ -23,7 +23,7 @@ class RankPage extends Component {
   render() {
     let number = 0;
     const { accounts } = this.state;
-    console.log(accounts);
+  
     return (
       <PageLayout title="xóa tài khoản">
         <div>

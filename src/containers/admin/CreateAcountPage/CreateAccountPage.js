@@ -31,7 +31,6 @@ class CreateAccountPage extends Component {
     e.preventDefault();
     try {
       const data = await createAdmin({ ...this.state });
-      console.log(data);
     } catch (error) {
       console.error(error);
     }

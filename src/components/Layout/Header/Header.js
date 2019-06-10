@@ -40,8 +40,8 @@ class Header extends React.Component {
     return (
       <div>
         <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark ">
-          <img src={logo} alt="Logo" height="80" />
-          <img src={logoText} height="80" />
+          <img src={logo} alt="Logo" style={{height:"5rem"}} />
+          <img src={logoText}style={{height:"5rem"}} />
 
           <form className="form-inline my-2 my-lg-0">
             <input

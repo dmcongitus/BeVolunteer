@@ -5,14 +5,16 @@ import NewPost from "../../../components/Post/NewPost/NewPost";
 import "./HomePage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { getNewfeed } from "../../../services/newfeed";
+import { reportPost } from "../../../services/post.service";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 class HomePage extends Component {
   state = {
-    data: []
+    data: [],
+    
   };
-
+  
   componentDidMount = () => {
     getNewfeed(0)
       .then(data => {
@@ -29,6 +31,18 @@ class HomePage extends Component {
     .catch(e => console.log(e));
   };
 
+  successReport(reporter, object, objectModel, content){
+    const data={
+      reporter: reporter,
+      object : object,
+      objectModel: objectModel,
+      content: content
+    }
+    reportPost(data)
+  }
+  
+
+
   render() {
     return (
       <PageLayout
@@ -41,7 +55,7 @@ class HomePage extends Component {
         )}
         {console.log(this.state.data)}
         {this.state.data.map(post => (
-          <Post key={post.id} {...post} />
+          <Post key={post.id} {...post} successReport={this.successReport} />
         ))}
       </PageLayout>
     );

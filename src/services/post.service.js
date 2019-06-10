@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import request from './request'
-
+import { Message } from 'element-react'
 export function createPost(post) {
     return request({
         url: `posts`,
@@ -26,6 +26,26 @@ export function getUserPosts(username) {
         method: 'get'
     })
 }
+
+export function reportPost(data) {
+    return request({
+        url: `reports`,
+        method: 'post',
+        data: data
+    }).then(response => { 
+        Message.success("Báo cáo bài viết thành công")
+      })
+      .catch(error => {
+        Message.error("Báo cáo bài viết thất bại")
+      });
+}
+export function getReportPost() {
+    return request({
+        url: `reports`,
+        method: 'get'
+    })
+}
+
 export function getPosts(type) {
     if (type === 0) {
         return request({

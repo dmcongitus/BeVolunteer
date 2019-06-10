@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import {
   Modal,
@@ -112,69 +113,23 @@ class PostCard extends React.Component {
       );
     });
     return (
-      
       <div className="postCard">
-        <Row>
-          {this.props.publisher ? (
-            <HeaderPost
-              type="ACTIVITY"
-              user={this.props.publisher}
-              {...this.props}
-            />
-          ) : (
-            <HeaderPost {...this.props} />
-          )}
+        
+        {this.props.type === "EVENT"?<HeaderPost
+          {...this.props} user =  {this.props.publisher} 
+          successReport = {this.props.successReport}
+          reporter = {this.props.myUser._id}
+          object = {this.props._id}
+          objectModel = {this.props.type}
+        />:<HeaderPost
+          {...this.props}
+          successReport = {this.props.successReport}
+          reporter = {this.props.myUser._id}
+          object = {this.props._id}
+          objectModel = {this.props.type}
+        />}
+        
 
-          <Col xs="1" className = "p-0 pr-3">
-            <div className="menu-post">
-              <Dropdown
-                isOpen={this.state.dropdownOpen}
-                toggle={this.toggleMenuPost}
-              >
-                <DropdownToggle
-                  tag="span"
-                  onClick={this.toggleMenuPost}
-                  data-toggle="dropdown"
-                  aria-expanded={this.state.dropdownOpen}
-                >
-                  <i class="fas fa-bars" />
-                </DropdownToggle>
-                <DropdownMenu className="menu-post-item p-1">
-                  <div onClick={this.toggleReport}>
-                    <i class="fas fa-bug ml-3" />
-                    Báo cáo
-                  </div>
-                </DropdownMenu>
-              </Dropdown>
-              {this.state.modalReport && (
-                <Modal isOpen="true" toggle={this.toggleReport}>
-                  <ModalHeader toggle={this.toggleReport}>
-                    Báo cáo bài viết
-                  </ModalHeader>
-                  <ModalBody>
-                    <Input
-                      type="textarea"
-                      name = "reportText"
-                      placeholder="Hãy cho chúng tôi biết điều gì đang xảy ra?"
-                      rows={5}
-                      onChange={this.onChange}
-                    />
-                    {console.log(this.state.reportText)}
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button className="mr-1 new-btn">
-                      <i class="fas fa-bug icon-button" />
-                      Báo cáo
-                    </Button>
-                    <Button color="secondary" onClick={this.toggleReport}>
-                      Cancel
-                    </Button>
-                  </ModalFooter>
-                </Modal>
-              )}
-            </div>
-          </Col>
-        </Row>
         <Row>
           <Col xs="6">
             <div onClick={this.toggle}>
@@ -235,7 +190,7 @@ class PostCard extends React.Component {
             <Alert color="success">{this.props.description}</Alert>
 
             <div className="item-right">
-              {this.props.type === "ACTIVITY" && (
+              {this.props.type === "EVENT" && (
                 <div>
                   <Button className="mr-1 add-btn">
                     <i class="fas fa-angle-double-right icon-button" />
@@ -287,5 +242,7 @@ class PostCard extends React.Component {
     );
   }
 }
+const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 
-export default PostCard;
+export default connect(mapStateToProps)(PostCard);
+

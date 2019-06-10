@@ -15,8 +15,7 @@ class RightSide extends React.Component {
   componentDidMount = async () => {
     const data = await getEvents(0);
     this.setState({ data: data.data.events });
-    console.log("update State");
-    console.log(this.state.data);
+   
   };
   render() {
     return (
