@@ -15,8 +15,7 @@ class CheckinPage extends Component {
   componentDidMount = () => {
     getEventJoined(this.props.username)
       .then(data => {
-        console.log("t")
-        console.log(data)
+ 
         this.setState({ data: data.data });
       })
       .catch(e => console.log(e));

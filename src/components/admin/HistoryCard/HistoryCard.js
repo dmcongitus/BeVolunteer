@@ -108,11 +108,13 @@ class PostCard extends React.Component {
     });
     return (
       <div className="postCard">
-        {this.props.type === "EVENT" ? (
+         
+        {this.props.object.type === "EVENT" ? (
+         
           <HeaderPost
             admin={true}
-            {...this.props.object}
-            user={this.props.object.publisher}
+            user={this.props.object.publisher} {...this.props.object}
+            
           />
         ) : (
           <HeaderPost admin={true} {...this.props.object} />

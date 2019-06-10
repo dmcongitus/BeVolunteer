@@ -20,13 +20,13 @@ class EventDetail extends Component {
     }
 
     render() {
-        console.log(this.state);
+     
         if (this.state.event === false) {
             return <Redirect to="/404"/>
         }
 
         if (this.state.event !== undefined) {
-            console.log(this.state.event);
+           
             return (
                 <EventDetailCard {...this.state.event.event}/>
             );

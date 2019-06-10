@@ -80,7 +80,7 @@ class DeleteAccountPage extends Component {
     this.setState(prevState => {
       const newAccounts = [...prevState.accounts];
       for (let i = 0; i < newAccounts.length; i++) {
-        console.log(newAccounts[i]);
+       
         if (newAccounts[i].username == username) {
           newAccounts[i].isBanned = false;
         }

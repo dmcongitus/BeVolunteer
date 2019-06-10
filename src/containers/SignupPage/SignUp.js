@@ -42,7 +42,7 @@ class SignUp extends Component {
       console.error(error);
     }
     // this.props.loginUser(this.state.username, this.state.password);
-    console.log("submitform");
+
   };
 
   render() {

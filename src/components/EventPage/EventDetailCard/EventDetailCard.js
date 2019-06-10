@@ -98,10 +98,7 @@ class EventDetailCard extends React.Component {
     }
 
     render() {
-        console.log(this.state);
-        console.log("-------------");
-        console.log(this.props);
-
+    
         const { activeIndex } = this.state;
 
         const slides = this.state.items.map(item => {

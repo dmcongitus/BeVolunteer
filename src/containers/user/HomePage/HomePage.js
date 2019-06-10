@@ -64,7 +64,7 @@ class HomePage extends Component {
         {this.props.permission === "USER" && (
           <NewPost style={{ zIndex: 50, position: "relative" }} />
         )}
-        {console.log(this.state.data)}
+       
         {this.state.data.map(post => (
           <Post
             key={post.id}

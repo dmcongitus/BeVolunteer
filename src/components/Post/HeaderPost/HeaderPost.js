@@ -66,7 +66,7 @@ class headerPost extends React.Component {
             <Col xs="1">
     
               <div>
-                
+             
                 <img
                   className="img-user-postCard rounded-circle"
                   src={"/resources/" + this.props.user.avatar}
@@ -74,6 +74,7 @@ class headerPost extends React.Component {
                   style={{}}
                   onClick={this.toggle}
                 />
+               
               </div>
               {this.state.modal ? (
                 <Modal

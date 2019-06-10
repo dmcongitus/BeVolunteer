@@ -208,7 +208,7 @@ class PostCheckin extends React.Component {
             <div className="item-right">
               {this.props.type === "EVENT" && (
                 <div>
-                  {console.log(this.state.modalCheckin)}
+                 
                   <Button className="mr-1 add-btn" onClick={this.toggleCheckin}>
                     <i class="fas fa-calendar-check icon-button" />
                     Điểm danh
@@ -244,7 +244,7 @@ class PostCheckin extends React.Component {
                               "DD/MM/YYYY"
                             )}
                           />
-                          {console.log(new Date(this.state.startDate))}
+ 
                           <div className="item-right mt-3">
                             <Button
                               color="success"

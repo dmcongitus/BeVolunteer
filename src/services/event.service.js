@@ -5,7 +5,7 @@ export function createEvent(post) {
   return Axios.post("/events", post, {
     headers: { "x-access-token": localStorage.getItem("token") }
   }).then(({ data: { id } }) => {
-    console.log(post.image);
+ 
     if (post.image) {
       const formData = new FormData();
       for (let i = 0; i < post.image.length; i++) {
