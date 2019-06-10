@@ -85,11 +85,8 @@ class LoginPage extends Component {
         );
     }
 }
-
 const mapStateToProps = ({ auth: { isAuthenticated } }) => ({ isAuthenticated });
-
 const mapDispatchToProps = dispatch => ({
     loginUser: (username, password, loginType) => dispatch(authActions.logInUser(username, password, loginType))
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

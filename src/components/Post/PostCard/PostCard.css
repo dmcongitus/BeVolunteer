@@ -25,8 +25,8 @@
     
 
 }
+
 .post-album{
- 
   border-radius: 3px;
   max-Width: 100%;
   height: auto;
@@ -118,6 +118,5 @@
 }
 
 .menu-post-item div{
-
  padding: 0.25rem;
 }

@@ -9,43 +9,47 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 class HomePage extends Component {
-  state = {
-    posts: []
-  };
+    state = {
+        posts: []
+    };
 
-  componentDidMount = () => {
-    getPosts(0)
-      .then(({ data: { posts } }) => this.setState({ posts }))
-      .catch(e => console.log(e));
-  };
+    componentDidMount = () => {
+        getPosts(0)
+        .then(({ data: { posts } }) => this.setState({ posts }))
+        .catch(e => console.log(e));
+    };
 
-  onPostTypeChanged = postType => {
-    getPosts(postType)
-      .then(({ data: { posts } }) => this.setState({ posts }))
-      .catch(e => console.log(e));
-  };
+    onPostTypeChanged = postType => {
+        getPosts(postType)
+        .then(({ data: { posts } }) => this.setState({ posts }))
+        .catch(e => console.log(e));
+    };
 
-  render() {
-    return (
-      <PageLayout
-        title="news"
-        hasMoreButton
-        onPostTypeChanged={this.onPostTypeChanged}
-      >
-        {this.props.permission === "USER" && (
-          <NewPost style={{ zIndex: 50, position: "relative" }} />
-        )}
-        {this.state.posts.map((post) => <Post key={post.id} {...post}></Post>)}
-   
-      </PageLayout>
-    );
-  }
+    render() {
+        return (
+        <PageLayout
+            title="news"
+            hasMoreButton
+            onPostTypeChanged={this.onPostTypeChanged}>
+            {
+                this.props.permission === "USER" && (
+                <NewPost style={{ zIndex: 50, position: "relative" }} />
+                )
+            }
+
+            {
+                this.state.posts.map((post) => <Post key={post.id} {...post}></Post>)
+            }
+    
+        </PageLayout>
+        );
+    }
 }
 
 const mapStateToProps = ({
-  auth: {
-    user: { name, permission, exp }
-  }
+    auth: {
+        user: { name, permission, exp }
+    }
 }) => ({ name, permission, exp });
 
 export default withRouter(connect(mapStateToProps)(HomePage));

@@ -6,11 +6,13 @@ import { Container, Row, Col, Alert } from "reactstrap";
 import DatePicker from "react-datepicker";
 import './NewEvent.css';
 import moment from 'moment';
+import Select from 'react-select';
 import profileIcon from '../../../images/profile.png';
 import cancelIcon from '../../../images/cancel.png';
 import editIcon from '../../../images/edit.png';
 import identityImage from '../../../images/identity.png';
 import { userInfo } from 'os';
+import { getAllUsers } from "../../../services/user.service";
 import { createEvent } from "../../../services/event.service";
 
 import {
@@ -24,8 +26,14 @@ import {
 	Dropdown, 
 	DropdownToggle,
 	DropdownMenu, 
-	DropdownItem
+	DropdownItem,
 } from "reactstrap";
+
+const options = [
+	{ value: 'chocolate' , label: 'Chocolate'},
+	{ value: 'strawberry', label: 'Strawberry' },
+	{ value: 'vanilla', label: 'Vanilla' },
+  ];
 
 class NewEvent extends Component {
     constructor(props) {
@@ -33,31 +41,63 @@ class NewEvent extends Component {
 		this.inputImage = createRef();
         this.state = {
 			infor:{
-				permission: 5,
+				permission: this.props.permission,
 				title: "",
-				publisher: "Admin",
-				sharer: "",
-				program_id: 1,
+				publisher: this.props.name,
+				sharer: [],
 				description: "",
 				address: "",
 				starttime: "",
 				endtime: "",
 				contact: "",
-				num_volunteer: 1,
-				statusEvent: "",
+				numVolunteer: 1,
 				deadline: "",
 				isDelete: false,
-				image: []
+				image: [],
+				multiSelect: []
 			},
 			statusForm: false,
 			isOpenErrorModal: false,
-			messageError: ""
+			messageError: "",
+			user:[],
+			selectedOption: null,
         }
-
 	}
+
+	componentDidMount = async () => {
+		console.log("ssssssss");
+        try {
+			const { data } = await getAllUsers();
+			console.log(data);
+			this.setState({
+				//user: data.map(u => (u.name))
+				
+				user: data.map(u => {
+					var obj = {}
+					obj["value"] = u._id;
+					obj["label"] = u.name;
+					return obj;
+				})
+			})
+        } catch {
+            this.setState({ user: false });
+        }
+	}
+
+	handleChange = (selectedOption) => {
+		console.log(selectedOption);
+		this.setState({ 
+			infor:{
+				...this.state.infor,
+				multiSelect: selectedOption
+			}
+		});
+		console.log(`Option selected:`, selectedOption);
+	};
 	
 	handleImageChange = e => {
-        e.persist();
+		e.persist();
+		console.log(e);
         this.setState({ 
 			infor:{
 				...this.state.infor,
@@ -78,10 +118,17 @@ class NewEvent extends Component {
 	onFormSubmit = async (e) => {
 		console.log("submitform");
 		console.log(this.state);
+		await this.setState({
+			infor: {
+				...this.state.infor,
+				sharer: this.state.infor.multiSelect.map(s => s.value)
+			}
+		})
 
 		alert(this.checkFormPost(this.state).message);
 		e.preventDefault();
 		try {
+			console.log("try");
 			const data = await createEvent({...this.state.infor});
 			console.log(data);
 		} catch (error) {
@@ -93,6 +140,8 @@ class NewEvent extends Component {
 	checkFormPost = (state) =>{	
 		console.log("BBBBBBB");
 		console.log(state);
+		console.log(state.infor.starttime);
+
 		var d1 = new Date(document.getElementById("starttime").value);
 		var d2 = new Date(document.getElementById("endtime").value);
 		var d3 = new Date(document.getElementById("deadline").value);
@@ -101,12 +150,6 @@ class NewEvent extends Component {
 		var startD = moment(d1);
 		var endD = moment(d2);
 		var deadline = moment(d3);
-
-		console.log("------------------");
-		console.log(startD);
-		console.log(endD);
-		console.log(deadline);
-		console.log(current);
 
 		//Kiểm tra giá trị rỗng
 		if( state.infor.title === "" || 
@@ -118,6 +161,7 @@ class NewEvent extends Component {
 			state.infor.contact === "" ||
 			state.infor.num_volunteer === "" ||
 			state.infor.state === "" ||
+			state.infor.image.length === 0 ||
 			state.infor.deadline === ""){
 				return {
 					statusForm: false,
@@ -148,29 +192,7 @@ class NewEvent extends Component {
 			};
 		}
 		
-		//Kiểm tra thời gian và trạng thái sự kiện có hợp lệ hay không?
-		else if(state.infor.statusEvent === "Sắp diễn ra" && current.isAfter(deadline)){
-			return {
-				statusForm: false,
-				message: "Upcoming event date have to later than current date"
-			};
-		}
-
-		//Kiểm tra thời gian và trạng thái sự kiện có hợp lệ hay không?
-		else if(state.infor.statusEvent === "Đang diễn ra" && (current.isAfter(endD) || current.isBefore(startD))){
-			return {
-				statusForm: false,
-				message: "Ongoing event date have to between start date and end date"
-			};
-		}
-
-		else if(state.infor.statusEvent === "Kết thúc" && current.isBefore(endD)){
-			return {
-				statusForm: false,
-				message: "Ended event date have to later than end date"
-			};
-		}
-
+		
 		else return {
 			statusForm: true,
 			message: "Generate event successfully."
@@ -178,6 +200,10 @@ class NewEvent extends Component {
 	}
 
     render() {
+        console.log("New Event");
+		console.log(this.state);
+		console.log(this.props.name + "------" + this.props.permission);
+
         if (this.state.isLoading) {
             return null;
         }
@@ -219,22 +245,22 @@ class NewEvent extends Component {
 										</Row>
 
 										{/* Tổ chức */}
-										<Row className="subEventRow1" style={{width: '100%'}}>
+										<Row className="subEventRow2" style={{width: '100%'}}>
 											<InputGroup >
-													<InputGroupAddon className="btn-edit" addonType="prepend">
-													
-														<Button outline color="success">Tổ chức</Button>
-													</InputGroupAddon>
-													<Input
-														type="text" 
-														name="publisher"
-														defaultValue="Admin" 
-														disabled/>
+												<InputGroupAddon className="btn-edit" addonType="prepend">
+												
+													<Button outline color="success">Tổ chức</Button>
+												</InputGroupAddon>
+												<Input
+													type="text" 
+													name="publisher"
+													defaultValue={this.state.infor['publisher']}
+													disabled/>
 											</InputGroup>
 										</Row>
 										
 										{/* Địa điểm */}
-										<Row className="subEventRow1" style={{width: '100%'}}>
+										<Row className="subEventRow3" style={{width: '100%'}}>
 											<InputGroup >
 												<InputGroupAddon className="btn-edit" addonType="prepend">
 												
@@ -247,15 +273,28 @@ class NewEvent extends Component {
 										</Row>
 
 										{/* Người chia sẻ */}
-										<Row className="subEventRow1" style={{width: '100%'}}>
+										<Row className="subEventRow4" style={{width: '100%'}}>
 											<InputGroup >
 												<InputGroupAddon className="btn-edit" addonType="prepend">
 												
 													<Button outline color="success">Người chia sẻ</Button>
 												</InputGroupAddon>
-												<Input 
+
+												<Col xs="8">
+													<Select
+														name="sharer"
+														value={this.state.infor.multiSelect}
+														onChange={this.handleChange}
+														options={this.state.user}
+														//onChange={this.onFieldChanged}
+														isSearchable 
+														isMulti 
+														/>
+												</Col>
+
+												{/* <Input 
 													onChange={this.onFieldChanged}
-													name="sharer"/>
+													name="sharer"/> */}
 											</InputGroup>
 										</Row>
 									</Col>
@@ -391,26 +430,6 @@ class NewEvent extends Component {
 											name="num_volunteer"/>
 									</InputGroup>
 								</Row>
-
-								{/* Trạng thái sự kiện*/}
-								<Row className="eventRow" style={{width: '55.5%'}}>
-									<InputGroup >
-										<InputGroupAddon className="btn-edit" addonType="prepend">
-										
-											<Button outline color="success">Trạng thái</Button>
-										</InputGroupAddon>
-										<Input
-											onChange={this.onFieldChanged}
-											name="statusEvent"
-											id="exampleFormControlSelect1"
-											type="select">
-												<option>Chọn trạng thái</option>
-												<option value="Sắp diễn ra">Sắp diễn ra</option>
-												<option value="Đang diễn ra">Đang diễn ra</option>
-												<option value="Kết thúc">Kết thúc</option>
-										</Input>
-									</InputGroup>
-								</Row>
 						
 								{this.state.profileChanged && <div className="NewEvent__Footer">
 							
@@ -440,10 +459,17 @@ class NewEvent extends Component {
     }
 }
 
-const mapStateToProps = ({ auth: { user } }) => ({ user });
-
 const mapDispatchToProps = dispatch => ({
     updateUserInfo: (username, userInfo) => dispatch(authActions.updateUser(username, userInfo))
 });
+
+
+const mapStateToProps = ({ 
+    auth: { 
+        user: { 
+            name, permission 
+        } 
+    } 
+}) => ({ name, permission });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewEvent);

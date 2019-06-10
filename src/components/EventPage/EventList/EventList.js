@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import List from "../../../components/EventPage/List/List";
 import "./EventList.css";
+import moment from 'moment';
+
 import { getEvents } from '../../../services/event.service';
-import MoreVerticalButtonEvents from '../../Layout/MoreVerticalButton/MoreVerticalButtonEvents';
+import MoreVerticalButtonEvents from '../../MoreVerticalButton/MoreVerticalButtonEvents';
 
 class HomePage extends Component {
 	state = {
@@ -21,6 +23,8 @@ class HomePage extends Component {
 	render() {
 		console.log("AAAAAAAAAAAAAAA");
 		console.log(this.state.events);
+		var a = moment(this.state.events.starttime).format('YYYY-MM-DD');
+		console.log(a);
 		return (
 			<div className="side-body" style={{ position: 'relative' , minHeight: '84vh'}}>
 				<h2 className="title-side-body" style={{ textTransform: 'uppercase' }}>

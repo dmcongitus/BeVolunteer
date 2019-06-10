@@ -20,18 +20,32 @@
     padding: 10px;
     background-color: white;
     box-shadow:0  1px 2px gray;
-  
     border-top: 10px solid #004916;
-    
-
 }
 .event-album{
-  margin-left: 10px;
-  margin-bottom: 20px;
-  border-radius: 3px;
-  width: 220px;
-  height: 160px;
-  border: 1px solid #0D6628;
+    border-radius: 3px;
+    max-Width: 100%;
+    height: auto;
+}
+
+.ListEvent-img__more {
+    position: relative;
+    overflow:auto;
+    width: 88%;
+}
+
+.ListEvent-img__more div {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top :0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.50);
+    color: white;
+    font-size: 1.5rem;
 }
 
 .header-col{

@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import moment from 'moment';
+
 import {
     Modal,
     ModalHeader,
@@ -15,27 +17,8 @@ import {
     CarouselIndicators,
     CarouselCaption
 } from "reactstrap";
-import img1 from "../../../images/1.jpg";
-import img2 from "../../../images/2.jpg";
-import img3 from "../../../images/3.jpg";
+
 import "./EventCard.css";
-const items = [
-    {
-        src: img1,
-        altText: "Slide 1",
-        caption: "Slide 1"
-    },
-    {
-        src: img2,
-        altText: "Slide 2",
-        caption: "Slide 2"
-    },
-    {
-        src: img3,
-        altText: "Slide 3",
-        caption: "Slide 3"
-    }
-];
 
 
 class EventCard extends React.Component {
@@ -57,19 +40,20 @@ class EventCard extends React.Component {
         this.toggleMenuEvent = this.toggleMenuEvent.bind(this);
         this.togglePayment = this.togglePayment.bind(this);
     }
+
     toggleMenuEvent() {
         this.setState({
         dropdownOpen: !this.state.dropdownOpen
         });
     }
+
     togglePayment() {
         this.setState({
         paymentOpen: !this.state.paymentOpen
         });
     }
-    clearArray() {
-        this.state.items = [];
-    }
+
+
     onExiting() {
         this.animating = true;
     }
@@ -100,29 +84,24 @@ class EventCard extends React.Component {
         if (this.animating) return;
         this.setState({ activeIndex: newIndex });
     }
+
     toggle() {
         this.setState(prevState => ({
         modal: !prevState.modal
         }));
     }
 
-    toggle(filename) {
-        this.setState(prevState => ({
-            modal: !prevState.modal
-        }));
-    }
-
     render() {
         const { activeIndex } = this.state;
 
-        const slides = items.map(item => {
+        const slides = this.state.items.map(item => {
         return (
             <CarouselItem
                 onExiting={this.onExiting}
                 onExited={this.onExited}
                 key={item.src}>
                 <img 
-                    src={item.src} 
+                    src={item} 
                     alt={item.altText} 
                     className = "img-slide-style"/>
                 <CarouselCaption
@@ -134,9 +113,10 @@ class EventCard extends React.Component {
 
     return (
         <Row className="eventCard">
+          
             <div style={{ width: "100%" }}>
                 <Row>
-                    <Col xs="4">
+                    <Col>
                         <div onClick={this.toggle}>
                             {/* {this.clearArray()} */}
 
@@ -147,7 +127,7 @@ class EventCard extends React.Component {
                                 className="event-album"
                             />
                             ) : (
-                            <div className="NewEvent-img__more">
+                            <div className="ListEvent-img__more">
                                 <img
                                 style={{ cursor: "pointer" }}
                                 src={`/resources/${this.props.filenames[0]}`}
@@ -190,13 +170,13 @@ class EventCard extends React.Component {
                         </Modal>
                     </Col>
 
-                    <Col xs="8" className="textMedia">
+                    <Col className="textMedia">
                         <div >
                             {
                                 (this.props.statusEvent === "Sắp diễn ra")  && (
                                 <div>
                                     <Alert color="success">{this.props.title}</Alert>
-                                    <Alert color="success">{this.props.starttime}</Alert>
+                                    <Alert color="success">{moment(this.props.starttime).format('DD-MM-YYYY')}</Alert>
                                     <Button className="mr-1 new-btn">
                                     <i className="fas fa-edit icon-button" />
                                     Tham gia
@@ -207,17 +187,17 @@ class EventCard extends React.Component {
                                 this.props.statusEvent === "Đang diễn ra" && (
                                 <div>
                                     <Alert color="success">{this.props.title}</Alert>
-                                    <Alert color="warning">{this.props.starttime}</Alert>
+                                    <Alert color="warning">{moment(this.props.starttime).format('DD-MM-YYYY')}</Alert>
                                 </div>
                             )}
                             {
                                 this.props.statusEvent === "Đã kết thúc" && (
                                 <div>
                                     <Alert color="success">{this.props.title}</Alert>
-                                    <Alert color="danger">{this.props.starttime}</Alert>
+                                    <Alert color="danger">{moment(this.props.starttime).format('DD-MM-YYYY')}</Alert>
                                 </div>
                             )}
-                            <Link to={`event/${this.props.id}`}>
+                            <Link to={`event/${this.props._id}`}>
                                 <Button color="success" className="mr-1 success">
                                     <i className="fas fa-angle-double-right icon-button" /> Xem thêm
                                 </Button>
