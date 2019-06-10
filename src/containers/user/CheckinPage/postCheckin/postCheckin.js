@@ -15,16 +15,13 @@ import {
   CarouselControl,
   CarouselIndicators,
   Input,
-  Dropdown,
-  DropdownMenu,
-  DropdownToggle
+
 } from "reactstrap";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import HeaderPost from "../../../../components/Post/HeaderPost/HeaderPost";
 
-import "./PostCard.css";
-import Payment from "../Payment/Payment";
-import HeaderPost from "../HeaderPost/HeaderPost";
-
-class PostCard extends React.Component {
+class PostCheckin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,30 +32,52 @@ class PostCard extends React.Component {
       paymentOpen: false,
       modalReport: false,
       reportText: "",
-     
+      modalCheckin: false,
+      startDate: new Date()
     };
     this.toggleReport = this.toggleReport.bind(this);
-   
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.toggleMenuPost = this.toggleMenuPost.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
+    this.toggleCheckin = this.toggleCheckin.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-  
-  checkJoinEvent = (_id, _ids) => {
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+  }
 
-    return _ids.find(i => i._id ===_id)
-    
+  addDays(date, n){
+    var now3;
+    now3.setDate(date.getDate() + n);
+    return now3;
+  }
+  toggleCheckin(){
+    this.setState(prevState => ({
+      modalCheckin: !prevState.modalCheckin
+    }));
   }
   toggleReport() {
     this.setState(prevState => ({
       modalReport: !prevState.modalReport
     }));
   }
- 
+  toggleMenuPost() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+  togglePayment() {
+    this.setState({
+      paymentOpen: !this.state.paymentOpen
+    });
+  }
   onExiting() {
     this.animating = true;
   }
@@ -190,48 +209,31 @@ class PostCard extends React.Component {
             <div className="item-right">
               {this.props.type === "EVENT" && (
                 <div>
-                  {this.checkJoinEvent(this.props.myUser._id, this.props.volunteers)?
-                  <Button className="mr-1 new-btn" onClick = {()=>this.props.unjoinEvent(this.props._id)}>
-                  <i class="fas fa-chevron-circle-left icon-button" />
-                  Hủy
-                </Button>
-                  :
-                  <Button className="mr-1 add-btn" onClick = {()=>this.props.joinToEvent(this.props._id)}>
-                  <i class="fas fa-angle-double-right icon-button" />
-                  Tham gia
-                </Button>
-                  }
-                  
-                </div>
-              )}
-              {this.props.type === "PLACE" && (
-                <div>
-                  <Button className="mr-1 new-btn">
-                    <i class="fas fa-edit icon-button" />
-                    Tạo event
+                  {console.log(this.state.modalCheckin)}
+                  <Button className="mr-1 add-btn" onClick={this.toggleCheckin}>
+                    <i class="fas fa-calendar-check icon-button" />
+                    Điểm danh
                   </Button>
+                  <Modal isOpen={this.state.modalCheckin} toggle={this.toggleCheckin}>
+          <ModalHeader toggle={this.toggleCheckin}>Modal title</ModalHeader>
+          <ModalBody>
+          <DatePicker
+  selected={this.state.startDate}
+  onChange={this.handleChange}
+  minDate={new Date()}
+  // maxDate={this.addDays(new Date(),5)}
+  placeholderText="Select a date between today and 5 days in the future"
+/>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggleCheckin}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={this.toggleCheckin}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
                 </div>
               )}
-              {this.props.type === "DONATION" && (
-                <div>
-                  <Button
-                    className="mr-1 donate-btn"
-                    onClick={this.togglePayment}
-                  >
-                    <i class="fas fa-donate icon-button" />
-                    Quyên góp
-                  </Button>
-                  <Modal
-                    isOpen={this.state.paymentOpen}
-                    toggle={this.togglePayment}
-                  >
-                    <ModalHeader>Thanh toán </ModalHeader>
-                    <ModalBody>
-                      <Payment close={this.togglePayment} />
-                    </ModalBody>
-                  </Modal>
-                </div>
-              )}
+             
+              
               <Link to={`post/${this.props._id}`}>
                 <Button color="success" className="mr-1 success p-2">
                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm
@@ -250,5 +252,5 @@ class PostCard extends React.Component {
 }
 const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 
-export default connect(mapStateToProps)(PostCard);
+export default connect(mapStateToProps)(PostCheckin);
 

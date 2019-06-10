@@ -130,6 +130,11 @@ class LeftSide extends Component {
                     <i class="fas fa-trophy" /> Xếp hạng
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink exact activeClassName="NavLink--active" to="/checkin">
+                    <i class="fas fa-calendar-check" /> Điểm danh
+                  </NavLink>
+                </li>
               </ul>
             </Col>
           </Row>
