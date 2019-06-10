@@ -9,6 +9,17 @@ export function createPost(post) {
     })
 }
 
+export function deletePost(id) {
+    return request({
+      url: `/posts/`+id,
+      method: 'delete',
+    }).then(response => { 
+      Message.success("Xóa thành công")
+    })
+    .catch(error => {
+      Message.error("Xóa thất bại")
+    });
+  }
 export function updateImage(id, image) {
     const formData = new FormData();
             for (let i = 0; i < image.length; i++) {

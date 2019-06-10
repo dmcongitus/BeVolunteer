@@ -185,11 +185,11 @@ class PostCard extends React.Component {
                 <i class="fas fa-trash-alt icon-button" />
                 Xóa báo cáo
               </Button>
-              <Button className="mr-1 new-btn">
+              <Button className="mr-1 new-btn"   onClick={ () => this.props.deletePostReport(this.props.object._id, this.props.objectModel)}>
                 <i class="fas fa-lock icon-button" />
                 Khóa bài
               </Button>
-
+              
               <Link to={`post/${this.props.object._id}`}>
                 <Button color="success" className="mr-1 success p-2">
                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm

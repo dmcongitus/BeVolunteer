@@ -31,7 +31,17 @@ export function getEvents(statusEvent) {
         })
     }
 }
-
+export function deleteEvent(id) {
+    return request({
+      url: `/event/`+id,
+      method: 'delete',
+    }).then(response => { 
+      Message.success("Xóa thành công")
+    })
+    .catch(error => {
+      Message.error("Xóa thất bại")
+    });
+  }
 export function getSpecificEvent(eventId) {
     return Axios.get(`/events/${eventId}`, { headers: { "x-access-token": localStorage.getItem("token") } });
 }

@@ -5,6 +5,8 @@ import "./ContentManagePage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 
 import { deleteReport, getReports } from "../../../services/report.service";
+import { deletePost } from "../../../services/post.service";
+import { deleteEvent } from "../../../services/event.service";
 class ContentManagePage extends Component {
   state = {
     data: []
@@ -12,6 +14,20 @@ class ContentManagePage extends Component {
 
   deleteReportfun(id){
     deleteReport(id)
+    getReports()
+    .then(data => {
+      this.setState(data);
+      console.log(this.state.data)
+    })
+      .catch(e => console.log(e));
+  }
+  deletePostReport(id, type){
+    if(type === "Post"){
+      deletePost(id)
+    }else{
+      deleteEvent(id)
+    }
+   
   }
   componentDidMount = () => {
     getReports()
@@ -30,7 +46,7 @@ class ContentManagePage extends Component {
         <div>
          
           {this.state.data.map(data => (
-            <HistoryCard {...data} deleteReport={this.deleteReportfun}/>
+            <HistoryCard {...data} deleteReport={this.deleteReportfun} deletePostReport={this.deletePostReport}/>
           ))}
         </div>
       </PageLayout>
