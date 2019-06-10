@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import request from './request'
-
+import { Message } from 'element-react';
 export function createEvent(post) {
     return Axios.post('/events', post, { headers: { "x-access-token": localStorage.getItem("token") } })
         .then(({ data: { id } }) => {

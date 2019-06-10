@@ -39,12 +39,7 @@ export function reportPost(data) {
         Message.error("Báo cáo bài viết thất bại")
       });
 }
-export function getReportPost() {
-    return request({
-        url: `reports`,
-        method: 'get'
-    })
-}
+
 
 export function getPosts(type) {
     if (type === 0) {

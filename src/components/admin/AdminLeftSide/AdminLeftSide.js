@@ -6,7 +6,7 @@ import {
   mapPermissionToText,
   mapPermissionToSelections
 } from "../../../configs/permission";
-
+import man from "../../../images/man.png"
 var permissionArr = { 'CONTENT_MOD': 'Content Admin', 'ACCOUNT_MOD': 'Account Admin', 'UNIT_MOD': 'Unit Admin', 'SUPER': 'Super Admin' };
 
 const adminLeftSide = ({ username, permission }) => (
@@ -17,7 +17,7 @@ const adminLeftSide = ({ username, permission }) => (
         <div>
           <div className="logo ">
             <img
-              src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.15752-9/57393041_305492127011755_8740904577945042944_n.jpg?_nc_cat=105&_nc_oc=AQn7GUnB8UXlqMTogNJWDlqNjMEYb8gBeMPWreuL7dXQQHbhb9R6_PFCvI5m-de4R8E&_nc_ht=scontent.fsgn2-1.fna&oh=70f6e9461f233111834a04094f2fa45e&oe=5D33B790"
+              src={man}
               className="mx-auto .d-block"
             />
           </div>

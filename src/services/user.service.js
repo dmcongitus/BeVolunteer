@@ -6,7 +6,6 @@ export function getAllUsers() {
   return request({
     url: `/accounts/`,
     method: 'get',
-   
   })
 }
 
@@ -14,7 +13,6 @@ export function getAllOrgs() {
   return request({
     url: `/orgs/`,
     method: 'get',
-   
   })
 }
 export function getAllUsersRank() {
@@ -29,7 +27,12 @@ export function verifyUser(username) {
   return request({
     url: `/admins/verify/`+ username + `?accept=true`,
     method: 'put',
+  }).then(response => { 
+    Message.success("Xác thực thành công")
   })
+  .catch(error => {
+    Message.error("Lỗi")
+  });
 }
 
 export function getUsersVerify() {
@@ -42,7 +45,12 @@ export function unVerifyUser(username) {
   return request({
     url: `/admins/verify/`+ username + `?accept=false`,
     method: 'put',
+  }).then(response => { 
+    Message.success("Hủy xác thực thành công")
   })
+  .catch(error => {
+    Message.error("Lỗi")
+  });
 }
 
 export function createUser(params) {
@@ -50,7 +58,12 @@ export function createUser(params) {
     url: `/accounts`,
     method: 'post',
     data: {...params}
+  }).then(response => { 
+    Message.success("Thành công")
   })
+  .catch(error => {
+    Message.error("Lỗi")
+  });
 
 }
 

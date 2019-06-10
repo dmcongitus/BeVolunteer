@@ -12,20 +12,19 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators,
+  CarouselIndicators
 } from "reactstrap";
-
 
 import Payment from "../../Post/Payment/Payment";
 import HeaderPost from "../../Post/HeaderPost/HeaderPost";
-
+import Component from "../../../components/Post/PostCardMore/Comment/Comment";
 class PostCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
       activeIndex: 0,
-      items: props.filenames.map(filename => `/resources/${filename}`),
+      items: props.object.filenames.map(filename => `/resources/${filename}`),
       dropdownOpen: false,
       paymentOpen: false,
       modalReport: false,
@@ -109,21 +108,15 @@ class PostCard extends React.Component {
     });
     return (
       <div className="postCard">
-        
-        {this.props.type === "EVENT"?<HeaderPost
-          {...this.props} user =  {this.props.publisher} 
-          successReport = {this.props.successReport}
-          reporter = {this.props.myUser._id}
-          object = {this.props._id}
-          objectModel = {this.props.type}
-        />:<HeaderPost
-          {...this.props}
-          successReport = {this.props.successReport}
-          reporter = {this.props.myUser._id}
-          object = {this.props._id}
-          objectModel = {this.props.type}
-        />}
-        
+        {this.props.type === "EVENT" ? (
+          <HeaderPost
+            admin={true}
+            {...this.props.object}
+            user={this.props.object.publisher}
+          />
+        ) : (
+          <HeaderPost admin={true} {...this.props.object} />
+        )}
 
         <Row>
           <Col xs="6">
@@ -133,14 +126,14 @@ class PostCard extends React.Component {
               {this.state.items.length < 2 ? (
                 <img
                   style={{ cursor: "pointer" }}
-                  src={`/resources/${this.props.filenames[0]}`}
+                  src={`/resources/${this.props.object.filenames[0]}`}
                   className="post-album"
                 />
               ) : (
                 <div className="Newpost-img__more">
                   <img
                     style={{ cursor: "pointer" }}
-                    src={`/resources/${this.props.filenames[0]}`}
+                    src={`/resources/${this.props.object.filenames[0]}`}
                     className="post-album"
                   />
                   <div>+{this.state.items.length - 1}</div>
@@ -182,46 +175,22 @@ class PostCard extends React.Component {
           </Col>
 
           <Col xs="6" className="textMedia pl-0">
-            <Alert color="success">{this.props.description}</Alert>
+            <Alert color="success">{this.props.object.description}</Alert>
 
             <div className="item-right">
-              {this.props.type === "EVENT" && (
-                <div>
-                  <Button className="mr-1 add-btn">
-                    <i class="fas fa-angle-double-right icon-button" />
-                    Tham gia
-                  </Button>
-                </div>
-              )}
-              {this.props.type === "PLACE" && (
-                <div>
-                  <Button className="mr-1 new-btn">
-                    <i class="fas fa-edit icon-button" />
-                    Tạo event
-                  </Button>
-                </div>
-              )}
-              {this.props.type === "DONATION" && (
-                <div>
-                  <Button
-                    className="mr-1 donate-btn"
-                    onClick={this.togglePayment}
-                  >
-                    <i class="fas fa-donate icon-button" />
-                    Quyên góp
-                  </Button>
-                  <Modal
-                    isOpen={this.state.paymentOpen}
-                    toggle={this.togglePayment}
-                  >
-                    <ModalHeader>Thanh toán </ModalHeader>
-                    <ModalBody>
-                      <Payment close={this.togglePayment} />
-                    </ModalBody>
-                  </Modal>
-                </div>
-              )}
-              <Link to={`post/${this.props._id}`}>
+              <Button
+                className="mr-1 donate-btn"
+                onClick={ () => this.props.deleteReport(this.props._id)}
+              >
+                <i class="fas fa-trash-alt icon-button" />
+                Xóa báo cáo
+              </Button>
+              <Button className="mr-1 new-btn">
+                <i class="fas fa-lock icon-button" />
+                Khóa bài
+              </Button>
+
+              <Link to={`post/${this.props.object._id}`}>
                 <Button color="success" className="mr-1 success p-2">
                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm
                 </Button>
@@ -229,6 +198,9 @@ class PostCard extends React.Component {
             </div>
           </Col>
         </Row>
+        <div className="mt-3">
+          <Component {...this.props.reporter} content={this.props.content} />
+        </div>
 
         {/*/ cardbox-like */}
 
@@ -240,4 +212,3 @@ class PostCard extends React.Component {
 const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 
 export default connect(mapStateToProps)(PostCard);
-

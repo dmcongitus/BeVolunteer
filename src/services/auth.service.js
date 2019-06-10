@@ -1,5 +1,5 @@
 import request from './request'
-
+import { Message } from 'element-react';
 export function loginUser(username, password, loginType) {
     return request({
         url: `${loginType ? "admins" : "accounts"}/login`,

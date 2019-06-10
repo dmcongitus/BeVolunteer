@@ -3,14 +3,18 @@ import { Link } from "react-router-dom";
 import HistoryCard from "../../../components/admin/HistoryCard/HistoryCard";
 import "./ContentManagePage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
-import { getReportPost } from "../../../services/post.service";
+
+import { deleteReport, getReports } from "../../../services/report.service";
 class ContentManagePage extends Component {
   state = {
     data: []
   };
 
+  deleteReportfun(id){
+    deleteReport(id)
+  }
   componentDidMount = () => {
-    getReportPost()
+    getReports()
     .then(data => {
       this.setState(data);
       console.log(this.state.data)
@@ -26,7 +30,7 @@ class ContentManagePage extends Component {
         <div>
          
           {this.state.data.map(data => (
-            <HistoryCard post={data.object} />
+            <HistoryCard {...data} deleteReport={this.deleteReportfun}/>
           ))}
         </div>
       </PageLayout>

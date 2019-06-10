@@ -128,6 +128,7 @@ class headerPost extends React.Component {
 
         <Col xs="1" className="p-0 pr-3">
           <div className="menu-post">
+            {this.props.admin !== true ?(
             <Dropdown
               isOpen={this.state.dropdownOpen}
               toggle={this.toggleMenuPost}
@@ -146,7 +147,8 @@ class headerPost extends React.Component {
                   Báo cáo
                 </div>
               </DropdownMenu>
-            </Dropdown>
+            </Dropdown>):null
+            }
             {this.state.modalReport && (
               <Modal isOpen="true" toggle={this.toggleReport}>
                 <ModalHeader toggle={this.toggleReport}>
