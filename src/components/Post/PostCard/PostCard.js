@@ -35,6 +35,7 @@ class PostCard extends React.Component {
       paymentOpen: false,
       modalReport: false,
       reportText: "",
+      
      
     };
     this.toggleReport = this.toggleReport.bind(this);
@@ -47,7 +48,10 @@ class PostCard extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
   }
-  
+
+  togglePayment(){
+    this.setState({paymentOpen: !this.state.modalReport})
+  }
   checkJoinEvent = (_id, _ids) => {
 
     return _ids.find(i => i._id ===_id)

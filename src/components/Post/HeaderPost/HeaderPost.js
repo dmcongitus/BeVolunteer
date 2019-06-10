@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   Input
 } from "reactstrap";
+import format from 'date-fns/format';
 class headerPost extends React.Component {
   constructor(props) {
     super(props);
@@ -117,7 +118,8 @@ class headerPost extends React.Component {
                 </span>
                 <div className="small">
                   <i className="fa fa-calendar" data-original-title title />
-                  {new Date(this.props.createdAt).toLocaleDateString()}
+                  {format(new Date(this.props.createdAt), "DD/MM/YYYY")}
+        
                   <i className="fas fa-map-marker-alt ml-3" />
                   {this.props.address}
                 </div>

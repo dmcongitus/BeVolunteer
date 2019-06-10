@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
+import addDays from "date-fns/add_days";
+import format from "date-fns/format";
 import {
   Modal,
   ModalHeader,
@@ -14,11 +16,10 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  Input,
-
+  Input
 } from "reactstrap";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import HeaderPost from "../../../../components/Post/HeaderPost/HeaderPost";
 
 class PostCheckin extends React.Component {
@@ -53,12 +54,7 @@ class PostCheckin extends React.Component {
     });
   }
 
-  addDays(date, n){
-    var now3;
-    now3.setDate(date.getDate() + n);
-    return now3;
-  }
-  toggleCheckin(){
+  toggleCheckin() {
     this.setState(prevState => ({
       modalCheckin: !prevState.modalCheckin
     }));
@@ -131,21 +127,24 @@ class PostCheckin extends React.Component {
     });
     return (
       <div className="postCard">
-        
-        {this.props.type === "EVENT"?<HeaderPost
-          {...this.props} user =  {this.props.publisher} 
-          successReport = {this.props.successReport}
-          reporter = {this.props.myUser._id}
-          object = {this.props._id}
-          objectModel = {this.props.type}
-        />:<HeaderPost
-          {...this.props}
-          successReport = {this.props.successReport}
-          reporter = {this.props.myUser._id}
-          object = {this.props._id}
-          objectModel = {this.props.type}
-        />}
-        
+        {this.props.type === "EVENT" ? (
+          <HeaderPost
+            {...this.props}
+            user={this.props.publisher}
+            successReport={this.props.successReport}
+            reporter={this.props.myUser._id}
+            object={this.props._id}
+            objectModel={this.props.type}
+          />
+        ) : (
+          <HeaderPost
+            {...this.props}
+            successReport={this.props.successReport}
+            reporter={this.props.myUser._id}
+            object={this.props._id}
+            objectModel={this.props.type}
+          />
+        )}
 
         <Row>
           <Col xs="6">
@@ -214,26 +213,57 @@ class PostCheckin extends React.Component {
                     <i class="fas fa-calendar-check icon-button" />
                     Điểm danh
                   </Button>
-                  <Modal isOpen={this.state.modalCheckin} toggle={this.toggleCheckin}>
-          <ModalHeader toggle={this.toggleCheckin}>Modal title</ModalHeader>
-          <ModalBody>
-          <DatePicker
-  selected={this.state.startDate}
-  onChange={this.handleChange}
-  minDate={new Date()}
-  // maxDate={this.addDays(new Date(),5)}
-  placeholderText="Select a date between today and 5 days in the future"
-/>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleCheckin}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggleCheckin}>Cancel</Button>
-          </ModalFooter>
-        </Modal>
+                  <Modal
+                    isOpen={this.state.modalCheckin}
+                    toggle={this.toggleCheckin}
+                  >
+                    <ModalHeader toggle={this.toggleCheckin}>
+                      Điểm danh
+                    </ModalHeader>
+                    <ModalBody>
+                      <Row>
+                        <Col>
+                          <DatePicker
+                            inline
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                            minDate={new Date(this.props.starttime)}
+                            maxDate={new Date(this.props.endtime)}
+                            highlightDates={[
+                              new Date(this.props.starttime),
+                              new Date(this.props.endtime)
+                            ]}
+                          />
+                        </Col>
+                        <Col>
+                          <b className="mt-4">Mã điểm danh</b>
+                          <Input
+                            className="mt-3"
+                            placeholder={format(
+                              new Date(this.state.startDate),
+                              "DD/MM/YYYY"
+                            )}
+                          />
+                          {console.log(new Date(this.state.startDate))}
+                          <div className="item-right mt-3">
+                            <Button
+                              color="success"
+                              className="mr-2"
+                              onClick={this.toggleCheckin}
+                            >
+                              Xác thực
+                            </Button>
+                            <Button color="danger" onClick={this.toggleCheckin}>
+                              Thoát
+                            </Button>
+                          </div>
+                        </Col>
+                      </Row>
+                    </ModalBody>
+                  </Modal>
                 </div>
               )}
-             
-              
+
               <Link to={`post/${this.props._id}`}>
                 <Button color="success" className="mr-1 success p-2">
                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm
@@ -253,4 +283,3 @@ class PostCheckin extends React.Component {
 const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 
 export default connect(mapStateToProps)(PostCheckin);
-
