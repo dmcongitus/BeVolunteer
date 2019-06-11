@@ -66,6 +66,9 @@ class EventCardMore extends React.Component {
       modalEye: !this.state.modalEye
     });
   }
+
+ 
+
   toggleMenuPost() {
     this.setState({
  

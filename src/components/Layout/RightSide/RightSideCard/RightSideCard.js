@@ -14,37 +14,31 @@ const getDate = date => {
   return formatted_date;
 };
 const RightSideCard = props => (
-  
-
   <div>
     <li className="recent-post">
-      <Row className = "ml-0">
-      <Col xs = "6" className = "pl-0 pr-3">
-       
-        <div className="post-img">
-        <img
-          src={"/resources/"+props.publisher.avatar}
-          className="img-responsive"
-        />
-      </div>
-        
-     
-      </Col>
-      <Col xs = "6" className = "pl-0 pr-2">
-      
-      <a>
-        <h6>{props.title}</h6>
-      </a>
-      <p>
-        <small>
-          <i className="fa fa-calendar" data-original-title title /> {getDate(props.deadline)}
-        </small>
-      </p>
-
-      </Col>
+      <Row className="ml-0">
+        <Col xs="6" className="pl-0 pr-3">
+          <div className="post-img">
+            <img
+              src={"/resources/" + props.publisher.avatar}
+              className="img-responsive"
+            />
+          </div>
+        </Col>
+        <Col xs="6" className="pl-0 pr-2">
+          <a>
+          <Link to={`/eventMore/${props._id}`}>
+            <h6>{props.title}</h6>
+            </Link>
+          </a>
+          <p>
+            <small>
+              <i className="fa fa-calendar" data-original-title title />{" "}
+              {getDate(props.deadline)}
+            </small>
+          </p>
+        </Col>
       </Row>
-      
-      
     </li>
     <hr />
   </div>
