@@ -186,6 +186,7 @@ class PostCard extends React.Component {
                    
                       className="mr-1 add-btn"
                       onClick={() => this.props.joinToEvent(this.props._id)}
+                      disabled = {this.props.myUser.isVerified===false || this.props.myUser.permisstion !="USER" }
                     >
                       <i class="fas fa-angle-double-right icon-button" />
                       Tham gia

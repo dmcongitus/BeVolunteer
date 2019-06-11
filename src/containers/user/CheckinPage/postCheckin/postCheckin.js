@@ -36,7 +36,8 @@ class PostCheckin extends React.Component {
       modalReport: false,
       reportText: "",
       modalCheckin: false,
-      startDate: new Date()
+      startDate: new Date(),
+      CodeCheckin: ""
     };
     this.toggleReport = this.toggleReport.bind(this);
     this.next = this.next.bind(this);
@@ -49,13 +50,23 @@ class PostCheckin extends React.Component {
     this.togglePayment = this.togglePayment.bind(this);
     this.toggleCheckin = this.toggleCheckin.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.OnClickSuccessCheckin = this.OnClickSuccessCheckin.bind(this);
   }
   handleChange(date) {
     this.setState({
       startDate: date
     });
   }
-
+  async OnClickSuccessCheckin () {
+    await this.setState({
+      modalCheckin: !this.state.modalCheckin
+    });
+    this.props.successCheckin(
+      this.props._id,
+      this.state.startDate,
+      this.state.CodeCheckin
+    );
+  }
   toggleCheckin() {
     this.setState(prevState => ({
       modalCheckin: !prevState.modalCheckin
@@ -230,6 +241,7 @@ class PostCheckin extends React.Component {
                           <DatePicker
                             inline
                             selected={this.state.startDate}
+                      
                             onChange={this.handleChange}
                             minDate={new Date(this.props.starttime)}
                             maxDate={new Date()}
@@ -241,21 +253,22 @@ class PostCheckin extends React.Component {
                         </Col>
                         <Col>
                           <b className="mt-4">Mã điểm danh</b>
-                  
-                            <Input
+
+                          <Input
                             className="mt-3"
-                              placeholder={format(
-                                new Date(this.state.startDate),
-                                "DD/MM/YYYY"
-                              )}
-                            />
-  
+                            name = "CodeCheckin"
+                            onChange = {this.onChange}
+                            placeholder={format(
+                              new Date(this.state.startDate),
+                              "DD/MM/YYYY"
+                            )}
+                          />
 
                           <div className="item-right mt-3">
                             <Button
                               color="success"
                               className="mr-2"
-                              onClick={this.toggleCheckin}
+                              onClick={this.OnClickSuccessCheckin}
                             >
                               Xác thực
                             </Button>

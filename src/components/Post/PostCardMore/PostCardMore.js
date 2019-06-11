@@ -254,7 +254,7 @@ class PostCardMore extends React.Component {
               <div className="item-right pb-2 m-2 hr-border-bottom">
                 {this.props.type === "Hoạt động" && (
                   <div>
-                    <Button className="mr-1 add-btn">
+                    <Button className="mr-1 add-btn" disabled = {this.props.myUser.isVerified===false}>
                       <i class="fas fa-angle-double-right icon-button" />
                       Tham gia
                     </Button>

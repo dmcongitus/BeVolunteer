@@ -9,11 +9,12 @@ export function getAdmins() {
   });
 }
 
-const instance = Axios.create({
-  baseURL: "http://localhost:3000/",
-  timeout: 1000,
-  headers: { "x-access-token": localStorage.getItem("token") }
-});
+export function getAdminsManger() {
+  return request({
+    url: `/admins/manager`,
+    method: "get"
+  });
+}
 
 export async function createAdmin(data) {
   return request({

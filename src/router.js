@@ -12,6 +12,7 @@ import InfoPage from './containers/user/InfoPage/InfoPage'
 import NoPermissionPage from './containers/NoPermissionPage/NoPermissionPage';
 import ApprovePage from './containers/admin/ApprovePage/AppovePage';
 import DeleteAccountPage from './containers/admin/DeleteAccountPage/DeleteCountPage';
+import AdminManagePage from './containers/admin/AdminManagePage/AdminManagePage';
 import HistoryPage from './containers/user/HistoryPage/HistoryPage';
 import CheckinPage from './containers/user/CheckinPage/CheckinPage';
 import ContentManagePage from './containers/admin/ContentManagePage/ContentManagePage';
@@ -59,6 +60,7 @@ export default function router({ isAuthenticated, permission, username }) {
                         <NeedPermissionRoute path="/post/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/approve" routePermisison={['ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
                         <NeedPermissionRoute path="/delete-account" routePermisison={['ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/admin-account" routePermisison={['UNIT_ADMIN','SUPER_ADMIN']} component={AdminManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/ContentManage" routePermisison={['CONTENT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/CreateAccountAdmin" routePermisison={['UNIT_ADMIN','SUPER_ADMIN']} component={CreateAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <Route path="*" component={NotFoundPage} />

@@ -39,11 +39,11 @@ class Payment extends React.Component {
         <div className="">
           <div className="card-body">
             <Row>
-              <Col>
+              
                  {/*Start Chọn loại thanh toán */}
-                <div className="item-mid radiusPay">
+                <div className="item-mid" style={{width:"100%"}}>
                   <div>
-                    <Col>
+                    <Col xs="auto">
                       <div className="item-mid item-center">
                         <div className="item-column">
                           <div>
@@ -116,7 +116,7 @@ class Payment extends React.Component {
                   </div>
                 </div>
                 {/*End Chọn loại thanh toán */}
-              </Col>
+             
             </Row>
             <hr />
             

@@ -5,6 +5,7 @@ export const mapPermissionToText = {
     'SUPER_ADMIN': 'Super Administrator'
 };
 
+
 export const mapPermissionToSelections = {
     'CONTENT_MOD': [{
         header: 'Quản lí tài khoản',
@@ -63,6 +64,9 @@ export const mapPermissionToSelections = {
         }, {
             title: 'Tạo tài khoản admin',
             redirectTo: '/CreateAccountAdmin'
+        },{
+            title: 'Quản lý admin',
+            redirectTo: '/admin-account'
         }, {
             title: 'Tạo Event',
             redirectTo: '/event'
@@ -90,9 +94,12 @@ export const mapPermissionToSelections = {
             title: 'Quản lý bài viết',
             redirectTo: '/ContentManage'
         }, {
-            title: 'Tạo tài khoản admin',
-            redirectTo: '/CreateAccountAdmin'
+            title: 'Quản lý admin',
+            redirectTo: '/admin-account'
         }, {
+            title:  'Tạo tài khoản admin',
+            redirectTo: '/CreateAccountAdmin'
+        },{
             title: 'Tạo Event',
             redirectTo: '/event'
         }]

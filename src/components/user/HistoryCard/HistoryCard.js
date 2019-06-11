@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import {
   Modal,
@@ -13,47 +14,57 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,
+  Tooltip,
+  Input,
   Dropdown,
   DropdownMenu,
   DropdownToggle
 } from "reactstrap";
 
-import "./HistoryCard.css";
 import Payment from "../../Post/Payment/Payment";
+import HeaderPost from "../../Post/HeaderPost/HeaderPost";
 
-class HistoryCard extends React.Component {
+class PostCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
       activeIndex: 0,
-      items: props.filenames.map(filename  => `/resources/${filename}`),
+      items: props.filenames.map(filename => `/resources/${filename}`),
       dropdownOpen: false,
-      paymentOpen: false
+      paymentOpen: false,
+      modalReport: false,
+      reportText: "",
+      tooltipJoin : false
     };
+    this.toggletooltipJoin = this.toggletooltipJoin.bind(this);
+    this.toggleReport = this.toggleReport.bind(this);
+
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.toggleMenuPost = this.toggleMenuPost.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
   }
-  toggleMenuPost() {
+  toggletooltipJoin(){
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      tooltipJoin: !this.state.tooltipJoin
     });
   }
   togglePayment() {
-    this.setState({
-      paymentOpen: !this.state.paymentOpen
-    });
+    this.setState({ paymentOpen: !this.state.modalReport });
   }
-  clearArray() {
-    this.state.items = [];
+  checkJoinEvent = (_id, _ids) => {
+    return _ids.find(i => i._id === _id);
+  };
+  toggleReport() {
+    this.setState(prevState => ({
+      modalReport: !prevState.modalReport
+    }));
   }
+
   onExiting() {
     this.animating = true;
   }
@@ -61,7 +72,9 @@ class HistoryCard extends React.Component {
   onExited() {
     this.animating = false;
   }
-
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
   next() {
     if (this.animating) return;
     const nextIndex =
@@ -92,7 +105,6 @@ class HistoryCard extends React.Component {
 
   render() {
     const { activeIndex } = this.state;
-
     const slides = this.state.items.map(item => {
       return (
         <CarouselItem
@@ -100,193 +112,172 @@ class HistoryCard extends React.Component {
           onExited={this.onExited}
           key={item}
         >
-          <img src={item} className="img-slide-style" />
+          <img src={item} className="img-slide-style img-slide-postCard" />
         </CarouselItem>
       );
     });
     return (
-      <Row className="postCard">
-        <Col className="header-col" xs="11">
-          <Row className="item-center header-postCard pb-3">
-            <Col xs="1">
-              <div>
-                <img
-                  className="img-user-postCard rounded-circle"
-                  src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
-                  alt="UserAvatar"
-                />
-              </div>
-            </Col>
-            <Col xs="11">
-              <div className="ml-2">
-                Dương Minh Công {this.props.name}
-                <small>
-                  <span className="ml-1">đã chia sẻ một</span>
-                </small>
-                <span className="ml-1">
-                  <b>
-                   
-                      <span className={this.props.type}>{this.props.type}</span>
-                    
-                  </b>
-                </span>
-                <div>
-                  <small>
-                    <span>
-                      <i className="fa fa-calendar" data-original-title title />{" "}
-                      {new Date(this.props.createdAt).toLocaleTimeString()}
-                      <i
-                        style={{ marginLeft: "0.25rem" }}
-                        className="fas fa-map-marker-alt ml-3 mr-1"
-                      />{" "}
-                      {this.props.address}
-                    </span>
-                  </small>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Col>
-        <Col xs="1">
-          {" "}
-          <div className="menu-post">
-            <Dropdown
-              isOpen={this.state.dropdownOpen}
-              toggle={this.toggleMenuPost}
-            >
-              <DropdownToggle
-                tag="span"
-                onClick={this.toggleMenuPost}
-                data-toggle="dropdown"
-                aria-expanded={this.state.dropdownOpen}
-              >
-                <i class="fas fa-bars" />
-              </DropdownToggle>
-              <DropdownMenu className="menu-post-item p-1">
-                <div onClick={this.toggleMenuPost}>
-                  <i class="fas fa-flag ml-3" />
-                  Lưu
-                </div>
-                <div onClick={this.toggleMenuPost}>
-                  <i class="fas fa-bug ml-3" />
-                  Báo cáo
-                </div>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        </Col>
-        <div style={{ width: "100%" }}>
-          <Row>
-            <Col>
-              <div onClick={this.toggle}>
-                {/* {this.clearArray()} */}
+      <div className="postCard">
+        {this.props.type === "EVENT" ? (
+          <HeaderPost
+            {...this.props}
+            user={this.props.publisher}
+            successReport={this.props.successReport}
+            reporter={this.props.myUser._id}
+            object={this.props._id}
+            objectModel={this.props.type}
+          />
+        ) : (
+          <HeaderPost
+            {...this.props}
+            successReport={this.props.successReport}
+            reporter={this.props.myUser._id}
+            object={this.props._id}
+            objectModel={this.props.type}
+          />
+        )}
 
-                {this.state.items.length < 2 ? (
+        <Row>
+          <Col xs="6">
+            <div onClick={this.toggle}>
+              {/* {this.clearArray()} */}
+
+              {this.state.items.length < 2 ? (
+                <img
+                  style={{ cursor: "pointer" }}
+                  src={`/resources/${this.props.filenames[0]}`}
+                  className="post-album"
+                />
+              ) : (
+                <div className="Newpost-img__more">
                   <img
                     style={{ cursor: "pointer" }}
                     src={`/resources/${this.props.filenames[0]}`}
                     className="post-album"
                   />
-                ) : (
-                  <div className="Newpost-img__more">
-                    <img
-                      style={{ cursor: "pointer" }}
-                      src={`/resources/${this.props.filenames[0]}`}
-                      className="post-album"
-                    />
-                    <div>+{this.state.items.length - 1}</div>
-                  </div>
-                )}
-              </div>
-              <Modal
-                isOpen={this.state.modal}
-                toggle={this.toggle}
-                className="slide-image-post"
-              >
-                <ModalHeader toggle={this.toggle}>Album </ModalHeader>
-                <ModalBody>
-                  <Carousel
-                    activeIndex={activeIndex}
-                    next={this.next}
-                    previous={this.previous}
-                  >
-                    <CarouselIndicators
-                      items={this.state.items}
-                      activeIndex={activeIndex}
-                      onClickHandler={this.goToIndex}
-                    />
-                    {slides}
-                    <CarouselControl
-                      direction="prev"
-                      directionText="Previous"
-                      onClickHandler={this.previous}
-                    />
-                    <CarouselControl
-                      direction="next"
-                      directionText="Next"
-                      onClickHandler={this.next}
-                    />
-                  </Carousel>
-                </ModalBody>
-              </Modal>
-              {/*/ cardbox-item */}
-            </Col>
+                  <div>+{this.state.items.length - 1}</div>
+                </div>
+              )}
+            </div>
 
-            <Col className="textMedia">
-              <Alert color="success">{this.props.description}</Alert>
+            {/*/ cardbox-item */}
+          </Col>
 
-              <div className="item-right">
-                {this.props.type === "Hoạt động" && (
-                  <div>
-                    <Button className="mr-1 add-btn">
+          <Col xs="6" className="textMedia pl-0">
+            <Alert color="success">{this.props.description}</Alert>
+
+            <div className="item-right">
+              {this.props.type === "EVENT" && (
+                <div>
+                  {this.checkJoinEvent(
+                    this.props.myUser._id,
+                    this.props.volunteers
+                  ) ? (
+                    <Button
+                      className="mr-1 new-btn"
+                      onClick={() => this.props.unjoinEvent(this.props._id)}
+                    >
+                      <i class="fas fa-chevron-circle-left icon-button" />
+                      Hủy
+                    </Button>
+                  ) : (
+                    <Button
+                   
+                      className="mr-1 add-btn"
+                      onClick={() => this.props.joinToEvent(this.props._id)}
+                      disabled = {this.props.myUser.isVerified===false}
+                    >
                       <i class="fas fa-angle-double-right icon-button" />
                       Tham gia
                     </Button>
-                  </div>
-                )}
-                {this.props.type === "Địa điểm" && (
-                  <div>
-                    <Button className="mr-1 new-btn">
-                      <i class="fas fa-edit icon-button" />
-                      Tạo event
-                    </Button>
-                  </div>
-                )}
-                {this.props.type === "Quyên góp" && (
-                  <div>
-                    <Button
-                      className="mr-1 donate-btn"
-                      onClick={this.togglePayment}
-                    >
-                      <i class="fas fa-donate icon-button" />
-                      Quyên góp
-                    </Button>
-                    <Modal
-                      isOpen={this.state.paymentOpen}
-                      toggle={this.togglePayment}
-                    >
-                      <ModalHeader>Thanh toán </ModalHeader>
-                      <ModalBody>
-                        <Payment />
-                      </ModalBody>
-                    </Modal>
-                  </div>
-                )}
-                <Link to={`post/${this.props._id}`}>
-                  <Button color="success" className="mr-1 success">
-                    <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                  )}
+                 
+        
+                </div>
+              )}
+              {this.props.type === "PLACE" && (
+                <div>
+                  <Button className="mr-1 new-btn">
+                    <i class="fas fa-edit icon-button" />
+                    Tạo event
                   </Button>
-                </Link>
-              </div>
-            </Col>
-          </Row>
+                </div>
+              )}
 
-          {/*/ cardbox-like */}
-        </div>
+                {this.props.type === 'EVENT'?   (<Link to={`eventMore/${this.props._id}`}>
+                <Button color="success" className="mr-1 success p-2">
+                  <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                </Button>
+              </Link>):(
+                 <Link to={`post/${this.props._id}`}>
+                 <Button color="success" className="mr-1 success p-2">
+                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                 </Button>
+               </Link>)
+              }
+             
+            </div>
+            <div className="item-right mt-2">
+              {this.props.type === "EVENT" && (
+                <div>
+                  <Button
+                    className="mr-1 donate-btn"
+                    onClick={this.togglePayment}
+                  >
+                    <i class="fas fa-donate icon-button" />
+                    Quyên góp
+                  </Button>
+                </div>
+              )}
+            </div>
+          </Col>
+        </Row>
+
+        {/*/ MORE TODO */}
+        {/* Modal Pyment */}
+        <Modal isOpen={this.state.paymentOpen} toggle={this.togglePayment}>
+          <ModalHeader>Thanh toán </ModalHeader>
+          <ModalBody>
+            <Payment close={this.togglePayment} />
+          </ModalBody>
+        </Modal>
+        {/* Modal slide  */}
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className="slide-image-post"
+        >
+          <ModalHeader toggle={this.toggle}>Album </ModalHeader>
+          <ModalBody>
+            <Carousel
+              activeIndex={activeIndex}
+              next={this.next}
+              previous={this.previous}
+            >
+              <CarouselIndicators
+                items={this.state.items}
+                activeIndex={activeIndex}
+                onClickHandler={this.goToIndex}
+              />
+              {slides}
+              <CarouselControl
+                direction="prev"
+                directionText="Previous"
+                onClickHandler={this.previous}
+              />
+              <CarouselControl
+                direction="next"
+                directionText="Next"
+                onClickHandler={this.next}
+              />
+            </Carousel>
+          </ModalBody>
+        </Modal>
         {/*/ col-lg-6 */}
-      </Row>
+      </div>
     );
   }
 }
+const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 
-export default HistoryCard;
+export default connect(mapStateToProps)(PostCard);
