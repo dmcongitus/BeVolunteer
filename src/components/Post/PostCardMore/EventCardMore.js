@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
+import { Badge } from "reactstrap";
 import {
   Modal,
   ModalHeader,
@@ -25,8 +26,10 @@ import HeaderPost from "../HeaderPost/HeaderPost";
 import Comment from "./Comment/Comment";
 import "./PostCardMore.css";
 import Axios from "axios";
+import addDays from "date-fns/add_days";
+import format from "date-fns/format";
 
-class PostCardMore extends React.Component {
+class EventCardMore extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -106,7 +109,7 @@ class PostCardMore extends React.Component {
   }
 
   componentDidMount = () => {
-    Axios.get(`/posts/${this.props._id}/comments`, {
+    Axios.get(`/events/${this.props._id}/comments`, {
       headers: { "x-access-token": localStorage.getItem("token") }
     })
       .then(({ data }) => {
@@ -131,7 +134,7 @@ class PostCardMore extends React.Component {
         user: _id,
         userModel: permisison,
         object: this.props._id,
-        objectModel: "Post",
+        objectModel: "Event",
         content: this.state.comment
       },
       {
@@ -143,7 +146,12 @@ class PostCardMore extends React.Component {
       .then(() => {
         this.setState(prevState => ({
           comments: [
-            { name: this.props.user.name, content: prevState.comment, avatar, isVerified: this.props.myUser.isVerified },
+            {
+              name: this.props.myUser.name,
+              content: prevState.comment,
+              avatar,
+              isVerified: this.props.myUser.isVerified
+            },
             ...prevState.comments
           ],
           comment: ""
@@ -171,26 +179,74 @@ class PostCardMore extends React.Component {
     return (
       <div className="side-body">
         <div className="postCard mt-0">
-         
-         {this.props.type === "EVENT" ? (
-          <HeaderPost
-            {...this.props}
-            user={this.props.publisher}
-            successReport={this.props.successReport}
-            reporter={this.props.myUser._id}
-            object={this.props._id}
-            objectModel={this.props.type}
-          />
-        ) : (
-          <HeaderPost
-            {...this.props}
-            successReport={this.props.successReport}
-            reporter={this.props.myUser._id}
-            object={this.props._id}
-            objectModel={this.props.type}
-          />
-        )}
+          {this.props.type === "EVENT" ? (
+            <HeaderPost
+              {...this.props}
+              user={this.props.publisher}
+              successReport={this.props.successReport}
+              reporter={this.props.myUser._id}
+              object={this.props._id}
+              objectModel={this.props.type}
+              typePage="more"
+            />
+          ) : (
+            <HeaderPost
+              {...this.props}
+              successReport={this.props.successReport}
+              reporter={this.props.myUser._id}
+              object={this.props._id}
+              objectModel={this.props.type}
+            />
+          )}
+          <div className="ml-5 pl-3" style={{ marginTop: "-1rem" }}>
+            <small className="mr-2">Chia sẻ bởi</small>
+            {this.props.sharer.map(mem => (
+              <Badge pill href="#" color="success">
+                {mem.name}
+              </Badge>
+            ))}
+          </div>
 
+          <Row className="mt-2">
+            <Col>
+              <hr />
+              <div className="ml-3">
+                {console.log(this.props)}
+                <div>
+                  <Row>
+                    <Col xs="3">
+                    <i class="far fa-calendar-alt" /> <b>Thời gian: </b>
+                    <i class="fas fa-users"> </i> <b>Số lượng: </b>
+                    </Col>
+                    <Col xs = "8">
+                    <div>
+                    Từ
+                  <span className="style-date">
+                    {format(new Date(this.props.starttime), "DD/MM/YYYY")}
+                  </span>
+                  Đến
+                  <span className="style-date">
+                    {format(new Date(this.props.endtime), "DD/MM/YYYY")}
+                  </span>
+                  </div>
+                  <div>
+                  {this.props.volunteers.length}/{this.props.numVolunteers}
+                  </div>
+                
+                    </Col>
+                  </Row>
+                  
+                
+                </div>
+                <div>
+                  
+                 
+                </div>
+              </div>
+              <hr />
+            </Col>
+          </Row>
+          <b>Nội dung: </b>
           <div className="p-2">{this.props.description}</div>
           <div style={{ width: "100%" }}>
             <Row>
@@ -338,4 +394,4 @@ class PostCardMore extends React.Component {
 
 const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 
-export default connect(mapStateToProps)(PostCardMore);
+export default connect(mapStateToProps)(EventCardMore);

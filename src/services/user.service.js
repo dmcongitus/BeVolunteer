@@ -2,7 +2,13 @@ import Axios from "axios";
 import request from './request'
 import { Message } from "element-react";
 
-export function getAllUsers() {
+export function getAllUsers(q) {
+  if(q){
+    return request({
+      url: `/accounts/?q=`+q,
+      method: 'get',
+    })
+  }
   return request({
     url: `/accounts/`,
     method: 'get',

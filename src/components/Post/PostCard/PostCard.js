@@ -14,6 +14,7 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
+  Tooltip,
   Input,
   Dropdown,
   DropdownMenu,
@@ -35,11 +36,11 @@ class PostCard extends React.Component {
       paymentOpen: false,
       modalReport: false,
       reportText: "",
-      
-     
+      tooltipJoin : false
     };
+    this.toggletooltipJoin = this.toggletooltipJoin.bind(this);
     this.toggleReport = this.toggleReport.bind(this);
-   
+
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
@@ -48,21 +49,23 @@ class PostCard extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
   }
-
-  togglePayment(){
-    this.setState({paymentOpen: !this.state.modalReport})
+  toggletooltipJoin(){
+    this.setState({
+      tooltipJoin: !this.state.tooltipJoin
+    });
+  }
+  togglePayment() {
+    this.setState({ paymentOpen: !this.state.modalReport });
   }
   checkJoinEvent = (_id, _ids) => {
-
-    return _ids.find(i => i._id ===_id)
-    
-  }
+    return _ids.find(i => i._id === _id);
+  };
   toggleReport() {
     this.setState(prevState => ({
       modalReport: !prevState.modalReport
     }));
   }
- 
+
   onExiting() {
     this.animating = true;
   }
@@ -116,21 +119,24 @@ class PostCard extends React.Component {
     });
     return (
       <div className="postCard">
-        
-        {this.props.type === "EVENT"?<HeaderPost
-          {...this.props} user =  {this.props.publisher} 
-          successReport = {this.props.successReport}
-          reporter = {this.props.myUser._id}
-          object = {this.props._id}
-          objectModel = {this.props.type}
-        />:<HeaderPost
-          {...this.props}
-          successReport = {this.props.successReport}
-          reporter = {this.props.myUser._id}
-          object = {this.props._id}
-          objectModel = {this.props.type}
-        />}
-        
+        {this.props.type === "EVENT" ? (
+          <HeaderPost
+            {...this.props}
+            user={this.props.publisher}
+            successReport={this.props.successReport}
+            reporter={this.props.myUser._id}
+            object={this.props._id}
+            objectModel={this.props.type}
+          />
+        ) : (
+          <HeaderPost
+            {...this.props}
+            successReport={this.props.successReport}
+            reporter={this.props.myUser._id}
+            object={this.props._id}
+            objectModel={this.props.type}
+          />
+        )}
 
         <Row>
           <Col xs="6">
@@ -154,37 +160,7 @@ class PostCard extends React.Component {
                 </div>
               )}
             </div>
-            <Modal
-              isOpen={this.state.modal}
-              toggle={this.toggle}
-              className="slide-image-post"
-            >
-              <ModalHeader toggle={this.toggle}>Album </ModalHeader>
-              <ModalBody>
-                <Carousel
-                  activeIndex={activeIndex}
-                  next={this.next}
-                  previous={this.previous}
-                >
-                  <CarouselIndicators
-                    items={this.state.items}
-                    activeIndex={activeIndex}
-                    onClickHandler={this.goToIndex}
-                  />
-                  {slides}
-                  <CarouselControl
-                    direction="prev"
-                    directionText="Previous"
-                    onClickHandler={this.previous}
-                  />
-                  <CarouselControl
-                    direction="next"
-                    directionText="Next"
-                    onClickHandler={this.next}
-                  />
-                </Carousel>
-              </ModalBody>
-            </Modal>
+
             {/*/ cardbox-item */}
           </Col>
 
@@ -194,18 +170,29 @@ class PostCard extends React.Component {
             <div className="item-right">
               {this.props.type === "EVENT" && (
                 <div>
-                  {this.checkJoinEvent(this.props.myUser._id, this.props.volunteers)?
-                  <Button className="mr-1 new-btn" onClick = {()=>this.props.unjoinEvent(this.props._id)}>
-                  <i class="fas fa-chevron-circle-left icon-button" />
-                  Hủy
-                </Button>
-                  :
-                  <Button className="mr-1 add-btn" onClick = {()=>this.props.joinToEvent(this.props._id)}>
-                  <i class="fas fa-angle-double-right icon-button" />
-                  Tham gia
-                </Button>
-                  }
-                  
+                  {this.checkJoinEvent(
+                    this.props.myUser._id,
+                    this.props.volunteers
+                  ) ? (
+                    <Button
+                      className="mr-1 new-btn"
+                      onClick={() => this.props.unjoinEvent(this.props._id)}
+                    >
+                      <i class="fas fa-chevron-circle-left icon-button" />
+                      Hủy
+                    </Button>
+                  ) : (
+                    <Button
+                   
+                      className="mr-1 add-btn"
+                      onClick={() => this.props.joinToEvent(this.props._id)}
+                    >
+                      <i class="fas fa-angle-double-right icon-button" />
+                      Tham gia
+                    </Button>
+                  )}
+                 
+        
                 </div>
               )}
               {this.props.type === "PLACE" && (
@@ -216,7 +203,22 @@ class PostCard extends React.Component {
                   </Button>
                 </div>
               )}
-              {this.props.type === "DONATION" && (
+
+                {this.props.type === 'EVENT'?   (<Link to={`eventMore/${this.props._id}`}>
+                <Button color="success" className="mr-1 success p-2">
+                  <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                </Button>
+              </Link>):(
+                 <Link to={`post/${this.props._id}`}>
+                 <Button color="success" className="mr-1 success p-2">
+                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                 </Button>
+               </Link>)
+              }
+             
+            </div>
+            <div className="item-right mt-2">
+              {this.props.type === "EVENT" && (
                 <div>
                   <Button
                     className="mr-1 donate-btn"
@@ -225,28 +227,52 @@ class PostCard extends React.Component {
                     <i class="fas fa-donate icon-button" />
                     Quyên góp
                   </Button>
-                  <Modal
-                    isOpen={this.state.paymentOpen}
-                    toggle={this.togglePayment}
-                  >
-                    <ModalHeader>Thanh toán </ModalHeader>
-                    <ModalBody>
-                      <Payment close={this.togglePayment} />
-                    </ModalBody>
-                  </Modal>
                 </div>
               )}
-              <Link to={`post/${this.props._id}`}>
-                <Button color="success" className="mr-1 success p-2">
-                  <i class="fas fa-angle-double-right icon-button" /> Xem thêm
-                </Button>
-              </Link>
             </div>
           </Col>
         </Row>
 
-        {/*/ cardbox-like */}
-
+        {/*/ MORE TODO */}
+        {/* Modal Pyment */}
+        <Modal isOpen={this.state.paymentOpen} toggle={this.togglePayment}>
+          <ModalHeader>Thanh toán </ModalHeader>
+          <ModalBody>
+            <Payment close={this.togglePayment} />
+          </ModalBody>
+        </Modal>
+        {/* Modal slide  */}
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className="slide-image-post"
+        >
+          <ModalHeader toggle={this.toggle}>Album </ModalHeader>
+          <ModalBody>
+            <Carousel
+              activeIndex={activeIndex}
+              next={this.next}
+              previous={this.previous}
+            >
+              <CarouselIndicators
+                items={this.state.items}
+                activeIndex={activeIndex}
+                onClickHandler={this.goToIndex}
+              />
+              {slides}
+              <CarouselControl
+                direction="prev"
+                directionText="Previous"
+                onClickHandler={this.previous}
+              />
+              <CarouselControl
+                direction="next"
+                directionText="Next"
+                onClickHandler={this.next}
+              />
+            </Carousel>
+          </ModalBody>
+        </Modal>
         {/*/ col-lg-6 */}
       </div>
     );
@@ -255,4 +281,3 @@ class PostCard extends React.Component {
 const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 
 export default connect(mapStateToProps)(PostCard);
-

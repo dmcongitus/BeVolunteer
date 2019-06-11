@@ -16,7 +16,9 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  Input
+  Input,
+  InputGroup,
+  InputGroupAddon
 } from "reactstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -208,7 +210,6 @@ class PostCheckin extends React.Component {
             <div className="item-right">
               {this.props.type === "EVENT" && (
                 <div>
-                 
                   <Button className="mr-1 add-btn" onClick={this.toggleCheckin}>
                     <i class="fas fa-calendar-check icon-button" />
                     Điểm danh
@@ -217,10 +218,13 @@ class PostCheckin extends React.Component {
                     isOpen={this.state.modalCheckin}
                     toggle={this.toggleCheckin}
                   >
-                    <ModalHeader toggle={this.toggleCheckin}>
-                      Điểm danh
+                    <ModalHeader
+                      toggle={this.toggleCheckin}
+                      style={{ background: "#042c38", color: "white" }}
+                    >
+                      <i class="far fa-calendar-check" /> Điểm danh
                     </ModalHeader>
-                    <ModalBody>
+                    <ModalBody style={{ background: "gainsboro" }}>
                       <Row>
                         <Col>
                           <DatePicker
@@ -237,14 +241,16 @@ class PostCheckin extends React.Component {
                         </Col>
                         <Col>
                           <b className="mt-4">Mã điểm danh</b>
-                          <Input
+                  
+                            <Input
                             className="mt-3"
-                            placeholder={format(
-                              new Date(this.state.startDate),
-                              "DD/MM/YYYY"
-                            )}
-                          />
- 
+                              placeholder={format(
+                                new Date(this.state.startDate),
+                                "DD/MM/YYYY"
+                              )}
+                            />
+  
+
                           <div className="item-right mt-3">
                             <Button
                               color="success"

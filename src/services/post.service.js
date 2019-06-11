@@ -91,3 +91,11 @@ export function getSpecificPost(postId) {
         
     })
 }
+
+export function getSpecificEvents(postId) {
+    return request({
+        url: `events/${postId}`,
+        method: 'get',
+        
+    })
+}

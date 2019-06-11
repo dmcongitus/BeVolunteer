@@ -17,6 +17,7 @@ import CheckinPage from './containers/user/CheckinPage/CheckinPage';
 import ContentManagePage from './containers/admin/ContentManagePage/ContentManagePage';
 import CreateAccountPage from './containers/admin/CreateAcountPage/CreateAccountPage';
 import PostPage from './containers/user/PostPage/PostPage';
+import EventPage from './containers/user/PostPage/EventPage';
 import RankPage from './containers/user/RankPage/RankPage';
 import MedalPage from './containers/user/MedalPage/MedalPage';
 import CreateEvent from './containers/admin/EventPage/CreateEvent/CreateEvent';
@@ -54,7 +55,7 @@ export default function router({ isAuthenticated, permission, username }) {
                        
                         <PrivateRoute path='/searchPage/:searchText' exact component={SearchPage} isAuthenticated={isAuthenticated} />
 
-                        
+                        <NeedPermissionRoute path="/eventMore/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={EventPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/post/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/approve" routePermisison={['ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
                         <NeedPermissionRoute path="/delete-account" routePermisison={['ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />

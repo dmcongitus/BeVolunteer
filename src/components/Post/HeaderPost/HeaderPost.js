@@ -116,6 +116,11 @@ class headerPost extends React.Component {
                       <span className="tcl-4">Kỉ niệm</span>
                     )}
                   </b>
+                  {this.props.type === "EVENT" && this.props.typePage=="more"?(<span className="ml-2 tcl-2">
+                      {this.props.title}
+                  </span>):null
+
+                  }
                 </span>
                 <div className="small">
                   <i className="fa fa-calendar" data-original-title title />

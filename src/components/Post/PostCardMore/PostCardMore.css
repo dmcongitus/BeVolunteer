@@ -80,3 +80,9 @@
 .new-btn:hover{
   background-color: rgba(208, 16, 19, 0.7);
 }
+
+.style-date{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  color: #004916;
+}
