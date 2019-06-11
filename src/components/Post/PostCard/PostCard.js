@@ -230,9 +230,9 @@ class PostCard extends React.Component {
                         </div>
                         )}
                         <Link to={`post/${this.props._id}`}>
-                        <Button color="success" className="mr-1 success">
-                            <i class="fas fa-angle-double-right icon-button" /> Xem thêm
-                        </Button>
+                            <Button color="success" className="mr-1 success">
+                                <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                            </Button>
                         </Link>
                     </div>
                     </Col>

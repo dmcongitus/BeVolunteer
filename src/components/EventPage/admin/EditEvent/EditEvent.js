@@ -37,6 +37,7 @@ import {
 import {
 
 } from "reactstrap";
+import { NavLink, Link } from "react-router-dom";
 
 class EditEvent extends Component {
     constructor(props) {
@@ -71,7 +72,7 @@ class EditEvent extends Component {
 
 	componentDidMount = async () => {
 		console.log("componentDidMount");
-		this.getShare();
+		this.getSharer();
 		
         try {
 			const { data } = await getAllUsers();
@@ -91,7 +92,7 @@ class EditEvent extends Component {
         }
 	}
 
-	getShare = () =>{
+	getSharer = () =>{
 		try {
 			console.log("ssssssss");
 			this.setState({
@@ -160,27 +161,28 @@ class EditEvent extends Component {
 	};
 
 	onFormSubmit = async (e) => {
-		console.log("submitform");
+	
 		console.log(this.state);
-		this.setState({
+
+		await this.setState({
 			infor: {
 				...this.state.infor,
-				sharer: this.state.infor.multiSelect.map(s => s.value
-					
-				
-				)
+					sharer: this.state.infor.multiSelect.map(s => s.value)
 			}
 		})
-		console.log(this.state.infor.sharer)
-		alert(this.checkFormPost(this.state).message);
-		e.preventDefault();
+		console.log("update sharer");
+		console.log(this.state);
+
+		// alert(this.checkFormPost(this.state).message);
+	
 		try {
+			console.log(" SUBMIT");
 			const data = await editEvent({...this.state.infor});
 			console.log(data);
 		} catch (error) {
 			console.error(error);
 		}
-		
+		e.preventDefault();
 	};
 
 	checkFormPost = (state) =>{	
@@ -501,15 +503,6 @@ class EditEvent extends Component {
 										name="contact"/>
 								</InputGroup>
 							</Row>
-					
-							{this.state.profileChanged && <div className="EventEdit__Footer">
-						
-							<Button className="EventEdit__Footer__Update" onClick={this.handleUpdate}>
-								<i className="fas fa-check-circle ml-1"/>  Cập nhật
-							</Button>
-							<Button className="EventEdit__Footer__Cancel" onClick={this.handleCancel}>
-								<i class="fas fa-trash-alt ml-1"/> Hủy
-								</Button></div>}
 						</div>
 					</div>
 				</Row>
@@ -537,10 +530,13 @@ class EditEvent extends Component {
 					<Row>
 						<Col sm={{ size: "auto", offset: 9 }}>
 							<div className="btnEvent">
-								<Button 
-									type="submit"
-									onClick={this.onFormSubmit}
-									color="success">Cập nhật</Button>
+								<Link to={`/event/${this.props._id}`}>
+									<Button 
+										
+										onClick={this.onFormSubmit}
+										color="success">Cập nhật
+									</Button>
+								</Link>
 							</div>
 						</Col>
 					</Row>

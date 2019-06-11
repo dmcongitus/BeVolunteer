@@ -29,12 +29,22 @@ export function editEvent(event) {
                 "x-access-token": localStorage.getItem("token") 
             } 
         }
-    ).then(({ data: { _id } }) => {
+    ).then(async ({ data: { _id } }) => {
             if (event.image) {
                 const formData = new FormData();
                 for (let i = 0; i < event.image.length; i++) {
-                    formData.append('resources', event.image[i]);
-                    console.log(formData);
+                        if (typeof event.image[i] === 'string') {
+                        let res = await Axios.get(`http://172.104.39.161:3000/resources/${event.image[i]}`, {
+                            responseType: 'blob',
+                        })
+                        let file = new File([res.data], event.image[i], {
+                            type: res.data.type
+                        })
+                        formData.append('resources', file);
+                    } else {
+                        console.log(event.image[i])
+                        formData.append('resources', event.image[i]);
+                    }
                 }
                 return Axios.put(`/events/${_id}/resources`, formData, { headers: { "x-access-token": localStorage.getItem("token") } })
             } else {
