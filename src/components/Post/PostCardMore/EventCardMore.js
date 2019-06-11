@@ -48,7 +48,8 @@ class EventCardMore extends React.Component {
           content: "asdl;kjfu9308"
         }
       ],
-      comment: ""
+      comment: "",
+      modalEye: false
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -56,11 +57,18 @@ class EventCardMore extends React.Component {
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.toggleEye = this.toggleEye.bind(this);
     this.toggleMenuPost = this.toggleMenuPost.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
   }
+  toggleEye() {
+    this.setState({
+      modalEye: !this.state.modalEye
+    });
+  }
   toggleMenuPost() {
     this.setState({
+ 
       dropdownOpen: !this.state.dropdownOpen
     });
   }
@@ -215,33 +223,31 @@ class EventCardMore extends React.Component {
                 <div>
                   <Row>
                     <Col xs="3">
-                    <i class="far fa-calendar-alt" /> <b>Thời gian: </b>
-                    <i class="fas fa-users"> </i> <b>Số lượng: </b>
+                      <i class="far fa-calendar-alt" /> <b>Thời gian: </b>
+                      <i class="fas fa-users"> </i> <b>Số lượng: </b>
                     </Col>
-                    <Col xs = "8">
-                    <div>
-                    Từ
-                  <span className="style-date">
-                    {format(new Date(this.props.starttime), "DD/MM/YYYY")}
-                  </span>
-                  Đến
-                  <span className="style-date">
-                    {format(new Date(this.props.endtime), "DD/MM/YYYY")}
-                  </span>
-                  </div>
-                  <div>
-                  {this.props.volunteers.length}/{this.props.numVolunteers}
-                  </div>
-                
+                    <Col xs="8">
+                      <div>
+                        Từ
+                        <span className="style-date">
+                          {format(new Date(this.props.starttime), "DD/MM/YYYY")}
+                        </span>
+                        Đến
+                        <span className="style-date">
+                          {format(new Date(this.props.endtime), "DD/MM/YYYY")}
+                        </span>
+                      </div>
+                      <div>
+                        {this.props.volunteers.length}/
+                        {this.props.numVolunteers}
+                        <span className="ml-2 eye-btn" onClick={this.toggleEye}>
+                          <i class="fas fa-eye" />
+                        </span>
+                      </div>
                     </Col>
                   </Row>
-                  
-                
                 </div>
-                <div>
-                  
-                 
-                </div>
+                <div />
               </div>
               <hr />
             </Col>
@@ -387,6 +393,55 @@ class EventCardMore extends React.Component {
           </div>
           {/*/ col-lg-6 */}
         </div>
+        <Modal isOpen={this.state.modalEye} toggle={this.toggleEye}>
+          <ModalHeader toggle={this.toggleEye}>Danh sách tham gia</ModalHeader>
+          <ModalBody>
+            {this.props.volunteers.map(volunteer=>(
+               <Row className="item-mid">
+               <Col xs = "4" className="p-2">
+                 <div className="logo ">
+                   <img
+                     alt="avatar"
+        
+                     src={
+                       "/resources/" +
+                       (volunteer.avatar ||
+                         "https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.15752-9/57393041_305492127011755_8740904577945042944_n.jpg?_nc_cat=105&_nc_oc=AQn7GUnB8UXlqMTogNJWDlqNjMEYb8gBeMPWreuL7dXQQHbhb9R6_PFCvI5m-de4R8E&_nc_ht=scontent.fsgn2-1.fna&oh=70f6e9461f233111834a04094f2fa45e&oe=5D33B790")
+                     }
+                     className="mx-auto .d-block "
+                    
+                   />
+   
+                 </div>
+               </Col>
+               <Col xs = "8" className="p-1">
+                 <div className="item-center">
+                   <div className="item-column ">
+                     <b>
+                       {volunteer.name}{" "}
+                       {volunteer.isVerified === true && (
+                         <i className="ml-1 small fas fa-check-circle check-user" />
+                       )}
+                     </b>
+   
+                     <div className="item-row">
+                       <div>
+                         {volunteer.permission}
+                         
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </Col>
+             </Row>
+            ))}
+          
+          
+          </ModalBody>
+          <ModalFooter>
+            <Button color="secondary" onClick={this.toggleEye}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
