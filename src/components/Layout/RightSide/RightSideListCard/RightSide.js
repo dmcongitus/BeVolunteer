@@ -21,7 +21,7 @@ class RightSide extends React.Component {
     return (
       <div className="side-body">
         <div className="title-side-body">
-          <i class="fas fa-calendar-week" /> Sự kiện xắp diễn ra
+          <i class="fas fa-calendar-week" /> Sự kiện sắp diễn ra
         </div>
         <div className="content-side-body">
          

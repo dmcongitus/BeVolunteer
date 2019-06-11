@@ -60,7 +60,7 @@ class appovePage extends Component {
       )
     }));
     verifyUser(username);
-    this.toggle();
+
   };
   onAccountUnVerify = username => {
     this.setState(prevState => ({
@@ -69,7 +69,7 @@ class appovePage extends Component {
       )
     }));
     unVerifyUser(username);
-    this.toggle();
+
   };
 
   handleRowOnClick = account => {
@@ -151,7 +151,7 @@ class appovePage extends Component {
             className="modal-approve"
           >
             <ModalHeader className="my-ModalHeader" toggle={this.toggle}>
-            <i class="fas fa-user-check"></i>
+              <i class="fas fa-user-check" />
               Xác thực người dùng
             </ModalHeader>
             <ModalBody style={{ background: "#E6E6E6" }}>
@@ -164,7 +164,8 @@ class appovePage extends Component {
             </ModalBody>
             <ModalFooter>
               <Button
-                className="ml-2 success"
+                color="success"
+                className="ml-2"
                 onClick={() =>
                   this.onAccountVerify(this.state.activeAccount.username)
                 }
@@ -173,7 +174,8 @@ class appovePage extends Component {
                 Đồng ý
               </Button>
               <Button
-                className="ml-2 new-btn"
+                color="danger"
+                className="ml-2 "
                 onClick={() =>
                   this.onAccountUnVerify(this.state.activeAccount.username)
                 }

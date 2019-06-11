@@ -191,12 +191,18 @@ class PostCard extends React.Component {
                 <i class="fas fa-lock icon-button" />
                 Khóa bài
               </Button>
-              
-              <Link to={`post/${this.props.object._id}`}>
+              {this.props.object.type === "EVENT"?(<Link to={`eventMore/${this.props.object._id}`}>
                 <Button color="success" className="mr-1 success p-2">
                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm
                 </Button>
-              </Link>
+              </Link>):(
+              <Link to={`post/${this.props.object._id}`}>
+              <Button color="success" className="mr-1 success p-2">
+                <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+              </Button>
+            </Link>)
+            }
+              
             </div>
           </Col>
         </Row>

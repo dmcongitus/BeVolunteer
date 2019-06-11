@@ -1,18 +1,30 @@
 export const mapPermissionToText = {
     'CONTENT_MOD': 'Content Moderator',
     'ACOUNT_MOD ': 'Account Moderator',
-    'UNIT_MOD': 'Unit Administrator',
+    'UNIT_ADMIN': 'Unit Administrator',
     'SUPER_ADMIN': 'Super Administrator'
 };
 
 export const mapPermissionToSelections = {
     'CONTENT_MOD': [{
-        header:  ' Quản lý',
-        navigations: [ {
+        header: 'Quản lí tài khoản',
+        navigations: [{
             title: 'Quản lý bài viết',
             redirectTo: '/ContentManage'
+        }, {
+            title: 'Tạo Event',
+            redirectTo: '/event'
         }]
-        }],
+    }, {
+        header: 'Cộng đồng',
+        navigations: [{
+            title: 'Trang chủ',
+            redirectTo: '/'
+        }, {
+            title: 'Bảng xếp hạng',
+            redirectTo: '/rank'
+        }]
+    }],
     
     'ACOUNT_MOD': [{
         header: 'Quản lí tài khoản',
@@ -22,19 +34,22 @@ export const mapPermissionToSelections = {
         }, {
             title: 'Xóa tài khoản',
             redirectTo: '/delete-account'
+        }, {
+            title: 'Tạo tài khoản admin',
+            redirectTo: '/CreateAccountAdmin'
         }]
     }, {
         header: 'Cộng đồng',
         navigations: [{
             title: 'Trang chủ',
-            redirectTo: '/home'
+            redirectTo: '/'
         }, {
             title: 'Bảng xếp hạng',
-            redirectTo: '/leaderboard'
+            redirectTo: '/rank'
         }]
-        }],
+    }],
     
-    'UNIT_MOD': [{
+    'UNIT_ADMIN': [{
         header: 'Quản lí tài khoản',
         navigations: [{
             title: 'Duyệt tài khoản',
@@ -42,17 +57,26 @@ export const mapPermissionToSelections = {
         }, {
             title: 'Xóa tài khoản',
             redirectTo: '/delete-account'
+        }, {
+            title: 'Quản lý bài viết',
+            redirectTo: '/ContentManage'
+        }, {
+            title: 'Tạo tài khoản admin',
+            redirectTo: '/CreateAccountAdmin'
+        }, {
+            title: 'Tạo Event',
+            redirectTo: '/event'
         }]
     }, {
         header: 'Cộng đồng',
         navigations: [{
             title: 'Trang chủ',
-            redirectTo: '/home'
+            redirectTo: '/'
         }, {
             title: 'Bảng xếp hạng',
-            redirectTo: '/leaderboard'
+            redirectTo: '/rank'
         }]
-        }],
+    }],
     
     'SUPER_ADMIN': [{
         header: 'Quản lí tài khoản',
@@ -76,10 +100,10 @@ export const mapPermissionToSelections = {
         header: 'Cộng đồng',
         navigations: [{
             title: 'Trang chủ',
-            redirectTo: '/home'
+            redirectTo: '/'
         }, {
             title: 'Bảng xếp hạng',
-            redirectTo: '/leaderboard'
+            redirectTo: '/rank'
         }]
     }]
 };

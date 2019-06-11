@@ -427,12 +427,7 @@ class EventCardMore extends React.Component {
                        )}
                      </b>
    
-                     <div className="item-row">
-                       <div>
-                         {volunteer.permission}
-                         
-                       </div>
-                     </div>
+                    
                    </div>
                  </div>
                </Col>

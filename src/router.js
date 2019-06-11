@@ -55,12 +55,12 @@ export default function router({ isAuthenticated, permission, username }) {
                        
                         <PrivateRoute path='/searchPage/:searchText' exact component={SearchPage} isAuthenticated={isAuthenticated} />
 
-                        <NeedPermissionRoute path="/eventMore/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={EventPage} isAuthenticated={isAuthenticated} userPermission={permission} />
-                        <NeedPermissionRoute path="/post/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
-                        <NeedPermissionRoute path="/approve" routePermisison={['ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
-                        <NeedPermissionRoute path="/delete-account" routePermisison={['ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
-                        <NeedPermissionRoute path="/ContentManage" routePermisison={['CONTENT_MOD','UNIT_MOD','SUPER_ADMIN']} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
-                        <NeedPermissionRoute path="/CreateAccountAdmin" routePermisison={['UNIT_MOD','SUPER_ADMIN']} component={CreateAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/eventMore/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={EventPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/post/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/approve" routePermisison={['ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
+                        <NeedPermissionRoute path="/delete-account" routePermisison={['ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/ContentManage" routePermisison={['CONTENT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/CreateAccountAdmin" routePermisison={['UNIT_ADMIN','SUPER_ADMIN']} component={CreateAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <Route path="*" component={NotFoundPage} />
                     </Switch>
                 </MainLayout>

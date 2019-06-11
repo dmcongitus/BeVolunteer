@@ -1,226 +1,208 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import {
+  Col,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText
+} from "reactstrap";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import "./CreateAccountPage.css";
 import { connect } from "react-redux";
-import { createAdmin } from "../../../services/admin.service";
-import { ReactReduxContext } from "react-redux";
-import { stat } from "fs";
+import { createAdmin, getAdmins } from "../../../services/admin.service";
+
 class CreateAccountPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      permission: 4,
+      permission: "",
       email: "",
+      manager: this.props._id,
       username: "",
       password: "",
       name: "",
       phone: "",
       dob: "",
-      email: "",
-      gender: "Nam"
+      gender: "Nam",
+      unitAdmins: []
     };
   }
 
-  onFieldChanged = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  async componentDidMount() {
+  
+
+    const data = await getAdmins();
+    await this.setState({
+      
+      unitAdmins: data.data.filter(function(admins) {
+        return admins.permission === "UNIT_ADMIN";
+      })
+    })
+    console.log(this.props)
+   
+    
+   
+   
+    console.log(this.state.unitAdmins);
+  }
+  onChanged = async e => {
+    await this.setState({ [e.target.name]: e.target.value });
+   
   };
 
   onFormSubmit = async e => {
     e.preventDefault();
     try {
+      console.log(this.state);
       const data = await createAdmin({ ...this.state });
     } catch (error) {
       console.error(error);
     }
-
   };
 
   render() {
     return (
       <PageLayout title="Tạo tài khoản admin">
-        <form onSubmit={this.onFormSubmit} className="body-midForm">
-          {this.state.permission === 4 ? (
-            <div className="input-group form-group">
-              <div className="input-group-prepend-midSide">
-                <span className="input-group-text">
-                  <i className="fas fa-school" />
-                </span>
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Tên Đơn Vị"
-                name="org"
-                onChange={this.onFieldChanged}
-              />
-            </div>
-          ) : null}
-          {/*  Tên đăng nhập */}
-          <div className="input-group form-group">
-            <div className="input-group-prepend-midSide">
-              <span className="input-group-text">
-                <i className="fas fa-user" />
-              </span>
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Tên đăng nhập"
-              name="username"
-              onChange={this.onFieldChanged}
-            />
-          </div>
-          {/* Mật khẩu*/}
-          <div className="input-group form-group">
-            <div className="input-group-prepend-midSide">
-              <span className="input-group-text">
-                <i className="fas fa-key" />
-              </span>
-            </div>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Mật khẩu"
-              name="password"
-              onChange={this.onFieldChanged}
-            />
-          </div>
-          {/*  Nhập lại mật khẩu */}
-          <div className="input-group form-group">
-            <div className="input-group-prepend-midSide">
-              <span className="input-group-text">
-                <i className="fas fa-key" />
-              </span>
-            </div>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Nhập lại mật khẩu"
-              name="repassword"
-             
-            />
-          </div>
-          {/*  Họ và tên */}
-          <div className="input-group form-group">
-            <div className="input-group-prepend-midSide">
-              <span className="input-group-text">
-                <i className="fas fa-user-tag" />
-              </span>
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Họ và tên"
-              name="name"
-              onChange={this.onFieldChanged}
-            />
-          </div>
-          {/*  Email */}
-          <div className="input-group form-group">
-            <div className="input-group-prepend-midSide">
-              <span className="input-group-text">
-                <i className="fas fa-at" />
-              </span>
-            </div>
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Email"
-              name="email"
-              onChange={this.onFieldChanged}
-            />
-          </div>
-          {/*  Số ddienj thoại */}
-          <div className="input-group form-group">
-            <div className="input-group-prepend-midSide">
-              <span className="input-group-text">
-                <i className="fas fa-phone" />
-              </span>
-            </div>
-            <input
-              type="tel"
-              className="form-control"
-              placeholder="Số điện thoại"
-              name="phone"
-              onChange={this.onFieldChanged}
-            />
-          </div>
-          {/* Sinh nhật */}
-          <div className="input-group form-group">
-            <div className="input-group-prepend-midSide">
-              <span className="input-group-text">
-                <i className="fas fa-calendar-week" />
-              </span>
-            </div>
-            <input
-              type="date"
-              className="form-control"
-              placeholder="Ngày Sinh"
-              name="dob"
-              onChange={this.onFieldChanged}
-            />
-          </div>
-          {/*  Giới tính */}
-          <div className="input-group form-group">
-            <div className="input-group-prepend-midSide ">
-              <span className="input-group-text ">
-                <i className="fas fa-venus-mars" />
-              </span>
-            </div>
+        <div className="mr-5 ml-5 pl-5 pr-5 createAdmin">
+          <Form>
+            {/* Chọn loại tài khoản */}
+            <FormGroup row>
+              <Label xs="3">Loại tài khoản</Label>
+              <Col xs="9">
+                <Input
+                  type="select"
+                  name="permission"
+                  onChange={this.onChanged}
+                >
+                   <option value="">- -</option>
+                  {this.props.permission === "SUPER_ADMIN" ? (
+                    <option value="UNIT_ADMIN">Unit Admin</option>
+                  ) : null}
 
-            <select
-              className="form-control"
-              id="exampleFormControlSelect1"
-              name="gender"
-              onChange={this.onFieldChanged}
-              value={this.state.gender}
+                  <option value="CONTENT_MOD">Content Mod</option>
+                  <option value="ACCOUNT_MOD">Account Mod</option>
+                </Input>
+              </Col>
+            </FormGroup>
+            {/*Người quản lý */}
+            <FormGroup row>
+              <Label xs="3">Đơn vị quản lý</Label>
+              <Col xs="9">
+                <Input
+                  type="select"
+                  name="manager"
+                  onChange={this.onChanged}
+                  disabled={
+                    this.state.permission === "UNIT_ADMIN" ||
+                    this.props.permission !== "SUPER_ADMIN"
+                  }
+                >
+                  {this.state.unitAdmins.map(ad => (
+                    <option value={ad._id}>{ad.name}</option>
+                  ))}
+                </Input>
+              </Col>
+            </FormGroup>
+            {/* User name */}
+            <FormGroup row>
+              <Label sm={3}>Tên đăng nhập</Label>
+              <Col sm={9}>
+                <Input
+                  name="username"
+                  placeholder="Tên đăng nhập"
+                  onChange={this.onChanged}
+                />
+              </Col>
+            </FormGroup>
+            {/* Mật khẩu */}
+            <FormGroup row>
+              <Label sm={3}>Mật khẩu</Label>
+              <Col sm={9}>
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Mật khẩu"
+                  onChange={this.onChanged}
+                />
+              </Col>
+            </FormGroup>
+            {/* Tên */}
+            <FormGroup row>
+              <Label sm={3}>Tên hiển thị</Label>
+              <Col sm={9}>
+                <Input
+                  name="name"
+                  placeholder="Tên hiển thị"
+                  onChange={this.onChanged}
+                />
+              </Col>
+            </FormGroup>
+            {/* email */}
+            <FormGroup row>
+              <Label sm={3}>Email</Label>
+              <Col sm={9}>
+                <Input
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.onChanged}
+                />
+              </Col>
+            </FormGroup>
+            {/* Số điện thoại */}
+            <FormGroup row>
+              <Label sm={3}>Số điện thoại</Label>
+              <Col sm={9}>
+                <Input
+                  type="number"
+                  name="phone"
+                  placeholder="Số điện thoại"
+                  onChange={this.onChanged}
+                />
+              </Col>
+            </FormGroup>
+            {/* Ngày tháng năm sinh */}
+            <FormGroup row>
+              <Label sm={3}>Ngày sinh</Label>
+              <Col sm={9}>
+                <Input
+                  type="date"
+                  name="dob"
+                  placeholder="Ngày tháng năm sinh"
+                  onChange={this.onChanged}
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+          {/* Gioi tinh */}
+          {/*Người quản lý */}
+          <FormGroup row>
+            <Label xs="3">Giới tính</Label>
+            <Col xs="9">
+              <Input type="select" name="gender" onChange={this.onChanged}>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+              </Input>
+            </Col>
+          </FormGroup>
+          <div className="item-right p-3">
+            <Button
+              color="success"
+              onClick={this.onFormSubmit}
+              style={{ width: "8rem" }}
             >
-              <option>Nam</option>
-              <option>Nữ</option>
-            </select>
+              Tạo tài khoản
+            </Button>
+            <Button
+              color="danger"
+              className="ml-3"
+              onClick={this.onFormSubmit}
+              style={{ width: "8rem" }}
+            >
+              Hủy
+            </Button>
           </div>
-          {/*  Loại Admin */}
-          <div className="input-group form-group">
-            <div className="input-group-prepend-midSide">
-              <span className="input-group-text">
-                <i className="fas fa-user-secret" />
-              </span>
-            </div>
-            {this.props.permission === 'SUPER_ADMIN' ? (
-              <select
-                className="form-control"
-                id="exampleFormControlSelect1"
-                name="permission"
-                onChange={this.onFieldChanged}
-                value={this.state.permission}
-              >
-                <option value={'CONTENT_MOD'}>Content Admin</option>
-                <option value={'ACCOUNT_MOD'}>Account Admin</option>
-                <option value={'UNIT_MOD'}>Unit Admin</option>
-              </select>
-            ) : this.props.permission === 'UNIT_MOD' ? (
-              <select
-                className="form-control"
-                id="exampleFormControlSelect1"
-                name="permission"
-                onChange={this.onFieldChanged}
-                value={this.state.permission}
-              >
-                <option value={'CONTENT_MOD'}>Content Admin</option>
-                <option value={'ACCOUNT_MOD'}>Account Admin</option>
-              </select>
-            ) : null}
-          </div>
-        </form>
-        <div className="fooder-crAccAdmin">
-          <Button color="success" onClick={this.onFormSubmit}>
-            <i className="fas fa-check-circle ml-1" /> Tạo
-          </Button>
-          <Button color="danger ml-10">
-            <i className="fas fa-trash-alt ml-1" /> Hủy
-          </Button>
         </div>
       </PageLayout>
     );
@@ -229,8 +211,8 @@ class CreateAccountPage extends Component {
 
 const mapStateToProps = ({
   auth: {
-    user: { name, permission, exp }
+    user: { name, permission, _id }
   }
-}) => ({ name, permission, exp });
+}) => ({ name, permission, _id });
 
 export default connect(mapStateToProps)(CreateAccountPage);

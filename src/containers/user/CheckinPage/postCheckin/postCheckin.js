@@ -232,7 +232,7 @@ class PostCheckin extends React.Component {
                             selected={this.state.startDate}
                             onChange={this.handleChange}
                             minDate={new Date(this.props.starttime)}
-                            maxDate={new Date(this.props.endtime)}
+                            maxDate={new Date()}
                             highlightDates={[
                               new Date(this.props.starttime),
                               new Date(this.props.endtime)

@@ -30,6 +30,9 @@ class CheckinPage extends Component {
     };
     reportPost(data);
   }
+  successCheckin(eventId, attendanceId, code){
+    
+  }
 
   render() {
     return (

@@ -10,7 +10,7 @@ export function updateUserInfo(username, userInfo) {
     return request({
         url: `/accounts/u/` + username,
         method: 'put',
-       
+       data: userInfo
     })
     // return Axios.put('/accounts/u/' + username,
     //     userInfo, {
