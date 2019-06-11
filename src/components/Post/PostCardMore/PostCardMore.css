@@ -86,3 +86,8 @@
   margin-right: 0.5rem;
   color: #004916;
 }
+
+.eye-btn:hover{
+  color: #004916;
+  cursor: pointer;
+}
