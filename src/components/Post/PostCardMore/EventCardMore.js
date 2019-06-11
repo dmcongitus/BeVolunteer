@@ -175,7 +175,8 @@ class EventCardMore extends React.Component {
 
   render() {
     const { activeIndex } = this.state;
-
+    console.log("Event card more");
+    console.log(this.props)
     const slides = this.state.items.map(item => {
       return (
         <CarouselItem
@@ -317,42 +318,18 @@ class EventCardMore extends React.Component {
               </Col>
 
               <div className="item-right pb-2 m-2 hr-border-bottom">
-                {this.props.type === "Hoạt động" && (
-                  <div>
-                    <Button className="mr-1 add-btn">
-                      <i class="fas fa-angle-double-right icon-button" />
-                      Tham gia
-                    </Button>
-                  </div>
-                )}
-                {this.props.type === "Địa điểm" && (
-                  <div>
-                    <Button className="mr-1 new-btn">
-                      <i class="fas fa-edit icon-button" />
-                      Tạo event
-                    </Button>
-                  </div>
-                )}
-                {this.props.type === "Quyên góp" && (
-                  <div>
-                    <Button
-                      className="mr-1 donate-btn"
-                      onClick={this.togglePayment}
-                    >
-                      <i class="fas fa-donate icon-button" />
-                      Quyên góp
-                    </Button>
-                    <Modal
-                      isOpen={this.state.paymentOpen}
-                      toggle={this.togglePayment}
-                    >
-                      <ModalHeader>Thanh toán </ModalHeader>
-                      <ModalBody>
-                        <Payment />
-                      </ModalBody>
-                    </Modal>
-                  </div>
-                )}
+                {
+                    this.props.publisher.permission === "UNIT_ADMIN"?
+                    <Link to={`/eventEdit/${this.props._id}`}>
+                        <div>
+                            <Button className="mr-1 success add-btn">
+                            <i class="fas fa-angle-double-right icon-button" />
+                            Chỉnh sửa
+                            </Button>
+                        </div>
+                    </Link> :null
+                }
+
               </div>
             </Row>
 

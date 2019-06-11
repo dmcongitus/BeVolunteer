@@ -11,10 +11,9 @@ class PostPage extends Component {
 
   componentDidMount = async () => {
     
-    let { postId } = this.props.match.params;
-    console.log(postId);
+    let { eventId } = this.props.match.params;
     try {
-      const { data } = await getSpecificEvents(postId);
+      const { data } = await getSpecificEvents(eventId);
     
       await this.setState({ event: data.event });
       

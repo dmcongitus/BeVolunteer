@@ -22,6 +22,7 @@ import RankPage from './containers/user/RankPage/RankPage';
 import MedalPage from './containers/user/MedalPage/MedalPage';
 import CreateEvent from './containers/admin/EventPage/CreateEvent/CreateEvent';
 import EventList from './containers/admin/EventPage/EventList/EventList.js';
+import EventEditPage from './containers/admin/EventPage/EventEdit/EventEditPage';
 
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => 
     <Route {...rest} render={props => isAuthenticated ? <Component {...props} /> : <Redirect to='/login' />} />; 
@@ -54,13 +55,14 @@ export default function router({ isAuthenticated, permission, username }) {
                         <PrivateRoute path='/eventList' exact component={EventList} isAuthenticated={isAuthenticated} />
                        
                         <PrivateRoute path='/searchPage/:searchText' exact component={SearchPage} isAuthenticated={isAuthenticated} />
+                        <NeedPermissionRoute path="/eventMore/:eventId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={EventPage} isAuthenticated={isAuthenticated} userPermission={permission} />
 
-                        <NeedPermissionRoute path="/eventMore/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={EventPage} isAuthenticated={isAuthenticated} userPermission={permission} />
-                        <NeedPermissionRoute path="/post/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
-                        <NeedPermissionRoute path="/approve" routePermisison={['ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
-                        <NeedPermissionRoute path="/delete-account" routePermisison={['ACCOUNT_MOD','UNIT_MOD','SUPER_ADMIN']} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
-                        <NeedPermissionRoute path="/ContentManage" routePermisison={['CONTENT_MOD','UNIT_MOD','SUPER_ADMIN']} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
-                        <NeedPermissionRoute path="/CreateAccountAdmin" routePermisison={['UNIT_MOD','SUPER_ADMIN']} component={CreateAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/eventEdit/:eventId/" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={EventEditPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/post/:postId" routePermisison={['USER', 'ORG', 'CONTENT_MOD','ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={PostPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/approve" routePermisison={['ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={ApprovePage} isAuthenticated={isAuthenticated} userPermission={permission} /> 
+                        <NeedPermissionRoute path="/delete-account" routePermisison={['ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/ContentManage" routePermisison={['CONTENT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/CreateAccountAdmin" routePermisison={['UNIT_ADMIN','SUPER_ADMIN']} component={CreateAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <Route path="*" component={NotFoundPage} />
                     </Switch>
                 </MainLayout>

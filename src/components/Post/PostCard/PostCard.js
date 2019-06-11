@@ -196,12 +196,12 @@ class PostCard extends React.Component {
                 </div>
               )}
               {this.props.type === "PLACE" && (
-                <div>
+                <Link to="/event">
                   <Button className="mr-1 new-btn">
                     <i class="fas fa-edit icon-button" />
                     Tạo event
                   </Button>
-                </div>
+                </Link>
               )}
 
                 {this.props.type === 'EVENT'?   (<Link to={`eventMore/${this.props._id}`}>

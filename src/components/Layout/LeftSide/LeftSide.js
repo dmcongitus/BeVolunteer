@@ -88,7 +88,7 @@ class LeftSide extends Component {
               <ul className="list">
                 <li>
                   <NavLink exact activeClassName="NavLink--active" to="/me">
-                    <i class="fas fa-user-edit" />Thông tin cá nhân
+                    <i className="fas fa-user-edit" />Thông tin cá nhân
                   </NavLink>
                 </li>
                 <li>
@@ -97,12 +97,12 @@ class LeftSide extends Component {
                     activeClassName="NavLink--active"
                     to="/history"
                   >
-                    <i class="fas fa-history" /> Lịch sử hoạt động
+                    <i className="fas fa-history" /> Lịch sử hoạt động
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact activeClassName="NavLink--active" to="/medal">
-                    <i class="fas fa-medal" /> Danh hiệu
+                    <i className="fas fa-medal" /> Danh hiệu
                   </NavLink>
                 </li>
               </ul>
@@ -122,17 +122,17 @@ class LeftSide extends Component {
               <ul className="list">
                 <li>
                   <NavLink exact activeClassName="NavLink--active" to="/">
-                    <i class="fas fa-home" />Trang chủ
+                    <i className="fas fa-home" />Trang chủ
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact activeClassName="NavLink--active" to="/rank">
-                    <i class="fas fa-trophy" /> Xếp hạng
+                    <i className="fas fa-trophy" /> Xếp hạng
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact activeClassName="NavLink--active" to="/checkin">
-                    <i class="fas fa-calendar-check" /> Điểm danh
+                    <i className="fas fa-calendar-check" /> Điểm danh
                   </NavLink>
                 </li>
               </ul>
