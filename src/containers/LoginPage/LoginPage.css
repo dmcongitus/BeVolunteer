@@ -7,12 +7,14 @@
     font-family: 'Numans',
     sans-serif;
     align-content: center;
+    background-position: center center;
+  
  
 }
 
 
 .singup-color{
-    margin-left: 5px;
+    margin-left: 0.25rem;
     color: #FFC312;
 }
 .singup-color:hover{
@@ -21,15 +23,15 @@
 }
 .card {
     height: auto;
-    margin-top: 80px;
+    margin-top: 5rem;
     margin-bottom: auto !important;
     width: 400px;
     background-color: rgba(0, 0, 0, 0.8) !important;
 }
 
 .social_icon span {
-    font-size: 60px;
-    margin-left: 10px;
+    font-size: 3.75rem;
+    margin-left: 0.5rem;
     color: #FFC312;
 }
 .form-group{
@@ -46,12 +48,12 @@
 
 .social_icon {
     position: absolute;
-    right: 20px;
-    top: -45px;
+    right: 1.25rem;
+    top: -40.25rem;
 }
 
 .input-group-prepend span {
-    width: 50px;
+    width: 3rem;
     background-color: #FFC312;
     color: black;
     border: 0 !important;
@@ -68,16 +70,16 @@ input:focus {
 }
 
 .remember input {
-    width: 20px;
-    height: 20px;
-    margin-left: 15px;
-    margin-right: 5px;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: 10.25rem;
+    margin-right: 0.25rem;
 }
 
 .login_btn {
     color: black;
     background-color: #FFC312;
-    width: 100px;
+    width: 6.25rem;
 }
 
 .login_btn:hover {

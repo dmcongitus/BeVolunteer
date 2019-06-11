@@ -1,0 +1,81 @@
+/*
+*
+* ===========================================================
+*     HERO SECTION
+* ===========================================================
+*
+*/
+.img-fluid{
+    margin-left: 3.75rem;
+    height: 12.5rem;
+    width: auto;
+    margin-bottom: 1.25rem;
+   
+}
+.border-Comment{
+  background-color: rgba(148, 192, 221, 0.2);
+  padding: 0.25rem;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+  border-top-left-radius: 10.25rem;
+  border-bottom-left-radius: 10.25rem;
+  border-top-right-radius: 10.25rem;
+  border-bottom-right-radius: 10.25rem;
+  margin-right: 1.25rem;
+}
+
+.my-Comment{
+  margin-right: 1.25rem;
+  width: 100%;
+  background-color: rgba(148, 192, 221, 0.2);
+  padding: 0.25rem;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+  border-top-left-radius: 10.25rem;
+  border-bottom-left-radius: 10.25rem;
+  border-top-right-radius: 10.25rem;
+  border-bottom-right-radius: 10.25rem;
+}
+.border-Comment b{
+  color: #004916;
+  margin-right: 0.5rem;
+}
+.postCard{
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    margin: 0px;
+    margin-top: 1.25rem;
+    padding: 0.5rem;
+    background-color: white;
+    box-shadow:0  1px 2px gray;
+  
+    border-top: 0.5rem solid #004916;
+    
+
+}
+
+
+.header-col{
+  max-height: 100%;
+}
+
+.hr-border-bottom{
+  border-bottom: 1px solid gray;
+ 
+  padding-right: 0.25rem !important;
+}
+
+
+.donate-btn{
+  background-color: #853b92;
+}
+.donate-btn:hover{
+  background-color: #853b92b9;
+}
+
+.new-btn{
+  background-color: #D01013;
+}
+.new-btn:hover{
+  background-color: rgba(208, 16, 19, 0.7);
+}

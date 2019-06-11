@@ -2,7 +2,9 @@
     color: darkgreen;
 }
 
- .img-user-postCard{
-    height: 40px;
-    width: 40px;
+.img-user-postCard{
+    height: 3rem;
+    width: 3rem;
+    object-fit: cover;
 } 
+

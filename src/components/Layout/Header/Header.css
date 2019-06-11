@@ -1,12 +1,18 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
+<<<<<<< .merge_file_a05248
 .navbar{
   background-color: rgba(0, 0, 0, 0.7) !important; 
+=======
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+>>>>>>> .merge_file_a07476
   padding: 0;
   top: 0;
   left: 0;
   width: 100%;
+<<<<<<< .merge_file_a05248
 
 }
 
@@ -139,3 +145,60 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.157);
    
   }
+=======
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  position: relative;
+  width: 2.25rem;
+  font-size: 1.5rem;
+}
+.active:hover {
+  cursor: pointer;
+}
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  font-size: 0.75rem;
+  position: absolute;
+  right: 0;
+  font-family: sans-serif;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  top: 0.25rem;
+  line-height: 0.75rem;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  top: -0.5rem;
+}
+
+.navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
+  text-align: center;
+  display: table-cell;
+  height: 4.25rem;
+  vertical-align: middle;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
+  display: block;
+  width: 3rem;
+  margin: 2px auto 4px auto;
+  top: 0;
+  line-height: 1.5rem;
+}
+
+.navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa > .badge {
+  top: -0.5rem;
+}
+
+a.nav-link:hover {
+  color: palegreen !important;
+}
+
+.notifi-header {
+  background-color: rgba(29, 129, 218, 0.1);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.157);
+}
+>>>>>>> .merge_file_a07476

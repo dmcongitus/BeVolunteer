@@ -15,24 +15,24 @@ import { Container, Row, Col } from 'reactstrap';
 const MainLayout = ({children, permission, username}) => (
     <div className="main-layout">
         <Header />
-        {permission === 'USER' ||  permission === 'ORG' ?
-        <Row className="px-3 mr-unset">
-            <Col xs="3">
+        {permission == 'USER' ||  permission == 'ORG' ?
+        <Row className="mr-unset ml-0">
+            <Col xs="3" className = "pl-3 pr-3">
                 <LeftSide username={username} />  }
             </Col>
             
-            <Col xs="6" className="px-0">
+            <Col xs="6" className="px-0 pl-3 pr-3">
                 {children}
             </Col>
 
-            <Col xs="3" className="mr-unset">
+            <Col xs="3" className="mr-unset pl-3 pr-3">
                 {/* Do not show RightSide if permission is admin */}
                 <RightSide /> 
             </Col>
         </Row>
         :
         <Row className="px-3 mr-unset">
-            <Col xs="3">
+            <Col xs="3 pl-3 pr-3">
             <div className="pl-3">
             <AdminLeftSide username={username} permission={permission}/>
             </div>

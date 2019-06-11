@@ -18,17 +18,17 @@ import {
   CardTitle,
   CardText,
   Row,
-  Col
+  Col,Input
 } from "reactstrap";
 import classnames from "classnames";
 
 var permissionArr = [
-  "Cá nhân",
-  "Tổ chức",
-  "AccountMod",
-  "ContentMod",
-  "UnitAdmin",
-  "SupperAdmin"
+    "Cá nhân",
+    "Tổ chức",
+    "AccountMod",
+    "ContentMod",
+    "UnitAdmin",
+    "SupperAdmin"
 ];
 
 class DeleteAccountPage extends Component {
@@ -38,7 +38,8 @@ class DeleteAccountPage extends Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
         activeTab: "1",
-        accounts: []
+        accounts: [],
+        search: ""
         };
     }
     toggle(tab) {
@@ -49,14 +50,23 @@ class DeleteAccountPage extends Component {
         }
     }
 
-    componentDidMount = () => {
-        getAllUsers().then(data => {
-        const accounts = data.data
-        this.setState({ accounts })
-        });
+    async componentWillUpdate(){
     
+    }
+    componentDidMount = async () => {
+        await getAllUsers().then(data => {
+        const accounts = data.data;
+        this.setState({ accounts });
+        });
     };
-
+    onChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+        console.log(getAllUsers(this.state.search))
+        getAllUsers(this.state.search).then(Promise => {
+        const accounts = Promise.PromiseValue.data;
+        this.setState({ accounts });
+        });
+    };
     onAccountBan = username => {
         this.setState(prevState => {
         const newAccounts = [...prevState.accounts];
@@ -65,11 +75,10 @@ class DeleteAccountPage extends Component {
             newAccounts[i].isBanned = true;
             }
         }
-        return {accounts: newAccounts};
+        return { accounts: newAccounts };
         });
         banUser(username);
         //window.location.reload();// sao cho nay` lai reload v a?
-
     };
     onAccountUnBan = username => {
         // this.setState(prevState => ({
@@ -80,12 +89,11 @@ class DeleteAccountPage extends Component {
         this.setState(prevState => {
         const newAccounts = [...prevState.accounts];
         for (let i = 0; i < newAccounts.length; i++) {
-            console.log(newAccounts[i]);
             if (newAccounts[i].username == username) {
             newAccounts[i].isBanned = false;
             }
         }
-        return {accounts: newAccounts};
+        return { accounts: newAccounts };
         });
         unbanUser(username);
         // window.location.reload();
@@ -94,212 +102,238 @@ class DeleteAccountPage extends Component {
         let number = 0;
 
         return (
-            <PageLayout title="Quản lý tài khoản">
-                <Nav tabs>
-                    <NavItem className="pointer">
-                        <NavLink
-                        className={classnames({ active: this.state.activeTab === "1" })}
-                        onClick={() => {
-                            this.toggle("1");
-                        }}
-                        >
-                        Tất cả
-                        </NavLink>
-                    </NavItem>
-                    <NavItem className="pointer">
-                        <NavLink
-                        className={classnames({ active: this.state.activeTab === "2" })}
-                        onClick={() => {
-                            this.toggle("2");
-                        }}
-                        >
-                        Chưa khóa
-                        </NavLink>
-                    </NavItem>
-                    <NavItem className="pointer">
-                    <NavLink
-                    className={classnames({ active: this.state.activeTab === "3" })}
-                    onClick={() => {
-                        this.toggle("3");
-                    }}
-                    >
-                    Đã khóa
-                    </NavLink>
-                </NavItem>
-                </Nav>
-                
-                <div>
-                    <Table>
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>
-                            <div className="item-mid item-center"> Người dùng</div>
-                            </th>
-                            <th>
-                            <div className="item-mid item-center"> Họ và tên</div>
-                            </th>
-                            <th>
-                            <div className="item-mid item-center"> Loại</div>
-                            </th>
-                            <th>
-                            <div className="item-mid item-center"> Tình trạng</div>
-                            </th>
-                            <th>
-                            <div className="item-mid item-center"> </div>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {/* Start tab Tất cả */}
-                        {this.state.activeTab === "1"
-                            ? this.state.accounts.map(account =>
-                                account.permission >= this.props.permission ? null : (
-                                <tr key={account.username} className="table-row">
-                                    <th scope="row">{++number}</th>
-                                    <td>{account.username}</td>
-                                    <td>{account.name}</td>
-                                    {account.permission === 'ORG' ? (
-                                    <td className="tcl-1">
-                                        <b>{permissionArr[account.permission]}</b>
-                                    </td>
-                                    ) : (
-                                    <td>{permissionArr[account.permission]}</td>
-                                    )}
+        <PageLayout title="Quản lý tài khoản">
+            <Nav tabs>
+            <NavItem className="pointer">
+                <NavLink
+                className={classnames({ active: this.state.activeTab === "1" })}
+                onClick={() => {
+                    this.toggle("1");
+                }}
+                >
+                Tất cả
+                </NavLink>
+            </NavItem>
+            <NavItem className="pointer">
+                <NavLink
+                className={classnames({ active: this.state.activeTab === "2" })}
+                onClick={() => {
+                    this.toggle("2");
+                }}
+                >
+                Chưa khóa
+                </NavLink>
+            </NavItem>
+            <NavItem className="pointer">
+                <NavLink
+                className={classnames({ active: this.state.activeTab === "3" })}
+                onClick={() => {
+                    this.toggle("3");
+                }}
+                >
+                Đã khóa
+                </NavLink>
+            </NavItem>
+            <NavItem width= "100%">
+            <Input name = "search" onChange={this.onChange} ></Input>
 
-                                    <td>
-                                    {account.isVerified ? (
-                                        <div className="tcl-1 item-mid">Đã xác thực</div>
-                                    ) : account.isRequestVerify ? (
-                                        <div className="tcl-3 item-mid">Đang xác thực</div>
-                                    ) : (
-                                        <div className="tcl-2 item-mid">Chưa xác thực</div>
-                                    )}
-                                    </td>
-                                    <td>
-                                    <div className="item-mid">
-                                        {account.isBanned === false ? (
-                                        <Button
-                                            className="mr-1 new-btn"
-                                            onClick={() =>
-                                            this.onAccountBan(account.username)
-                                            }
-                                        >
-                                            <i class="fas fa-lock icon-button" />
-                                            Khóa TK
-                                        </Button>
-                                        ) : (
-                                        <Button
-                                            className="mr-1 success"
-                                            onClick={() =>
-                                            this.onAccountUnBan(account.username)
-                                            }
-                                        >
-                                            <i class="fas fa-unlock icon-button" />
-                                            Mở khóa
-                                        </Button>
-                                        )}
-                                    </div>
-                                    </td>
-                                </tr>
-                                )
-                            )
-                            : null}
-                        {/* End tab Tất cả */}
-                        {/* Start tab Chưa Khóa*/}
-                        {this.state.activeTab === "2"
-                            ? this.state.accounts.map(account =>
-                                account.permission >=
-                                this.props.permission ? null : account.isBanned ? null : (
-                                <tr key={account.username} className="table-row">
-                                    <th scope="row">{++number}</th>
-                                    <td>{account.username}</td>
-                                    <td>{account.name}</td>
-                                    {account.permission > 1 ? (
-                                    <td className="tcl-2">
-                                        <b>{permissionArr[account.permission]}</b>
-                                    </td>
-                                    ) : account.permission == 1 ? (
-                                    <td className="tcl-1">
-                                        <b>{permissionArr[account.permission]}</b>
-                                    </td>
-                                    ) : (
-                                    <td>{permissionArr[account.permission]}</td>
-                                    )}
-                                    <td>
-                                    {account.isVerified ? (
-                                        <div className="tcl-1 item-mid">Đã xác thực</div>
-                                    ) : account.isRequestVerify ? (
-                                        <div className="tcl-3 item-mid">Đang xác thực</div>
-                                    ) : (
-                                        <div className="tcl-2 item-mid">Chưa xác thực</div>
-                                    )}
-                                    </td>
-                                    <td>
-                                    <div>
-                                        <Button
-                                        className="mr-1 new-btn"
-                                        onClick={() =>
-                                            this.onAccountBan(account.username)
-                                        }
-                                        >
-                                        <i class="fas fa-lock icon-button" />
-                                        Khóa TK
-                                        </Button>
-                                    </div>
-                                    </td>
-                                </tr>
-                                )
-                            )
-                            : null}
-                        {/* End tab Chưa Khóa*/}
-                        {/* Start tab Đã Khóa*/}
-                        {this.state.activeTab === "3"?this.state.accounts.map(account =>
-                            account.permission >=
-                            this.props.permission ? null : !account.isBanned ? null : (
+            </NavItem>
+            
+            </Nav>
+            <div>
+            <Table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>
+                    <div className="item-mid item-center"> Người dùng</div>
+                    </th>
+                    <th>
+                    <div className="item-mid item-center"> Họ và tên</div>
+                    </th>
+                    <th>
+                    <div className="item-mid item-center"> Loại</div>
+                    </th>
+                    <th>
+                    <div className="item-mid item-center"> Tình trạng</div>
+                    </th>
+                    <th>
+                    <div className="item-mid item-center"> </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {/* Start tab Tất cả */}
+                {this.state.activeTab === "1"
+                    ? this.state.accounts.map(
+                        account =>
+                        (account.permission === "ORG" ||
+                            account.permission === "USER") && (
                             <tr key={account.username} className="table-row">
-                                <th scope="row">{++number}</th>
-                                <td>{account.username}</td>
-                                <td>{account.name}</td>
-                                {account.permission > 1 ? (
-                                <td className="tcl-2">
-                                    <b>{permissionArr[account.permission]}</b>
-                                </td>
-                                ) : account.permission == 1 ? (
+                            <th scope="row">{++number}</th>
+                            <td>{account.username}</td>
+                            <td>{account.name}</td>
+                            {account.permission === "ORG" ? (
                                 <td className="tcl-1">
-                                    <b>{permissionArr[account.permission]}</b>
+                                <b>{permissionArr[account.permission]}</b>
                                 </td>
-                                ) : (
+                            ) : (
                                 <td>{permissionArr[account.permission]}</td>
-                                )}
-                                <td>
+                            )}
+
+                            <td>
                                 {account.isVerified ? (
-                                    <div className="tcl-1 item-mid">Đã xác thực</div>
+                                <div className="tcl-1 item-mid">Đã xác thực</div>
                                 ) : account.isRequestVerify ? (
-                                    <div className="tcl-3 item-mid">Đang xác thực</div>
+                                <div className="tcl-3 item-mid">
+                                    Đang xác thực
+                                </div>
                                 ) : (
-                                    <div className="tcl-2 item-mid">Chưa xác thực</div>
+                                <div className="tcl-2 item-mid">
+                                    Chưa xác thực
+                                </div>
                                 )}
-                                </td>
-                                <td>
-                                <div>
+                            </td>
+                            <td>
+                                <div className="item-mid">
+                                {account.isBanned === false ? (
+                                    <Button
+                                    className="mr-1 new-btn"
+                                    onClick={() =>
+                                        this.onAccountBan(account.username)
+                                    }
+                                    >
+                                    <i class="fas fa-lock icon-button" />
+                                    Khóa TK
+                                    </Button>
+                                ) : (
                                     <Button
                                     className="mr-1 success"
-                                    onClick={() => this.onAccountUnBan(account.username)}
+                                    onClick={() =>
+                                        this.onAccountUnBan(account.username)
+                                    }
                                     >
                                     <i class="fas fa-unlock icon-button" />
                                     Mở khóa
                                     </Button>
+                                )}
                                 </div>
-                                </td>
+                            </td>
                             </tr>
-                            )
-                        ):null}
-                        {/* End tab Đã Khóa*/}
-                        </tbody>
-                    </Table>
-                </div>
-            </PageLayout>
+                        )
+                    )
+                    : null}
+                {/* End tab Tất cả */}
+                {/* Start tab Chưa Khóa*/}
+                {this.state.activeTab === "2"
+                    ? this.state.accounts.map(
+                        account =>
+                        (account.permission === "ORG" ||
+                            account.permission === "USER") &&
+                        !account.isBanned && (
+                            <tr key={account.username} className="table-row">
+                            <th scope="row">{++number}</th>
+                            <td>{account.username}</td>
+                            <td>{account.name}</td>
+                            {account.permission > 1 ? (
+                                <td className="tcl-2">
+                                <b>{permissionArr[account.permission]}</b>
+                                </td>
+                            ) : account.permission == 1 ? (
+                                <td className="tcl-1">
+                                <b>{permissionArr[account.permission]}</b>
+                                </td>
+                            ) : (
+                                <td>{permissionArr[account.permission]}</td>
+                            )}
+                            <td>
+                                {account.isVerified ? (
+                                <div className="tcl-1 item-mid">Đã xác thực</div>
+                                ) : account.isRequestVerify ? (
+                                <div className="tcl-3 item-mid">
+                                    Đang xác thực
+                                </div>
+                                ) : (
+                                <div className="tcl-2 item-mid">
+                                    Chưa xác thực
+                                </div>
+                                )}
+                            </td>
+                            <td>
+                                <div>
+                                <Button
+                                    className="mr-1 new-btn"
+                                    onClick={() =>
+                                    this.onAccountBan(account.username)
+                                    }
+                                >
+                                    <i class="fas fa-lock icon-button" />
+                                    Khóa TK
+                                </Button>
+                                </div>
+                            </td>
+                            </tr>
+                        )
+                    )
+                    : null}
+                {/* End tab Chưa Khóa*/}
+                {/* Start tab Đã Khóa*/}
+                {this.state.activeTab === "3"
+                    ? this.state.accounts.map(
+                        account =>
+                        (account.permission === "ORG" ||
+                            account.permission === "USER") &&
+                        account.isBanned && (
+                            <tr key={account.username} className="table-row">
+                            <th scope="row">{++number}</th>
+                            <td>{account.username}</td>
+                            <td>{account.name}</td>
+                            {account.permission > 1 ? (
+                                <td className="tcl-2">
+                                <b>{permissionArr[account.permission]}</b>
+                                </td>
+                            ) : account.permission == 1 ? (
+                                <td className="tcl-1">
+                                <b>{permissionArr[account.permission]}</b>
+                                </td>
+                            ) : (
+                                <td>{permissionArr[account.permission]}</td>
+                            )}
+                            <td>
+                                {account.isVerified ? (
+                                <div className="tcl-1 item-mid">Đã xác thực</div>
+                                ) : account.isRequestVerify ? (
+                                <div className="tcl-3 item-mid">
+                                    Đang xác thực
+                                </div>
+                                ) : (
+                                <div className="tcl-2 item-mid">
+                                    Chưa xác thực
+                                </div>
+                                )}
+                            </td>
+                            <td>
+                                <div>
+                                <Button
+                                    className="mr-1 success"
+                                    onClick={() =>
+                                    this.onAccountUnBan(account.username)
+                                    }
+                                >
+                                    <i class="fas fa-unlock icon-button" />
+                                    Mở khóa
+                                </Button>
+                                </div>
+                            </td>
+                            </tr>
+                        )
+                    )
+                    : null}
+                {/* End tab Đã Khóa*/}
+                </tbody>
+            </Table>
+            </div>
+        </PageLayout>
         );
     }
 }

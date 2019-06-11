@@ -3,16 +3,17 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import * as authActions from "../../actions/auth.action";
-
+import { Message } from 'element-react';
 import "./SignUp.css";
 import { createUser } from "../../services/user.service";
 
 class SignUp extends Component {
   state = {
-    permission: 1,
+    permission: 'USER',
     email: "",
     username: "",
     password: "",
+    rePassword:"",
     name: "",
     phone: "",
     dob: "",
@@ -27,13 +28,21 @@ class SignUp extends Component {
   onFormSubmit = async e => {
     e.preventDefault();
     try {
-      const data = await createUser({ ...this.state });
-      console.log(data);
+      if (this.state.password === this.state.rePassword){
+        const data = await createUser({ ...this.state }).then(response => { 
+          Message.success("Tạo tài khoản thành công")
+        })
+        .catch(error => {
+          Message.error("Tạo tài khoản thất bại")
+        });
+      }else{
+        Message.error("Mật khẩu nhập lại không đúng")
+      }
     } catch (error) {
       console.error(error);
     }
     // this.props.loginUser(this.state.username, this.state.password);
-    console.log("submitform");
+
   };
 
   render() {
@@ -99,7 +108,7 @@ class SignUp extends Component {
                     type="password"
                     className="form-control"
                     placeholder="Nhập lại mật khẩu"
-                    name="repassword"
+                    name="rePassword"
                     onChange={this.onFieldChanged}
                   />
                 </div>

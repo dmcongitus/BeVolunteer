@@ -1,12 +1,21 @@
 .Snackbar {
     position: fixed;
     color: #fff;
+<<<<<<< .merge_file_a09212
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 6px 10px 0px rgba(0, 0, 0, 0.14),
     0px 1px 18px 0px rgba(0, 0, 0, 0.12);
     padding: 0.75rem 1.25rem;
     border-radius: 2px;
     left: 15px;
+=======
+    box-shadow: 0px 3px 0.25rem -1px rgba(0, 0, 0, 0.2),
+    0px 6px 0.5rem 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+    padding: 0.75rem 1.25rem;
+    border-radius: 2px;
+    left: 10.25rem;
+>>>>>>> .merge_file_a11172
     transition: all 0.25s linear;
 }
 
@@ -19,7 +28,11 @@
 }
 
 .Snackbar--Open {
+<<<<<<< .merge_file_a09212
     bottom: 10px;
+=======
+    bottom: 0.5rem;
+>>>>>>> .merge_file_a11172
 }
 
 .Snackbar--Close {
@@ -40,7 +53,11 @@
     height: 1em;
     fill: #fff;
     color: #388e3c;
+<<<<<<< .merge_file_a09212
     font-size: 20px;
+=======
+    font-size: 1.25rem;
+>>>>>>> .merge_file_a11172
     margin-right: 0.5em;
 }
 
@@ -49,6 +66,10 @@
     height: 1em;
     fill: #fff;
     color: #dd2c00;
+<<<<<<< .merge_file_a09212
     font-size: 20px;
+=======
+    font-size: 1.25rem;
+>>>>>>> .merge_file_a11172
     margin-right: 0.5em;
 }

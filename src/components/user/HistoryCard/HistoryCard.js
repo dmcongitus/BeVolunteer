@@ -125,15 +125,9 @@ class HistoryCard extends React.Component {
                 </small>
                 <span className="ml-1">
                   <b>
-                    {this.props.type === "Địa điểm" ? (
-                      <span className="tcl-2">Địa điểm</span>
-                    ) : this.props.type === "Quyên góp" ? (
-                      <span className="tcl-3">Quyên góp</span>
-                    ) : this.props.type === "Hoạt động" ? (
-                      <span className="tcl-1">Hoạt động</span>
-                    ) : (
-                      <span className="tcl-4">{this.props.type}</span>
-                    )}
+                   
+                      <span className={this.props.type}>{this.props.type}</span>
+                    
                   </b>
                 </span>
                 <div>
@@ -142,7 +136,7 @@ class HistoryCard extends React.Component {
                       <i className="fa fa-calendar" data-original-title title />{" "}
                       {new Date(this.props.createdAt).toLocaleTimeString()}
                       <i
-                        style={{ marginLeft: "5px" }}
+                        style={{ marginLeft: "0.25rem" }}
                         className="fas fa-map-marker-alt ml-3 mr-1"
                       />{" "}
                       {this.props.address}

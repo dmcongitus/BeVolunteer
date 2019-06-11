@@ -3,29 +3,49 @@ import { Link } from "react-router-dom";
 import HistoryCard from "../../../components/admin/HistoryCard/HistoryCard";
 import "./ContentManagePage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
-import { getPosts } from "../../../services/post.service";
+
+import { deleteReport, getReports } from "../../../services/report.service";
+import { deletePost } from "../../../services/post.service";
+import { deleteEvent } from "../../../services/event.service";
 class ContentManagePage extends Component {
   state = {
-    posts: []
+    data: []
   };
 
+  deleteReportfun(id){
+    deleteReport(id)
+    getReports()
+    .then(data => {
+      this.setState(data);
+    })
+      .catch(e => console.log(e));
+  }
+  deletePostReport(id, type){
+    if(type === "Post"){
+      deletePost(id)
+    }else{
+      deleteEvent(id)
+    }
+   
+  }
   componentDidMount = () => {
-    getPosts(0)
-      .then(({ data: { posts } }) => this.setState({ posts }))
+    getReports()
+    .then(data => {
+      this.setState(data);
+      console.log(this.state.data)
+    })
       .catch(e => console.log(e));
+     
   };
 
-  onPostTypeChanged = postType => {
-    getPosts(postType)
-      .then(({ data: { posts } }) => this.setState({ posts }))
-      .catch(e => console.log(e));
-  };
+
   render() {
     return (
       <PageLayout title="Quản lý bài viết">
         <div>
-          {this.state.posts.map(post => (
-            <HistoryCard key={post.id} {...post} />
+         
+          {this.state.data.map(data => (
+            <HistoryCard {...data} deleteReport={this.deleteReportfun} deletePostReport={this.deletePostReport}/>
           ))}
         </div>
       </PageLayout>

@@ -31,7 +31,7 @@
     padding-top: 1em;
     padding-bottom: 1em;
     align-items: center;
-    border-top: 1.5px solid rgba(114, 110, 110, 0.5);
+    border-top: 1.0.25rem solid rgba(114, 110, 110, 0.5);
 }
 
 .UpdateProfile__Main__FieldItem:last-child {
@@ -39,7 +39,7 @@
 }
 
 .UpdateProfile__Main__FieldName {
-    flex-basis: 100px;
+    flex-basis: 6.25rem;
 }
 
 .UpdateProfile__Main__FieldValue {
@@ -48,14 +48,14 @@
 }
 
 .UpdateProfile__Main__FieldValue select {
-    width: 150px;
-    padding: 5px;
+    width: 9.25rem;
+    padding: 0.25rem;
 }
 
 .UpdateProfile__Main__FieldValue img {
-    width: 200px;
+    width: 12.5rem;
     height: auto;
-    border-radius: 5px;
+    border-radius: 0.25rem;
     border: 1px solid #afafaf;
 }
 
@@ -81,7 +81,6 @@
     color: rgb(255, 255, 255);
     padding: 0.5em 1em;
     border-radius: 2px;
-    font-size: 13px;
     font-weight: 500;
     transition: opacity 0.5s ease;
 }
@@ -95,7 +94,6 @@
     color: rgb(255, 255, 255);
     padding: 0.5em 1em;
     border-radius: 2px;
-    font-size: 13px;
     font-weight: 500;
     margin-left: 0.5em;
     transition: opacity 0.5s ease;

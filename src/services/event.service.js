@@ -1,4 +1,6 @@
 import Axios from 'axios';
+import request from "./request";
+import { Message } from "element-react";
 
 export function createEvent(event) {
     console.log(event);
@@ -54,14 +56,72 @@ export function editEvent(event) {
     );
 }
 
+
 export function getEvents(statusEvent) {
     if (statusEvent === 0) {
-        return Axios.get('/events', { headers: { "x-access-token": localStorage.getItem("token") } });
+        return request({
+            url: `/events`,
+            method: "get"
+        });
+        return Axios.get("/events", {
+            headers: { "x-access-token": localStorage.getItem("token") }
+        });
     } else {
-        return Axios.get(`/events?statusEvent=${statusEvent}`, { headers: { "x-access-token": localStorage.getItem("token") } });
+        return request({
+            url: `/events?statusEvent=${statusEvent}`,
+            method: "get"
+        });
     }
 }
 
+export function deleteEvent(id) {
+    return request({
+        url: `/event/` + id,
+        method: "delete"
+    })
+    .then(response => {
+      Message.success("Xóa thành công");
+    })
+    .catch(error => {
+      Message.error("Xóa thất bại");
+    });
+}
+
 export function getSpecificEvent(eventId) {
-    return Axios.get(`/events/${eventId}`, { headers: { "x-access-token": localStorage.getItem("token") } });
+  return Axios.get(`/events/${eventId}`, {
+    headers: { "x-access-token": localStorage.getItem("token") }
+  });
+}
+
+export function joinEvent(id) {
+  return request({
+    url: `/events/` + id + `/join`,
+    method: "put"
+  })
+    .then(response => {
+      Message.success("Thành công");
+    })
+    .catch(error => {
+      Message.error("Thất bại");
+    });
+}
+
+export function unjoinEvent(id) {
+  return request({
+    url: `/events/` + id + `/unjoin`,
+    method: "put"
+  })
+    .then(response => {
+      Message.success("Thành công");
+    })
+    .catch(error => {
+      Message.error("Thất bại");
+    });
+}
+
+export function getEventJoined(username) {
+    return request({
+      url: `/accounts/u/`+username+`/eventsjoin`,
+      method: "get"
+    })
 }

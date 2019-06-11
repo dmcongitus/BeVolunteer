@@ -30,7 +30,7 @@ class Payment extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.state.submited)}
+
      { this.state.submited === false ?
      ( <div className="item-mid">
         <span className="anchor" id="formPayment" />
@@ -198,6 +198,7 @@ class Payment extends React.Component {
                   <button
                     type="reset"
                     className="btn btn-default btn-lg btn-block"
+                    onClick= {this.props.close}
                   >
                     Hủy
                   </button>
@@ -206,7 +207,7 @@ class Payment extends React.Component {
                   <button
                     type="submit"
                     className="btn btn-success btn-lg btn-block"
-                    onClick= {this.toggle}
+                    onClick= {this.props.close}
                   >
                     Thanh Toán
                   </button>

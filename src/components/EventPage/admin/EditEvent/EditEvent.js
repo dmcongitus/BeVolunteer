@@ -6,7 +6,6 @@ import { Container, Row, Col, Alert } from "reactstrap";
 import DatePicker from "react-datepicker";
 import './EditEvent.css';
 import Select from 'react-select';
-import Moment from 'react-moment';
 import moment from 'moment';
 import profileIcon from '../../../../images/profile.png';
 import cancelIcon from '../../../../images/cancel.png';

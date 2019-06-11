@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import Moment from 'react-moment';
 import moment from 'moment';
 
 import profileIcon from '../../../../images/profile.png';

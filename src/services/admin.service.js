@@ -1,5 +1,5 @@
 import Axios from "axios";
-
+import { Message } from 'element-react';
 const instance = Axios.create({
     baseURL: 'http://172.104.39.161:3000/',
     timeout: 1000,

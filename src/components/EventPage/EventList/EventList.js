@@ -27,11 +27,11 @@ class HomePage extends Component {
 		console.log(a);
 		return (
 			<div className="side-body" style={{ position: 'relative' , minHeight: '84vh'}}>
-				<h2 className="title-side-body" style={{ textTransform: 'uppercase' }}>
+				<div className="title-side-body" style={{ textTransform: 'uppercase' }}>
 					<div className= "title-text">
 						DANH SÁCH SỰ KIỆN
 					</div>
-				</h2>
+				</div>
 				<div style={{ position: "absolute", right: '1.25rem', top: '1rem', zIndex: 1000 }}>
 					{<MoreVerticalButtonEvents onStatusEventChanged={this.onStatusEventChanged} />}
 				</div>

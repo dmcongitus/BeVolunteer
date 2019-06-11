@@ -6,6 +6,7 @@
 .img-Model{
     width: 100%;
     height: 100%;
+  
 }
 .modal-approve{
     max-width: 800px;
@@ -13,4 +14,18 @@
 
 .item-mb div{
     margin-bottom: 1rem;
+}
+
+.img-cardID{
+    border-radius: 3px;
+  width: 100%;
+  height: 300px;
+  border: 1px solid #0D6628;
+  object-fit: contain;
+  border: unset;
+}
+
+.my-ModalHeader{
+    background: #0B3B0B;
+    color: gainsboro;
 }

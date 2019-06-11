@@ -1,7 +1,13 @@
 .mid-sidebar {
     background-color: #fff;
+<<<<<<< .merge_file_a01740
     padding: 20px;
     margin-top: 10px;
     margin-right: 15px;
+=======
+    padding: 1.25rem;
+    margin-top: 0.5rem;
+    margin-right: 10.25rem;
+>>>>>>> .merge_file_a08728
     height: auto;
 }

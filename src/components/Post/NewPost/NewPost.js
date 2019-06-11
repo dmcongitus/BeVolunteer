@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import {connect} from 'react-redux';
 import { NavLink, Link } from "react-router-dom";
 import { Container, Row, Col, Alert } from "reactstrap";
 import {
@@ -57,7 +58,7 @@ class NewPost extends Component {
 
   render() {
     return (
-      <Col className="NewPostBox" style={this.props.style}>
+      <Col className="NewPostBox pr-3 lf-3" style={this.props.style}>
         <Row>
           <Alert style={{ width: "100%" }} className="header-1">
             <Row style={{ display: "flex", alignItems: "center" }}>
@@ -67,7 +68,7 @@ class NewPost extends Component {
                   Tạo Bài Viết
                 </div>
               </Col>
-              <Col xs="3">
+              <Col xs="3" className = "pr-3 lf-3">
                 <FormGroup style={{ marginBottom: 0 }}>
                 <Input
                     type="select"
@@ -75,6 +76,7 @@ class NewPost extends Component {
                     id="exampleSelect"
                     onChange={this.onTypeChange}
                     value={this.state.type}
+                    className="pl-2 pr-2"
                     
                   >
                     <option value="PERSONAL_ACTIVITY">Cá nhân</option>
@@ -92,7 +94,7 @@ class NewPost extends Component {
               <Col xs="2">
                 <img
                   className="img-user-postCard rounded-circle"
-                  src="https://photo-2-baomoi.zadn.vn/w1000_r1/2018_08_06_181_27170707/a5250170ac3745691c26.jpg"
+                  src={"/resources/"+this.props.user.avatar}
                   alt="temp"
                 />
               </Col>
@@ -166,4 +168,7 @@ class NewPost extends Component {
   }
 }
 
-export default NewPost;
+const mapStateToProps = ({auth:{user}}) => ({user});
+
+export default connect(mapStateToProps)(NewPost);
+
