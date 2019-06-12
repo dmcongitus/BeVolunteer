@@ -8,12 +8,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
 
-const mapType2Text = {
-    "ALL": "Tất cả",
-    "PLACE": 'Địa điểm',
-    "EVENT": 'SỰ KIỆN',
-    "PERSONAL_ACTIVITY": 'Kỉ niệm'
-};
 
 class MoreVerticalButton extends Component {
     state = {
