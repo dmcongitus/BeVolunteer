@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as authActions from '../../../actions/auth.action';
 import { Container, Row, Col, Alert } from "reactstrap";
+import {withRouter} from 'react-router'
+import { Redirect } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import './EditEvent.css';
 import Select from 'react-select';
@@ -67,6 +69,7 @@ class EditEvent extends Component {
 			messageError: "",
 			user:[],
 			selectedOption: null,
+			redirect: false
         }
 	}
 
@@ -166,26 +169,37 @@ class EditEvent extends Component {
 		await this.setState({
 			infor: {
 				...this.state.infor,
-					sharer: this.state.infor.multiSelect.map(s => s.value)
+				redirect: true,
+				sharer: this.state.infor.multiSelect.map(s => s.value)
 			}
 		})
 
-
-		// alert(this.checkFormPost(this.state).message);
 	
 		try {
-			console.log(" SUBMIT");
+			console.log("SUBMIT");
 			const data = await editEvent({...this.state.infor});
-			console.log(data);
+			if(data){
+				console.log(data);
+				console.log(this.props._id);
+			}
 		} catch (error) {
 			console.error(error);
 		}
 		e.preventDefault();
 	};
 
+	// setRedirect = async () =>{
+	// 	console.log("Set loggggg");
+	// 	await this.setState({
+	// 		infor: {
+	// 			...this.state.infor,
+	// 			redirect: true
+	// 		}
+	// 	})
+	// 	 console.log("end log");
+	// } 
+
 	checkFormPost = (state) =>{	
-		// console.log("BBBBBBB");
-		// console.log(state);
 		var d1 = new Date(document.getElementById("starttime").value);
 		var d2 = new Date(document.getElementById("endtime").value);
 		var d3 = new Date(document.getElementById("deadline").value);
@@ -195,11 +209,6 @@ class EditEvent extends Component {
 		var endD = moment(d2);
 		var deadline = moment(d3);
 
-		// console.log("------------------");
-		// console.log(startD);
-		// console.log(endD);
-		// console.log(deadline);
-		// console.log(current);
 
 		//Kiểm tra giá trị rỗng
 		if( state.infor.title === "" || 
@@ -245,10 +254,14 @@ class EditEvent extends Component {
 		console.log('aaaaaaa')
 		console.log(this.state);
 
-		console.log(this.state.infor.image.length);
-
         if (this.state.isLoading) {
             return null;
+		}
+
+		const { redirect } = this.state;
+		if (redirect) {
+			console.log("Redirecttttttttt");
+			return <Redirect to={`eventMore/${this.state._id}`} />
 		}
 
 		if(!this.state.isDelete){
@@ -528,12 +541,12 @@ class EditEvent extends Component {
 					<Row>
 						<Col sm={{ size: "auto", offset: 9 }}>
 							<div className="btnEvent">
-								<Link to={`/eventMore/${this.props._id}`}>
+								{/* <Link to={`/eventMore/${this.props._id}`}> */}
 									<Button 
 										onClick={this.onFormSubmit}
 										color="success">Cập nhật
 									</Button>
-								</Link>
+								{/* </Link> */}
 							</div>
 						</Col>
 					</Row>
