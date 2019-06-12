@@ -82,10 +82,27 @@ const instance = Axios.create({
 });
 
 export async function banUser(username) {
-  return await instance.post("/admins/ban/" + username);
+  return request({
+    url: `/admins/ban/` + username,
+    method: 'put'
+  }).then(response => { 
+    Message.success("Khóa thành công")
+  })
+  .catch(error => {
+    Message.error("Lỗi")
+  });
+
 }
 export async function unbanUser(username) {
-  return await instance.post("/admins/unban/" + username);
+  return request({
+    url: `/admins/unban/` + username,
+    method: 'put'
+  }).then(response => { 
+    Message.success("Mở khóa thành công")
+  })
+  .catch(error => {
+    Message.error("Lỗi")
+  });
 }
 
 

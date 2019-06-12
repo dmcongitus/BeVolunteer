@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import HistoryCard from "../../../components/user/HistoryCard/HistoryCard";
 import "./HistoryPage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { getUserPosts } from '../../../services/post.service';

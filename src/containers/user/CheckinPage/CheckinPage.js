@@ -30,6 +30,12 @@ class CheckinPage extends Component {
     };
     reportPost(data);
   }
+  successCheckin(eventId, date, code){
+    console.log(eventId)
+    console.log(new Date(date))
+    console.log(code)
+  
+  }
 
   render() {
     return (
@@ -39,7 +45,8 @@ class CheckinPage extends Component {
         onPostTypeChanged={this.onPostTypeChanged}
       >
         {this.state.data.map(post => (
-          <Post key={post.id} {...post} successReport={this.successReport} />
+          <Post key={post.id} {...post} successReport={this.successReport} 
+          successCheckin= {this.successCheckin}/>
         ))}
       </PageLayout>
     );

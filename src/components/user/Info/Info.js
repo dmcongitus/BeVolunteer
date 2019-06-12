@@ -24,7 +24,8 @@ class MeComponent extends Component {
       isOpenModal: false,
       profileChanged: false,
       imageChange: false,
-      profiles: props.user
+      profiles: props.user,
+      isRequestVerify: this.props.user.isRequestVerify
     };
 
     /* WARNING: JSON.parse(JSON.stringify(...)) is intended for deep copy */
@@ -82,7 +83,8 @@ class MeComponent extends Component {
     this.setState({ isLoading: false });
   };
 
-  handleUpdate = () => {
+   handleUpdate = async () => {
+    
     this.props.updateUserInfo(
       this.state.profiles.username,
       this.state.profiles
@@ -90,7 +92,10 @@ class MeComponent extends Component {
 
     if (this.state.profiles["identityCard"] !== undefined) {
       this.props.verifyUser(this.state.profiles["identityCard"]);
-      this.setState({ profiles: { ...this.state.profiles } });
+    
+      this.setState({ profiles: {...this.state.profiles}, isRequestVerify:true });
+      
+      
     } else {
       this.setState({ profiles: { ...this.state.profiles } });
     }
@@ -115,14 +120,14 @@ class MeComponent extends Component {
                   Tài khoản - <b>Đã được xác thực</b>
                 </Alert>
               </div>
-            ) : this.props.user.isRequestVerify === false ? (
+            ) : this.state.isRequestVerify === false ? (
               <div>
                 <Alert color="danger">
                   Tài khoản - <b>Chưa được xác thực</b>
                 </Alert>
               </div>
             ) : (
-              this.props.user.isRequestVerify === true && (
+              this.state.isRequestVerify === true && (
                 <div>
                   <Alert color="info">
                     Tài khoản - <b>Đang chờ xác thực</b>

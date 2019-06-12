@@ -79,7 +79,7 @@ class NewPost extends Component {
                     className="pl-2 pr-2"
                     
                   >
-                    <option value="PERSONAL_ACTIVITY">Cá nhân</option>
+                    <option value="PERSONAL_ACTIVITY">Kỉ niệm</option>
                     <option value="PLACE">Địa điểm</option>
                   </Input>
                 </FormGroup>

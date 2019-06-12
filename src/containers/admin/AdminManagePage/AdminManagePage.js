@@ -3,11 +3,8 @@ import { Table, Button } from "reactstrap";
 
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { connect } from "react-redux";
-import {
-  getAllUsers,
-  banUser,
-  unbanUser
-} from "../../../services/user.service";
+import { banUser, unbanUser } from "../../../services/user.service";
+import { getAdminsManger } from "../../../services/admin.service";
 import {
   TabContent,
   TabPane,
@@ -32,7 +29,7 @@ var permissionArr = [
   "SupperAdmin"
 ];
 
-class DeleteAccountPage extends Component {
+class AdminManagePage extends Component {
   constructor(props) {
     super(props);
 
@@ -53,14 +50,14 @@ class DeleteAccountPage extends Component {
 
   async componentWillUpdate() {}
   componentDidMount = async () => {
-    await getAllUsers().then(data => {
+    await getAdminsManger().then(data => {
       const accounts = data.data;
       this.setState({ accounts });
     });
   };
   onChange = async e => {
     await this.setState({ [e.target.name]: e.target.value });
-    getAllUsers(this.state.search).then(data => {
+    getAdminsManger(this.state.search).then(data => {
       const accounts = data.data;
 
       this.setState({ accounts: accounts });
@@ -135,7 +132,11 @@ class DeleteAccountPage extends Component {
             </NavLink>
           </NavItem>
           <NavItem width="100%">
-            <Input name="search" placeholder="Tìm kiếm" onChange={this.onChange} />
+            <Input
+              name="search"
+              placeholder="Tìm kiếm"
+              onChange={this.onChange}
+            />
           </NavItem>
         </Nav>
         <div>
@@ -168,13 +169,10 @@ class DeleteAccountPage extends Component {
                       <th scope="row">{++number}</th>
                       <td>{account.username}</td>
                       <td>{account.name}</td>
-                      {account.permission === "ORG" ? (
-                        <td className="tcl-1">
-                          <b>{permissionArr[account.permission]}</b>
-                        </td>
-                      ) : (
-                        <td>{permissionArr[account.permission]}</td>
-                      )}
+
+                      <td className="tcl-1">
+                        <b>{account.permission}</b>
+                      </td>
 
                       <td>
                         {account.isVerified ? (
@@ -333,4 +331,4 @@ const mapStateToProps = ({
   }
 }) => ({ name, permission, exp });
 
-export default connect(mapStateToProps)(DeleteAccountPage);
+export default connect(mapStateToProps)(AdminManagePage);
