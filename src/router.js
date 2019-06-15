@@ -2,28 +2,37 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+//Chung
 import MainLayout from './layouts/MainLayout/MainLayout';
-import SearchPage from './containers/user/SearchPage/SearchPage';
 import HomePage from './containers/user/HomePage/HomePage';
 import NotFoundPage from './containers/NotFoundPage/NotFoundPage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import SignupPage from './containers/SignupPage/SignUp';
-import InfoPage from './containers/user/InfoPage/InfoPage'
 import NoPermissionPage from './containers/NoPermissionPage/NoPermissionPage';
-import ApprovePage from './containers/admin/ApprovePage/AppovePage';
-import DeleteAccountPage from './containers/admin/DeleteAccountPage/DeleteCountPage';
-import AdminManagePage from './containers/admin/AdminManagePage/AdminManagePage';
+//Người dùng
+import InfoPage from './containers/user/InfoPage/InfoPage'
+import SearchPage from './containers/user/SearchPage/SearchPage';
 import HistoryPage from './containers/user/HistoryPage/HistoryPage';
-import CheckinPage from './containers/user/CheckinPage/CheckinPage';
-import ContentManagePage from './containers/admin/ContentManagePage/ContentManagePage';
-import CreateAccountPage from './containers/admin/CreateAcountPage/CreateAccountPage';
-import PostPage from './containers/user/PostPage/PostPage';
-import EventPage from './containers/user/PostPage/EventPage';
 import RankPage from './containers/user/RankPage/RankPage';
 import MedalPage from './containers/user/MedalPage/MedalPage';
+//admin
+import AdminManagePage from './containers/admin/AdminManagePage/AdminManagePage';
+import ApprovePage from './containers/admin/ApprovePage/AppovePage';
+import DeleteAccountPage from './containers/admin/DeleteAccountPage/DeleteCountPage';
+import ContentManagePage from './containers/admin/ContentManagePage/ContentManagePage';
+import EventManagePage from './containers/admin/EventtManagePage/EventManagePage';
+import EventManageDetailPage from './containers/admin/EventtManagePage/EventManageDetail/EventManageDetail';
+import CreateAccountPage from './containers/admin/CreateAcountPage/CreateAccountPage';
+//Post
+import PostPage from './containers/user/PostPage/PostPage';
+//Event
+import EventPage from './containers/user/PostPage/EventPage';
+import CheckinPage from './containers/user/CheckinPage/CheckinPage';
 import CreateEvent from './containers/admin/EventPage/CreateEvent/CreateEvent';
 import EventList from './containers/admin/EventPage/EventList/EventList.js';
 import EventEditPage from './containers/admin/EventPage/EventEdit/EventEditPage';
+
+
 
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => 
     <Route {...rest} render={props => isAuthenticated ? <Component {...props} /> : <Redirect to='/login' />} />; 
@@ -64,6 +73,8 @@ export default function router({ isAuthenticated, permission, username }) {
                         <NeedPermissionRoute path="/admin-account" routePermisison={['UNIT_ADMIN','SUPER_ADMIN']} component={AdminManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/delete-account" routePermisison={['ACCOUNT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={DeleteAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/ContentManage" routePermisison={['CONTENT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={ContentManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/EventManage" routePermisison={['CONTENT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={EventManagePage} isAuthenticated={isAuthenticated} userPermission={permission} />
+                        <NeedPermissionRoute path="/EventManageDetail/:eventId" routePermisison={['CONTENT_MOD','UNIT_ADMIN','SUPER_ADMIN']} component={EventManageDetailPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <NeedPermissionRoute path="/CreateAccountAdmin" routePermisison={['UNIT_ADMIN','SUPER_ADMIN']} component={CreateAccountPage} isAuthenticated={isAuthenticated} userPermission={permission} />
                         <Route path="*" component={NotFoundPage} />
                     </Switch>

@@ -50,7 +50,7 @@ class NewEvent extends Component {
 				starttime: "",
 				endtime: "",
 				contact: "",
-				numVolunteer: 1,
+				numVolunteers: 1,
 				deadline: "",
 				isDelete: false,
 				image: [],
@@ -159,7 +159,7 @@ class NewEvent extends Component {
 			state.infor.starttime === "" ||
 			state.infor.endtime === "" ||
 			state.infor.contact === "" ||
-			state.infor.num_volunteer === "" ||
+			state.infor.numVolunteers === "" ||
 			state.infor.state === "" ||
 			state.infor.image.length === 0 ||
 			state.infor.deadline === ""){
@@ -169,7 +169,7 @@ class NewEvent extends Component {
 				};
 			}
 		//Kiểm tra số lượng tình nguyện viên có từ 1 trở lên hay không?
-		else if(state.infor.num_volunteer < 1){
+		else if(state.infor.numVolunteers < 1){
 			return {
 				statusForm: false,
 				message: "Quantity of volunteer have to larger than 1"
@@ -200,10 +200,7 @@ class NewEvent extends Component {
 	}
 
     render() {
-        console.log("New Event");
-		console.log(this.state);
-		console.log(this.props.name + "------" + this.props.permission);
-
+    
         if (this.state.isLoading) {
             return null;
         }
@@ -427,7 +424,7 @@ class NewEvent extends Component {
 										<Input 
 											type="number"
 											onChange={this.onFieldChanged}
-											name="num_volunteer"/>
+											name="numVolunteers"/>
 									</InputGroup>
 								</Row>
 						

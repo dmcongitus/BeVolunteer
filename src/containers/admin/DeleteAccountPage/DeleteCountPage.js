@@ -64,7 +64,7 @@ class DeleteAccountPage extends Component {
       const accounts = data.data;
 
       this.setState({ accounts: accounts });
-      console.log(this.state.accounts);
+
     });
   };
   onAccountBan = async username => {
@@ -139,7 +139,7 @@ class DeleteAccountPage extends Component {
           </NavItem>
         </Nav>
         <div>
-          <Table>
+          <Table striped style={{textAlign:"center"}}>
             <thead>
               <tr>
                 <th>#</th>
@@ -160,7 +160,7 @@ class DeleteAccountPage extends Component {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="hoverTable">
               {/* Start tab Tất cả */}
               {this.state.activeTab === "1"
                 ? this.state.accounts.map(account => (
@@ -169,11 +169,11 @@ class DeleteAccountPage extends Component {
                       <td>{account.username}</td>
                       <td>{account.name}</td>
                       {account.permission === "ORG" ? (
-                        <td className="tcl-1">
-                          <b>{permissionArr[account.permission]}</b>
+                        <td className="tcl-2">
+                          <b>{account.permission}</b>
                         </td>
                       ) : (
-                        <td>{permissionArr[account.permission]}</td>
+                        <td>{account.permission}</td>
                       )}
 
                       <td>
@@ -194,19 +194,37 @@ class DeleteAccountPage extends Component {
                               onClick={() =>
                                 this.onAccountBan(account.username)
                               }
+                              style={{width:"7rem"}}
                             >
-                              <i class="fas fa-lock icon-button" />
-                              Khóa TK
+                              <Row>
+                                <Col xs = "5">
+                                <i class="fas fa-lock icon-button" />
+                                </Col>
+                                <Col  xs = "7">
+                                Khóa
+                                </Col>
+                              </Row>
+                             
+                            
                             </Button>
                           ) : (
                             <Button
                               className="mr-1 success"
+                              style={{width:"7rem"}}
                               onClick={() =>
                                 this.onAccountUnBan(account.username)
                               }
                             >
-                              <i class="fas fa-unlock icon-button" />
-                              Mở khóa
+                              <Row>
+                                <Col xs = "5">
+                                <i class="fas fa-unlock icon-button" />
+                                </Col>
+                                <Col  xs = "7">
+                                Mở
+                                </Col>
+                              </Row>
+                             
+                             
                             </Button>
                           )}
                         </div>
@@ -252,12 +270,13 @@ class DeleteAccountPage extends Component {
                             <div>
                               <Button
                                 className="mr-1 new-btn"
+                                
                                 onClick={() =>
                                   this.onAccountBan(account.username)
                                 }
                               >
                                 <i class="fas fa-lock icon-button" />
-                                Khóa TK
+                                Khóa
                               </Button>
                             </div>
                           </td>

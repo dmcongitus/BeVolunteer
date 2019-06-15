@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import Moment from 'react-moment';
 import moment from 'moment';
 
-import profileIcon from '../../../../images/profile.png';
+import profileIcon from '../../../images/profile.png';
 import classnames from 'classnames';
 
 import {
@@ -137,9 +137,6 @@ class EventDetailCard extends React.Component {
       }
 
     render() {
-        console.log(this.state);
-        console.log("-------------");
-        console.log(this.props);
 
         const { activeIndex } = this.state;
 

@@ -82,28 +82,7 @@ export const mapPermissionToSelections = {
         }]
     }],
     
-    'SUPER_ADMIN': [{
-        header: 'Quản lí tài khoản',
-        navigations: [{
-            title: 'Duyệt tài khoản',
-            redirectTo: '/approve'
-        }, {
-            title: 'Xóa tài khoản',
-            redirectTo: '/delete-account'
-        }, {
-            title: 'Quản lý bài viết',
-            redirectTo: '/ContentManage'
-        }, {
-            title: 'Quản lý admin',
-            redirectTo: '/admin-account'
-        }, {
-            title:  'Tạo tài khoản admin',
-            redirectTo: '/CreateAccountAdmin'
-        },{
-            title: 'Tạo Event',
-            redirectTo: '/event'
-        }]
-    }, {
+    'SUPER_ADMIN': [ {
         header: 'Cộng đồng',
         navigations: [{
             title: 'Trang chủ',
@@ -111,6 +90,36 @@ export const mapPermissionToSelections = {
         }, {
             title: 'Bảng xếp hạng',
             redirectTo: '/rank'
+        }]
+    }, {
+        header: 'Sự kiện',
+        navigations: [{
+            title: 'Tạo sự kiện',
+            redirectTo: '/event'
+        }, {
+            title: 'Quản lý sự kiện',
+            redirectTo: '/EventManage'
+        }]
+    }, {
+        header: 'Tài khoản',
+        navigations: [{
+            title: 'Duyệt tài khoản',
+            redirectTo: '/approve'
+        }, {
+            title: 'Khóa tài khoản',
+            redirectTo: '/delete-account'
+        }, {
+            title: 'Quản lý admin',
+            redirectTo: '/admin-account'
+        }, {
+            title:  'Tạo tài khoản admin',
+            redirectTo: '/CreateAccountAdmin'
+        }]
+    }, {
+        header: 'Bài viết',
+        navigations: [{
+            title: 'Quản lý bài viết',
+            redirectTo: '/ContentManage'
         }]
     }]
 };

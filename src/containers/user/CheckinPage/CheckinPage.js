@@ -6,16 +6,21 @@ import { getEventJoined } from "../../../services/event.service";
 import { reportPost } from "../../../services/post.service";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-
+import {
+  CheckinUserByCode,
+  getCheckinByDateUser,
+  getAllCheckinUser
+} from "../../../services/event.service";
+import format from "date-fns/format";
 class CheckinPage extends Component {
   state = {
-    data: []
+    data: [],
+    listChecked:[],
   };
 
   componentDidMount = () => {
     getEventJoined(this.props.username)
       .then(data => {
- 
         this.setState({ data: data.data });
       })
       .catch(e => console.log(e));
@@ -30,13 +35,29 @@ class CheckinPage extends Component {
     };
     reportPost(data);
   }
-  successCheckin(eventId, date, code){
-    console.log(eventId)
-    console.log(new Date(date))
-    console.log(code)
-  
-  }
-
+  successCheckin = async (eventId, date, code) => {
+    const DateFomart = await format(new Date(date), "YYYY-MM-DD").toString();
+    const checkList = await getCheckinByDateUser(
+      eventId,
+      DateFomart,
+      this.props.username
+    );
+    if (checkList.length !== 0) {
+      CheckinUserByCode(eventId, checkList.data[0]._id, code);
+    }
+  };
+  getStatusCheckinToday = async eventId => {
+    const DateFomart = await format(new Date(), "YYYY-MM-DD").toString();
+    const checkList = await getCheckinByDateUser(
+      eventId,
+      DateFomart,
+      this.props.username
+    );
+    if (checkList.length !== 0) {
+      return checkList.data[0].isPresent;
+    }
+    return false;
+  };
   render() {
     return (
       <PageLayout
@@ -45,8 +66,13 @@ class CheckinPage extends Component {
         onPostTypeChanged={this.onPostTypeChanged}
       >
         {this.state.data.map(post => (
-          <Post key={post.id} {...post} successReport={this.successReport} 
-          successCheckin= {this.successCheckin}/>
+          <Post
+            key={post.id}
+            {...post}
+            successReport={this.successReport}
+            successCheckin={this.successCheckin}
+            getStatusCheckinToday={this.getStatusCheckinToday}
+          />
         ))}
       </PageLayout>
     );
@@ -55,8 +81,8 @@ class CheckinPage extends Component {
 
 const mapStateToProps = ({
   auth: {
-    user: { name, permission, username }
+    user: { name, permission, username, _id }
   }
-}) => ({ name, permission, username });
+}) => ({ name, permission, username, _id });
 
 export default withRouter(connect(mapStateToProps)(CheckinPage));

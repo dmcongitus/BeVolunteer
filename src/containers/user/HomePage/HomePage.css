@@ -1,0 +1,4 @@
+.hoverTable tr:hover{
+    background: rgba(8, 194, 8, 0.4) !important;
+    cursor: pointer;
+}

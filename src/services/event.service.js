@@ -1,82 +1,82 @@
 import Axios from "axios";
 import request from "./request";
 import { Message } from "element-react";
+import { getDate, getDay, getYear, getMonth } from "date-fns";
 
 export function createEvent(event) {
-    console.log(event);
-    return Axios.post('/events', event, { 
-        headers: { 
-                "x-access-token": localStorage.getItem("token") 
-            } 
-        }
-    ).then(({ data: { _id } }) => {
-            if (event.image) {
-                const formData = new FormData();
-                for (let i = 0; i < event.image.length; i++) {
-                    formData.append('resources', event.image[i]);
-                }
-                return Axios.put(`/events/${_id}/resources`, formData, { headers: { "x-access-token": localStorage.getItem("token") } })
-            } else {
-                return Promise.resolve();
-            }
-        }
-    );
+  return Axios.post("/events", event, {
+    headers: {
+      "x-access-token": localStorage.getItem("token")
+    }
+  }).then(({ data: { _id } }) => {
+    if (event.image) {
+      const formData = new FormData();
+      for (let i = 0; i < event.image.length; i++) {
+        formData.append("resources", event.image[i]);
+      }
+      return Axios.put(`/events/${_id}/resources`, formData, {
+        headers: { "x-access-token": localStorage.getItem("token") }
+      });
+    } else {
+      return Promise.resolve();
+    }
+  });
 }
 
 export function editEvent(event) {
-    console.log("Log event");
-    console.log(event);
-    return Axios.put(`/events/${event._id}`, event, { 
-        headers: { 
-                "x-access-token": localStorage.getItem("token") 
-            } 
-        }
-    ).then(async ({ data: { _id } }) => {
-            if (event.image) {
-                const formData = new FormData();
-                for (let i = 0; i < event.image.length; i++) {
-                        if (typeof event.image[i] === 'string') {
-                        let res = await Axios.get(`http://172.104.39.161:3000/resources/${event.image[i]}`, {
-                            responseType: 'blob',
-                        })
-                        let file = new File([res.data], event.image[i], {
-                            type: res.data.type
-                        })
-                        formData.append('resources', file);
-                    } else {
-                        console.log(event.image[i])
-                        formData.append('resources', event.image[i]);
-                    }
-                }
-                return Axios.put(`/events/${_id}/resources`, formData, { headers: { "x-access-token": localStorage.getItem("token") } })
-            } else {
-                return Promise.resolve();
+  return Axios.put(`/events/${event._id}`, event, {
+    headers: {
+      "x-access-token": localStorage.getItem("token")
+    }
+  }).then(async ({ data: { _id } }) => {
+    if (event.image) {
+      const formData = new FormData();
+      for (let i = 0; i < event.image.length; i++) {
+        if (typeof event.image[i] === "string") {
+          let res = await Axios.get(
+            `http://172.104.39.161:3000/resources/${event.image[i]}`,
+            {
+              responseType: "blob"
             }
+          );
+          let file = new File([res.data], event.image[i], {
+            type: res.data.type
+          });
+          formData.append("resources", file);
+        } else {
+          formData.append("resources", event.image[i]);
         }
-    );
+      }
+      return Axios.put(`/events/${_id}/resources`, formData, {
+        headers: { "x-access-token": localStorage.getItem("token") }
+      });
+    } else {
+      return Promise.resolve();
+    }
+  });
 }
 
 export function getEvents(statusEvent) {
-    if (statusEvent === 0) {
-        return request({
-        url: `/events`,
-        method: "get"
-        });
-        return Axios.get("/events", {
-        headers: { "x-access-token": localStorage.getItem("token") }
-        });
-    } else {
-        return request({
-        url: `/events?statusEvent=${statusEvent}`,
-        method: "get"
-        });
-    }
+  if (statusEvent === 0) {
+    return request({
+      url: `/events`,
+      method: "get"
+    });
+    return Axios.get("/events", {
+      headers: { "x-access-token": localStorage.getItem("token") }
+    });
+  } else {
+    return request({
+      url: `/events?statusEvent=${statusEvent}`,
+      method: "get"
+    });
+  }
 }
 export function deleteEvent(id) {
-    return request({
-        url: `/event/` + id,
-        method: "delete"
-    })
+  return request({
+    url: `/event/` + id,
+    method: "delete"
+  })
     .then(response => {
       Message.success("Xóa thành công");
     })
@@ -86,16 +86,16 @@ export function deleteEvent(id) {
 }
 
 export function getSpecificEvent(eventId) {
-    return Axios.get(`/events/${eventId}`, {
-        headers: { "x-access-token": localStorage.getItem("token") }
-    });
+  return Axios.get(`/events/${eventId}`, {
+    headers: { "x-access-token": localStorage.getItem("token") }
+  });
 }
 
 export function joinEvent(id) {
-    return request({
-        url: `/events/` + id + `/join`,
-        method: "put"
-    })
+  return request({
+    url: `/events/` + id + `/join`,
+    method: "put"
+  })
     .then(response => {
       Message.success("Thành công");
     })
@@ -105,10 +105,10 @@ export function joinEvent(id) {
 }
 
 export function unjoinEvent(id) {
-    return request({
-        url: `/events/` + id + `/unjoin`,
-        method: "put"
-    })
+  return request({
+    url: `/events/` + id + `/unjoin`,
+    method: "put"
+  })
     .then(response => {
       Message.success("Thành công");
     })
@@ -118,8 +118,72 @@ export function unjoinEvent(id) {
 }
 
 export function getEventJoined(username) {
-    return request({
-      url: `/accounts/u/`+username+`/eventsjoin`,
-      method: "get"
-    })
+  return request({
+    url: `/accounts/u/` + username + `/eventsjoin`,
+    method: "get"
+  });
 }
+
+//Lấy danh sách event đã tạo bởi username
+export function getEventCreatedBy(username) {
+  return request({
+    url: `/admins/a/` + username + `/events`,
+    method: "get"
+  });
+}
+
+export function getEventByID(id) {
+  return request({
+    url: `/events/` + id,
+    method: "get"
+  });
+}
+
+export function startEventByID(id) {
+  return request({
+    url: `/events/` + id + `/start`,
+    method: "put"
+  });
+}
+
+export function getCheckinByDate(id, date) {
+  return request({
+    url: `/events/` + id + `/attendances?date=` + date,
+    method: "get"
+  });
+}
+export function createCheckinByDate(id, date) {
+  return request({
+    url: `/events/` + id + `/attendances?date=` + date,
+    method: "post"
+  });
+}
+
+export function CheckinUserByHost(id, idCheckin) {
+  return request({
+    url: `/events/` + id + `/attendances/` + idCheckin,
+    method: "put"
+  });
+}
+export function CheckinUserByCode(id, idCheckin, code) {
+  return request({
+    url: `/events/` + id + `/attendances/` + idCheckin,
+    method: "put",
+    data: { code: code }
+  });
+}
+
+export function getCheckinByDateUser(id, date, username) {
+    return request({
+      url: `/events/` + id + `/attendances/`+username +`?date=` + date,
+      method: "get"
+    });
+  }
+
+
+export function getAllCheckinUser(id, username) {
+    return request({
+      url: `/events/` + id + `/attendances/`+username,
+      method: "get"
+    });
+  }

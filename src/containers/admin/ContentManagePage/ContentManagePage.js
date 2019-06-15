@@ -32,7 +32,6 @@ class ContentManagePage extends Component {
     getReports()
     .then(data => {
       this.setState(data);
-      console.log(this.state.data)
     })
       .catch(e => console.log(e));
      

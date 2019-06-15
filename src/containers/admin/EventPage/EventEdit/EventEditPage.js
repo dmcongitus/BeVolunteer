@@ -26,7 +26,7 @@ class EventEditPage extends Component {
 		}
 
 		if (this.state.event !== undefined) {
-            console.log(this.state.event);
+         
             return (
                 <EventEdit {...this.state.event.event}/>
             );

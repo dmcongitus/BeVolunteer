@@ -61,7 +61,7 @@ class AdminManagePage extends Component {
       const accounts = data.data;
 
       this.setState({ accounts: accounts });
-      console.log(this.state.accounts);
+    
     });
   };
   onAccountBan = async username => {

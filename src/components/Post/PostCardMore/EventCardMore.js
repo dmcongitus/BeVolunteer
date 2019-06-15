@@ -173,8 +173,6 @@ class EventCardMore extends React.Component {
 
     render() {
         const { activeIndex } = this.state;
-        console.log("Event card more");
-        console.log(this.props)
         const slides = this.state.items.map(item => {
         return (
             <CarouselItem
@@ -225,8 +223,14 @@ class EventCardMore extends React.Component {
                     <div>
                     <Row>
                         <Col xs="3">
-                        <i class="far fa-calendar-alt" /> <b>Thời gian: </b>
-                        <i class="fas fa-users"> </i> <b>Số lượng: </b>
+                            <div>
+                            <i class="far fa-calendar-alt" /> <b>Thời gian: </b>
+                            </div>
+                            <div>
+                            <i class="fas fa-users"> </i> <b>Số lượng: </b>
+                            </div>
+                      
+                       
                         </Col>
                         <Col xs="8">
                         <div>

@@ -1,0 +1,4 @@
+.tableUnset tr,td, tbody{
+    margin: 1rem;
+    border: unset !important
+}

@@ -27,7 +27,7 @@ class RankPage extends Component {
     return (
       <PageLayout title="xóa tài khoản">
         <div>
-          <Table>
+          <Table striped >
             <thead>
               <tr>
                 <th>#</th>
@@ -36,7 +36,7 @@ class RankPage extends Component {
                 <th>Exp</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="hoverTable">
               {this.state.accounts &&
                 this.state.accounts.map(account =>
                   account.isBanned ? null : (

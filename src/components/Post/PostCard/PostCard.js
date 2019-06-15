@@ -36,7 +36,7 @@ class PostCard extends React.Component {
       paymentOpen: false,
       modalReport: false,
       reportText: "",
-      tooltipJoin : false
+      tooltipJoin: false
     };
     this.toggletooltipJoin = this.toggletooltipJoin.bind(this);
     this.toggleReport = this.toggleReport.bind(this);
@@ -49,7 +49,7 @@ class PostCard extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
   }
-  toggletooltipJoin(){
+  toggletooltipJoin() {
     this.setState({
       tooltipJoin: !this.state.tooltipJoin
     });
@@ -183,17 +183,17 @@ class PostCard extends React.Component {
                     </Button>
                   ) : (
                     <Button
-                   
                       className="mr-1 add-btn"
                       onClick={() => this.props.joinToEvent(this.props._id)}
-                      disabled = {this.props.myUser.isVerified===false || this.props.myUser.permisstion !="USER" }
+                      disabled={
+                        this.props.myUser.isVerified === false ||
+                        this.props.myUser.permission != "USER"
+                      }
                     >
                       <i class="fas fa-angle-double-right icon-button" />
                       Tham gia
                     </Button>
                   )}
-                 
-        
                 </div>
               )}
               {this.props.type === "PLACE" && (
@@ -205,18 +205,33 @@ class PostCard extends React.Component {
                 </Link>
               )}
 
-                {this.props.type === 'EVENT'?   (<Link to={`eventMore/${this.props._id}`}>
-                <Button color="success" className="mr-1 success p-2">
-                  <i class="fas fa-angle-double-right icon-button" /> Xem thêm
-                </Button>
-              </Link>):(
-                 <Link to={`post/${this.props._id}`}>
-                 <Button color="success" className="mr-1 success p-2">
-                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm
-                 </Button>
-               </Link>)
-              }
-             
+              {this.props.type === "EVENT"
+                ? (
+                    this.props.publisher.username ===
+                    this.props.myUser.username ? (
+                      <Link to={`EventManageDetail/${this.props._id}`}>
+                        <Button color="success" className="mr-1 success p-2">
+                          <i class="fas fa-angle-double-right icon-button" />{" "}
+                          Xem thêm
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Link to={`eventMore/${this.props._id}`}>
+                        <Button color="success" className="mr-1 success p-2">
+                          <i class="fas fa-angle-double-right icon-button" />{" "}
+                          Xem thêm
+                        </Button>
+                      </Link>
+                    )
+                )
+                : null}
+              {this.props.type !== "EVENT" ? (
+                <Link to={`post/${this.props._id}`}>
+                  <Button color="success" className="mr-1 success p-2">
+                    <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                  </Button>
+                </Link>
+              ) : null}
             </div>
             <div className="item-right mt-2">
               {this.props.type === "EVENT" && (

@@ -40,12 +40,11 @@ class CreateAccountPage extends Component {
         return admins.permission === "UNIT_ADMIN";
       })
     })
-    console.log(this.props)
+   
    
     
    
    
-    console.log(this.state.unitAdmins);
   }
   onChanged = async e => {
     await this.setState({ [e.target.name]: e.target.value });
@@ -55,7 +54,7 @@ class CreateAccountPage extends Component {
   onFormSubmit = async e => {
     e.preventDefault();
     try {
-      console.log(this.state);
+  
       const data = await createAdmin({ ...this.state });
     } catch (error) {
       console.error(error);

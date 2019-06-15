@@ -143,7 +143,8 @@ class headerPost extends React.Component {
             >
               <DropdownToggle
                 tag="span"
-                onClick={this.toggleMenuPost}
+                // onClick={() => {this.toggleMenuPost(); this.toggleReport()}}
+                  onClick={this.toggleMenuPost}
                 data-toggle="dropdown"
                 aria-expanded={this.state.dropdownOpen}
               >

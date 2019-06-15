@@ -164,6 +164,8 @@ class EditEvent extends Component {
 	};
 
 	onFormSubmit = async (e) => {
+		e.preventDefault();
+
 		console.log("Submit form");
 		console.log(this.state);
 		await this.setState({
@@ -182,10 +184,13 @@ class EditEvent extends Component {
 				console.log(data);
 				console.log(this.props._id);
 			}
+			alert(this.props._id)
+
+			this.props.history.push(`/eventMore/${this.props._id}`)
+
 		} catch (error) {
-			console.error(error);
+			alert(error);
 		}
-		e.preventDefault();
 	};
 
 	// setRedirect = async () =>{
@@ -322,11 +327,13 @@ class EditEvent extends Component {
 									{/* Người chia sẻ */}
 									<Row className="subEventRow4" style={{width: '100%'}}>
 											<InputGroup >
+											
+											
 												<InputGroupAddon className="btn-edit" addonType="prepend">
 												
 													<Button outline color="success">Người chia sẻ</Button>
 												</InputGroupAddon>
-
+											
 												<Col xs="8">
 													<Select
 														name="sharer"

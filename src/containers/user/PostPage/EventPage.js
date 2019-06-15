@@ -22,6 +22,18 @@ class PostPage extends Component {
     }
   };
 
+  componentDidUpdate = async (prevProps) => {
+    if (this.props.match.params.eventId != prevProps.match.params.eventId) {
+      try {
+        const { data } = await getSpecificEvents(this.props.match.params.eventId);
+        await this.setState({ event: data.event });
+        
+      } catch {
+        this.setState({ event: false });
+      }
+    }
+  }
+
   render() {
     if (this.state.event === false) {
       return <Redirect to="/404" />;

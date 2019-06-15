@@ -17,6 +17,7 @@ class RightSide extends React.Component {
     this.setState({ data: data.data.events });
    
   };
+  
   render() {
     return (
       <div className="side-body">
