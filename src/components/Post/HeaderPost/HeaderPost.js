@@ -71,7 +71,7 @@ class headerPost extends React.Component {
                   className="img-user-postCard rounded-circle"
                   src={"/resources/" + this.props.user.avatar}
                   alt="UserAvatar"
-                  style={{}}
+                  style={{cursor:"pointer"}}
                   onClick={this.toggle}
                 />
                

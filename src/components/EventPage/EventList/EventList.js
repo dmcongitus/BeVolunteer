@@ -19,8 +19,7 @@ class HomePage extends Component {
 	}
 
 	render() {
-		console.log("AAAAAAAAAAAAAAA");
-		console.log(this.state.events);
+		
 		return (
 			<div className="side-body" style={{ position: 'relative' , minHeight: '84vh'}}>
 				<div className="title-side-body" style={{ textTransform: 'uppercase' }}>

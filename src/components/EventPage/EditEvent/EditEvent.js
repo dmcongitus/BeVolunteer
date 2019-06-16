@@ -74,12 +74,12 @@ class EditEvent extends Component {
 	}
 
 	componentDidMount = async () => {
-		console.log("componentDidMount");
+	
 		this.getSharer();
 		
         try {
 			const { data } = await getAllUsers();
-			console.log(data);
+		
 			this.setState({
 				//user: data.map(u => (u.name))
 				
@@ -97,7 +97,7 @@ class EditEvent extends Component {
 
 	getSharer = () =>{
 		try {
-			console.log("ssssssss");
+		
 			this.setState({
 				infor:{
 					...this.state.infor,
@@ -130,21 +130,21 @@ class EditEvent extends Component {
 	}
 	
 	handleChange = (selectedOption) => {
-		console.log(selectedOption);
+	
 		this.setState({ 
 			infor:{
 				...this.state.infor,
 				multiSelect: selectedOption
 			}
 		});
-		console.log(`Option selected:`, selectedOption);
+	
 	};
 	
 	handleImageChange = e => {
-		console.log("Update img");
+	
 		this.clearArray();
-		console.log(this.state);
-		console.log(e);
+	
+	
         e.persist();
         this.setState({ 
 			infor:{
@@ -166,8 +166,8 @@ class EditEvent extends Component {
 	onFormSubmit = async (e) => {
 		e.preventDefault();
 
-		console.log("Submit form");
-		console.log(this.state);
+	
+	
 		await this.setState({
 			infor: {
 				...this.state.infor,
@@ -178,13 +178,9 @@ class EditEvent extends Component {
 
 	
 		try {
-			console.log("SUBMIT");
+		
 			const data = await editEvent({...this.state.infor});
-			if(data){
-				console.log(data);
-				console.log(this.props._id);
-			}
-			alert(this.props._id)
+			
 
 			this.props.history.push(`/eventMore/${this.props._id}`)
 
@@ -193,16 +189,6 @@ class EditEvent extends Component {
 		}
 	};
 
-	// setRedirect = async () =>{
-	// 	console.log("Set loggggg");
-	// 	await this.setState({
-	// 		infor: {
-	// 			...this.state.infor,
-	// 			redirect: true
-	// 		}
-	// 	})
-	// 	 console.log("end log");
-	// } 
 
 	checkFormPost = (state) =>{	
 		var d1 = new Date(document.getElementById("starttime").value);
@@ -255,9 +241,7 @@ class EditEvent extends Component {
 	}
 
     render() {	
-		console.log("State---------")
-		console.log('aaaaaaa')
-		console.log(this.state);
+	
 
         if (this.state.isLoading) {
             return null;
@@ -265,12 +249,12 @@ class EditEvent extends Component {
 
 		const { redirect } = this.state;
 		if (redirect) {
-			console.log("Redirecttttttttt");
+	
 			return <Redirect to={`eventMore/${this.state._id}`} />
 		}
 
 		if(!this.state.isDelete){
-			console.log("Hereeeeee");
+	
 			var edit = (
 				<Row>
 					<div className="event-form w-100 text-lg font-bold border-b border-solid border-grey-light" >            

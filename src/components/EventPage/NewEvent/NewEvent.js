@@ -65,10 +65,10 @@ class NewEvent extends Component {
 	}
 
 	componentDidMount = async () => {
-		console.log("ssssssss");
+
         try {
 			const { data } = await getAllUsers();
-			console.log(data);
+		
 			this.setState({
 				//user: data.map(u => (u.name))
 				
@@ -85,14 +85,14 @@ class NewEvent extends Component {
 	}
 
 	handleChange = (selectedOption) => {
-		console.log(selectedOption);
+	
 		this.setState({ 
 			infor:{
 				...this.state.infor,
 				multiSelect: selectedOption
 			}
 		});
-		console.log(`Option selected:`, selectedOption);
+
 	};
 	
 	handleImageChange = e => {
@@ -116,8 +116,8 @@ class NewEvent extends Component {
 	};
 
 	onFormSubmit = async (e) => {
-		console.log("submitform");
-		console.log(this.state);
+
+	
 		await this.setState({
 			infor: {
 				...this.state.infor,
@@ -128,7 +128,7 @@ class NewEvent extends Component {
 		alert(this.checkFormPost(this.state).message);
 		e.preventDefault();
 		try {
-			console.log("try");
+		
 			const data = await createEvent({...this.state.infor});
 			console.log(data);
 		} catch (error) {
@@ -138,9 +138,7 @@ class NewEvent extends Component {
 	};
 
 	checkFormPost = (state) =>{	
-		console.log("BBBBBBB");
-		console.log(state);
-		console.log(state.infor.starttime);
+		
 
 		var d1 = new Date(document.getElementById("starttime").value);
 		var d2 = new Date(document.getElementById("endtime").value);

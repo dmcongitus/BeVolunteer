@@ -10,7 +10,7 @@ class PostPage extends Component {
     event: undefined
   };
   joinToEvent = async id => {
-    console.log(this.state.event)
+   
     if(this.state.event.volunteers.length === this.state.event.numVolunteers){
       Notification.error({
         title: 'Error',

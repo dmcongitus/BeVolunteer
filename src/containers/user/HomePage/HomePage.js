@@ -29,7 +29,7 @@ class HomePage extends Component {
     const data = await getNewfeed(postType);
 
     if (postType !== "ALL") {
-      console.log(postType);
+   
       this.setState({
         data: data.data.filter(d => d.type === postType)
       });

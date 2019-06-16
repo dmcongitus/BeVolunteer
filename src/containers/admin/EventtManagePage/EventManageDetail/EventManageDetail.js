@@ -232,7 +232,7 @@ class EventManageDetail extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {console.log(this.state.listCheckin)}
+           
 
                     {this.state.listCheckin !== undefined
                       ? this.state.listCheckin.attendances.map(

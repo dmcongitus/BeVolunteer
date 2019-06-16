@@ -90,7 +90,7 @@ class PostCheckin extends React.Component {
       return day.isPresent === true;
     });
     await this.setState({ listChecked : listChecked.map(day=>{return new Date(day.date)}) });
-    console.log(this.state.listChecked)
+
   };
   toggleReport() {
     this.setState(prevState => ({

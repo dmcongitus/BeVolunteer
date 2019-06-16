@@ -230,7 +230,7 @@ class EventCardMore extends React.Component {
                 <Col>
                 <hr />
                 <div className="ml-3">
-                    {console.log(this.props)}
+                   
                     <div>
                     <Row>
                         <Col xs="3">

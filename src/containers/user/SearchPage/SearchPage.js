@@ -65,6 +65,7 @@ class SearchPage extends Component {
         hasMoreButton
         onPostTypeChanged={this.onPostTypeChanged}
       >
+        
         {this.state.data.map(post =>
           this.mySearch(post, this.props.match.params.searchText) === true ? (
             <Post key={post.id} {...post} />

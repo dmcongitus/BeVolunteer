@@ -232,7 +232,7 @@ class PostCard extends React.Component {
                         </th>
                       )
                     ) : this.props.status === "UPCOMING" &&
-                      this.props.permission === "USER" ? (
+                      this.props.myUser.permission === "USER" ? (
                       <th onClick={this.joinToEvent}>
                         <div>
                           <i class="fas fa-user-plus" /> Tham gia
@@ -251,7 +251,7 @@ class PostCard extends React.Component {
                   )}
                   {this.props.type !== "EVENT" ? (
                     <th>
-                      <Link to={`post/${this.props._id}`}>
+                      <Link to={`/post/${this.props._id}`}>
                         <div>
                           <i class="fas fa-glasses" /> Xem thêm
                         </div>
@@ -278,7 +278,7 @@ class PostCard extends React.Component {
                     this.props.publisher.username ===
                     this.props.myUser.username ? (
                       <th>
-                        <Link to={`EventManageDetail/${this.props._id}`}>
+                        <Link to={`/EventManageDetail/${this.props._id}`}>
                           <div>
                             <i class="fas fa-glasses" /> Xem thêm
                           </div>
@@ -286,7 +286,7 @@ class PostCard extends React.Component {
                       </th>
                     ) : (
                       <th>
-                        <Link to={`eventMore/${this.props._id}`}>
+                        <Link to={`/eventMore/${this.props._id}`}>
                           <div>
                             <i class="fas fa-glasses" /> Xem thêm
                           </div>

@@ -26,13 +26,7 @@
     color: crimson;
 }
 
-.UpdateProfile__Main__FieldItem {
-    display: flex;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    align-items: center;
-    border-top: 1.0.25rem solid rgba(114, 110, 110, 0.5);
-}
+
 
 .UpdateProfile__Main__FieldItem:last-child {
     padding-bottom: 0;
