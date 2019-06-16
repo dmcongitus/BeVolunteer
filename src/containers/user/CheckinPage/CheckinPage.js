@@ -15,7 +15,7 @@ import format from "date-fns/format";
 class CheckinPage extends Component {
   state = {
     data: [],
-    listChecked:[],
+    listChecked: []
   };
 
   componentDidMount = () => {
@@ -34,7 +34,7 @@ class CheckinPage extends Component {
       content: content
     };
     reportPost(data);
-  }
+  };
   successCheckin = async (eventId, date, code) => {
     const DateFomart = await format(new Date(date), "YYYY-MM-DD").toString();
     const checkList = await getCheckinByDateUser(
@@ -60,11 +60,7 @@ class CheckinPage extends Component {
   };
   render() {
     return (
-      <PageLayout
-        title="news"
-        hasMoreButton
-        onPostTypeChanged={this.onPostTypeChanged}
-      >
+      <PageLayout title="Điểm danh">
         {this.state.data.map(post => (
           <Post
             key={post.id}

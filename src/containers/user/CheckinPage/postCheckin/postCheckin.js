@@ -237,7 +237,8 @@ class PostCheckin extends React.Component {
             <div className="item-right">
               {this.props.type === "EVENT" && (
                 <div>
-                  <Button className="mr-1 new-btn" onClick={this.toggleCheckin}>
+                  <Button className="mr-1 new-btn" onClick={this.toggleCheckin}
+                  disabled = {this.props.status!=="ONGOING"}>
                     <i class="fas fa-calendar-check icon-button" />
                     Điểm danh
                   </Button>
@@ -314,7 +315,7 @@ class PostCheckin extends React.Component {
                 </div>
               )}
 
-              <Link to={`post/${this.props._id}`}>
+              <Link to={`eventMore/${this.props._id}`}>
                 <Button color="success" className="mr-1 success p-2">
                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm
                 </Button>
