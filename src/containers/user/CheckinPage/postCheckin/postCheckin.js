@@ -57,17 +57,14 @@ class PostCheckin extends React.Component {
   }
 
   componentDidMount = async () => {
-    const checkinStatus = await this.props.getStatusCheckinToday(
-      this.props._id
-    );
-    this.setState({ checkinStatus });
+    
   };
   handleChange = async date => {
     // await this.setState({
     //   startDate: date
     // });
   };
-  async OnClickSuccessCheckin() {
+   OnClickSuccessCheckin = async () =>{
     await this.setState({
       modalCheckin: !this.state.modalCheckin
     });
@@ -78,6 +75,10 @@ class PostCheckin extends React.Component {
     );
   }
   toggleCheckin = async () => {
+    const checkinStatus = await this.props.getStatusCheckinToday(
+      this.props._id
+    );
+    this.setState({ checkinStatus });
     this.setState(prevState => ({
       modalCheckin: !prevState.modalCheckin
     }));

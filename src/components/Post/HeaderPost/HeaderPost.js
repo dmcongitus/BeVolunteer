@@ -111,7 +111,15 @@ class headerPost extends React.Component {
                     ) : this.props.type === "DONATION" ? (
                       <span className="tcl-3">Quyên góp</span>
                     ) : this.props.type === "EVENT" ? (
-                      <span className="tcl-1">Sự kiện</span>
+                      <span>
+                          
+                      <span className="tcl-1 mr-2">Sự kiện</span>
+                      {this.props.status==="UPCOMING"?<i class="fas fa-user-plus"></i>:null}
+                      {this.props.status==="ONGOING"?<i class="fas fa-running"></i>:null}
+                      {this.props.status==="FINISHED"?<i class="fas fa-ban"></i>:null}
+                      </span>
+                      
+                     
                     ) : (
                       <span className="tcl-4">Kỉ niệm</span>
                     )}

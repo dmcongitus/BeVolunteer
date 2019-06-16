@@ -2,3 +2,10 @@
     background: rgba(8, 194, 8, 0.4) !important;
     cursor: pointer;
 }
+
+/* .hoverPostCard:hover{
+    margin-left: 20px;
+}
+.hoverPostCard:hover:after{
+    margin-left: 50px;
+} */

@@ -27,7 +27,8 @@ class RightSide extends React.Component {
         <div className="content-side-body">
          
 
-         {(this.state.data.map(data => (
+         {(this.state.data.map((data,index) => (
+           index<4 &&
             <RightSideCard {...data} />
           )))}
         </div>

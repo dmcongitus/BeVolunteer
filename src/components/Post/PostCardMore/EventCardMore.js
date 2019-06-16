@@ -19,7 +19,7 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownToggle,
-  Input
+  Input, Table
 } from "reactstrap";
 import Payment from "../Payment/Payment";
 import HeaderPost from "../HeaderPost/HeaderPost";
@@ -28,7 +28,7 @@ import "./PostCardMore.css";
 import Axios from "axios";
 import addDays from "date-fns/add_days";
 import format from "date-fns/format";
-
+import {Notification} from "element-react"
 class EventCardMore extends React.Component {
     constructor(props) {
         super(props);
@@ -61,12 +61,23 @@ class EventCardMore extends React.Component {
         this.toggleMenuPost = this.toggleMenuPost.bind(this);
         this.togglePayment = this.togglePayment.bind(this);
     }
+    messOutAfterRun = () =>{
+        Notification.error({
+          title: 'Error',
+          message: 'Sự kiện đã bắt đầu, không thể huỷ'
+        });
+      }
+    joinToEvent = () =>{
+        this.props.joinToEvent();
+    }
     toggleEye() {
         this.setState({
         modalEye: !this.state.modalEye
         });
     } 
-
+    checkJoinEvent = (_id, _ids) => {
+        return _ids.find(i => i._id === _id);
+      };
     toggleMenuPost() {
         this.setState({
     
@@ -258,8 +269,10 @@ class EventCardMore extends React.Component {
                 <hr />
                 </Col>
             </Row>
-            <b>Nội dung: </b>
+            <Row className="item-mid">
             <div className="p-2">{this.props.description}</div>
+            </Row>
+         
             <div style={{ width: "100%" }}>
                 <Row>
                 <Col>
@@ -319,22 +332,63 @@ class EventCardMore extends React.Component {
                     {/*/ cardbox-item */}
                 </Col>
 
-                <div className="item-right pb-2 m-2 hr-border-bottom">
-                    {
-                        this.props.publisher.permission === "UNIT_ADMIN"?
-                        <Link to={`/eventEdit/${this.props._id}`}>
-                            <div>
-                                <Button className="mr-1 success add-btn">
-                                <i class="fas fa-angle-double-right icon-button" />
-                                Chỉnh sửa
-                                </Button>
-                            </div>
-                        </Link> :null
-                    }
-
-                </div>
+                
                 </Row>
-
+   
+                <Row>
+            <Col>
+              <Table className="bottomPostcard" >
+                <thead>
+                  <tr>
+                  {this.props.type === "EVENT" ? (
+                      this.checkJoinEvent(
+                        this.props.myUser._id,
+                        this.props.volunteers
+                      ) ? (
+                        this.props.status === "UPCOMING"?(
+                        <th
+                          onClick={() => this.props.unjoinEvent(this.props._id)}
+                        >
+                          <div>
+                          <i class="fas fa-user-minus" /> Huỷ
+                          </div>
+                        </th>):(  <th
+                           onClick={()=>this.messOutAfterRun()}
+                        >
+                          <div style={{color:"gray"}}>
+                          <i class="fas fa-user-minus" /> Huỷ
+                          </div>
+                        </th>)
+                      ) : (
+                        this.props.status === "UPCOMING"?( <th
+                          disabled={
+                            this.props.myUser.isVerified === false ||
+                            this.props.myUser.permission != "USER"
+                          }
+                          onClick={()=>this.props.joinToEvent(this.props._id)}
+                        >
+                          <div>
+                          <i class="fas fa-user-plus" /> Tham gia
+                          </div>
+                        </th>):(null)
+                       
+                      )
+                    ) : null}                 
+                    {this.props.type === "EVENT" && (
+                      <th onClick={this.togglePayment}>
+                         <div>
+                        <i class="fas fa-donate" />
+                        Quyên góp
+                        </div>
+                      </th>
+                    )}
+                   
+                  </tr>
+                </thead>
+              </Table>
+            </Col>
+          </Row>
+       
                 <Row>
                 <Col>
                     <Row className="pb-2 ml-3">

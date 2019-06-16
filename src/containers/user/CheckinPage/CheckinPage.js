@@ -26,7 +26,7 @@ class CheckinPage extends Component {
       .catch(e => console.log(e));
   };
 
-  successReport(reporter, object, objectModel, content) {
+  successReport = (reporter, object, objectModel, content) => {
     const data = {
       reporter: reporter,
       object: object,

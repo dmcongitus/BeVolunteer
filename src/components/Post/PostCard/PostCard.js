@@ -18,9 +18,11 @@ import {
   Input,
   Dropdown,
   DropdownMenu,
-  DropdownToggle
+  DropdownToggle,
+  Collapse,
+  Table
 } from "reactstrap";
-
+import {Notification} from "element-react"
 import "./PostCard.css";
 import Payment from "../Payment/Payment";
 import HeaderPost from "../HeaderPost/HeaderPost";
@@ -36,10 +38,10 @@ class PostCard extends React.Component {
       paymentOpen: false,
       modalReport: false,
       reportText: "",
-      tooltipJoin: false
+      tooltipJoin: false,
+      collapse: false
     };
     this.toggletooltipJoin = this.toggletooltipJoin.bind(this);
-    this.toggleReport = this.toggleReport.bind(this);
 
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -49,22 +51,37 @@ class PostCard extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
   }
+  messOutAfterRun(){
+    Notification.error({
+      title: 'Error',
+      message: 'Sự kiện đã bắt đầu, không thể huỷ'
+    });
+  }
+  joinToEvent = () =>{
+    if(this.props.volunteers.length === this.props.numVolunteers){
+      Notification.error({
+        title: 'Error',
+        message: 'Số lượng nguời đã đạt giới hạn '
+      });
+    }
+    else this.props.joinToEvent(this.props._id)
+  }
   toggletooltipJoin() {
     this.setState({
       tooltipJoin: !this.state.tooltipJoin
     });
   }
+
+  toggleOpenCard = () => {
+    this.setState(state => ({ collapse: !state.collapse }));
+  };
   togglePayment() {
     this.setState({ paymentOpen: !this.state.modalReport });
   }
   checkJoinEvent = (_id, _ids) => {
     return _ids.find(i => i._id === _id);
   };
-  toggleReport() {
-    this.setState(prevState => ({
-      modalReport: !prevState.modalReport
-    }));
-  }
+
 
   onExiting() {
     this.animating = true;
@@ -119,136 +136,185 @@ class PostCard extends React.Component {
     });
     return (
       <div className="postCard">
-        {this.props.type === "EVENT" ? (
-          <HeaderPost
-            {...this.props}
-            user={this.props.publisher}
-            successReport={this.props.successReport}
-            reporter={this.props.myUser._id}
-            object={this.props._id}
-            objectModel={this.props.type}
-          />
-        ) : (
-          <HeaderPost
-            {...this.props}
-            successReport={this.props.successReport}
-            reporter={this.props.myUser._id}
-            object={this.props._id}
-            objectModel={this.props.type}
-          />
-        )}
+        <div >
+          {this.props.type === "EVENT" ? (
+            <HeaderPost
+              {...this.props}
+              user={this.props.publisher}
+              successReport={this.props.successReport}
+              reporter={this.props.myUser._id}
+              object={this.props._id}
+              objectModel={this.props.type}
+            />
+          ) : (
+            <HeaderPost
+              {...this.props}
+              successReport={this.props.successReport}
+              reporter={this.props.myUser._id}
+              object={this.props._id}
+              objectModel={this.props.type}
+            />
+          )}
+        </div>
+      
+          <Row>
+            <Col>
+            <div className="item-mid pb-3">
+              <div className="pl-2 pr-3">{this.props.description}</div>
+              </div>
+            </Col>
+          </Row>
+      
+        <Collapse isOpen={this.state.collapse}>
+          <Row className="p-2 item-mid">
+           
+              <div onClick={this.toggle}>
+                {/* {this.clearArray()} */}
 
-        <Row>
-          <Col xs="6">
-            <div onClick={this.toggle}>
-              {/* {this.clearArray()} */}
-
-              {this.state.items.length < 2 ? (
-                <img
-                  style={{ cursor: "pointer" }}
-                  src={`/resources/${this.props.filenames[0]}`}
-                  className="post-album"
-                />
-              ) : (
-                <div className="Newpost-img__more">
+                {this.state.items.length < 2 ? (
                   <img
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", maxHeight:"10rem"  }}
                     src={`/resources/${this.props.filenames[0]}`}
                     className="post-album"
                   />
-                  <div>+{this.state.items.length - 1}</div>
-                </div>
-              )}
+                ) : (
+                  <div className="Newpost-img__more">
+                    <img
+                      style={{ cursor: "pointer", maxHeight:"10rem" }}
+                      src={`/resources/${this.props.filenames[0]}`}
+                      className="post-album"
+                    />
+                    <div>+{this.state.items.length - 1}</div>
+                  </div>
+                )}
+              </div>
+
+              {/*/ cardbox-item */}
+          
+
+           
+          </Row>
+          </Collapse>
+          <div className="btn-bottom-postCard">
+          <Collapse isOpen={!this.state.collapse}>
+          <Row className="item-mid"  onClick={this.toggleOpenCard}>
+            <div>
+            <i class="fas fa-angle-double-down"></i>
             </div>
-
-            {/*/ cardbox-item */}
-          </Col>
-
-          <Col xs="6" className="textMedia pl-0">
-            <Alert color="success">{this.props.description}</Alert>
-
-            <div className="item-right">
-              {this.props.type === "EVENT" && (
-                <div>
-                  {this.checkJoinEvent(
-                    this.props.myUser._id,
-                    this.props.volunteers
-                  ) ? (
-                    <Button
-                      className="mr-1 new-btn"
-                      onClick={() => this.props.unjoinEvent(this.props._id)}
-                    >
-                      <i class="fas fa-chevron-circle-left icon-button" />
-                      Hủy
-                    </Button>
-                  ) : (
-                    <Button
-                      className="mr-1 add-btn"
-                      onClick={() => this.props.joinToEvent(this.props._id)}
-                      disabled={
-                        this.props.myUser.isVerified === false ||
-                        this.props.myUser.permission != "USER"
-                      }
-                    >
-                      <i class="fas fa-angle-double-right icon-button" />
-                      Tham gia
-                    </Button>
-                  )}
-                </div>
-              )}
-              {this.props.type === "PLACE" && (
-                <Link to="/event">
-                  <Button className="mr-1 new-btn">
-                    <i class="fas fa-edit icon-button" />
-                    Tạo event
-                  </Button>
-                </Link>
-              )}
-
-              {this.props.type === "EVENT"
-                ? (
-                    this.props.publisher.username ===
-                    this.props.myUser.username ? (
-                      <Link to={`EventManageDetail/${this.props._id}`}>
-                        <Button color="success" className="mr-1 success p-2">
-                          <i class="fas fa-angle-double-right icon-button" />{" "}
-                          Xem thêm
-                        </Button>
-                      </Link>
-                    ) : (
-                      <Link to={`eventMore/${this.props._id}`}>
-                        <Button color="success" className="mr-1 success p-2">
-                          <i class="fas fa-angle-double-right icon-button" />{" "}
-                          Xem thêm
-                        </Button>
-                      </Link>
-                    )
-                )
-                : null}
-              {this.props.type !== "EVENT" ? (
-                <Link to={`post/${this.props._id}`}>
-                  <Button color="success" className="mr-1 success p-2">
-                    <i class="fas fa-angle-double-right icon-button" /> Xem thêm
-                  </Button>
-                </Link>
-              ) : null}
+          </Row>
+          </Collapse>
+          <Collapse isOpen={this.state.collapse}>
+          <Row className="item-mid"  onClick={this.toggleOpenCard}>
+            <div>
+            <i class="fas fa-angle-double-up"></i>
             </div>
-            <div className="item-right mt-2">
-              {this.props.type === "EVENT" && (
-                <div>
-                  <Button
-                    className="mr-1 donate-btn"
-                    onClick={this.togglePayment}
-                  >
-                    <i class="fas fa-donate icon-button" />
-                    Quyên góp
-                  </Button>
-                </div>
-              )}
-            </div>
-          </Col>
-        </Row>
+          </Row>
+          </Collapse>
+          </div>
+         
+          <Row>
+            <Col>
+              <Table className="bottomPostcard" >
+                <thead>
+                  <tr>
+                  {this.props.type === "EVENT" ? (
+                      this.checkJoinEvent(
+                        this.props.myUser._id,
+                        this.props.volunteers
+                      ) ? (
+                        this.props.status === "UPCOMING"?(
+                        <th
+                          onClick={() => this.props.unjoinEvent(this.props._id)}
+                        >
+                          <div>
+                          <i class="fas fa-user-minus" /> Huỷ
+                          </div>
+                        </th>):(  <th
+                           onClick={()=>this.messOutAfterRun()}
+                        >
+                          <div style={{color:"gray"}}>
+                          <i class="fas fa-user-minus" /> Huỷ
+                          </div>
+                        </th>)
+                      ) : (
+                        this.props.status === "UPCOMING"?( <th
+                          disabled={
+                            this.props.myUser.isVerified === false ||
+                            this.props.myUser.permission != "USER"
+                          }
+                          onClick={this.joinToEvent}
+                        >
+                          <div>
+                          <i class="fas fa-user-plus" /> Tham gia
+                          </div>
+                        </th>):(null)
+                       
+                      )
+                    ) : null}
 
+
+                    
+                    {this.props.type === "EVENT" && (
+                      <th onClick={this.togglePayment}>
+                         <div>
+                        <i class="fas fa-donate" />
+                        Quyên góp
+                        </div>
+                      </th>
+                    )}
+                    {this.props.type !== "EVENT" ? (
+                      <th>
+                        <Link
+                          to={`post/${this.props._id}`}
+                         
+                        >
+                           <div>
+                          <i class="fas fa-glasses" /> Xem thêm
+                          </div>
+                        </Link>
+                      </th>
+                    ) : null}
+                    
+                    {this.props.type === "PLACE" && (
+                      <th>
+                        <Link to="/event">
+                        <div>
+                          <i class="fas fa-user-plus" /> Tao Event
+                          </div>
+                        </Link>
+                       
+                      </th>
+                    )}
+
+                    {this.props.type === "EVENT" ? (
+                      this.props.publisher.username ===
+                      this.props.myUser.username ? (
+                        <th>
+                          <Link to={`EventManageDetail/${this.props._id}`}>
+                            <div>
+                            <i class="fas fa-glasses"  /> Xem thêm
+                            </div>
+                            
+                          </Link>
+                        </th>
+                      ) : (
+                        <th>
+                          
+                          <Link to={`eventMore/${this.props._id}`}>
+                            <div>
+                            <i class="fas fa-glasses" /> Xem thêm
+                            </div>
+                            
+                          </Link>
+                        </th>
+                      )
+                    ) : null}
+                  </tr>
+                </thead>
+              </Table>
+            </Col>
+          </Row>
+       
         {/*/ MORE TODO */}
         {/* Modal Pyment */}
         <Modal isOpen={this.state.paymentOpen} toggle={this.togglePayment}>

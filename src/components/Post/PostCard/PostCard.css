@@ -28,11 +28,12 @@
   border-top: 0.5rem solid #004916;
 }
 .post-album {
-  border-radius: 3px;
+  /* border-radius: 3px; */
   width: 100%;
-  height: 12.5rem;
-  border: 1px solid #0d6628;
+  /* height: 12.5rem; */
+  /* border: 1px solid #0d6628; */
   object-fit: cover;
+  
 }
 .post-album-more {
   border-radius: 3px;
@@ -138,4 +139,41 @@
   border: 1px solid #0d6628;
   border: unset;
   object-fit: contain;
+}
+
+.flex-bottom-mid{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.flex-bottom-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.bottomPostcard {
+  margin-top: 0.5rem;
+  text-align: center;
+  
+ 
+}
+
+.bottomPostcard th{
+  font-weight: 500 ;
+  
+}
+
+.bottomPostcard th:hover{
+  font-weight: 500 ;
+ background: palegreen;
+ cursor: pointer;
+}
+
+.btn-bottom-postCard{
+  cursor: pointer;
+}
+.btn-bottom-postCard:hover{
+  color: #d01013;
+  font-weight: bold;
 }

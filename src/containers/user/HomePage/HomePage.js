@@ -26,20 +26,16 @@ class HomePage extends Component {
   };
 
   onPostTypeChanged = async postType => {
-    const data = await getNewfeed(postType)
+    const data = await getNewfeed(postType);
 
-    if(postType!=="ALL"){
-      console.log(postType)
+    if (postType !== "ALL") {
+      console.log(postType);
       this.setState({
-        data: data.data.filter(
-          d => d.type === postType
-        )
+        data: data.data.filter(d => d.type === postType)
       });
-    }else{
-      this.setState({data:data.data})
+    } else {
+      this.setState({ data: data.data });
     }
-  
-     
   };
 
   successReport(reporter, object, objectModel, content) {
@@ -80,13 +76,15 @@ class HomePage extends Component {
         )}
 
         {this.state.data.map(post => (
-          <Post
-            key={post.id}
-            {...post}
-            successReport={this.successReport}
-            joinToEvent={this.joinToEvent}
-            unjoinEvent={this.unjoinEvent}
-          />
+          <div className="hoverPostCard">
+            <Post
+              key={post.id}
+              {...post}
+              successReport={this.successReport}
+              joinToEvent={this.joinToEvent}
+              unjoinEvent={this.unjoinEvent}
+            />
+          </div>
         ))}
       </PageLayout>
     );

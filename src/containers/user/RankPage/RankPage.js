@@ -25,7 +25,7 @@ class RankPage extends Component {
     const { accounts } = this.state;
   
     return (
-      <PageLayout title="xóa tài khoản">
+      <PageLayout title="Xếp hạng">
         <div>
           <Table striped >
             <thead>

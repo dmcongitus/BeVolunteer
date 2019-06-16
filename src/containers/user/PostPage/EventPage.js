@@ -3,12 +3,43 @@ import { Redirect } from "react-router-dom";
 
 import EventCardMore from "../../../components/Post/PostCardMore/EventCardMore";
 import { getSpecificEvents } from "../../../services/post.service";
-
+import { joinEvent, unjoinEvent } from "../../../services/event.service";
+import {Notification} from "element-react"
 class PostPage extends Component {
   state = {
     event: undefined
   };
-
+  joinToEvent = async id => {
+    console.log(this.state.event)
+    if(this.state.event.volunteers.length === this.state.event.numVolunteers){
+      Notification.error({
+        title: 'Error',
+        message: 'Số lượng nguời đã đạt giới hạn '
+      });
+    }
+    else  await joinEvent(id);
+    let { eventId } = this.props.match.params;
+    try {
+      const { data } = await getSpecificEvents(eventId);
+    
+      await this.setState({ event: data.event });
+      
+    } catch {
+      this.setState({ event: false });
+    }
+  };
+  unjoinEvent = async id => {
+    await unjoinEvent(id);
+    let { eventId } = this.props.match.params;
+    try {
+      const { data } = await getSpecificEvents(eventId);
+    
+      await this.setState({ event: data.event });
+      
+    } catch {
+      this.setState({ event: false });
+    }
+  };
   componentDidMount = async () => {
     
     let { eventId } = this.props.match.params;
@@ -40,7 +71,7 @@ class PostPage extends Component {
     }
    
     if (this.state.event !== undefined) {
-      return <EventCardMore {...this.state.event} />;
+      return <EventCardMore {...this.state.event} joinToEvent = {this.joinToEvent} unjoinEvent = {this.unjoinEvent}/>;
     }
 
     return null;
