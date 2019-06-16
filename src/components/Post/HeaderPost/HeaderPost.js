@@ -99,10 +99,21 @@ class headerPost extends React.Component {
                 <span className={this.props.user.permission}>
                   {this.props.user.name}
                 </span>
-                {this.props.user.isVerified === true && (
+                
+                  {this.props.user.isVerified === true && (
                   <i className="ml-1 small fas fa-check-circle check-user" />
                 )}
+                {(this.props.user.permission === "UNIT_ADMIN" ||this.props.user.permission === "SUPER_ADMIN" || this.props.user.permission === "CONTENT_MOD") ? (
+                  <i className="ml-1 small fas fa-shield-alt" />
+                  
+                ):null}
+               
+                
 
+                {/* {(this.props.publisher.permission === "CONTENT_MOD" ||this.props.publisher.permission === "UNIT_MOD" ||this.props.publisher.permission === "SUPER_ADMIN") ? (
+                  <i className="ml-1 small fas fa-shield-alt" />
+                  
+                ):null} */}
                 <span className="ml-1 small">đã chia sẻ một</span>
                 <span className="ml-1">
                   <b>
