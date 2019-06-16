@@ -32,14 +32,16 @@ class CreateAccountPage extends Component {
 
   async componentDidMount() {
   
-
-    const data = await getAdmins();
-    await this.setState({
-      
-      unitAdmins: data.data.filter(function(admins) {
-        return admins.permission === "UNIT_ADMIN";
+    if(this.props.permission==="SUPER_ADMIN"){
+      const data = await getAdmins();
+      await this.setState({
+        
+        unitAdmins: data.data.filter(function(admins) {
+          return admins.permission === "UNIT_ADMIN";
+        })
       })
-    })
+    }
+
    
    
     

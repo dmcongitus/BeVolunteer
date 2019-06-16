@@ -29,7 +29,7 @@ import {
   CardText,
   Row,
   Col,
-  Input
+  Input, Alert
 } from "reactstrap";
 import classnames from "classnames";
 
@@ -84,19 +84,24 @@ class EventManageDetail extends Component {
       new Date(this.state.startDate),
       "YYYY-MM-DD"
     ).toString();
-    const checkList = await getCheckinByDate(eventId, DateFomart);
-    this.setState({ listCheckin: checkList.data[0] });
-
-    if (checkList.data.length === 0) {
-      createCheckinByDate(eventId, DateFomart);
-    }
 
     try {
       const { data } = await getEventByID(eventId);
-      this.setState({ event: data.event });
+      await this.setState({ event: data.event });
+      if(this.state.event.status === "ONGOING"){
+        const checkList = await getCheckinByDate(eventId, DateFomart);
+        this.setState({ listCheckin: checkList.data[0] });
+    
+        if (checkList.data.length === 0) {
+          createCheckinByDate(eventId, DateFomart);
+        }
+      }
     } catch {
       this.setState({ event: false });
     }
+  
+  
+   
   };
   startEvent = async id => {
     await startEventByID(id);
@@ -159,7 +164,7 @@ class EventManageDetail extends Component {
             {this.state.activeTab === "1" ? (
               <EventCardMore {...this.state.event} />
             ) : null}
-            {this.state.activeTab === "2" ? (
+            {this.state.activeTab === "2" && this.state.event.status==="ONGOING"? (
               <Row>
                 <Col xs="6">
                   <Table className="tableUnset">
@@ -185,6 +190,7 @@ class EventManageDetail extends Component {
                         <td>Chưa điểm danh </td>
 
                         <td>
+                          
                           {
                             this.state.listCheckin.attendances.filter(user => {
                               return user.isPresent === false;
@@ -280,6 +286,13 @@ class EventManageDetail extends Component {
                 </Table>
               </Row>
             ) : null}
+              {this.state.activeTab === "2" && this.state.event.status!=="ONGOING"? (
+                <Row>
+                  <div className="tcl-2 p-5">
+                  Sự kiện chưa bắt đầu!!!
+      </div>
+                </Row>
+              ):null}
             {this.state.activeTab === "3" ? (
               <div>
                 {" "}
