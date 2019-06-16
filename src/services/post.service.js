@@ -1,6 +1,15 @@
 import Axios from 'axios';
 import request from './request'
 import { Message } from 'element-react'
+
+export function getCommentPost(id) {
+    return request({
+        url: `/events/${id}/comments`,
+        method: 'get',
+    
+    })
+}
+
 export function createPost(post) {
     return request({
         url: `posts`,

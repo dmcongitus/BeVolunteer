@@ -25,7 +25,7 @@ import HeaderPost from "../HeaderPost/HeaderPost";
 import Comment from "./Comment/Comment";
 import "./PostCardMore.css";
 import Axios from "axios";
-
+import request from "../../../services/request";
 class PostCardMore extends React.Component {
   constructor(props) {
     super(props);
@@ -106,8 +106,9 @@ class PostCardMore extends React.Component {
   }
 
   componentDidMount = () => {
-    Axios.get(`/posts/${this.props._id}/comments`, {
-      headers: { "x-access-token": localStorage.getItem("token") }
+    request({
+      url: `/posts/${this.props._id}/comments`,
+      method: "get"
     })
       .then(({ data }) => {
         this.setState({ comments: data });
@@ -125,25 +126,26 @@ class PostCardMore extends React.Component {
     e.preventDefault();
 
     const { _id, permisison, avatar } = this.props.myUser;
-    Axios.post(
-      "/comments",
-      {
+    request({
+      url: `/comments`,
+      method: "post",
+      data: {
         user: _id,
         userModel: permisison,
         object: this.props._id,
         objectModel: "Post",
         content: this.state.comment
-      },
-      {
-        headers: {
-          "x-access-token": localStorage.getItem("token")
-        }
       }
-    )
+    })
       .then(() => {
         this.setState(prevState => ({
           comments: [
-            { name: this.props.user.name, content: prevState.comment, avatar, isVerified: this.props.myUser.isVerified },
+            {
+              name: this.props.myUser.name,
+              content: prevState.comment,
+              avatar,
+              isVerified: this.props.myUser.isVerified
+            },
             ...prevState.comments
           ],
           comment: ""
@@ -171,25 +173,24 @@ class PostCardMore extends React.Component {
     return (
       <div className="side-body">
         <div className="postCard mt-0">
-         
-         {this.props.type === "EVENT" ? (
-          <HeaderPost
-            {...this.props}
-            user={this.props.publisher}
-            successReport={this.props.successReport}
-            reporter={this.props.myUser._id}
-            object={this.props._id}
-            objectModel={this.props.type}
-          />
-        ) : (
-          <HeaderPost
-            {...this.props}
-            successReport={this.props.successReport}
-            reporter={this.props.myUser._id}
-            object={this.props._id}
-            objectModel={this.props.type}
-          />
-        )}
+          {this.props.type === "EVENT" ? (
+            <HeaderPost
+              {...this.props}
+              user={this.props.publisher}
+              successReport={this.props.successReport}
+              reporter={this.props.myUser._id}
+              object={this.props._id}
+              objectModel={this.props.type}
+            />
+          ) : (
+            <HeaderPost
+              {...this.props}
+              successReport={this.props.successReport}
+              reporter={this.props.myUser._id}
+              object={this.props._id}
+              objectModel={this.props.type}
+            />
+          )}
 
           <div className="p-2">{this.props.description}</div>
           <div style={{ width: "100%" }}>
@@ -254,7 +255,10 @@ class PostCardMore extends React.Component {
               <div className="item-right pb-2 m-2 hr-border-bottom">
                 {this.props.type === "Hoạt động" && (
                   <div>
-                    <Button className="mr-1 add-btn" disabled = {this.props.myUser.isVerified===false}>
+                    <Button
+                      className="mr-1 add-btn"
+                      disabled={this.props.myUser.isVerified === false}
+                    >
                       <i class="fas fa-angle-double-right icon-button" />
                       Tham gia
                     </Button>
