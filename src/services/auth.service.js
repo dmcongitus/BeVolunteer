@@ -6,6 +6,15 @@ export function loginUser(username, password, loginType) {
         method: 'post',
         data: { username, password }
     })
+    .catch(error => {
+        return request({
+            url: `/admins/login`,
+            method: 'post',
+            data: { username, password }
+        }).catch(error => {
+            Message.error("Thất bại");
+        })
+    });
 }
 
 export function getUser(username, password, loginType) {
