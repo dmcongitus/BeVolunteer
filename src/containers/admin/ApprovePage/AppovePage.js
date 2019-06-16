@@ -19,7 +19,7 @@ import {
 } from "../../../services/user.service";
 import InfoUser from "./InfoUser";
 import "./ApprovePage.css";
-import imgTest from "../../../images/1.jpg";
+
 class appovePage extends Component {
   constructor(props) {
     super(props);
