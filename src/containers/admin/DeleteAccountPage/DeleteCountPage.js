@@ -64,7 +64,6 @@ class DeleteAccountPage extends Component {
       const accounts = data.data;
 
       this.setState({ accounts: accounts });
-
     });
   };
   onAccountBan = async username => {
@@ -135,11 +134,15 @@ class DeleteAccountPage extends Component {
             </NavLink>
           </NavItem>
           <NavItem width="100%">
-            <Input name="search" placeholder="Tìm kiếm" onChange={this.onChange} />
+            <Input
+              name="search"
+              placeholder="Tìm kiếm"
+              onChange={this.onChange}
+            />
           </NavItem>
         </Nav>
         <div>
-          <Table striped style={{textAlign:"center"}}>
+          <Table striped style={{ textAlign: "center" }}>
             <thead>
               <tr>
                 <th>#</th>
@@ -168,6 +171,7 @@ class DeleteAccountPage extends Component {
                       <th scope="row">{++number}</th>
                       <td>{account.username}</td>
                       <td>{account.name}</td>
+
                       {account.permission === "ORG" ? (
                         <td className="tcl-2">
                           <b>{account.permission}</b>
@@ -190,41 +194,26 @@ class DeleteAccountPage extends Component {
                           {account.isBanned === false ||
                           account.isBanned === undefined ? (
                             <Button
-                              className="mr-1 new-btn"
+                              color="danger"
+                              className="mr-1"
                               onClick={() =>
                                 this.onAccountBan(account.username)
                               }
-                              style={{width:"7rem"}}
+                              style={{ width: "7rem" }}
                             >
-                              <Row>
-                                <Col xs = "5">
-                                <i class="fas fa-lock icon-button" />
-                                </Col>
-                                <Col  xs = "7">
-                                Khóa
-                                </Col>
-                              </Row>
-                             
-                            
+                              <i class="fas fa-lock" />
+                              Khóa
                             </Button>
                           ) : (
                             <Button
                               className="mr-1 success"
-                              style={{width:"7rem"}}
+                              style={{ width: "7rem" }}
                               onClick={() =>
                                 this.onAccountUnBan(account.username)
                               }
                             >
-                              <Row>
-                                <Col xs = "5">
-                                <i class="fas fa-unlock icon-button" />
-                                </Col>
-                                <Col  xs = "7">
-                                Mở
-                                </Col>
-                              </Row>
-                             
-                             
+                              <i class="fas fa-unlock" />
+                              Mở
                             </Button>
                           )}
                         </div>
@@ -242,16 +231,12 @@ class DeleteAccountPage extends Component {
                           <th scope="row">{++number}</th>
                           <td>{account.username}</td>
                           <td>{account.name}</td>
-                          {account.permission > 1 ? (
+                          {account.permission === "ORG" ? (
                             <td className="tcl-2">
-                              <b>{permissionArr[account.permission]}</b>
-                            </td>
-                          ) : account.permission == 1 ? (
-                            <td className="tcl-1">
-                              <b>{permissionArr[account.permission]}</b>
+                              <b>{account.permission}</b>
                             </td>
                           ) : (
-                            <td>{permissionArr[account.permission]}</td>
+                            <td>{account.permission}</td>
                           )}
                           <td>
                             {account.isVerified ? (
@@ -269,13 +254,13 @@ class DeleteAccountPage extends Component {
                           <td>
                             <div>
                               <Button
-                                className="mr-1 new-btn"
-                                
+                                className="mr-1"
+                                color="danger"
                                 onClick={() =>
                                   this.onAccountBan(account.username)
                                 }
                               >
-                                <i class="fas fa-lock icon-button" />
+                                <i class="fas fa-lock" />
                                 Khóa
                               </Button>
                             </div>
@@ -296,16 +281,12 @@ class DeleteAccountPage extends Component {
                           <th scope="row">{++number}</th>
                           <td>{account.username}</td>
                           <td>{account.name}</td>
-                          {account.permission > 1 ? (
+                          {account.permission === "ORG" ? (
                             <td className="tcl-2">
-                              <b>{permissionArr[account.permission]}</b>
-                            </td>
-                          ) : account.permission == 1 ? (
-                            <td className="tcl-1">
-                              <b>{permissionArr[account.permission]}</b>
+                              <b>{account.permission}</b>
                             </td>
                           ) : (
-                            <td>{permissionArr[account.permission]}</td>
+                            <td>{account.permission}</td>
                           )}
                           <td>
                             {account.isVerified ? (
@@ -328,7 +309,7 @@ class DeleteAccountPage extends Component {
                                   this.onAccountUnBan(account.username)
                                 }
                               >
-                                <i class="fas fa-unlock icon-button" />
+                                <i class="fas fa-unlock" />
                                 Mở khóa
                               </Button>
                             </div>

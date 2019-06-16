@@ -4,7 +4,7 @@ import { Table, Button } from "reactstrap";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { connect } from "react-redux";
 import { banUser, unbanUser } from "../../../services/user.service";
-import { getAdminsManger } from "../../../services/admin.service";
+import { getAdminsManger, delelteAdmin } from "../../../services/admin.service";
 import {
   TabContent,
   TabPane,
@@ -47,7 +47,13 @@ class AdminManagePage extends Component {
       });
     }
   }
-
+  deleteAccAdmin = async username => {
+    await delelteAdmin(username);
+    await getAdminsManger().then(data => {
+      const accounts = data.data;
+      this.setState({ accounts });
+    });
+  };
   async componentWillUpdate() {}
   componentDidMount = async () => {
     await getAdminsManger().then(data => {
@@ -57,11 +63,15 @@ class AdminManagePage extends Component {
   };
   onChange = async e => {
     await this.setState({ [e.target.name]: e.target.value });
+
     getAdminsManger(this.state.search).then(data => {
       const accounts = data.data;
 
-      this.setState({ accounts: accounts });
-    
+      this.setState({
+        accounts: accounts.filter(acc => {
+          return acc.username.toString().indexOf(this.state.search) >= 0;
+        })
+      });
     });
   };
   onAccountBan = async username => {
@@ -111,16 +121,19 @@ class AdminManagePage extends Component {
               Tất cả
             </NavLink>
           </NavItem>
-          <NavItem className="pointer">
-            <NavLink
-              className={classnames({ active: this.state.activeTab === "2" })}
-              onClick={() => {
-                this.toggle("2");
-              }}
-            >
-              Chưa khóa
-            </NavLink>
-          </NavItem>
+          {this.permission === "SUPER_ADMIN" ? (
+            <NavItem className="pointer">
+              <NavLink
+                className={classnames({ active: this.state.activeTab === "2" })}
+                onClick={() => {
+                  this.toggle("2");
+                }}
+              >
+                Unit Admin
+              </NavLink>
+            </NavItem>
+          ) : null}
+
           <NavItem className="pointer">
             <NavLink
               className={classnames({ active: this.state.activeTab === "3" })}
@@ -128,7 +141,17 @@ class AdminManagePage extends Component {
                 this.toggle("3");
               }}
             >
-              Đã khóa
+              Account Mod
+            </NavLink>
+          </NavItem>
+          <NavItem className="pointer">
+            <NavLink
+              className={classnames({ active: this.state.activeTab === "4" })}
+              onClick={() => {
+                this.toggle("4");
+              }}
+            >
+              Content Mod
             </NavLink>
           </NavItem>
           <NavItem width="100%">
@@ -140,7 +163,7 @@ class AdminManagePage extends Component {
           </NavItem>
         </Nav>
         <div>
-          <Table>
+          <Table striped style={{ textAlign: "center" }}>
             <thead>
               <tr>
                 <th>#</th>
@@ -153,15 +176,13 @@ class AdminManagePage extends Component {
                 <th>
                   <div className="item-mid item-center"> Loại</div>
                 </th>
-                <th>
-                  <div className="item-mid item-center"> Tình trạng</div>
-                </th>
+
                 <th>
                   <div className="item-mid item-center"> </div>
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="hoverTable">
               {/* Start tab Tất cả */}
               {this.state.activeTab === "1"
                 ? this.state.accounts.map(account => (
@@ -170,43 +191,20 @@ class AdminManagePage extends Component {
                       <td>{account.username}</td>
                       <td>{account.name}</td>
 
-                      <td className="tcl-1">
-                        <b>{account.permission}</b>
-                      </td>
+                      <td>{account.permission}</td>
 
                       <td>
-                        {account.isVerified ? (
-                          <div className="tcl-1 item-mid">Đã xác thực</div>
-                        ) : account.isRequestVerify ? (
-                          <div className="tcl-3 item-mid">Đang xác thực</div>
-                        ) : (
-                          <div className="tcl-2 item-mid">Chưa xác thực</div>
-                        )}
-                      </td>
-                      <td>
                         <div className="item-mid">
-                          {account.isBanned === false ||
-                          account.isBanned === undefined ? (
-                            <Button
-                              className="mr-1 new-btn"
-                              onClick={() =>
-                                this.onAccountBan(account.username)
-                              }
-                            >
-                              <i class="fas fa-lock icon-button" />
-                              Khóa TK
-                            </Button>
-                          ) : (
-                            <Button
-                              className="mr-1 success"
-                              onClick={() =>
-                                this.onAccountUnBan(account.username)
-                              }
-                            >
-                              <i class="fas fa-unlock icon-button" />
-                              Mở khóa
-                            </Button>
-                          )}
+                          <Button
+                            color="danger"
+                            className="mr-1"
+                            onClick={() =>
+                              this.deleteAccAdmin(account.username)
+                            }
+                          >
+                            <i class="far fa-trash-alt" />
+                            Xóa
+                          </Button>
                         </div>
                       </td>
                     </tr>
@@ -217,45 +215,25 @@ class AdminManagePage extends Component {
               {this.state.activeTab === "2"
                 ? this.state.accounts.map(
                     account =>
-                      !account.isBanned && (
+                      account.permission === "UNIT_ADMIN" && (
                         <tr key={account.username} className="table-row">
                           <th scope="row">{++number}</th>
                           <td>{account.username}</td>
                           <td>{account.name}</td>
-                          {account.permission > 1 ? (
-                            <td className="tcl-2">
-                              <b>{permissionArr[account.permission]}</b>
-                            </td>
-                          ) : account.permission == 1 ? (
-                            <td className="tcl-1">
-                              <b>{permissionArr[account.permission]}</b>
-                            </td>
-                          ) : (
-                            <td>{permissionArr[account.permission]}</td>
-                          )}
-                          <td>
-                            {account.isVerified ? (
-                              <div className="tcl-1 item-mid">Đã xác thực</div>
-                            ) : account.isRequestVerify ? (
-                              <div className="tcl-3 item-mid">
-                                Đang xác thực
-                              </div>
-                            ) : (
-                              <div className="tcl-2 item-mid">
-                                Chưa xác thực
-                              </div>
-                            )}
-                          </td>
+
+                          <td>{account.permission}</td>
+
                           <td>
                             <div>
                               <Button
-                                className="mr-1 new-btn"
+                                color="danger"
+                                className="mr-1"
                                 onClick={() =>
-                                  this.onAccountBan(account.username)
+                                  this.deleteAccAdmin(account.username)
                                 }
                               >
-                                <i class="fas fa-lock icon-button" />
-                                Khóa TK
+                                <i class="far fa-trash-alt" />
+                                Xóa
                               </Button>
                             </div>
                           </td>
@@ -268,47 +246,59 @@ class AdminManagePage extends Component {
               {this.state.activeTab === "3"
                 ? this.state.accounts.map(
                     account =>
-                      (account.permission === "ORG" ||
-                        account.permission === "USER") &&
-                      account.isBanned && (
+                      account.permission === "ACCOUNT_MOD" && (
                         <tr key={account.username} className="table-row">
                           <th scope="row">{++number}</th>
                           <td>{account.username}</td>
                           <td>{account.name}</td>
-                          {account.permission > 1 ? (
-                            <td className="tcl-2">
-                              <b>{permissionArr[account.permission]}</b>
-                            </td>
-                          ) : account.permission == 1 ? (
-                            <td className="tcl-1">
-                              <b>{permissionArr[account.permission]}</b>
-                            </td>
-                          ) : (
-                            <td>{permissionArr[account.permission]}</td>
-                          )}
-                          <td>
-                            {account.isVerified ? (
-                              <div className="tcl-1 item-mid">Đã xác thực</div>
-                            ) : account.isRequestVerify ? (
-                              <div className="tcl-3 item-mid">
-                                Đang xác thực
-                              </div>
-                            ) : (
-                              <div className="tcl-2 item-mid">
-                                Chưa xác thực
-                              </div>
-                            )}
-                          </td>
+
+                          <td>{account.permission}</td>
+
                           <td>
                             <div>
                               <Button
-                                className="mr-1 success"
+                                color="danger"
+                                className="mr-1"
                                 onClick={() =>
-                                  this.onAccountUnBan(account.username)
+                                  this.deleteAccAdmin(account.username)
                                 }
                               >
-                                <i class="fas fa-unlock icon-button" />
-                                Mở khóa
+                                <i class="far fa-trash-alt" />
+                                Xóa
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                  )
+                : null}
+              {this.state.activeTab === "4"
+                ? this.state.accounts.map(
+                    account =>
+                      account.permission === "CONTENT_MOD" && (
+                        <tr key={account.username} className="table-row">
+                          <th scope="row">{++number}</th>
+                          <td>{account.username}</td>
+                          <td>{account.name}</td>
+                          {account.permission === "ORG" ? (
+                            <td className="tcl-2">
+                              <b>{account.permission}</b>
+                            </td>
+                          ) : (
+                            <td>{account.permission}</td>
+                          )}
+
+                          <td>
+                            <div>
+                              <Button
+                                color="danger"
+                                className="mr-1"
+                                onClick={() =>
+                                  this.deleteAccAdmin(account.username)
+                                }
+                              >
+                                <i class="far fa-trash-alt" />
+                                Xóa
                               </Button>
                             </div>
                           </td>

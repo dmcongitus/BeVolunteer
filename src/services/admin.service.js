@@ -23,3 +23,10 @@ export async function createAdmin(data) {
     data: data
   });
 }
+
+export async function delelteAdmin(username) {
+  return request({
+    url: `/admins/a/`+username,
+    method: "delete",
+  });
+}
