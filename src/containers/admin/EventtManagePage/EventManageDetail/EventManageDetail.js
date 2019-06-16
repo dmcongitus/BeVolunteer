@@ -91,12 +91,15 @@ class EventManageDetail extends Component {
       const { data } = await getEventByID(eventId);
       await this.setState({ event: data.event });
       if (this.state.event.status === "ONGOING") {
-        const checkList = await getCheckinByDate(eventId, DateFomart);
-        this.setState({ listCheckin: checkList.data[0] });
-
-        if (checkList.data.length === 0) {
-          createCheckinByDate(eventId, DateFomart);
+        if(this.state.event.volunteers.length > 0){
+          const checkList = await getCheckinByDate(eventId, DateFomart);
+          this.setState({ listCheckin: checkList.data[0] });
+  
+          if (checkList.data.length === 0) {
+            createCheckinByDate(eventId, DateFomart);
+          }
         }
+       
       }
     } catch {
       this.setState({ event: false });

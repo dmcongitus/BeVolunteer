@@ -170,14 +170,14 @@ class PostCard extends React.Component {
 
               {this.state.items.length < 2 ? (
                 <img
-                  style={{ cursor: "pointer", maxHeight: "10rem" }}
+                  style={{ cursor: "pointer"}}
                   src={`/resources/${this.props.filenames[0]}`}
                   className="post-album"
                 />
               ) : (
                 <div className="Newpost-img__more">
                   <img
-                    style={{ cursor: "pointer", maxHeight: "10rem" }}
+                    style={{ cursor: "pointer"}}
                     src={`/resources/${this.props.filenames[0]}`}
                     className="post-album"
                   />
