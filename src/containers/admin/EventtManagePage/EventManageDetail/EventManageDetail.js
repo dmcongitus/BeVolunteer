@@ -10,6 +10,7 @@ import EditEvent from "../../../../components/EventPage/EditEvent/EditEvent";
 import DatePicker from "react-datepicker";
 import addDays from "date-fns/add_days";
 import format from "date-fns/format";
+import { editEvent } from "../../../../services/event.service";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   getEventByID,
@@ -29,7 +30,8 @@ import {
   CardText,
   Row,
   Col,
-  Input, Alert
+  Input,
+  Alert
 } from "reactstrap";
 import classnames from "classnames";
 
@@ -88,10 +90,10 @@ class EventManageDetail extends Component {
     try {
       const { data } = await getEventByID(eventId);
       await this.setState({ event: data.event });
-      if(this.state.event.status === "ONGOING"){
+      if (this.state.event.status === "ONGOING") {
         const checkList = await getCheckinByDate(eventId, DateFomart);
         this.setState({ listCheckin: checkList.data[0] });
-    
+
         if (checkList.data.length === 0) {
           createCheckinByDate(eventId, DateFomart);
         }
@@ -99,17 +101,21 @@ class EventManageDetail extends Component {
     } catch {
       this.setState({ event: false });
     }
-  
-  
-   
   };
   startEvent = async id => {
+
     await startEventByID(id);
+    var newEvent = this.state.event;
+    newEvent.starttime = new Date();
+    console.log(newEvent)
+    await editEvent( newEvent)
     const { data } = await getEventByID(id);
     this.setState({ event: data.event });
   };
   endEvent = async id => {
     await startEventByID(id);
+    
+    //
     const { data } = await getEventByID(id);
     this.setState({ event: data.event });
   };
@@ -164,7 +170,8 @@ class EventManageDetail extends Component {
             {this.state.activeTab === "1" ? (
               <EventCardMore {...this.state.event} />
             ) : null}
-            {this.state.activeTab === "2" && this.state.event.status==="ONGOING"? (
+            {this.state.activeTab === "2" &&
+            this.state.event.status === "ONGOING" ? (
               <Row>
                 <Col xs="6">
                   <Table className="tableUnset">
@@ -178,25 +185,34 @@ class EventManageDetail extends Component {
                       <tr>
                         <td>Đã điểm danh </td>
                         <td>
-                          {
-                            this.state.listCheckin.attendances.filter(user => {
-                              return user.isPresent === true;
-                            }).length
-                          }
-                          /{this.state.listCheckin.attendances.length}
+                          {this.state.listCheckin !== undefined
+                            ? this.state.listCheckin.attendances.filter(
+                                user => {
+                                  return user.isPresent === true;
+                                }
+                              ).length
+                            : null}
+                          /
+                          {this.state.listCheckin !== undefined
+                            ? this.state.listCheckin.attendances.length
+                            : null}
                         </td>
                       </tr>
                       <tr>
                         <td>Chưa điểm danh </td>
 
                         <td>
-                          
-                          {
-                            this.state.listCheckin.attendances.filter(user => {
-                              return user.isPresent === false;
-                            }).length
-                          }
-                          /{this.state.listCheckin.attendances.length}
+                          {this.state.listCheckin !== undefined
+                            ? this.state.listCheckin.attendances.filter(
+                                user => {
+                                  return user.isPresent === false;
+                                }
+                              ).length
+                            : null}
+                          /
+                          {this.state.listCheckin !== undefined
+                            ? this.state.listCheckin.attendances.length
+                            : null}
                         </td>
                       </tr>
                       <tr>
@@ -232,8 +248,6 @@ class EventManageDetail extends Component {
                     </tr>
                   </thead>
                   <tbody>
-           
-
                     {this.state.listCheckin !== undefined
                       ? this.state.listCheckin.attendances.map(
                           (checkin, index) => (
@@ -286,21 +300,20 @@ class EventManageDetail extends Component {
                 </Table>
               </Row>
             ) : null}
-              {this.state.activeTab === "2" && this.state.event.status!=="ONGOING"? (
-                <Row>
-                  <div className="tcl-2 p-5">
-                  Sự kiện chưa bắt đầu!!!
-      </div>
-                </Row>
-              ):null}
+            {this.state.activeTab === "2" &&
+            this.state.event.status !== "ONGOING" ? (
+              <Row>
+                <div className="tcl-2 p-5">Sự kiện chưa bắt đầu!!!</div>
+              </Row>
+            ) : null}
             {this.state.activeTab === "3" ? (
               <div>
-                {" "}
+                {/* {" "}
                 <EventSetting
                   {...this.state.event}
                   startEvent={this.startEvent}
-                />
-                <EditEvent {...this.state.event} />
+                /> */}
+                <EditEvent {...this.state.event} startEvent={this.startEvent} />
               </div>
             ) : null}
           </div>
