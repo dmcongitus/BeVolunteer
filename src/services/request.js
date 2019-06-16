@@ -4,7 +4,7 @@ import { getToken } from '../utils/localStorage'
 import 'element-theme-default';
 
 const service = axios.create({
-  baseURL: 'http://172.104.39.161:3000/',
+  baseURL: 'http://172.105.113.23:3000/',
   timeout: 5000 
 })
 

@@ -34,7 +34,7 @@ export function editEvent(event) {
       for (let i = 0; i < event.image.length; i++) {
         if (typeof event.image[i] === "string") {
           let res = await Axios.get(
-            `http://172.104.39.161:3000/resources/${event.image[i]}`,
+            `http://172.105.113.23:3000/resources/${event.image[i]}`,
             {
               responseType: "blob"
             }
