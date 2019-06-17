@@ -273,7 +273,7 @@ class MeComponent extends Component {
                 )}
 
                 <li className="UpdateProfile__Main__FieldItem">
-                  <div className="UpdateProfile__Main__FieldName">Loại TK</div>
+                  <div className="UpdateProfile__Main__FieldName">Loại</div>
                   <FormGroup>
                     <Input
                       type="select"

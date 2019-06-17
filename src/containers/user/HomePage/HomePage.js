@@ -67,7 +67,7 @@ class HomePage extends Component {
   render() {
     return (
       <PageLayout
-        title="news"
+        title="bài đăng"
         hasMoreButton
         onPostTypeChanged={this.onPostTypeChanged}
       >

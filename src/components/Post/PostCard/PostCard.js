@@ -26,7 +26,7 @@ import { Notification } from "element-react";
 import "./PostCard.css";
 import Payment from "../Payment/Payment";
 import HeaderPost from "../HeaderPost/HeaderPost";
-
+import { donateEvent, checkPayment } from "../../../services/momo.service";
 class PostCard extends React.Component {
   constructor(props) {
     super(props);
@@ -51,6 +51,21 @@ class PostCard extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
   }
+
+  foo = data => {
+    console.log(data);
+    window.open(data.payUrl);
+    checkPayment(data.payUrl).then(data => {
+      console.log(data.data.status_code);
+    });
+  };
+
+  successDonate = async (amount, e) => {
+    e.preventDefault();
+    console.log(amount);
+    donateEvent(amount, this.foo, this.fooend);
+    // var data = this.foo
+  };
   messOutAfterRun() {
     Notification.error({
       title: "Error",
@@ -74,9 +89,12 @@ class PostCard extends React.Component {
   toggleOpenCard = () => {
     this.setState(state => ({ collapse: !state.collapse }));
   };
-  togglePayment() {
-    this.setState({ paymentOpen: !this.state.modalReport });
-  }
+  togglePayment = () => {
+    if (this.state.paymentOpen === true) {
+      window.location.reload();
+    }
+    this.setState({ paymentOpen: !this.state.paymentOpen });
+  };
   checkJoinEvent = (_id, _ids) => {
     return _ids.find(i => i._id === _id);
   };
@@ -170,14 +188,14 @@ class PostCard extends React.Component {
 
               {this.state.items.length < 2 ? (
                 <img
-                  style={{ cursor: "pointer"}}
+                  style={{ cursor: "pointer" }}
                   src={`/resources/${this.props.filenames[0]}`}
                   className="post-album"
                 />
               ) : (
                 <div className="Newpost-img__more">
                   <img
-                    style={{ cursor: "pointer"}}
+                    style={{ cursor: "pointer" }}
                     src={`/resources/${this.props.filenames[0]}`}
                     className="post-album"
                   />
@@ -302,10 +320,10 @@ class PostCard extends React.Component {
 
         {/*/ MORE TODO */}
         {/* Modal Pyment */}
-        <Modal isOpen={this.state.paymentOpen} toggle={this.togglePayment}>
+        <Modal isOpen={this.state.paymentOpen}>
           <ModalHeader>Thanh toán </ModalHeader>
           <ModalBody>
-            <Payment close={this.togglePayment} />
+            <Payment close={this.togglePayment} donate={this.successDonate} event = {this.props} />
           </ModalBody>
         </Modal>
         {/* Modal slide  */}

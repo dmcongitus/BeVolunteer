@@ -43,12 +43,7 @@
     top: -40.25rem;
 }
 
-.input-group-prepend span {
-    width: 3rem;
-    background-color: #FFC312;
-    color: black;
-    border: 0 !important;
-}
+
 
 input:focus {
     outline: 0 0 0 0 !important;

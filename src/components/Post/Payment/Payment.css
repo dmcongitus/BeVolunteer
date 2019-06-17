@@ -6,3 +6,21 @@
 .radiusPay{
     width: 6.25rem;
 }
+
+.flex-column-center{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.click{
+    cursor: pointer;
+}
+
+.typePayment:hover{
+    opacity: 0.7;
+}
+
+.donateOke{
+    background: rgba(152, 251, 152, 0.548)
+}

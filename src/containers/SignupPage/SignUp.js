@@ -204,7 +204,7 @@ class SignUp extends Component {
                 </NavLink>
               </div>
               <div className="d-flex justify-content-center">
-                <div className="singup-color">Forgot your password?</div>
+                <div className="singup-color">Bạn quên mật khẩu?</div>
               </div>
             </div>
           </div>

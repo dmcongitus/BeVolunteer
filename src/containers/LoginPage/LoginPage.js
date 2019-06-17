@@ -38,7 +38,7 @@ class LoginPage extends Component {
                 <div className="d-flex justify-content-center h-100">
                     <div className="card">
                         <div className="card-header">
-                            <h3>Sign In</h3>
+                            <h3>Đăng nhập</h3>
                             <div className="d-flex justify-content-end social_icon">
                                 <span><i className="fab fa-facebook-square"></i></span>
                                 <span><i className="fab fa-google-plus-square"></i></span>
@@ -60,22 +60,22 @@ class LoginPage extends Component {
                                     </div>
                                     <input type="password" className="form-control" placeholder="password" name="password" onChange={this.onFieldChanged} />
                                 </div>
-                                <div className="row align-items-center remember">
+                                {/* <div className="row align-items-center remember">
                                     <input type="checkbox" onChange={this.onLoginTypeChange} value={this.state.loginType}/>Login as admistrator
-					            </div>
+					            </div> */}
                                 <div className="form-group">
-                                    <input type="submit" value="Login" className="btn float-right login_btn" />
+                                    <input type="submit" value="Đăng nhập" className="btn float-right login_btn" />
                                 </div>
                             </form>
                         </div>
                         <div className="card-footer">
                             <div className="d-flex justify-content-center links">
-                                Don't have an account?
-                                <NavLink to="/signup"><div className="singup-color"> Sign Up</div></NavLink>
+                                Bạn chưa có tài khoản?
+                                <NavLink to="/signup"><div className="singup-color"> Tạo ngay</div></NavLink>
                                 
                             </div>
                             <div className="d-flex justify-content-center">
-                                <div className="singup-color" >Forgot your password?</div>
+                                <div className="singup-color" >Bạn quên mật khẩu?</div>
                                
                             </div>
                         </div>

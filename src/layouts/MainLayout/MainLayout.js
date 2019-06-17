@@ -28,7 +28,7 @@ const MainLayout = ({children, permission, username}) => (
        
             <Col xs="3" className="mr-unset pl-3 pr-3">
                 {/* Do not show RightSide if permission is admin */}
-                <RightSide /> 
+          <RightSide ></RightSide> 
             </Col>
         </Row>
         :

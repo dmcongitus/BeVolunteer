@@ -47,7 +47,7 @@ class Header extends React.Component {
             <input
               className="form-control mr-sm-2"
               type="text"
-              placeholder="Search"
+              placeholder="Tìm kiếm"
               aria-label="Search"
               name="searchText"
               onChange={this.onChange}
@@ -57,7 +57,8 @@ class Header extends React.Component {
               className="btn btn-outline-success my-2 my-sm-0"
               type="submit"
             >
-              Search
+              <i className="fas fa-search mr-1"></i>
+              Tìm kiếm
             </button>
             </Link>
           </form>
@@ -80,7 +81,7 @@ class Header extends React.Component {
                 
                   <a className="nav-link">
                     <i className="fa fa-home" />
-                    Home
+                    Trang chủ
                   </a>
                
               </NavLink>
@@ -153,8 +154,8 @@ class Header extends React.Component {
               <li className="nav-item active" onClick={this.log_out}>
                 <a className="nav-link">
                   <i className="fa fa-sign-out" />
-                  Logout
-                  <span className="sr-only">(current)</span>
+                  Đăng xuất
+                  
                 </a>
               </li>
             </ul>
