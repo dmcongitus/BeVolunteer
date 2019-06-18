@@ -252,9 +252,11 @@ class PostCard extends React.Component {
                     ) : this.props.status === "UPCOMING" &&
                       this.props.myUser.permission === "USER" ? (
                       <th onClick={this.joinToEvent}>
+                         <Link to={`eventMore/${this.props._id}`}>
                         <div>
                           <i class="fas fa-user-plus" /> Tham gia
                         </div>
+                        </Link>
                       </th>
                     ) : null
                   ) : null}

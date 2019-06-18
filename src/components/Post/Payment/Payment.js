@@ -65,10 +65,12 @@ class Payment extends React.Component {
         console.log(this.state.paymentStatus);
       });
     } else {
-      if (this.state.paymentStatus === true) {
-        Notification.error({
-          title: "Lỗi",
-          message: "ahihi"
+      if (this.state.paymentStatus === true && this.state.test === false) {
+        await this.setState({test:true})
+        Notification({
+          title: 'Thành công',
+          message: 'Thanh toán thành công',
+          type: 'success'
         });
       }
     }
