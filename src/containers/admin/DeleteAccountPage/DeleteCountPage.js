@@ -201,7 +201,7 @@ class DeleteAccountPage extends Component {
                               }
                               style={{ width: "7rem" }}
                             >
-                              <i class="fas fa-lock" />
+                              <i className="fas fa-lock" />
                               Khóa
                             </Button>
                           ) : (
@@ -212,7 +212,7 @@ class DeleteAccountPage extends Component {
                                 this.onAccountUnBan(account.username)
                               }
                             >
-                              <i class="fas fa-unlock" />
+                              <i className="fas fa-unlock" />
                               Mở
                             </Button>
                           )}
@@ -260,7 +260,7 @@ class DeleteAccountPage extends Component {
                                   this.onAccountBan(account.username)
                                 }
                               >
-                                <i class="fas fa-lock" />
+                                <i className="fas fa-lock" />
                                 Khóa
                               </Button>
                             </div>
@@ -309,7 +309,7 @@ class DeleteAccountPage extends Component {
                                   this.onAccountUnBan(account.username)
                                 }
                               >
-                                <i class="fas fa-unlock" />
+                                <i className="fas fa-unlock" />
                                 Mở khóa
                               </Button>
                             </div>

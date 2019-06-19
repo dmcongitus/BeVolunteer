@@ -26,14 +26,14 @@ const RightSideCard = props => (
           </div>
         </Col>
         <Col xs="6" className="pl-0 pr-2">
-          <a>
+          
           <Link to={`/eventMore/${props._id}`}>
             <h6>{props.title}</h6>
             </Link>
-          </a>
+          
           <p>
             <small>
-              <i className="fa fa-calendar" data-original-title title />{" "}
+              <i className="fa fa-calendar" />
               {getDate(props.deadline)}
             </small>
           </p>

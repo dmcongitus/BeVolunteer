@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import { getToken } from '../utils/localStorage';
 import request from './request'
 import { Message } from 'element-react';
@@ -12,12 +11,6 @@ export function updateUserInfo(username, userInfo) {
         method: 'put',
        data: userInfo
     })
-    // return Axios.put('/accounts/u/' + username,
-    //     userInfo, {
-    //         headers: {
-    //             "x-access-token": getToken()
-    //         }
-    //     })
     .then(Message.success("Cập nhật thành công"));
 }
 
@@ -25,9 +18,7 @@ export function updateUserInfo(username, userInfo) {
  * Get user's info
  * @param {String} username User's username
  */
-export function getUserInfo(username) {
-    return Axios.get();
-}
+
 
 export function getMyPosts(userId) {
     return request({
@@ -35,5 +26,4 @@ export function getMyPosts(userId) {
         method: 'get',
        
     })
-    // return Axios.get(`/posts/user/${userId}`, { headers: { "x-access-token": localStorage.getItem("token") } } );
 }

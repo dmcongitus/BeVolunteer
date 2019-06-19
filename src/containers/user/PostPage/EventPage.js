@@ -45,7 +45,8 @@ class PostPage extends Component {
     let { eventId } = this.props.match.params;
     try {
       const { data } = await getSpecificEvents(eventId);
-    
+      const test = await getSpecificEvents("5cfe68ad40ccee2fd2c85541")
+      console.log(test)
       await this.setState({ event: data.event });
       
     } catch {
@@ -57,6 +58,7 @@ class PostPage extends Component {
     if (this.props.match.params.eventId != prevProps.match.params.eventId) {
       try {
         const { data } = await getSpecificEvents(this.props.match.params.eventId);
+        
         await this.setState({ event: data.event });
         
       } catch {

@@ -24,7 +24,6 @@ import Payment from "../Payment/Payment";
 import HeaderPost from "../HeaderPost/HeaderPost";
 import Comment from "./Comment/Comment";
 import "./PostCardMore.css";
-import Axios from "axios";
 import request from "../../../services/request";
 class PostCardMore extends React.Component {
   constructor(props) {
@@ -259,7 +258,7 @@ class PostCardMore extends React.Component {
                       className="mr-1 add-btn"
                       disabled={this.props.myUser.isVerified === false}
                     >
-                      <i class="fas fa-angle-double-right icon-button" />
+                      <i className="fas fa-angle-double-right icon-button" />
                       Tham gia
                     </Button>
                   </div>
@@ -267,7 +266,7 @@ class PostCardMore extends React.Component {
                 {this.props.type === "Địa điểm" && (
                   <div>
                     <Button className="mr-1 new-btn">
-                      <i class="fas fa-edit icon-button" />
+                      <i className="fas fa-edit icon-button" />
                       Tạo event
                     </Button>
                   </div>
@@ -278,7 +277,7 @@ class PostCardMore extends React.Component {
                       className="mr-1 donate-btn"
                       onClick={this.togglePayment}
                     >
-                      <i class="fas fa-donate icon-button" />
+                      <i className="fas fa-donate icon-button" />
                       Quyên góp
                     </Button>
                     <Modal
@@ -302,7 +301,7 @@ class PostCardMore extends React.Component {
                     <div>
                       <img
                         className="img-user-postCard rounded-circle"
-                        src={"/resources/" + this.props.myUser.avatar}
+                        src={`/resources/` + this.props.myUser.avatar}
                         alt="UserAvatar"
                         style={{ width: "3rem", height: "3rem" }}
                       />

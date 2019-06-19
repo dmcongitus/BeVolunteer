@@ -22,14 +22,14 @@ class RightSide extends React.Component {
     return (
       <div className="side-body">
         <div className="title-side-body">
-          <i class="fas fa-calendar-week" /> Sự kiện sắp diễn ra
+          <i className="fas fa-calendar-week" /> Sự kiện sắp diễn ra
         </div>
         <div className="content-side-body">
          
 
          {(this.state.data.map((data,index) => (
            index<4 &&
-            <RightSideCard {...data} />
+            <RightSideCard {...data} key={data._id}/>
           )))}
         </div>
       </div>

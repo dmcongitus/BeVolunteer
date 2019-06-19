@@ -5,7 +5,7 @@ const pageLayout = ({ title, children, hasMoreButton, onPostTypeChanged }) => (
     <div className="side-body" style={{ position: 'relative' , minHeight: '84vh'}}>
         <div className="title-side-body" style={{ textTransform: 'uppercase' }}>
         <div className= "title-text" style={{fontSize:"1.25rem"}}>
-        <i class="fas fa-cube"></i> {title}
+        <i className="fas fa-cube"></i> {title}
             </div></div>
         <div style={{ position: "absolute", right: '1.25rem', top: '1rem', zIndex: 1000 }}>
             {hasMoreButton && <MoreVerticalButton onPostTypeChanged={onPostTypeChanged} />}

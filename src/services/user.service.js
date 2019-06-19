@@ -1,4 +1,3 @@
-import Axios from "axios";
 import request from './request'
 import { Message } from "element-react";
 
@@ -107,11 +106,19 @@ export function verify(identityCard) {
     for (let i = 0; i < identityCard.length; i++){
       formData.append("verify", identityCard[i]);
     }
-    return Axios.post("/accounts/verify", formData, { headers: { "x-access-token": localStorage.getItem("token") } });
+    return request({
+      url: `/accounts/verify`,
+      method: 'post',
+      data: formData
+    })
 }
 
 export function uploadAvatar(username, avatar) {
   const formData = new FormData()
   formData.append("avatar", avatar)
-  return Axios.put(`/accounts/u/${username}/avatar`, formData, {headers: {"x-access-token": localStorage.getItem("token")}})
+  return request({
+    url: `/accounts/u/${username}/avatar`,
+    method: 'put',
+    data: formData
+  })
 }

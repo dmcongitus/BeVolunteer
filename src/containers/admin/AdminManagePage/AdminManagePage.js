@@ -202,7 +202,7 @@ class AdminManagePage extends Component {
                               this.deleteAccAdmin(account.username)
                             }
                           >
-                            <i class="far fa-trash-alt" />
+                            <i className="far fa-trash-alt" />
                             Xóa
                           </Button>
                         </div>
@@ -232,7 +232,7 @@ class AdminManagePage extends Component {
                                   this.deleteAccAdmin(account.username)
                                 }
                               >
-                                <i class="far fa-trash-alt" />
+                                <i className="far fa-trash-alt" />
                                 Xóa
                               </Button>
                             </div>
@@ -263,7 +263,7 @@ class AdminManagePage extends Component {
                                   this.deleteAccAdmin(account.username)
                                 }
                               >
-                                <i class="far fa-trash-alt" />
+                                <i className="far fa-trash-alt" />
                                 Xóa
                               </Button>
                             </div>
@@ -297,7 +297,7 @@ class AdminManagePage extends Component {
                                   this.deleteAccAdmin(account.username)
                                 }
                               >
-                                <i class="far fa-trash-alt" />
+                                <i className="far fa-trash-alt" />
                                 Xóa
                               </Button>
                             </div>

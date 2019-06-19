@@ -239,7 +239,7 @@ class PostCheckin extends React.Component {
                 <div>
                   <Button className="mr-1 new-btn" onClick={this.toggleCheckin}
                   disabled = {this.props.status!=="ONGOING"}>
-                    <i class="fas fa-calendar-check icon-button" />
+                    <i className="fas fa-calendar-check icon-button" />
                     Điểm danh
                   </Button>
 
@@ -251,7 +251,7 @@ class PostCheckin extends React.Component {
                       toggle={this.toggleCheckin}
                       style={{ background: "#042c38", color: "white" }}
                     >
-                      <i class="far fa-calendar-check" /> Điểm danh
+                      <i className="far fa-calendar-check" /> Điểm danh
                     </ModalHeader>
                     <ModalBody style={{ background: "gainsboro" }}>
                       <Row>
@@ -317,7 +317,7 @@ class PostCheckin extends React.Component {
 
               <Link to={`eventMore/${this.props._id}`}>
                 <Button color="success" className="mr-1 success p-2">
-                  <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                  <i className="fas fa-angle-double-right icon-button" /> Xem thêm
                 </Button>
               </Link>
             </div>

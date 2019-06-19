@@ -1,21 +1,22 @@
-import Axios from "axios";
 import request from "./request";
 import { Message } from "element-react";
 import { getDate, getDay, getYear, getMonth } from "date-fns";
 
 export function createEvent(event) {
-  return Axios.post("/events", event, {
-    headers: {
-      "x-access-token": localStorage.getItem("token")
-    }
+  return request({
+    url: `/events`,
+    method: "post",
+    data: event
   }).then(({ data: { _id } }) => {
     if (event.image) {
       const formData = new FormData();
       for (let i = 0; i < event.image.length; i++) {
         formData.append("resources", event.image[i]);
       }
-      return Axios.put(`/events/${_id}/resources`, formData, {
-        headers: { "x-access-token": localStorage.getItem("token") }
+      return request({
+        url: `/events/${_id}/resources`,
+        method: "put",
+        data: formData
       });
     } else {
       return Promise.resolve();
@@ -24,21 +25,21 @@ export function createEvent(event) {
 }
 
 export function editEvent(event) {
-  return Axios.put(`/events/${event._id}`, event, {
-    headers: {
-      "x-access-token": localStorage.getItem("token")
-    }
+  return request({
+    url: `/events/${event._id}`,
+    method: "put",
+    data: event
   }).then(async ({ data: { _id } }) => {
     if (event.image) {
       const formData = new FormData();
       for (let i = 0; i < event.image.length; i++) {
-        if (typeof event.image[i] === "string") {
-          let res = await Axios.get(
-            `http://172.105.113.23:3000/resources/${event.image[i]}`,
-            {
-              responseType: "blob"
-            }
-          );
+        if (typeof event.image[i] === "string")  {
+          let res = await request({
+            url: `/resources/${event.image[i]}`,
+            method: "get",
+            responseType: "blob"
+          
+          });
           let file = new File([res.data], event.image[i], {
             type: res.data.type
           });
@@ -47,8 +48,11 @@ export function editEvent(event) {
           formData.append("resources", event.image[i]);
         }
       }
-      return Axios.put(`/events/${_id}/resources`, formData, {
-        headers: { "x-access-token": localStorage.getItem("token") }
+      return request({
+        url: `/events/${_id}/resources`,
+        method: "put",
+        data: formData
+      
       });
     } else {
       return Promise.resolve();
@@ -61,9 +65,6 @@ export function getEvents(statusEvent) {
     return request({
       url: `/events`,
       method: "get"
-    });
-    return Axios.get("/events", {
-      headers: { "x-access-token": localStorage.getItem("token") }
     });
   } else {
     return request({
@@ -86,9 +87,10 @@ export function deleteEvent(id) {
 }
 
 export function getSpecificEvent(eventId) {
-  return Axios.get(`/events/${eventId}`, {
-    headers: { "x-access-token": localStorage.getItem("token") }
-  });
+  return request({
+    url: `/events/${eventId}`,
+    method: "get"
+  })
 }
 
 export function joinEvent(id) {
@@ -174,16 +176,15 @@ export function CheckinUserByCode(id, idCheckin, code) {
 }
 
 export function getCheckinByDateUser(id, date, username) {
-    return request({
-      url: `/events/` + id + `/attendances/`+username +`?date=` + date,
-      method: "get"
-    });
-  }
-
+  return request({
+    url: `/events/` + id + `/attendances/` + username + `?date=` + date,
+    method: "get"
+  });
+}
 
 export function getAllCheckinUser(id, username) {
-    return request({
-      url: `/events/` + id + `/attendances/`+username,
-      method: "get"
-    });
-  }
+  return request({
+    url: `/events/` + id + `/attendances/` + username,
+    method: "get"
+  });
+}

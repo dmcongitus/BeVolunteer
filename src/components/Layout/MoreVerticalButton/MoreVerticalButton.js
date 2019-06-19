@@ -58,7 +58,7 @@ class MoreVerticalButton extends Component {
                     aria-haspopup="true"
                     onClick={this.handleToggle}
                     className = "p-2">
-                    <i class="fas fa-filter"></i>
+                    <i className="fas fa-filter"></i>
                     Loại
                     
                 </Button>

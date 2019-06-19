@@ -7,7 +7,6 @@ export function getNewfeed(page) {
             method: 'get'
         })
     }
-
     else{
         return request({
             url:`/newsfeed?page=`+ page,

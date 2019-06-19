@@ -177,7 +177,7 @@ class PostCard extends React.Component {
                       className="mr-1 new-btn"
                       onClick={() => this.props.unjoinEvent(this.props._id)}
                     >
-                      <i class="fas fa-chevron-circle-left icon-button" />
+                      <i className="fas fa-chevron-circle-left icon-button" />
                       Hủy
                     </Button>
                   ) : (
@@ -187,7 +187,7 @@ class PostCard extends React.Component {
                       onClick={() => this.props.joinToEvent(this.props._id)}
                       disabled = {this.props.myUser.isVerified===false}
                     >
-                      <i class="fas fa-angle-double-right icon-button" />
+                      <i className="fas fa-angle-double-right icon-button" />
                       Tham gia
                     </Button>
                   )}
@@ -198,7 +198,7 @@ class PostCard extends React.Component {
               {this.props.type === "PLACE" && (
                 <div>
                   <Button className="mr-1 new-btn">
-                    <i class="fas fa-edit icon-button" />
+                    <i className="fas fa-edit icon-button" />
                     Tạo event
                   </Button>
                 </div>
@@ -206,12 +206,12 @@ class PostCard extends React.Component {
 
                 {this.props.type === 'EVENT'?   (<Link to={`eventMore/${this.props._id}`}>
                 <Button color="success" className="mr-1 success p-2">
-                  <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                  <i className="fas fa-angle-double-right icon-button" /> Xem thêm
                 </Button>
               </Link>):(
                  <Link to={`post/${this.props._id}`}>
                  <Button color="success" className="mr-1 success p-2">
-                   <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                   <i className="fas fa-angle-double-right icon-button" /> Xem thêm
                  </Button>
                </Link>)
               }
@@ -224,7 +224,7 @@ class PostCard extends React.Component {
                     className="mr-1 donate-btn"
                     onClick={this.togglePayment}
                   >
-                    <i class="fas fa-donate icon-button" />
+                    <i className="fas fa-donate icon-button" />
                     Quyên góp
                   </Button>
                 </div>

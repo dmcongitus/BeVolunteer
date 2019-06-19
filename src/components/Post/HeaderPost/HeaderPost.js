@@ -125,9 +125,9 @@ class headerPost extends React.Component {
                       <span>
                           
                       <span className="tcl-1 mr-2">Sự kiện</span>
-                      {this.props.status==="UPCOMING"?<i class="fas fa-user-plus"></i>:null}
-                      {this.props.status==="ONGOING"?<i class="fas fa-running"></i>:null}
-                      {this.props.status==="FINISHED"?<i class="fas fa-ban"></i>:null}
+                      {this.props.status==="UPCOMING"?<i className="fas fa-user-plus"></i>:null}
+                      {this.props.status==="ONGOING"?<i className="fas fa-running"></i>:null}
+                      {this.props.status==="FINISHED"?<i className="fas fa-ban"></i>:null}
                       </span>
                       
                      
@@ -142,7 +142,7 @@ class headerPost extends React.Component {
                   }
                 </span>
                 <div className="small">
-                  <i className="fa fa-calendar" data-original-title title />
+                  <i className="fa fa-calendar"/>
                   {format(new Date(this.props.createdAt), "DD/MM/YYYY")}
         
                   <i className="fas fa-map-marker-alt ml-3" />
@@ -167,11 +167,11 @@ class headerPost extends React.Component {
                 data-toggle="dropdown"
                 aria-expanded={this.state.dropdownOpen}
               >
-                <i class="fas fa-bars" />
+                <i className="fas fa-bars" />
               </DropdownToggle>
               <DropdownMenu className="menu-post-item p-1">
                 <div onClick={this.toggleReport}>
-                  <i class="fas fa-bug ml-3" />
+                  <i className="fas fa-bug ml-3" />
                   Báo cáo
                 </div>
               </DropdownMenu>
@@ -197,14 +197,14 @@ class headerPost extends React.Component {
                     className="mr-1"
                     onClick={this.toggleSuccessReport}
                   >
-                    <i class="fas fa-bug icon-button" /> Báo cáo
+                    <i className="fas fa-bug icon-button" /> Báo cáo
                   </Button>
                   <Button
                     color="success"
                     className="mr-1"
                     onClick={this.toggleReport}
                   >
-                    <i class="fas fa-trash icon-button" /> Hủy
+                    <i className="fas fa-trash icon-button" /> Hủy
                   </Button>
                 </ModalFooter>
               </Modal>

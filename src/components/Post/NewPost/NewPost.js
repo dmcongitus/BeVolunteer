@@ -64,7 +64,7 @@ class NewPost extends Component {
             <Row style={{ display: "flex", alignItems: "center" }}>
               <Col xs="9">
                 <div className="text1">
-                  <i class="fas fa-pencil-alt" />
+                  <i className="fas fa-pencil-alt" />
                   Tạo Bài Viết
                 </div>
               </Col>
@@ -160,7 +160,7 @@ class NewPost extends Component {
 
         <Row className="botForm">
           <Button className="success mr-3 mb-10" onClick={this.onSubmit}>
-            <i class="fas fa-upload icon-button" />Đăng tải
+            <i className="fas fa-upload icon-button" />Đăng tải
           </Button>
         </Row>
       </Col>

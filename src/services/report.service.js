@@ -1,4 +1,3 @@
-import Axios from "axios";
 import request from './request'
 import { Message } from "element-react";
 

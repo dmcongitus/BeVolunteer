@@ -26,7 +26,6 @@ import Payment from "../Payment/Payment";
 import HeaderPost from "../HeaderPost/HeaderPost";
 import Comment from "./Comment/Comment";
 import "./PostCardMore.css";
-import Axios from "axios";
 import addDays from "date-fns/add_days";
 import format from "date-fns/format";
 import { Notification } from "element-react";
@@ -226,10 +225,10 @@ class EventCardMore extends React.Component {
                   <Row>
                     <Col xs="3">
                       <div>
-                        <i class="far fa-calendar-alt" /> <b>Thời gian: </b>
+                        <i className="far fa-calendar-alt" /> <b>Thời gian: </b>
                       </div>
                       <div>
-                        <i class="fas fa-users"> </i> <b>Số lượng: </b>
+                        <i className="fas fa-users"> </i> <b>Số lượng: </b>
                       </div>
                     </Col>
                     <Col xs="8">
@@ -247,7 +246,7 @@ class EventCardMore extends React.Component {
                         {this.props.volunteers.length}/
                         {this.props.numVolunteers}
                         <span className="ml-2 eye-btn" onClick={this.toggleEye}>
-                          <i class="fas fa-eye" />
+                          <i className="fas fa-eye" />
                         </span>
                       </div>
                     </Col>
@@ -339,13 +338,13 @@ class EventCardMore extends React.Component {
                               }
                             >
                               <div>
-                                <i class="fas fa-user-minus" /> Huỷ
+                                <i className="fas fa-user-minus" /> Huỷ
                               </div>
                             </th>
                           ) : (
                             <th onClick={() => this.messOutAfterRun()}>
                               <div style={{ color: "gray" }}>
-                                <i class="fas fa-user-minus" /> Huỷ
+                                <i className="fas fa-user-minus" /> Huỷ
                               </div>
                             </th>
                           )
@@ -360,7 +359,7 @@ class EventCardMore extends React.Component {
                             }
                           >
                             <div>
-                              <i class="fas fa-user-plus" /> Tham gia
+                              <i className="fas fa-user-plus" /> Tham gia
                             </div>
                           </th>
                         ) : null
@@ -368,7 +367,7 @@ class EventCardMore extends React.Component {
                       {this.props.type === "EVENT" && (
                         <th onClick={this.togglePayment}>
                           <div>
-                            <i class="fas fa-donate" />
+                            <i className="fas fa-donate" />
                             Quyên góp
                           </div>
                         </th>

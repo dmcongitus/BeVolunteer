@@ -29,7 +29,6 @@ class HomePage extends Component {
     const data = await getNewfeed(postType);
 
     if (postType !== "ALL") {
-   
       this.setState({
         data: data.data.filter(d => d.type === postType)
       });
@@ -76,7 +75,7 @@ class HomePage extends Component {
         )}
 
         {this.state.data.map(post => (
-          <div className="hoverPostCard">
+          <div className="hoverPostCard" key={post._id}>
             <Post
               key={post.id}
               {...post}

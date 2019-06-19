@@ -184,21 +184,21 @@ class PostCard extends React.Component {
                 className="mr-1 donate-btn"
                 onClick={ () => this.props.deleteReport(this.props._id)}
               >
-                <i class="fas fa-trash-alt icon-button" />
+                <i className="fas fa-trash-alt icon-button" />
                 Xóa báo cáo
               </Button>
               <Button className="mr-1 new-btn"   onClick={ () => this.props.deletePostReport(this.props.object._id, this.props.objectModel)}>
-                <i class="fas fa-lock icon-button" />
+                <i className="fas fa-lock icon-button" />
                 Khóa bài
               </Button>
               {this.props.object.type === "EVENT"?(<Link to={`eventMore/${this.props.object._id}`}>
                 <Button color="success" className="mr-1 success p-2">
-                  <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                  <i className="fas fa-angle-double-right icon-button" /> Xem thêm
                 </Button>
               </Link>):(
               <Link to={`post/${this.props.object._id}`}>
               <Button color="success" className="mr-1 success p-2">
-                <i class="fas fa-angle-double-right icon-button" /> Xem thêm
+                <i className="fas fa-angle-double-right icon-button" /> Xem thêm
               </Button>
             </Link>)
             }

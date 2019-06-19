@@ -79,10 +79,10 @@ class Header extends React.Component {
             <ul className="navbar-nav ">
               <NavLink activeStyle={{ color: "green" }} className="nav-link" to="/">
                 
-                  <a className="nav-link">
+                  <span className="nav-link">
                     <i className="fa fa-home" />
                     Trang chủ
-                  </a>
+                  </span>
                
               </NavLink>
               <Button

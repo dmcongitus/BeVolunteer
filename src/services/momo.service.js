@@ -142,7 +142,7 @@ export function checkPayment(data, amount) {
     get(data, "signature") +
     get(data, "requestType");
     //console.log(url);
-    
+  
   return Axios.post(
     url
   );

@@ -118,7 +118,7 @@ class appovePage extends Component {
                           this.handleRowOnClick(account);
                         }}
                       >
-                        <i class="fas fa-eye icon-button" />
+                        <i className="fas fa-eye icon-button" />
                         Xem
                       </Button>
                     </div>
@@ -129,14 +129,14 @@ class appovePage extends Component {
                         className="ml-2 success"
                         onClick={() => this.onAccountVerify(account.username)}
                       >
-                        <i class="fas fa-check-circle icon-button" />
+                        <i className="fas fa-check-circle icon-button" />
                         Đồng ý
                       </Button>
                       <Button
                         className="ml-2 new-btn"
                         onClick={() => this.onAccountUnVerify(account.username)}
                       >
-                        <i class="fas fa-times-circle icon-button" />
+                        <i className="fas fa-times-circle icon-button" />
                         Hủy
                       </Button>
                     </div>{" "}
@@ -151,7 +151,7 @@ class appovePage extends Component {
             className="modal-approve"
           >
             <ModalHeader className="my-ModalHeader" toggle={this.toggle}>
-              <i class="fas fa-user-check" />
+              <i className="fas fa-user-check" />
               Xác thực người dùng
             </ModalHeader>
             <ModalBody style={{ background: "#E6E6E6" }}>
@@ -170,7 +170,7 @@ class appovePage extends Component {
                   this.onAccountVerify(this.state.activeAccount.username)
                 }
               >
-                <i class="fas fa-check-circle icon-button" />
+                <i className="fas fa-check-circle icon-button" />
                 Đồng ý
               </Button>
               <Button
@@ -180,7 +180,7 @@ class appovePage extends Component {
                   this.onAccountUnVerify(this.state.activeAccount.username)
                 }
               >
-                <i class="fas fa-times-circle icon-button" />
+                <i className="fas fa-times-circle icon-button" />
                 Hủy
               </Button>
             </ModalFooter>

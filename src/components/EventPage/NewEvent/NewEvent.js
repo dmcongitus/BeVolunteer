@@ -372,7 +372,7 @@ class NewEvent extends Component {
                       className="NewEvent__Footer__Cancel"
                       onClick={this.handleCancel}
                     >
-                      <i class="fas fa-trash-alt ml-1" /> Hủy
+                      <i className="fas fa-trash-alt ml-1" /> Hủy
                     </Button>
                   </div>
                 )}

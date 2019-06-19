@@ -182,43 +182,100 @@ class PostCard extends React.Component {
         </Row>
 
         <Collapse isOpen={this.state.collapse}>
-          <Row className="p-2 item-mid">
-            <div onClick={this.toggle}>
-              {/* {this.clearArray()} */}
+          <div className="p-2 item-mid" onClick={this.toggle}>
+            {/* {this.clearArray()} */}
 
-              {this.state.items.length < 2 ? (
-                <img
-                  style={{ cursor: "pointer" }}
-                  src={`/resources/${this.props.filenames[0]}`}
-                  className="post-album"
-                />
-              ) : (
-                <div className="Newpost-img__more">
-                  <img
-                    style={{ cursor: "pointer" }}
-                    src={`/resources/${this.props.filenames[0]}`}
-                    className="post-album"
-                  />
-                  <div>+{this.state.items.length - 1}</div>
-                </div>
-              )}
-            </div>
+            {this.state.items.length < 2 ? (
+              <img
+                style={{ cursor: "pointer" }}
+                src={`/resources/${this.props.filenames[0]}`}
+                className="post-album"
+              />
+            ) : null}
+            {this.state.items.length == 2 ? (
+              <Row>
+                <Col xs="6" style={{ paddingRight: "2px", paddingLeft: "0" }}>
+                  <div>
+                    <img
+                      style={{ cursor: "pointer" }}
+                      src={`/resources/${this.props.filenames[0]}`}
+                      className="post-album-2"
+                    />
+                  </div>
+                </Col>
+                <Col xs="6" className="pl-0 pr-0">
+                  <div>
+                    <img
+                      style={{ cursor: "pointer" }}
+                      src={`/resources/${this.props.filenames[1]}`}
+                      className="post-album-2"
+                    />
+                  </div>
+                </Col>
+              </Row>
+            ) : null}
+            {this.state.items.length >= 3 ? (
+              <Row>
+                <Col
+                  xs="6"
+                  style={{ paddingRight: "0.1rem", paddingLeft: "0" }}
+                >
+                  <div>
+                    <img
+                      style={{ cursor: "pointer" }}
+                      src={`/resources/${this.props.filenames[0]}`}
+                      className="post-album-3"
+                    />
+                  </div>
+                </Col>
+                <Col xs="6" className="pl-0 pr-0" style={{ height: "24rem" }}>
+                  <div>
+                    <img
+                      style={{ cursor: "pointer" }}
+                      src={`/resources/${this.props.filenames[1]}`}
+                      className="post-album-2-3"
+                    />
+                  </div>
+                  {this.state.items.length > 3 ? (
+                    <div
+                      className="Newpost-img__more"
+                      style={{ marginTop: "0.1rem" }}
+                    >
+                      <img
+                        style={{ cursor: "pointer" }}
+                        src={`/resources/${this.props.filenames[1]}`}
+                        className="post-album-2-3"
+                      />
+                      <div>+{this.state.items.length - 1}</div>
+                    </div>
+                  ) : (
+                    <div style={{ marginTop: "0.1rem" }}>
+                      <img
+                        style={{ cursor: "pointer" }}
+                        src={`/resources/${this.props.filenames[1]}`}
+                        className="post-album-2-3"
+                      />
+                    </div>
+                  )}
+                </Col>
+              </Row>
+            ) : null}
 
             {/*/ cardbox-item */}
-          </Row>
+          </div>
         </Collapse>
         <div className="btn-bottom-postCard">
           <Collapse isOpen={!this.state.collapse}>
             <Row className="item-mid" onClick={this.toggleOpenCard}>
               <div>
-                <i class="fas fa-angle-double-down" />
+                <i className="fas fa-angle-double-down" />
               </div>
             </Row>
           </Collapse>
           <Collapse isOpen={this.state.collapse}>
             <Row className="item-mid" onClick={this.toggleOpenCard}>
               <div>
-                <i class="fas fa-angle-double-up" />
+                <i className="fas fa-angle-double-up" />
               </div>
             </Row>
           </Collapse>
@@ -239,23 +296,23 @@ class PostCard extends React.Component {
                           onClick={() => this.props.unjoinEvent(this.props._id)}
                         >
                           <div>
-                            <i class="fas fa-user-minus" /> Huỷ
+                            <i className="fas fa-user-minus" /> Huỷ
                           </div>
                         </th>
                       ) : (
                         <th onClick={() => this.messOutAfterRun()}>
                           <div style={{ color: "gray" }}>
-                            <i class="fas fa-user-minus" /> Huỷ
+                            <i className="fas fa-user-minus" /> Huỷ
                           </div>
                         </th>
                       )
                     ) : this.props.status === "UPCOMING" &&
                       this.props.myUser.permission === "USER" ? (
                       <th onClick={this.joinToEvent}>
-                         <Link to={`eventMore/${this.props._id}`}>
-                        <div>
-                          <i class="fas fa-user-plus" /> Tham gia
-                        </div>
+                        <Link to={`eventMore/${this.props._id}`}>
+                          <div>
+                            <i className="fas fa-user-plus" /> Tham gia
+                          </div>
                         </Link>
                       </th>
                     ) : null
@@ -264,7 +321,7 @@ class PostCard extends React.Component {
                   {this.props.type === "EVENT" && (
                     <th onClick={this.togglePayment}>
                       <div>
-                        <i class="fas fa-donate" />
+                        <i className="fas fa-donate" />
                         Quyên góp
                       </div>
                     </th>
@@ -273,7 +330,7 @@ class PostCard extends React.Component {
                     <th>
                       <Link to={`/post/${this.props._id}`}>
                         <div>
-                          <i class="fas fa-glasses" /> Xem thêm
+                          <i className="fas fa-glasses" /> Xem thêm
                         </div>
                       </Link>
                     </th>
@@ -288,7 +345,7 @@ class PostCard extends React.Component {
                       <th>
                         <Link to="/event">
                           <div>
-                            <i class="far fa-calendar-plus" /> Tạo sự kiện
+                            <i className="far fa-calendar-plus" /> Tạo sự kiện
                           </div>
                         </Link>
                       </th>
@@ -300,7 +357,7 @@ class PostCard extends React.Component {
                       <th>
                         <Link to={`/EventManageDetail/${this.props._id}`}>
                           <div>
-                            <i class="fas fa-glasses" /> Xem thêm
+                            <i className="fas fa-glasses" /> Xem thêm
                           </div>
                         </Link>
                       </th>
@@ -308,7 +365,7 @@ class PostCard extends React.Component {
                       <th>
                         <Link to={`/eventMore/${this.props._id}`}>
                           <div>
-                            <i class="fas fa-glasses" /> Xem thêm
+                            <i className="fas fa-glasses" /> Xem thêm
                           </div>
                         </Link>
                       </th>
@@ -325,7 +382,11 @@ class PostCard extends React.Component {
         <Modal isOpen={this.state.paymentOpen}>
           <ModalHeader>Thanh toán </ModalHeader>
           <ModalBody>
-            <Payment close={this.togglePayment} donate={this.successDonate} event = {this.props} />
+            <Payment
+              close={this.togglePayment}
+              donate={this.successDonate}
+              event={this.props}
+            />
           </ModalBody>
         </Modal>
         {/* Modal slide  */}
