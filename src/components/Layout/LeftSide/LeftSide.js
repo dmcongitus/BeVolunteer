@@ -63,7 +63,7 @@ class LeftSide extends Component {
                       {permissionArr[this.props.permission]}
                       <span className="ml-2 tcl-1">
                       
-                        Level {this.props.exp}
+                        Cấp {this.props.exp}
                       </span>
                     </div>
                   </div>

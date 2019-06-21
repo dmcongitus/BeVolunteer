@@ -77,6 +77,17 @@ class LoginPage extends Component {
                             <div className="d-flex justify-content-center">
                                 <div className="singup-color" >Bạn quên mật khẩu?</div>
                                
+                         
+                        </div>
+                        <div className="card-footer">
+                        </div>
+                            <div className="d-flex justify-content-center">
+                                <div className="singup-color" >user: testaccount - testaccount</div>
+                               
+                            </div>
+                            <div className="d-flex justify-content-center">
+                                <div className="singup-color" >admin: superadmin - superadmin</div>
+                               
                             </div>
                         </div>
                     </div>

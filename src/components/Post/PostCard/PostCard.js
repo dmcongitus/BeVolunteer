@@ -243,7 +243,7 @@ class PostCard extends React.Component {
                     >
                       <img
                         style={{ cursor: "pointer" }}
-                        src={`/resources/${this.props.filenames[1]}`}
+                        src={`/resources/${this.props.filenames[2]}`}
                         className="post-album-2-3"
                       />
                       <div>+{this.state.items.length - 1}</div>
@@ -252,7 +252,7 @@ class PostCard extends React.Component {
                     <div style={{ marginTop: "0.1rem" }}>
                       <img
                         style={{ cursor: "pointer" }}
-                        src={`/resources/${this.props.filenames[1]}`}
+                        src={`/resources/${this.props.filenames[2]}`}
                         className="post-album-2-3"
                       />
                     </div>
@@ -395,8 +395,8 @@ class PostCard extends React.Component {
           toggle={this.toggle}
           className="slide-image-post"
         >
-          <ModalHeader toggle={this.toggle}>Album </ModalHeader>
-          <ModalBody>
+          <ModalHeader toggle={this.toggle}>Album <i className="fas fa-images ml-1"></i></ModalHeader>
+          <ModalBody style={{background:"black"}}>
             <Carousel
               activeIndex={activeIndex}
               next={this.next}

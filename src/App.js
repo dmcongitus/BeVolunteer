@@ -24,6 +24,7 @@ class App extends Component {
           className="item-mid item-center"
         >
           Đang tải...
+          
         </div>
       );
     }

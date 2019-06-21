@@ -38,6 +38,9 @@
     border-left: 0.25rem solid #004916;
     font-weight: bolder;
     padding-left: 1.25rem;
+    transition-property: padding-left, border-left;
+    transition-duration: 0.25s;
+
   }
   .list > li {
     margin-left: 1.25rem;
