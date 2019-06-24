@@ -5,6 +5,14 @@ export const mapPermissionToText = {
     'SUPER_ADMIN': 'Super Administrator'
 };
 
+export const vi = {
+    'ban': 'Bạn đã bị khóa',
+    'noAccount': 'Bạn chưa taì khoản?'
+};
+export const en = {
+    'ban': 'You are banned',
+    'noAccount ': 'You are not have Account?'
+};
 
 export const mapPermissionToSelections = {
     'CONTENT_MOD': [{
