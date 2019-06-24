@@ -60,6 +60,7 @@ export default function router({ isAuthenticated, permission, username }) {
                         
                         <PrivateRoute path="/history" exact component={HistoryPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/rank" exact component={RankPage} isAuthenticated={isAuthenticated} />
+                        <PrivateRoute path="/rank/:page" exact component={RankPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path="/medal" exact component={MedalPage} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path='/event' exact component={CreateEvent} isAuthenticated={isAuthenticated} />
                         <PrivateRoute path='/eventList' exact component={EventList} isAuthenticated={isAuthenticated} />
