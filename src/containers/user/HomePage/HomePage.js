@@ -14,15 +14,44 @@ import { joinEvent, unjoinEvent } from "../../../services/event.service";
 class HomePage extends Component {
   state = {
     data: [],
-    update: false
+    update: false,
+    page: 1
   };
 
+  isBottom(el) {
+    return el.getBoundingClientRect().bottom <= window.innerHeight;
+  }
+  componentDidUpdate = (_, prevState) => {
+    if (prevState.data.length !== this.state.data.length) {
+      document.addEventListener("scroll", this.trackScrolling);
+    }
+  };
   componentDidMount = () => {
-    getNewfeed(0)
+    getNewfeed(1)
       .then(data => {
         this.setState(data);
       })
       .catch(e => console.log(e));
+  };
+  componentWillUnmount = () => {
+    document.removeEventListener("scroll", this.trackScrolling);
+  };
+  trackScrolling = async () => {
+    const wrappedElement = document.getElementById("header");
+    if (this.isBottom(wrappedElement)) {
+      this.setState({ page: this.state.page + 1 });
+      getNewfeed(this.state.page)
+        .then(async data => {
+          if (data.data.length !== 0) {
+            let newData = await this.state.data.concat(data.data);
+            console.log(newData);
+            this.setState({ data: newData });
+          }
+        })
+        .catch(e => console.log(e));
+      console.log("header bottom reached");
+      document.removeEventListener("scroll", this.trackScrolling);
+    }
   };
 
   onPostTypeChanged = async postType => {
@@ -70,21 +99,23 @@ class HomePage extends Component {
         hasMoreButton
         onPostTypeChanged={this.onPostTypeChanged}
       >
-        {this.props.permission === "USER" && (
-          <NewPost style={{ zIndex: 50, position: "relative" }} />
-        )}
+        <div id="header">
+          {this.props.permission === "USER" && (
+            <NewPost style={{ zIndex: 50, position: "relative" }} />
+          )}
 
-        {this.state.data.map(post => (
-          <div className="hoverPostCard" key={post._id}>
-            <Post
-              key={post.id}
-              {...post}
-              successReport={this.successReport}
-              joinToEvent={this.joinToEvent}
-              unjoinEvent={this.unjoinEvent}
-            />
-          </div>
-        ))}
+          {this.state.data.map(post => (
+            <div className="hoverPostCard" key={post._id}>
+              <Post
+                key={post.id}
+                {...post}
+                successReport={this.successReport}
+                joinToEvent={this.joinToEvent}
+                unjoinEvent={this.unjoinEvent}
+              />
+            </div>
+          ))}
+        </div>
       </PageLayout>
     );
   }

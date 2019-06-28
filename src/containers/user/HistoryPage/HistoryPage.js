@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import "./HistoryPage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { getUserPosts } from '../../../services/post.service';
+import { getHistory } from '../../../services/history.service';
  import PostCard from "../../../components/Post/PostCard/PostCard"
 class History extends Component {
     state = {
@@ -12,8 +13,10 @@ class History extends Component {
 
     componentDidMount = async () => {
         const { data: {posts} } = await getUserPosts(this.props.username);
-      
+        let data = await getHistory(this.props.username);
+    
         this.setState({ posts });
+        console.log(data.data)
     }
 
   render() {

@@ -122,27 +122,27 @@ export async function donateEvent(amountDonate, callback) {
 
 function get(url, name) {
   if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
   if (!results) return null;
-  if (!results[2]) return '';
-  return name+"="+decodeURIComponent(results[2].replace(/\+/g, ' '))+"&";
+  if (!results[2]) return "";
+  return name + "=" + decodeURIComponent(results[2].replace(/\+/g, " ")) + "&";
 }
 export function checkPayment(data, amount) {
   // console.log("payment");
   // console.log(get(data, "amount"));
   const url =
-    "//test-payment.momo.vn/gw_payment//qr/query?" +
+    "https://test-payment.momo.vn/gw_payment//qr/query?" +
     get(data, "partnerCode") +
     get(data, "amount") +
     get(data, "orderId") +
     get(data, "accessKey") +
     get(data, "requestId") +
     get(data, "signature") +
-    get(data, "requestType");
-    //console.log(url);
-  
+    get(data, "requestType")+"payType=app-in-app";
+  //console.log(url);
+
   return Axios.post(
     url
   );

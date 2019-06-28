@@ -58,19 +58,31 @@ class Payment extends React.Component {
       this.state.dataPayment !== undefined &&
       this.state.paymentStatus === false
     ) {
-      await checkPayment(this.state.dataPayment.payUrl).then(data => {
-        const statusCode = data.data.status_code;
-        this.setState({ paymentStatus: statusCode !== -1 });
-        console.log(statusCode);
-        console.log(this.state.paymentStatus);
-      });
+      this.interval = setInterval(  () => {
+        checkPayment(this.state.dataPayment.payUrl)
+        .then(data => {
+          const statusCode = data.data.status_code;
+          this.setState({ paymentStatus: statusCode !== -1 });
+          if(statusCode === true){
+            clearInterval(this.interval)
+          }
+            // console.log(statusCode);
+            // console.log(this.state.paymentStatus);
+        })
+        .catch(er => {
+          console.log(er);
+        });
+      }, 3000);
+     
+
+
     } else {
       if (this.state.paymentStatus === true && this.state.test === false) {
-        await this.setState({test:true})
+        await this.setState({ test: true });
         Notification({
-          title: 'Thành công',
-          message: 'Thanh toán thành công',
-          type: 'success'
+          title: "Thành công",
+          message: "Thanh toán thành công",
+          type: "success"
         });
       }
     }
