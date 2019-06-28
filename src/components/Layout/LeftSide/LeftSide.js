@@ -5,11 +5,19 @@ import { connect } from "react-redux";
 import "./LeftSide.css";
 import { Row, Col } from "reactstrap";
 
+import { withLocalize, Translate } from "react-localize-redux";
+import leftSideTranslations from './translation.json';
+
 import * as userActions from "../../../actions/user.actions";
 
 var permissionArr = { USER: "Cá nhân", ORG: "Tổ chức" };
 
 class LeftSide extends Component {
+  constructor(props) {
+    super(props);
+    this.props.addTranslation(leftSideTranslations);
+  }
+
   handleImageChange = e => {
     e.persist();
     const file = e.target.files[0];
@@ -79,7 +87,7 @@ class LeftSide extends Component {
           <Row>
             <Col>
               <div className="text-title-2 title-left-side p-1">
-                <strong>Cá Nhân</strong>
+                <strong><Translate id="leftSide.header">Cá nhân</Translate></strong>
               </div>
             </Col>
           </Row>
@@ -88,7 +96,7 @@ class LeftSide extends Component {
               <ul className="list">
                 <li>
                   <NavLink exact activeClassName="NavLink--active" to="/me">
-                    <i className="fas fa-user-edit" />Thông tin cá nhân
+                    <i className="fas fa-user-edit" /><Translate  id="leftSide.info">Thông tin cá nhân</Translate>
                   </NavLink>
                 </li>
                 <li>
@@ -97,12 +105,12 @@ class LeftSide extends Component {
                     activeClassName="NavLink--active"
                     to="/history"
                   >
-                    <i className="fas fa-history" /> Lịch sử hoạt động
+                    <i className="fas fa-history" /><Translate id="leftSide.activityHistory"> Lịch sử hoạt động</Translate>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact activeClassName="NavLink--active" to="/medal">
-                    <i className="fas fa-medal" /> Danh hiệu
+                    <i className="fas fa-medal" /><Translate id="leftSide.title">  Danh hiệu</Translate>
                   </NavLink>
                 </li>
               </ul>
@@ -158,5 +166,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(LeftSide)
+  )(withLocalize(LeftSide))
 );

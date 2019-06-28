@@ -1,0 +1,20 @@
+{
+    "leftSide": {
+        "header": [
+            "Personal",
+            "Cá nhân"
+        ],
+        "info": [
+            "Information",
+            "Thông tin cá nhân"
+        ],
+        "activityHistory": [
+            "Activity history",
+            "Lịch sử hoạt động"
+        ],
+        "title": [
+            "Title",
+            "Danh hiệu"
+        ]
+    }
+}

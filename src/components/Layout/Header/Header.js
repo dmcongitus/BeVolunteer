@@ -12,6 +12,7 @@ import {
   PopoverHeader,
   PopoverBody
 } from "reactstrap";
+import LanguageToggler from "../../LanguageToggler/LanguageToggler";
 
 class Header extends React.Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class Header extends React.Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto" />
+            <LanguageToggler />
             <ul className="navbar-nav ">
               <NavLink activeStyle={{ color: "green" }} className="nav-link" to="/">
                 

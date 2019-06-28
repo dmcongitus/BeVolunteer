@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "reactstrap";
 import * as authActions from "./actions/auth.action";
+import { LocalizeProvider } from "react-localize-redux";
 
 import Router from "./router";
 import { Loading } from "element-react";
@@ -24,17 +25,19 @@ class App extends Component {
           className="item-mid item-center"
         >
           Đang tải...
-          
+
         </div>
       );
     }
 
     return (
-      <Router
-        isAuthenticated={this.props.isAuthenticated}
-        permission={this.props.user && this.props.user.permission}
-        username={this.props.user && this.props.user.username}
-      />
+      <LocalizeProvider>
+        <Router
+          isAuthenticated={this.props.isAuthenticated}
+          permission={this.props.user && this.props.user.permission}
+          username={this.props.user && this.props.user.username}
+        />
+      </LocalizeProvider>
     );
   }
 }
