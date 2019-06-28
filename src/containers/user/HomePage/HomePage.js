@@ -9,6 +9,10 @@ import { reportPost } from "../../../services/post.service";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
+import * as actionTypes from '../../../constants/actionTypes';
+
+import Socket from '../../../socket';
+
 import { joinEvent, unjoinEvent } from "../../../services/event.service";
 
 class HomePage extends Component {
@@ -32,6 +36,13 @@ class HomePage extends Component {
         this.setState(data);
       })
       .catch(e => console.log(e));
+
+    const socket = Socket.getInstance();
+    socket.on(this.props._id,  (data) => {
+      console.log("here")
+      console.log(data);
+      this.props.appendNotification(data);
+    });
   };
   componentWillUnmount = () => {
     document.removeEventListener("scroll", this.trackScrolling);
@@ -123,8 +134,12 @@ class HomePage extends Component {
 
 const mapStateToProps = ({
   auth: {
-    user: { name, permission, exp }
+    user: { name, permission, exp, _id }
   }
-}) => ({ name, permission, exp });
+}) => ({ name, permission, exp, _id });
 
-export default withRouter(connect(mapStateToProps)(HomePage));
+const mapDispatchToProps = (dispatch) => ({
+  appendNotification: (notif) => dispatch({ type: actionTypes.APPEND_NOTIF, payload: notif })
+});
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(HomePage));

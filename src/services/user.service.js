@@ -72,6 +72,9 @@ export function createUser(params) {
 
 }
 
+export function getNotifications(userID) {
+  return request({url:`/notification/${userID}`, method:'get'})
+}
 
 
 

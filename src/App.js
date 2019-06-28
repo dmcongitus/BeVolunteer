@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "reactstrap";
 import * as authActions from "./actions/auth.action";
+import io from 'socket.io-client';
 import { LocalizeProvider } from "react-localize-redux";
 
 import Router from "./router";
