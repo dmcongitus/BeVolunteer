@@ -2,6 +2,7 @@ import * as actionTypes from '../constants/actionTypes';
 import { setToken } from '../utils/localStorage';
 import * as authServices from '../services/auth.service';
 import * as meServices from '../services/me.service';
+import * as userServices from '../services/user.service';
 
 export function logInUser(username, password, loginType) {
     return async function (dispatch) {
@@ -21,7 +22,10 @@ export function getUser() {
     return async function (dispatch) {
         try {
             const { data: user } = await authServices.getUser();
+            const { data } = await userServices.getNotifications(user.username);
+            dispatch({ type: actionTypes.GET_NOTIF, payload: data });
             dispatch({ type: actionTypes.GET_ME_SUCCESSFULLY, payload: { user } });
+            
         } catch (e) {
             console.log(e);
             dispatch({ type: actionTypes.GET_ME_FAILED });

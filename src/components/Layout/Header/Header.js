@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { NavLink, Link } from "react-router-dom";
 import logo from "../../../images/volunteer.png";
 import logoText from "../../../images/volunteerText.png";
@@ -38,11 +39,13 @@ class Header extends React.Component {
     window.location.reload();
   };
   render() {
+    const { notifications } = this.props;
+
     return (
       <div>
         <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark ">
-          <img src={logo} alt="Logo" style={{height:"5rem"}} />
-          <img src={logoText}style={{height:"5rem"}} />
+          <img src={logo} alt="Logo" style={{ height: "5rem" }} />
+          <img src={logoText} style={{ height: "5rem" }} />
 
           <form className="form-inline my-2 my-lg-0">
             <input
@@ -53,13 +56,13 @@ class Header extends React.Component {
               name="searchText"
               onChange={this.onChange}
             />
-             <Link to={`/searchPage/${this.state.searchText}`}>
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              <i className="fas fa-search mr-1"></i>
-              Tìm kiếm
+            <Link to={`/searchPage/${this.state.searchText}`}>
+              <button
+                className="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+              >
+                <i className="fas fa-search mr-1"></i>
+                Tìm kiếm
             </button>
             </Link>
           </form>
@@ -80,14 +83,14 @@ class Header extends React.Component {
             <LanguageToggler />
             <ul className="navbar-nav ">
               <NavLink activeStyle={{ color: "green" }} className="nav-link" to="/">
-                
-                  <span className="nav-link">
-                    <i className="fa fa-home" />
-                    Trang chủ
+
+                <span className="nav-link">
+                  <i className="fa fa-home" />
+                  Trang chủ
                   </span>
-               
+
               </NavLink>
-              <Button
+              <button
                 className="nav-item active"
                 style={{ all: "unset" }}
                 id="PopoverFocus"
@@ -98,7 +101,7 @@ class Header extends React.Component {
                   </i>
                   Thông báo
                 </a>
-              </Button>
+              </button>
 
               <UncontrolledPopover
                 trigger="focus"
@@ -121,43 +124,17 @@ class Header extends React.Component {
                     </div>
                   </div>
                 </PopoverBody>
-                <PopoverBody className="notifi-header">
-                  <div className="item-center">
-                    <div>
-                      <img
-                        className="img-user-postCard rounded-circle"
-                        src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
-                        alt="UserAvatar"
-                        style={{ width: "30px", height: "30px" }}
-                      />
-                    </div>
-                    <div className="ml-2">
-                      tài khoản đã được <b>Xác thực</b>
-                    </div>
-                  </div>
-                </PopoverBody>
-                <PopoverBody className="notifi-header">
-                  <div className="item-center">
-                    <div>
-                      <img
-                        className="img-user-postCard rounded-circle"
-                        src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
-                        alt="UserAvatar"
-                        style={{ width: "30px", height: "30px" }}
-                      />
-                    </div>
-                    <div className="ml-2">
-                      Sự kiện <b>Xuân tình nguyện</b> đã bắt đầu
-                    </div>
-                  </div>
-                </PopoverBody>
+                {console.log(notifications)}
+                {notifications.map((notif) => (
+                  <div>{notif.isRead.toString()}</div>
+                ))}
               </UncontrolledPopover>
 
               <li className="nav-item active" onClick={this.log_out}>
                 <a className="nav-link">
                   <i className="fa fa-sign-out" />
                   Đăng xuất
-                  
+
                 </a>
               </li>
             </ul>
@@ -168,4 +145,6 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = ({ notifBoard: { notifications } }) => ({ notifications });
+
+export default connect(mapStateToProps)(Header);
