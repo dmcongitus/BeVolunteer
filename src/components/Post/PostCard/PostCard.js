@@ -158,7 +158,7 @@ class PostCard extends React.Component {
               {...this.props}
               user={this.props.publisher}
               successReport={this.props.successReport}
-              reporter={this.props.myUser._id}
+              reporter={this.props.thisUser._id}
               object={this.props._id}
               objectModel={this.props.type}
             />
@@ -166,7 +166,7 @@ class PostCard extends React.Component {
             <HeaderPost
               {...this.props}
               successReport={this.props.successReport}
-              reporter={this.props.myUser._id}
+              reporter={this.props.thisUser._id}
               object={this.props._id}
               objectModel={this.props.type}
             />
@@ -288,7 +288,7 @@ class PostCard extends React.Component {
                 <tr>
                   {this.props.type === "EVENT" ? (
                     this.checkJoinEvent(
-                      this.props.myUser._id,
+                      this.props.thisUser._id,
                       this.props.volunteers
                     ) ? (
                       this.props.status === "UPCOMING" ? (
@@ -307,7 +307,7 @@ class PostCard extends React.Component {
                         </th>
                       )
                     ) : this.props.status === "UPCOMING" &&
-                      this.props.myUser.permission === "USER" ? (
+                      this.props.thisUser.permission === "USER" ? (
                       <th onClick={this.joinToEvent}>
                         <Link to={`eventMore/${this.props._id}`}>
                           <div>
@@ -337,11 +337,11 @@ class PostCard extends React.Component {
                   ) : null}
 
                   {this.props.type === "PLACE" &&
-                    ((this.props.myUser.permission === "ORG" &&
-                      this.props.myUser.isActive === true) ||
-                    this.props.myUser.permission === "UNIT_ADMIN" ||
-                    this.props.myUser.permission === "CONTENT_MOD" ||
-                    this.props.myUser.permission === "SUPER_ADMIN" ? (
+                    ((this.props.thisUser.permission === "ORG" &&
+                      this.props.thisUser.isActive === true) ||
+                    this.props.thisUser.permission === "UNIT_ADMIN" ||
+                    this.props.thisUser.permission === "CONTENT_MOD" ||
+                    this.props.thisUser.permission === "SUPER_ADMIN" ? (
                       <th>
                         <Link to="/event">
                           <div>
@@ -353,7 +353,7 @@ class PostCard extends React.Component {
 
                   {this.props.type === "EVENT" ? (
                     this.props.publisher.username ===
-                    this.props.myUser.username ? (
+                    this.props.thisUser.username ? (
                       <th>
                         <Link to={`/EventManageDetail/${this.props._id}`}>
                           <div>
@@ -426,6 +426,6 @@ class PostCard extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
+const mapStateToProps = ({ auth: { user } }) => ({ thisUser: user });
 
 export default connect(mapStateToProps)(PostCard);

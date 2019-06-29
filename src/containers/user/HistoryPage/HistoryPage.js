@@ -5,24 +5,22 @@ import "./HistoryPage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { getUserPosts } from '../../../services/post.service';
 import { getHistory } from '../../../services/history.service';
- import PostCard from "../../../components/Post/PostCard/PostCard"
+ import HistoryCard from "../../../components/user/HistoryCard/HistoryCard"
 class History extends Component {
     state = {
-        posts: []
+        data: []
     }
 
     componentDidMount = async () => {
-        const { data: {posts} } = await getUserPosts(this.props.username);
         let data = await getHistory(this.props.username);
-    
-        this.setState({ posts });
+        this.setState({ data : data.data });
         console.log(data.data)
     }
 
   render() {
       return (
           <PageLayout title="Lịch sử họat động">
-              {this.state.posts.map((post) => <PostCard key={post.id} {...post}></PostCard>)}
+              {this.state.data.map((data) => <HistoryCard key={data.id} {...data}></HistoryCard>)}
           </PageLayout>
       );
   }

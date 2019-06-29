@@ -32,8 +32,10 @@ class MainLayout extends Component {
 
         return (
             <div className="main-layout">
+                
                 <Header />
-                {permission == 'USER' || permission == 'ORG' ?
+                <div className="main-layout-body">
+                      {permission == 'USER' || permission == 'ORG' ?
                     <Row className="mr-unset ml-0">
                         <Col xs="3" className="pl-3 pr-3">
                             <LeftSide username={username} />  }
@@ -69,6 +71,8 @@ class MainLayout extends Component {
 
                     </Row>
                 }
+                </div>
+              
                 <ModalConductor />
                 <Snackbar />
 

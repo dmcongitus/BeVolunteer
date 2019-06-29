@@ -14,7 +14,7 @@ class EventManagePage extends Component {
   };
 
   componentDidMount = () => {
-    getEventCreatedBy(this.props.myUser.username)
+    getEventCreatedBy(this.props.thisUser.username)
     .then(data => {
     
       this.setState({data : data.data.events});
@@ -42,6 +42,6 @@ class EventManagePage extends Component {
   }
 }
 
-const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
+const mapStateToProps = ({ auth: { user } }) => ({ thisUser: user });
 
 export default connect(mapStateToProps)(EventManagePage);

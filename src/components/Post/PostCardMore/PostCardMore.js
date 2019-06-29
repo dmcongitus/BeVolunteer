@@ -124,7 +124,7 @@ class PostCardMore extends React.Component {
   handleCommentOnSubmit = e => {
     e.preventDefault();
 
-    const { _id, permisison, avatar } = this.props.myUser;
+    const { _id, permisison, avatar } = this.props.thisUser;
     request({
       url: `/comments`,
       method: "post",
@@ -140,10 +140,10 @@ class PostCardMore extends React.Component {
         this.setState(prevState => ({
           comments: [
             {
-              name: this.props.myUser.name,
+              name: this.props.thisUser.name,
               content: prevState.comment,
               avatar,
-              isVerified: this.props.myUser.isVerified
+              isVerified: this.props.thisUser.isVerified
             },
             ...prevState.comments
           ],
@@ -177,7 +177,7 @@ class PostCardMore extends React.Component {
               {...this.props}
               user={this.props.publisher}
               successReport={this.props.successReport}
-              reporter={this.props.myUser._id}
+              reporter={this.props.thisUser._id}
               object={this.props._id}
               objectModel={this.props.type}
             />
@@ -185,7 +185,7 @@ class PostCardMore extends React.Component {
             <HeaderPost
               {...this.props}
               successReport={this.props.successReport}
-              reporter={this.props.myUser._id}
+              reporter={this.props.thisUser._id}
               object={this.props._id}
               objectModel={this.props.type}
             />
@@ -256,7 +256,7 @@ class PostCardMore extends React.Component {
                   <div>
                     <Button
                       className="mr-1 add-btn"
-                      disabled={this.props.myUser.isVerified === false}
+                      disabled={this.props.thisUser.isVerified === false}
                     >
                       <i className="fas fa-angle-double-right icon-button" />
                       Tham gia
@@ -301,14 +301,14 @@ class PostCardMore extends React.Component {
                     <div>
                       <img
                         className="img-user-postCard rounded-circle"
-                        src={`/resources/` + this.props.myUser.avatar}
+                        src={`/resources/` + this.props.thisUser.avatar}
                         alt="UserAvatar"
                         style={{ width: "3rem", height: "3rem" }}
                       />
                     </div>
                     <div className="ml-2 my-Comment ">
                       <div className="item-row item-center d-flex">
-                        <b className="tcl-1">{this.props.myUser.name}</b>
+                        <b className="tcl-1">{this.props.thisUser.name}</b>
                         <form
                           className="flex-grow-1 ml-3"
                           onSubmit={this.handleCommentOnSubmit}
@@ -339,6 +339,6 @@ class PostCardMore extends React.Component {
   }
 }
 
-const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
+const mapStateToProps = ({ auth: { user } }) => ({ thisUser: user });
 
 export default connect(mapStateToProps)(PostCardMore);

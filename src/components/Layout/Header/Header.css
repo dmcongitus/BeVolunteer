@@ -40,6 +40,7 @@
   vertical-align: middle;
   padding-top: 0;
   padding-bottom: 0;
+  cursor: pointer;
 }
 
 .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
@@ -55,6 +56,10 @@
 }
 
 a.nav-link:hover {
+  color: palegreen !important;
+}
+
+span.nav-link:hover {
   color: palegreen !important;
 }
 

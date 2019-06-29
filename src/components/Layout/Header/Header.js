@@ -83,7 +83,6 @@ class Header extends React.Component {
             <LanguageToggler />
             <ul className="navbar-nav ">
               <NavLink activeStyle={{ color: "green" }} className="nav-link" to="/">
-
                 <span className="nav-link">
                   <i className="fa fa-home" />
                   Trang chủ
@@ -97,7 +96,8 @@ class Header extends React.Component {
               >
                 <a className="nav-link">
                   <i className="fa fa-bell">
-                    <span className="badge badge-info">11</span>
+                    <span className="badge badge-info">{notifications.length}</span>
+                  
                   </i>
                   Thông báo
                 </a>

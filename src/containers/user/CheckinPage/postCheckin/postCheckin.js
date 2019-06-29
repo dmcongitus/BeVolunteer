@@ -84,7 +84,7 @@ class PostCheckin extends React.Component {
     }));
     let listChecked = await getAllCheckinUser(
       this.props._id,
-      this.props.myUser.username
+      this.props.thisUser.username
     );
     listChecked = listChecked.data.filter(day => {
       return day.isPresent === true;
@@ -161,7 +161,7 @@ class PostCheckin extends React.Component {
             {...this.props}
             user={this.props.publisher}
             successReport={this.props.successReport}
-            reporter={this.props.myUser._id}
+            reporter={this.props.thisUser._id}
             object={this.props._id}
             objectModel={this.props.type}
           />
@@ -169,7 +169,7 @@ class PostCheckin extends React.Component {
           <HeaderPost
             {...this.props}
             successReport={this.props.successReport}
-            reporter={this.props.myUser._id}
+            reporter={this.props.thisUser._id}
             object={this.props._id}
             objectModel={this.props.type}
           />
@@ -331,6 +331,6 @@ class PostCheckin extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
+const mapStateToProps = ({ auth: { user } }) => ({ thisUser: user });
 
 export default connect(mapStateToProps)(PostCheckin);

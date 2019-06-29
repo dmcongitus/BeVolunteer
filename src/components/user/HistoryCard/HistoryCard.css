@@ -2,3 +2,12 @@
   margin: 0.25rem;
 }
 
+.history-Card{
+  border-bottom: 1px solid gray;
+  padding: 1.5rem !important;
+}
+
+.history-Card:hover{
+  background: palegreen;
+  cursor: pointer;
+}

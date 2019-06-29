@@ -4,10 +4,15 @@
   background-attachment: fixed;
   min-height: 100vh;
   overflow: hidden;
-  margin: 0;
+  margin: auto;
   padding: 0;
-  height: 100%;
+ 
 }
+.main-layout-body{
+  margin: auto;
+  width: 79rem;
+}
+
 
 .mr-unset {
   margin-right: unset;

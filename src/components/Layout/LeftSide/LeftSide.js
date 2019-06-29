@@ -5,10 +5,12 @@ import { connect } from "react-redux";
 import "./LeftSide.css";
 import { Row, Col } from "reactstrap";
 
+
 import { withLocalize, Translate } from "react-localize-redux";
 import leftSideTranslations from './translation.json';
 
 import * as userActions from "../../../actions/user.actions";
+import { fn } from "moment";
 
 var permissionArr = { USER: "Cá nhân", ORG: "Tổ chức" };
 
@@ -16,6 +18,7 @@ class LeftSide extends Component {
   constructor(props) {
     super(props);
     this.props.addTranslation(leftSideTranslations);
+    
   }
 
   handleImageChange = e => {

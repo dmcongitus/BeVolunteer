@@ -217,6 +217,6 @@ class PostCard extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
+const mapStateToProps = ({ auth: { user } }) => ({ thisUser: user });
 
 export default connect(mapStateToProps)(PostCard);
