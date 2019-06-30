@@ -1,0 +1,53 @@
+{
+    "info": {
+        "account": [
+            "Account - ",
+            "Tài khoản - "
+        ],
+        "verified": [
+            "was verified",
+            "Đã được xác thực"
+        ],
+        "unverified": [
+            "is not verified",
+            "Chưa được xác thực"
+        ],
+        "pendingVerify": [
+            "is pending verification",
+            "Đang chờ xác thực"
+        ],
+        "name": [
+            "Name",
+            "Tên"
+        ],
+        "phone": [
+            "Phone Number",
+            "Số điện thoại"
+        ],
+        "email": [
+            "Email Address",
+            "Địa chỉ email"
+        ],
+        "dob": [
+            "Date of Birth",
+            "Ngày sinh"
+        ],
+        "type": [
+            "Type",
+            "Loại"
+        ],
+        "personal": [
+            "Personal",
+            "Cá Nhân"
+        ],
+        "update": [
+            "Update",
+            "Cập nhật"
+        ],
+        "cancel": [
+            "Cancel",
+            "Hủy"
+        ]
+    
+    }
+}

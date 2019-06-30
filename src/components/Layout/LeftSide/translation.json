@@ -1,20 +1,40 @@
 {
     "leftSide": {
+        "level": [
+            "Level",
+            "Cấp"
+        ],
         "header": [
             "Personal",
             "Cá nhân"
         ],
         "info": [
-            "Information",
+            "Profile",
             "Thông tin cá nhân"
         ],
         "activityHistory": [
             "Activity history",
             "Lịch sử hoạt động"
         ],
-        "title": [
-            "Title",
+        "award": [
+            "Award",
             "Danh hiệu"
+        ],
+        "community":[
+            "COMMUNITY",
+            "CỘNG ĐỒNG"
+        ],
+        "homepage":[
+            "Homepage",
+            "Trang chủ"
+        ],
+        "ranking":[
+            "Ranking",
+            "Xếp hạng"
+        ],
+        "monitoring":[
+            "Monitoring",
+            "Điểm danh"
         ]
     }
 }

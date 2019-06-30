@@ -1,0 +1,60 @@
+{
+    "deleteAccountPage": {
+        "title": [
+            "Account Management",
+            "Quản lý tài khoản"
+        ],
+        "stt": [
+            "No.",
+            "STT"
+        ],
+        "username": [
+            "Username",
+            "Người dùng"
+        ],
+        "fullname": [
+            "Fullname",
+            "Họ và tên"
+        ],
+        "status": [
+            "Status",
+            "Tình trạng"
+        ],
+        "type": [
+            "Type",
+            "Loại"
+        ],
+        "all": [
+            "All",
+            "Tất cả"
+        ],
+        "unlock": [
+            "Unlock",
+            "Chưa khóa"
+        ],
+        "locked": [
+            "Locked",
+            "Đã khóa"
+        ],
+        "lock": [
+            "Lock",
+            "Khóa"
+        ],
+        "open": [
+            "Open",
+            "Mở"
+        ],
+        "verified": [
+            "was verified",
+            "Đã xác thực"
+        ],
+        "unverified": [
+            "is not verified",
+            "Chưa xác thực"
+        ],
+        "pendingVerify": [
+            "is pending verification",
+            "Đang xác thực"
+        ]
+    }
+}

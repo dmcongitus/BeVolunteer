@@ -1,0 +1,28 @@
+{
+    "header": {
+        "search": [
+            "Search",
+            "Tìm kiếm"
+        ],
+        "homepage":[
+            "Homepage",
+            "Trang chủ"
+        ],
+        "noti":[
+            "Notification",
+            "Thông báo"
+        ],
+        "text1":[
+            "Event",
+            "Sự kiện"
+        ],
+        "text2":[
+            "has started",
+            "đã bắt đầu"
+        ],
+        "logout":[
+            "Log out",
+            "Đăng xuất"
+        ]
+    }
+}

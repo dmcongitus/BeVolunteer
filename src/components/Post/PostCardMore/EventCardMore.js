@@ -30,6 +30,10 @@ import addDays from "date-fns/add_days";
 import format from "date-fns/format";
 import { Notification } from "element-react";
 import request from "../../../services/request";
+import { withLocalize, Translate } from "react-localize-redux";
+import eventCardMoreTranslations from './translation.json';
+import { withRouter } from "react-router";
+
 class EventCardMore extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +56,8 @@ class EventCardMore extends React.Component {
     this.toggleEye = this.toggleEye.bind(this);
     this.toggleMenuPost = this.toggleMenuPost.bind(this);
     this.togglePayment = this.togglePayment.bind(this);
+    this.props.addTranslation(eventCardMoreTranslations);
+
   }
   messOutAfterRun = () => {
     Notification.error({
@@ -209,7 +215,7 @@ class EventCardMore extends React.Component {
             />
           )}
           <div className="ml-5 pl-3" style={{ marginTop: "-1rem" }}>
-            <small className="mr-2">Chia sẻ bởi</small>
+            <small className="mr-2"><Translate id="eventCardMore.no1">Chia sẻ bởi</Translate></small>
             {this.props.sharer.map(mem => (
               <Badge pill href="#" color="success">
                 {mem.name}
@@ -225,19 +231,19 @@ class EventCardMore extends React.Component {
                   <Row>
                     <Col xs="3">
                       <div>
-                        <i className="far fa-calendar-alt" /> <b>Thời gian: </b>
+                        <i className="far fa-calendar-alt" /> <b><Translate id="eventCardMore.time">Thời gian: </Translate></b>
                       </div>
                       <div>
-                        <i className="fas fa-users"> </i> <b>Số lượng: </b>
+                        <i className="fas fa-users"> </i> <b><Translate id="eventCardMore.numVolunteer">Số lượng: </Translate></b>
                       </div>
                     </Col>
                     <Col xs="8">
                       <div>
-                        Từ
+                        <Translate id="eventCardMore.from">Từ </Translate>
                         <span className="style-date">
                           {format(new Date(this.props.starttime), "DD/MM/YYYY")}
                         </span>
-                        Đến
+                        <Translate id="eventCardMore.to">đến </Translate>
                         <span className="style-date">
                           {format(new Date(this.props.endtime), "DD/MM/YYYY")}
                         </span>
@@ -338,13 +344,13 @@ class EventCardMore extends React.Component {
                               }
                             >
                               <div>
-                                <i className="fas fa-user-minus" /> Huỷ
+                                <i className="fas fa-user-minus" /> <Translate id="eventCardMore.cancel">Huỷ</Translate>
                               </div>
                             </th>
                           ) : (
                             <th onClick={() => this.messOutAfterRun()}>
                               <div style={{ color: "gray" }}>
-                                <i className="fas fa-user-minus" /> Huỷ
+                                <i className="fas fa-user-minus" /> <Translate id="eventCardMore.cancel">Huỷ</Translate>
                               </div>
                             </th>
                           )
@@ -359,7 +365,7 @@ class EventCardMore extends React.Component {
                             }
                           >
                             <div>
-                              <i className="fas fa-user-plus" /> Tham gia
+                              <i className="fas fa-user-plus" /> <Translate id="eventCardMore.join">Tham gia</Translate>
                             </div>
                           </th>
                         ) : null
@@ -368,7 +374,7 @@ class EventCardMore extends React.Component {
                         <th onClick={this.togglePayment}>
                           <div>
                             <i className="fas fa-donate" />
-                            Quyên góp
+                            <Translate id="eventCardMore.donation">Quyên góp</Translate>
                           </div>
                         </th>
                       )}
@@ -419,7 +425,7 @@ class EventCardMore extends React.Component {
           {/*/ col-lg-6 */}
         </div>
         <Modal isOpen={this.state.modalEye} toggle={this.toggleEye}>
-          <ModalHeader toggle={this.toggleEye}>Danh sách tham gia</ModalHeader>
+          <ModalHeader toggle={this.toggleEye}><Translate id="eventCardMore.joinList">Danh sách tham gia</Translate></ModalHeader>
           <ModalBody>
             {this.props.volunteers.map(volunteer => (
               <Row className="item-mid">
@@ -464,4 +470,11 @@ class EventCardMore extends React.Component {
 
 const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 
-export default connect(mapStateToProps)(EventCardMore);
+// export default connect(mapStateToProps)(EventCardMore);
+
+export default withRouter(
+    connect(
+        mapStateToProps
+    )(withLocalize(EventCardMore))
+);
+

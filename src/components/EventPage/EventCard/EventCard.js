@@ -16,6 +16,9 @@ import {
     CarouselCaption
 } from "reactstrap";
 
+import { withLocalize, Translate } from "react-localize-redux";
+import eventCardTranslations from './translation.json';
+import { withRouter } from "react-router";
 import "./EventCard.css";
 
 
@@ -37,6 +40,7 @@ class EventCard extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.toggleMenuEvent = this.toggleMenuEvent.bind(this);
         this.togglePayment = this.togglePayment.bind(this);
+        this.props.addTranslation(eventCardTranslations);
     }
     toggleMenuEvent() {
         this.setState({
@@ -143,7 +147,7 @@ class EventCard extends React.Component {
                             toggle={this.toggle}
                             className="slide-image-post"
                         >
-                            <ModalHeader toggle={this.toggle}>Album </ModalHeader>
+                            <ModalHeader toggle={this.toggle}> <Translate id="eventCard.album">Album</Translate></ModalHeader>
                             <ModalBody>
                             <Carousel
                                 activeIndex={activeIndex}
@@ -180,7 +184,7 @@ class EventCard extends React.Component {
                                     <Alert color="success">{this.props.starttime}</Alert>
                                     <Button className="mr-1 new-btn">
                                     <i className="fas fa-edit icon-button" />
-                                    Tham gia
+                                    <Translate id="eventCard.join">Tham gia</Translate>
                                     </Button>
                                 </div>
                             )}
@@ -200,7 +204,7 @@ class EventCard extends React.Component {
                             )}
                             <Link to={`event/${this.props.id}`}>
                                 <Button color="success" className="mr-1 success">
-                                    <i className="fas fa-angle-double-right icon-button" /> Xem thêm
+                                    <i className="fas fa-angle-double-right icon-button" /> <Translate id="eventCard.more">Xem thêm</Translate>
                                 </Button>
                             </Link>
                         </div>
@@ -215,4 +219,5 @@ class EventCard extends React.Component {
   }
 }
 
-export default EventCard;
+export default withRouter(withLocalize(EventCard));
+

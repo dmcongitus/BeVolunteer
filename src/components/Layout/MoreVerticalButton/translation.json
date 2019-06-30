@@ -1,0 +1,24 @@
+{
+    "moreVerticalBut": {
+        "type": [
+            "Type",
+            "Loại"
+        ],
+        "all": [
+            "All",
+            "Tất cả"
+        ],
+        "address": [
+            "Address",
+            "Địa điểm"
+        ],
+        "event": [
+            "Event",
+            "Sự kiện"
+        ],
+        "memory": [
+            "Memory",
+            "Kỉ niệm"
+        ]
+    }
+}

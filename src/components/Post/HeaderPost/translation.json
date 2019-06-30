@@ -1,0 +1,40 @@
+{
+    "headerPost": {
+        "no1": [
+            "has shared a",
+            "đã chia sẻ một"
+        ],
+        "event": [
+            "Event",
+            "Sự kiện"
+        ],
+        "address": [
+            "Address",
+            "Địa điểm"
+        ],
+        "memory": [
+            "Memory",
+            "Kỉ niệm"
+        ],
+        "post": [
+            "Post",
+            "Đăng tải"
+        ],
+        "donation": [
+            "Donation",
+            "Quyên góp"
+        ],
+        "report": [
+            "Report",
+            "Báo cáo"
+        ],
+        "reportPost": [
+            "Report post",
+            "Báo cáo bài viết"
+        ],
+        "cancel": [
+            "Cancel",
+            "Hủy"
+        ]
+    }
+}

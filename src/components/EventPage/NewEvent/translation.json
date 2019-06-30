@@ -1,0 +1,56 @@
+{
+    "newEvent": {
+        "title": [
+            "Create Event",
+            "Tạo sự kiện"
+        ],
+        "eventName": [
+            "Event name",
+            "Tên sự kiện"
+        ],
+        "org": [
+            "Organization",
+            "Tổ chức"
+        ],
+        "address": [
+            "Address",
+            "Địa điểm"
+        ],
+        "sharer": [
+            "Shared by",
+            "Chia sẻ"
+        ],
+        "description": [
+            "Description",
+            "Nội dung"
+        ],
+        "time": [
+            "Time",
+            "Thời gian diễn ra"
+        ],
+        "deadline": [
+            "Deadline",
+            "Hạn chót đăng kí"
+        ],
+        "contact": [
+            "Contact",
+            "Liên hệ"
+        ],
+        "numVolunteer": [
+            "Volunteer Number",
+            "Số lượng TNV"
+        ],
+        "update": [
+            "Update",
+            "Cập nhật"
+        ],
+        "cancel": [
+            "Cancel",
+            "Hủy"
+        ],
+        "upload": [
+            "Upload",
+            "Đăng tải"
+        ]
+    }
+}

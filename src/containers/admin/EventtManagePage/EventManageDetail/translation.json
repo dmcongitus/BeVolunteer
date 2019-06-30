@@ -1,0 +1,52 @@
+{
+    "eventManageDetail": {
+        "title": [
+            "Event Management",
+            "Quản lý sự kiện"
+        ],
+        "detailInfor": [
+            "Detail Information",
+            "Thông tin chi tiết"
+        ],
+        "monitoring": [
+            "Monitoring",
+            "Điểm danh"
+        ],
+        "edit": [
+            "Edit",
+            "Chỉnh sửa"
+        ],
+        "monitoringDate": [
+            "Monitoring Date",
+            "Ngày điểm danh"
+        ],
+        "beMonitored": [
+            "Be Monitored",
+            "Đã điểm danh"
+        ],
+        "unMonitoring": [
+            "Un Monitoring",
+            "Chưa điểm danh"
+        ],
+        "monitoringCode": [
+            "Monitoring Code",
+            "Mã điểm danh"
+        ],
+        "stt": [
+            "No.",
+            "STT"
+        ],
+        "username": [
+            "Username",
+            "Tên đăng nhập"
+        ],
+        "fullname": [
+            "Fullname",
+            "Họ và tên"
+        ],
+        "status": [
+            "Status",
+            "Tình trạng"
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "historyCard": {
+        "account": [
+            "Account - ",
+            "Tài khoản - "
+        ],
+        "personal": [
+            "Personal",
+            "Cá Nhân"
+        ],
+        "update": [
+            "Update",
+            "Cập nhật"
+        ],
+        "join": [
+            "Cancel",
+            "Hủy"
+        ],
+        "cancel": [
+            "Join",
+            "Tham gia"
+        ],
+        "newEvent": [
+            "New event",
+            "Tạo sự kiện"
+        ],
+        "more": [
+            "More",
+            "Xem thêm"
+        ],
+        "donation": [
+            "Donation",
+            "Quyên góp"
+        ],
+        "payment": [
+            "Payment",
+            "Thanh toán"
+        ]
+    }
+}

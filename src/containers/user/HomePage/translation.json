@@ -1,0 +1,20 @@
+{
+    "homepage": {
+        "post": [
+            "Post",
+            "BÀI ĐĂNG"
+        ],
+        "homepage":[
+            "Homepage",
+            "Trang chủ"
+        ],
+        "noti":[
+            "Notification",
+            "Thông báo"
+        ],
+        "logout":[
+            "Log out",
+            "Đăng xuất"
+        ]
+    }
+}

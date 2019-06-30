@@ -1,0 +1,24 @@
+{
+    "rankPage": {
+        "title": [
+            "RANKING",
+            "Xếp hạng"
+        ],
+        "stt": [
+            "No.",
+            "STT"
+        ],
+        "username": [
+            "Username",
+            "Tên người dùng"
+        ],
+        "fullname": [
+            "Fullname",
+            "Họ và tên"
+        ],
+        "exp": [
+            "Exp",
+            "Điểm"
+        ]
+    }
+}

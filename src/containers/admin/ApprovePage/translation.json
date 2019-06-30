@@ -1,0 +1,40 @@
+{
+    "approvePage": {
+        "title": [
+            "Verify account",
+            "Xác thực tài khoản"
+        ],
+        "stt": [
+            "No.",
+            "STT"
+        ],
+        "username": [
+            "Username",
+            "Tên người dùng"
+        ],
+        "fullname": [
+            "Fullname",
+            "Họ và tên"
+        ],
+        "status": [
+            "Status",
+            "Tình trạng"
+        ],
+        "view": [
+            "View",
+            "Xem"
+        ],
+        "approve": [
+            "Approve",
+            "Đồng ý"
+        ],
+        "cancel": [
+            "cancel",
+            "Hủy"
+        ],
+        "verifyuser": [
+            "Verify user",
+            "Xác thực người dùng"
+        ]
+    }
+}

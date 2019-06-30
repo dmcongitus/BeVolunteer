@@ -7,9 +7,17 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
+import { withLocalize, Translate } from "react-localize-redux";
+import moreVerticalButtonTranslations from './translation.json';
+import { withRouter } from "react-router";
 
 
 class MoreVerticalButton extends Component {
+    constructor(props) {
+        super(props);
+        this.props.addTranslation(moreVerticalButtonTranslations);
+    }
+
     state = {
         open: false,
         selection: "EVENT"
@@ -59,8 +67,7 @@ class MoreVerticalButton extends Component {
                     onClick={this.handleToggle}
                     className = "p-2">
                     <i className="fas fa-filter"></i>
-                    Loại
-                    
+                    <Translate id="moreVerticalBut.type">Loại</Translate>
                 </Button>
 
                 <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
@@ -72,12 +79,10 @@ class MoreVerticalButton extends Component {
                             <Paper>
                                 <ClickAwayListener onClickAway={this.handleClose}>
                                     <MenuList>
-                                        <MenuItem onClick={this.handleClose0}>Tất cả</MenuItem>
-                                        <MenuItem onClick={this.handleClose1}>Địa điểm</MenuItem>
-                                        <MenuItem onClick={this.handleClose2}>Sự kiện</MenuItem>
-                                        <MenuItem onClick={this.handleClose3}>Kỉ niệm</MenuItem>
-            
-                                        
+                                        <MenuItem onClick={this.handleClose0}><Translate id="moreVerticalBut.all">Tất cả</Translate></MenuItem>
+                                        <MenuItem onClick={this.handleClose1}><Translate id="moreVerticalBut.address">Địa điểm</Translate></MenuItem>
+                                        <MenuItem onClick={this.handleClose2}><Translate id="moreVerticalBut.event">Sự kiện</Translate></MenuItem>
+                                        <MenuItem onClick={this.handleClose3}><Translate id="moreVerticalBut.memory">Kỉ niệm</Translate></MenuItem>                                       
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>
@@ -98,5 +103,9 @@ const styles = theme => ({
     },
 });
 
-export default withStyles(styles)(MoreVerticalButton);
+// export default withStyles(styles)(MoreVerticalButton);
+
+export default withRouter(
+    withStyles(styles)(withLocalize(MoreVerticalButton))
+);
 

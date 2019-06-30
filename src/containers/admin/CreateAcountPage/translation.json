@@ -1,0 +1,68 @@
+{
+    "createAccount": {
+        "title": [
+            "Create Admin Account",
+            "Tạo tài khoản Admin"
+        ],
+        "accountType": [
+            "Account Type",
+            "Loại tài khoản"
+        ],
+        "managementUnit": [
+            "Management Unit",
+            "Đơn vị quản lý"
+        ],
+        "username": [
+            "Username",
+            "Người dùng"
+        ],
+        "password": [
+            "Password",
+            "Mật khẩu"
+        ],
+        "name": [
+            "Display name",
+            "Tên hiển thị"
+        ],
+        "email": [
+            "Email",
+            "Email"
+        ],
+        "phone": [
+            "Phone number",
+            "Số điện thoại"
+        ],
+        "dob": [
+            "Date of birth",
+            "Ngày sinh"
+        ],
+        "gender": [
+            "Gender",
+            "Giới tính"
+        ],
+        "create": [
+            "Create",
+            "Tạo tài khoản"
+        ],
+        "cancel": [
+            "Cancel",
+            "Hủy"
+        ],
+        "open": [
+            "Open",
+            "Mở"
+        ],
+        "verified": [
+            "was verified",
+            "Đã xác thực"
+        ],
+        "unverified": [
+            "is not verified",
+            "Chưa xác thực"
+        ],
+        "pendingVerify": [
+            "is pending verification",
+            "Đang xác thực"
+        ]
+    }
+}

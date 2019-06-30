@@ -1,0 +1,36 @@
+{
+    "adminManagePage": {
+        "title": [
+            "Account Management",
+            "Quản lý tài khoản"
+        ],
+        "stt": [
+            "No.",
+            "STT"
+        ],
+        "username": [
+            "Username",
+            "Người dùng"
+        ],
+        "fullname": [
+            "Fullname",
+            "Họ và tên"
+        ],
+        "status": [
+            "Status",
+            "Tình trạng"
+        ],
+        "type": [
+            "Type",
+            "Loại"
+        ],
+        "all": [
+            "All",
+            "Tất cả"
+        ],
+        "delete": [
+            "Delete",
+            "Xóa"
+        ]
+    }
+}

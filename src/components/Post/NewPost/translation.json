@@ -1,0 +1,20 @@
+{
+    "newPost": {
+        "new": [
+            "New Post",
+            "Tạo Bài Viết"
+        ],
+        "address": [
+            "Address",
+            "Địa điểm"
+        ],
+        "memory": [
+            "Memory",
+            "Kỉ niệm"
+        ],
+        "post": [
+            "Post",
+            "Đăng tải"
+        ]
+    }
+}

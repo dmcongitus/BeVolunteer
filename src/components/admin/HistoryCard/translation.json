@@ -1,0 +1,60 @@
+{
+    "historyCard": {
+        "title": [
+            "Post Management",
+            "Quản lý bài viết"
+        ],
+        "deleteReport": [
+            "Delete report",
+            "Xóa báo cáo"
+        ],
+        "lockPost": [
+            "Lock Post",
+            "Khóa bài"
+        ],
+        "more": [
+            "More",
+            "Xem thêm"
+        ],
+        "status": [
+            "Status",
+            "Tình trạng"
+        ],
+        "type": [
+            "Type",
+            "Loại"
+        ],
+        "all": [
+            "All",
+            "Tất cả"
+        ],
+        "unlock": [
+            "Unlock",
+            "Chưa khóa"
+        ],
+        "locked": [
+            "Locked",
+            "Đã khóa"
+        ],
+        "lock": [
+            "Lock",
+            "Khóa"
+        ],
+        "open": [
+            "Open",
+            "Mở"
+        ],
+        "verified": [
+            "was verified",
+            "Đã xác thực"
+        ],
+        "unverified": [
+            "is not verified",
+            "Chưa xác thực"
+        ],
+        "pendingVerify": [
+            "is pending verification",
+            "Đang xác thực"
+        ]
+    }
+}

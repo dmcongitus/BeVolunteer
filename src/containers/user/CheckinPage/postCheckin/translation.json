@@ -1,0 +1,28 @@
+{
+    "postCheckIn": {
+        "title": [
+            "Monitoring",
+            "Điểm danh"
+        ],
+        "more": [
+            "More",
+            "Xem thêm"
+        ],
+        "code": [
+            "Monitoring Code",
+            "Mã điểm danh"
+        ],
+        "verify": [
+            "Verify",
+            "Xác thực"
+        ],
+        "exit": [
+            "Exit",
+            "Thoát"
+        ],
+        "Mess1": [
+            "You had checked-in today!!!",
+            "Hôm nay bạn đã điểm danh rồi!!!"
+        ]
+    }
+}

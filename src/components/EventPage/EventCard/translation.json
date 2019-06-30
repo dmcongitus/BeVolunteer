@@ -1,0 +1,32 @@
+{
+    "eventCard": {
+        "more": [
+            "More",
+            "Xem thêm"
+        ],
+        "newEvent": [
+            "New event",
+            "Tạo sự kiện"
+        ],
+        "payment": [
+            "Payment",
+            "Thanh toán"
+        ],
+        "cancel": [
+            "Cancel",
+            "Hủy"
+        ],
+        "donation": [
+            "Donation",
+            "Quyên góp"
+        ],
+        "join": [
+            "Join",
+            "Tham gia"
+        ],
+        "album": [
+            "album",
+            "Album"
+        ]
+    }
+}

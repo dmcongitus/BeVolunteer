@@ -1,0 +1,44 @@
+{
+    "eventCardMore": {
+        "no1": [
+            "Shared by",
+            "Chia sẻ bởi"
+        ],
+        "time": [
+            "Time: ",
+            "Thời gian: "
+        ],
+        "numVolunteer": [
+            "Number Volunteer: ",
+            "Số lượng: "
+        ],
+        "from": [
+            "From",
+            "Từ"
+        ],
+        "to": [
+            "to",
+            "đến"
+        ],
+        "donation": [
+            "Donation",
+            "Quyên góp"
+        ],
+        "join": [
+            "Join",
+            "Tham gia"
+        ],
+        "cancel": [
+            "Cancel",
+            "Hủy"
+        ],
+        "album": [
+            "album",
+            "Album"
+        ],
+        "joinList": [
+            "List participant",
+            "Danh sách tham gia"
+        ]
+    }
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import MoreVerticalButton from '../../components/Layout/MoreVerticalButton/MoreVerticalButton';
 import './PageLayout.css'
+import { withLocalize, Translate } from "react-localize-redux";
+
 const pageLayout = ({ title, children, hasMoreButton, onPostTypeChanged }) => (
     <div className="side-body" style={{ position: 'relative' , minHeight: '84vh'}}>
         <div className="title-side-body" style={{ textTransform: 'uppercase' }}>
@@ -14,5 +16,7 @@ const pageLayout = ({ title, children, hasMoreButton, onPostTypeChanged }) => (
     </div>
 );
 
-export default pageLayout;
+
+export default withLocalize(pageLayout);
+
 
