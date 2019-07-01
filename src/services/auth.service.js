@@ -21,6 +21,5 @@ export function getUser(username, password, loginType) {
     return request({
         url: `/me`,
         method: 'get'
-    }).catch(error => {
     })
 }

@@ -18,6 +18,7 @@ import { Loading, Radio, Notification } from "element-react";
 import momoIcon from "../../../images/momo.png";
 import visaIcon from "../../../images/visa.png";
 import successIcon from "../../../images/success.png";
+import {donateMoney, getDonateEvent} from "../../../services/event.service"
 class Payment extends React.Component {
   constructor(props) {
     super(props);
@@ -52,49 +53,35 @@ class Payment extends React.Component {
     }
   };
 
-  componentDidUpdate = async () => {
+  componentDidUpdate = async () => {};
+  checkStatusPayment = async () => {
+    donateMoney(this.props.event._id, 5000)
+    getDonateEvent(this.props.event._id)
     if (
       this.state.btnDonate === true &&
       this.state.dataPayment !== undefined &&
       this.state.paymentStatus === false
     ) {
-      this.interval = setInterval(  () => {
+      this.interval = setInterval(() => {
         checkPayment(this.state.dataPayment.payUrl)
-        .then(data => {
-          const statusCode = data.data.status_code;
-          this.setState({ paymentStatus: statusCode !== -1 });
-          if(statusCode === true){
-            clearInterval(this.interval)
-          }
-            // console.log(statusCode);
-            // console.log(this.state.paymentStatus);
-        })
-        .catch(er => {
-          console.log(er);
-        });
+          .then(data => {
+            const statusCode = data.data.status_code;
+            if (statusCode !== -1) {
+              clearInterval(this.interval);
+              this.setState({ paymentStatus: true });
+              Notification({
+                title: "Thành công",
+                message: "Thanh toán thành công",
+                type: "success"
+              });
+              
+            }
+          })
+          .catch(er => {
+            console.log(er);
+          });
       }, 3000);
-     
-
-
-    } else {
-      if (this.state.paymentStatus === true && this.state.test === false) {
-        await this.setState({ test: true });
-        Notification({
-          title: "Thành công",
-          message: "Thanh toán thành công",
-          type: "success"
-        });
-      }
-    }
-  };
-  checkStatusPayment = () => {
-    if (this.state.btnDonate === true) {
-      checkPayment(this.state.dataPayment.payUrl).then(data => {
-        const statusCode = data.data.status_code;
-        // this.setState({paymentStatus: statusCode!==-1});
-        console.log(statusCode);
-      }, 2000);
-    }
+    } 
   };
   foo = async data => {
     console.log(data);

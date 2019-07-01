@@ -188,3 +188,20 @@ export function getAllCheckinUser(id, username) {
     method: "get"
   });
 }
+
+export function donateMoney(id, value) {
+  return request({
+    url: `/events/` + id + `/donates`,
+    method: "post",
+    data : {
+      value: value
+    }
+  });
+}
+
+export function getDonateEvent(id) {
+  return request({
+    url: `/events/` + id + `/donates`,
+    method: "get",
+  });
+}

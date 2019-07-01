@@ -24,7 +24,7 @@ import addDays from "date-fns/add_days";
 import format from "date-fns/format";
 import "react-datepicker/dist/react-datepicker.css";
 import HeaderPost from "../../../../components/Post/HeaderPost/HeaderPost";
-import { getAllCheckinUser } from "../../../../services/event.service";
+import { getAllCheckinUser} from "../../../../services/event.service";
 import { withLocalize, Translate } from "react-localize-redux";
 import postCheckInPageTranslations from './translation.json';
 import { withRouter } from "react-router";

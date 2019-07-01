@@ -23,6 +23,7 @@ export function getUser() {
         try {
             const { data: user } = await authServices.getUser();
             const { data } = await userServices.getNotifications(user.username);
+            console.log()
             dispatch({ type: actionTypes.GET_NOTIF, payload: data });
             dispatch({ type: actionTypes.GET_ME_SUCCESSFULLY, payload: { user } });
             
