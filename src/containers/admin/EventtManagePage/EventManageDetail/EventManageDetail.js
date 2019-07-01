@@ -11,7 +11,7 @@ import DatePicker from "react-datepicker";
 import addDays from "date-fns/add_days";
 import format from "date-fns/format";
 import { editEvent } from "../../../../services/event.service";
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"; 
 import {
   getEventByID,
   startEventByID,
