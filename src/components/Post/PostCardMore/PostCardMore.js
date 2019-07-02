@@ -191,8 +191,10 @@ class PostCardMore extends React.Component {
             />
           )}
 
-          <div className="p-2">{this.props.description}</div>
-          <div style={{ width: "100%" }}>
+          <div className="p-2" style={{display:"flex", justifyContent:"center"}}> {this.props.description}
+
+</div>
+          <div style={{ width: "100%", overflow:"hidden" }}>
             <Row>
               <Col>
                 <div onClick={this.toggle}>
@@ -200,22 +202,81 @@ class PostCardMore extends React.Component {
                   {this.props.filenames.map(filename => {
                     this.state.items.push(`/resources/${filename}`);
                   })}
-                  {this.state.items.length < 2 ? (
+                  {this.props.filenames.length < 2 && (
                     <img
                       style={{ cursor: "pointer" }}
                       src={`/resources/${this.props.filenames[0]}`}
                       className="post-album-more"
                     />
-                  ) : (
-                    <div className="Newpost-img__more">
-                      <img
+                  )}
+                  {this.props.filenames.length == 2 ? (
+                <Row>
+                    <Col xs="6" style={{ paddingRight: "2px", paddingLeft: "0" }}>
+                    <div>
+                        <img
                         style={{ cursor: "pointer" }}
                         src={`/resources/${this.props.filenames[0]}`}
-                        className="post-album-more"
-                      />
-                      <div>+{this.state.items.length - 1}</div>
+                        className="post-album-2"
+                        />
                     </div>
-                  )}
+                    </Col>
+                    <Col xs="6" className="pl-0 pr-0">
+                    <div>
+                        <img
+                        style={{ cursor: "pointer" }}
+                        src={`/resources/${this.props.filenames[1]}`}
+                        className="post-album-2"
+                        />
+                    </div>
+                    </Col>
+                </Row>
+                ) : null}
+                {this.props.filenames.length >= 3 ? (
+                <Row>
+                    <Col
+                    xs="6"
+                    style={{ paddingRight: "0.1rem", paddingLeft: "0" }}
+                    >
+                    <div>
+                        <img
+                        style={{ cursor: "pointer" }}
+                        src={`/resources/${this.props.filenames[0]}`}
+                        className="post-album-3"
+                        />
+                    </div>
+                    </Col>
+                    <Col xs="6" className="pl-0 pr-0" style={{ height: "24rem" }}>
+                    <div>
+                        <img
+                        style={{ cursor: "pointer" }}
+                        src={`/resources/${this.props.filenames[1]}`}
+                        className="post-album-2-3"
+                        />
+                    </div>
+                    {this.props.filenames.length > 3 ? (
+                        <div
+                        className="Newpost-img__more"
+                        style={{ marginTop: "0.1rem" }}
+                        >
+                        <img
+                            style={{ cursor: "pointer" }}
+                            src={`/resources/${this.props.filenames[2]}`}
+                            className="post-album-2-3"
+                        />
+                        <div>+{this.state.items.length - 1}</div>
+                        </div>
+                    ) : (
+                        <div style={{ marginTop: "0.1rem" }}>
+                        <img
+                            style={{ cursor: "pointer" }}
+                            src={`/resources/${this.props.filenames[2]}`}
+                            className="post-album-2-3"
+                        />
+                        </div>
+                    )}
+                    </Col>
+                </Row>
+                ) : null}
                 </div>
                 <Modal
                   isOpen={this.state.modal}
@@ -280,15 +341,6 @@ class PostCardMore extends React.Component {
                       <i className="fas fa-donate icon-button" />
                       Quyên góp
                     </Button>
-                    <Modal
-                      isOpen={this.state.paymentOpen}
-                      toggle={this.togglePayment}
-                    >
-                      <ModalHeader>Thanh toán </ModalHeader>
-                      <ModalBody>
-                        <Payment />
-                      </ModalBody>
-                    </Modal>
                   </div>
                 )}
               </div>

@@ -33,6 +33,9 @@ import request from "../../../services/request";
 import { withLocalize, Translate } from "react-localize-redux";
 import eventCardMoreTranslations from './translation.json';
 import { withRouter } from "react-router";
+import { donateEvent, checkPayment } from "../../../services/momo.service";
+import { donateMoney, getDonateEvent } from "../../../services/event.service"
+
 
 class EventCardMore extends React.Component {
   constructor(props) {
@@ -45,7 +48,10 @@ class EventCardMore extends React.Component {
       paymentOpen: false,
       comments: [],
       comment: "",
-      modalEye: false
+      modalEye: false,
+      totalDonateAmount: 0,
+      donators: [],
+      isDonatorModalOpen: false
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -73,15 +79,40 @@ class EventCardMore extends React.Component {
       modalEye: !this.state.modalEye
     });
   }
+
+  setPayment = data => {
+    console.log(data);
+    window.open(data.payUrl);
+    checkPayment(data.payUrl).then(data => {
+      console.log(data.data.status_code);
+    });
+  };
+
+  togglePayment = () => {
+    this.setState((prevState) => ({ paymentOpen: !prevState.paymentOpen }))
+  }
+
+  successDonate = async (amount, e) => {
+    e.preventDefault();
+    console.log(amount);
+    donateEvent(amount, this.setPayment);
+    // var data = this.foo
+  };
+
   checkJoinEvent = (_id, _ids) => {
     return _ids.find(i => i._id === _id);
   };
+
+  toggeDonatorModal = () => {
+    this.setState((prevState) => ({isDonatorModalOpen: !prevState.isDonatorModalOpen}));
+  }
+
   toggleMenuPost() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
   }
-  togglePayment() {
+  togglePayment = () => {
     this.setState({
       paymentOpen: !this.state.paymentOpen
     });
@@ -132,18 +163,48 @@ class EventCardMore extends React.Component {
     })
       .then(({ data }) => {
         this.setState({ comments: data });
+        return getDonateEvent(this.props._id)
+      })
+      .then(({ data }) => {
+        console.log(data);
+        const donators = [];
+        const amount = data.reduce((currentSum, donate) => {
+          donators.push(donate.donater)
+          return currentSum + parseInt(donate.value, 10);
+        }, 0);
+        this.setState({
+          totalDonateAmount: amount,
+          donators: donators
+        });
       })
       .catch(err => {
         alert(err);
       });
   };
 
+  getAmountAfterDonation = () => {
+    getDonateEvent(this.props._id)
+      .then(({ data }) => {
+        const donators = [];
+        const amount = data.reduce((currentSum, donate) => {
+          donators.push(donate.donater)
+          return currentSum + parseInt(donate.value, 10);
+        }, 0);
+        this.setState({
+          totalDonateAmount: amount,
+          donators: donators
+        });
+      }).catch(err => {
+        alert(err);
+      });
+  }
+
   handleCommentOnChange = e => {
     this.setState({ comment: e.target.value });
   };
 
   handleCommentOnSubmit = e => {
-    
+
     e.preventDefault();
 
     const { _id, permisison, avatar } = this.props.myUser;
@@ -159,7 +220,6 @@ class EventCardMore extends React.Component {
       }
     })
       .then(() => {
-        
         this.setState(prevState => ({
           comments: [
             {
@@ -172,7 +232,7 @@ class EventCardMore extends React.Component {
           ],
           comment: ""
         }));
-        
+
       })
       .catch(err => {
         alert(err);
@@ -206,14 +266,14 @@ class EventCardMore extends React.Component {
               typePage="more"
             />
           ) : (
-            <HeaderPost
-              {...this.props}
-              successReport={this.props.successReport}
-              reporter={this.props.myUser._id}
-              object={this.props._id}
-              objectModel={this.props.type}
-            />
-          )}
+              <HeaderPost
+                {...this.props}
+                successReport={this.props.successReport}
+                reporter={this.props.myUser._id}
+                object={this.props._id}
+                objectModel={this.props.type}
+              />
+            )}
           <div className="ml-5 pl-3" style={{ marginTop: "-1rem" }}>
             <small className="mr-2"><Translate id="eventCardMore.no1">Chia sẻ bởi</Translate></small>
             {this.props.sharer.map(mem => (
@@ -229,12 +289,16 @@ class EventCardMore extends React.Component {
               <div className="ml-3">
                 <div>
                   <Row>
-                    <Col xs="3">
+                    <Col xs="4">
                       <div>
                         <i className="far fa-calendar-alt" /> <b><Translate id="eventCardMore.time">Thời gian: </Translate></b>
                       </div>
                       <div>
                         <i className="fas fa-users"> </i> <b><Translate id="eventCardMore.numVolunteer">Số lượng: </Translate></b>
+                      </div>
+
+                      <div>
+                        <i className="fas fa-money"> </i> <b><Translate id="eventCardMore.totalDonateAmount">Tiền quyên góp: </Translate></b>
                       </div>
                     </Col>
                     <Col xs="8">
@@ -252,6 +316,12 @@ class EventCardMore extends React.Component {
                         {this.props.volunteers.length}/
                         {this.props.numVolunteers}
                         <span className="ml-2 eye-btn" onClick={this.toggleEye}>
+                          <i className="fas fa-eye" />
+                        </span>
+                      </div>
+                      <div>
+                        {this.state.totalDonateAmount}
+                        <span className="ml-2 eye-btn" onClick={this.toggeDonatorModal}>
                           <i className="fas fa-eye" />
                         </span>
                       </div>
@@ -282,15 +352,15 @@ class EventCardMore extends React.Component {
                       className="post-album-more"
                     />
                   ) : (
-                    <div className="Newpost-img__more">
-                      <img
-                        style={{ cursor: "pointer" }}
-                        src={`/resources/${this.props.filenames[0]}`}
-                        className="post-album-more"
-                      />
-                      <div>+{this.state.items.length - 1}</div>
-                    </div>
-                  )}
+                      <div className="Newpost-img__more">
+                        <img
+                          style={{ cursor: "pointer" }}
+                          src={`/resources/${this.props.filenames[0]}`}
+                          className="post-album-more"
+                        />
+                        <div>+{this.state.items.length - 1}</div>
+                      </div>
+                    )}
                 </div>
                 <Modal
                   isOpen={this.state.modal}
@@ -337,38 +407,38 @@ class EventCardMore extends React.Component {
                           this.props.myUser._id,
                           this.props.volunteers
                         ) ? (
-                          this.props.status === "UPCOMING" ? (
+                            this.props.status === "UPCOMING" ? (
+                              <th
+                                onClick={() =>
+                                  this.props.unjoinEvent(this.props._id)
+                                }
+                              >
+                                <div>
+                                  <i className="fas fa-user-minus" /> <Translate id="eventCardMore.cancel">Huỷ</Translate>
+                                </div>
+                              </th>
+                            ) : (
+                                <th onClick={() => this.messOutAfterRun()}>
+                                  <div style={{ color: "gray" }}>
+                                    <i className="fas fa-user-minus" /> <Translate id="eventCardMore.cancel">Huỷ</Translate>
+                                  </div>
+                                </th>
+                              )
+                          ) : this.props.status === "UPCOMING" ? (
                             <th
+                              disabled={
+                                this.props.myUser.isVerified === false ||
+                                this.props.myUser.permission != "USER"
+                              }
                               onClick={() =>
-                                this.props.unjoinEvent(this.props._id)
+                                this.props.joinToEvent(this.props._id)
                               }
                             >
                               <div>
-                                <i className="fas fa-user-minus" /> <Translate id="eventCardMore.cancel">Huỷ</Translate>
+                                <i className="fas fa-user-plus" /> <Translate id="eventCardMore.join">Tham gia</Translate>
                               </div>
                             </th>
-                          ) : (
-                            <th onClick={() => this.messOutAfterRun()}>
-                              <div style={{ color: "gray" }}>
-                                <i className="fas fa-user-minus" /> <Translate id="eventCardMore.cancel">Huỷ</Translate>
-                              </div>
-                            </th>
-                          )
-                        ) : this.props.status === "UPCOMING" ? (
-                          <th
-                            disabled={
-                              this.props.myUser.isVerified === false ||
-                              this.props.myUser.permission != "USER"
-                            }
-                            onClick={() =>
-                              this.props.joinToEvent(this.props._id)
-                            }
-                          >
-                            <div>
-                              <i className="fas fa-user-plus" /> <Translate id="eventCardMore.join">Tham gia</Translate>
-                            </div>
-                          </th>
-                        ) : null
+                          ) : null
                       ) : null}
                       {this.props.type === "EVENT" && (
                         <th onClick={this.togglePayment}>
@@ -424,6 +494,22 @@ class EventCardMore extends React.Component {
           </div>
           {/*/ col-lg-6 */}
         </div>
+
+        <Modal
+          isOpen={this.state.paymentOpen}
+          toggle={this.togglePayment}
+        >
+          <ModalHeader>Thanh toán </ModalHeader>
+          <ModalBody>
+            <Payment
+              incrementDonateAmount={this.getAmountAfterDonation}
+              close={this.togglePayment}
+              donate={this.successDonate}
+              event={this.props}
+            />
+          </ModalBody>
+        </Modal>
+
         <Modal isOpen={this.state.modalEye} toggle={this.toggleEye}>
           <ModalHeader toggle={this.toggleEye}><Translate id="eventCardMore.joinList">Danh sách tham gia</Translate></ModalHeader>
           <ModalBody>
@@ -463,6 +549,47 @@ class EventCardMore extends React.Component {
             </Button>
           </ModalFooter>
         </Modal>
+
+
+        <Modal isOpen={this.state.isDonatorModalOpen} toggle={this.toggeDonatorModal}>
+          <ModalHeader toggle={this.toggeDonatorModal}><Translate id="eventCardMore.joinList">Danh sách tham gia</Translate></ModalHeader>
+          <ModalBody>
+            {this.state.donators.map(volunteer => (
+              <Row className="item-mid">
+                <Col xs="4" className="p-2">
+                  <div className="logo ">
+                    <img
+                      alt="avatar"
+                      src={
+                        "/resources/" +
+                        (volunteer.avatar ||
+                          "https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.15752-9/57393041_305492127011755_8740904577945042944_n.jpg?_nc_cat=105&_nc_oc=AQn7GUnB8UXlqMTogNJWDlqNjMEYb8gBeMPWreuL7dXQQHbhb9R6_PFCvI5m-de4R8E&_nc_ht=scontent.fsgn2-1.fna&oh=70f6e9461f233111834a04094f2fa45e&oe=5D33B790")
+                      }
+                      className="mx-auto .d-block "
+                    />
+                  </div>
+                </Col>
+                <Col xs="8" className="p-1">
+                  <div className="item-center">
+                    <div className="item-column ">
+                      <b>
+                        {volunteer.name}{" "}
+                        {volunteer.isVerified === true && (
+                          <i className="ml-1 small fas fa-check-circle check-user" />
+                        )}
+                      </b>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            ))}
+          </ModalBody>
+          <ModalFooter>
+            <Button color="secondary" onClick={this.toggeDonatorModal}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
@@ -473,8 +600,8 @@ const mapStateToProps = ({ auth: { user } }) => ({ myUser: user });
 // export default connect(mapStateToProps)(EventCardMore);
 
 export default withRouter(
-    connect(
-        mapStateToProps
-    )(withLocalize(EventCardMore))
+  connect(
+    mapStateToProps
+  )(withLocalize(EventCardMore))
 );
 
