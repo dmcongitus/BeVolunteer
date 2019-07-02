@@ -32,6 +32,7 @@ class Notifications extends Component {
     return (
       <PopoverBody className="notifi-header">
         {this.renderNotifi(this.props.notif)}
+        {console.log(this.props.notif)}
       </PopoverBody>
     );
   }

@@ -10,7 +10,7 @@ import "./Header.css";
 
 import { withLocalize, Translate } from "react-localize-redux";
 import headerTranslations from "./translation.json";
-
+import Notifi from "./Notifications"
 import {
   Button,
   Row,
@@ -50,7 +50,7 @@ class Header extends React.Component {
     const { notifications } = this.props;
 
     const search = <Translate id="header.search">Tìm kiếm</Translate>;
-
+{console.log("aas")}
     return (
       <div>
         <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark ">
@@ -137,27 +137,17 @@ class Header extends React.Component {
                 </PopoverHeader>
 
                 {console.log(notifications)}
-                <div>
+             
                   {notifications.map(notif => (
-                    <PopoverBody className="notifi-header">
-                      <div className="item-center">
-                        <div>
-                          <img
-                            className="img-user-postCard rounded-circle"
-                            src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
-                            alt="UserAvatar"
-                            style={{ width: "30px", height: "30px" }}
-                          />
-                        </div>
-                        <div className="ml-2">
-                          <Translate id="header.text1">Sự kiện </Translate>
-                          <b> Xuân tình nguyện</b>{" "}
-                          <Translate id="header.text2">đã bắt đầu</Translate>
-                        </div>
-                      </div>
-                    </PopoverBody>
+					//   <Notifi notif = {notif}>
+
+					//   </Notifi>
+                   <div>
+					   {console.log(notif)}
+				   </div>
+					
                   ))}
-                </div>
+              
               </UncontrolledPopover>
 
               <li className="nav-item active" onClick={this.log_out}>
