@@ -8,8 +8,9 @@ export function logInUser(username, password, loginType) {
     return async function (dispatch) {
         try {
             const { data: { token, user } } = await authServices.loginUser(username, password, loginType);
-
             setToken(token);
+            const { data } = await userServices.getNotifications(user.username);
+            dispatch({ type: actionTypes.GET_NOTIF, payload: data });
             dispatch({ type: actionTypes.LOGIN_USER_SUCCESSFUL, payload: { token, user } });
         } catch (e) {
             console.log(e);
@@ -23,10 +24,9 @@ export function getUser() {
         try {
             const { data: user } = await authServices.getUser();
             const { data } = await userServices.getNotifications(user.username);
-            console.log()
             dispatch({ type: actionTypes.GET_NOTIF, payload: data });
             dispatch({ type: actionTypes.GET_ME_SUCCESSFULLY, payload: { user } });
-            
+
         } catch (e) {
             console.log(e);
             dispatch({ type: actionTypes.GET_ME_FAILED });

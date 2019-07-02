@@ -50,7 +50,7 @@ class Header extends React.Component {
     const { notifications } = this.props;
 
     const search = <Translate id="header.search">Tìm kiếm</Translate>;
-{console.log("aas")}
+    { console.log("aas") }
     return (
       <div>
         <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark ">
@@ -135,11 +135,11 @@ class Header extends React.Component {
                 <PopoverHeader>
                   <Translate id="header.noti">Thông báo</Translate>
                 </PopoverHeader>
+                    {console.log(notifications)}
+                {notifications.map(notif => (
+                     <Notifi notif = {notif} />
+                ))}
 
-                {console.log(notifications)}
-             
-				  {/* {notifications.map(notif =>)} */}
-              
               </UncontrolledPopover>
 
               <li className="nav-item active" onClick={this.log_out}>
