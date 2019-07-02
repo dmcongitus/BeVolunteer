@@ -135,7 +135,7 @@ class Header extends React.Component {
                 <PopoverHeader>
                   <Translate id="header.noti">Thông báo</Translate>
                 </PopoverHeader>
-
+                    {console.log(notifications)}
                 {notifications.map(notif => (
                      <Notifi notif = {notif} />
                 ))}

@@ -10,7 +10,15 @@ class HistoryCard extends Component {
     super(props);
     this.state = {};
   }
+  coverTypeOject = type => {
+    switch (type) {
+      case "PLACE":
+        return <span>địa điểm</span>;
 
+      default:
+        break;
+    }
+  };
   renderHistory = data => {
     switch (data.historyType) {
       case "COMMENT_ON_POST":
@@ -20,20 +28,46 @@ class HistoryCard extends Component {
               <Col xs="1">
                 <i class="fas fa-comments" />
               </Col>
-              <Col xs="auto">Bạn đã bình luận về bài viết</Col>
+              <Col xs="8">
+                <div>
+                  {this.props.thisUser._id === data.user_id ? (
+                    <span>Bạn </span>
+                  ) : (
+                    <span>{data.user.name}</span>
+                  )}
+                  đã <b>bình luận</b> về {this.coverTypeOject(data.object.type)}
+                </div>
+                <div>
+                  <small>
+                    <i className="far fa-calendar-alt mr-2" />
+                    {format(this.props.createdAt, "DD-MM-YYYY")}
+                  </small>
+                </div>
+              </Col>
+              <Col xs="3">
+                <small>
+                  {format(this.props.createdAt, "hh:mm")}{" "}
+                  <i className="fas fa-clock ml-2" />
+                </small>
+              </Col>
             </Row>
           </Link>
         );
       case "COMMENT_ON_EVENT":
         return (
-          <Link to={`/event/${this.props.object._id}`}>
+          <Link to={`/eventMore/${this.props.object._id}`}>
             <Row>
               <Col xs="1">
                 <i class="fas fa-comments" />
               </Col>
               <Col xs="8">
                 <div>
-                  Bạn đã bình luận về sự kiện
+                  {this.props.thisUser._id === data.user_id ? (
+                    <span>Bạn </span>
+                  ) : (
+                    <span>{data.user.name}</span>
+                  )}
+                  đã <b>bình luận</b> về sự kiện
                   <span style={{ color: "red" }} className="ml-2">
                     {this.props.object.title}
                   </span>
@@ -59,66 +93,43 @@ class HistoryCard extends Component {
           <Link to={`/post/${this.props.object._id}`}>
             <Row>
               <Col xs="1">
-                <i class="fas fa-plus-square" />
+                <i class="fas fa-comments" />
               </Col>
-              <Col xs="auto">Bạn đã tạo một bài viết</Col>
+              <Col xs="8">
+                <div>
+                  Bạn đã <b>chia sẻ</b> bài viết
+                  <span style={{ color: "red" }} className="ml-2">
+                    {this.props.object.title}
+                  </span>
+                </div>
+                <div>
+                  <small>
+                    <i className="far fa-calendar-alt mr-2" />
+                    {format(this.props.createdAt, "DD-MM-YYYY")}
+                  </small>
+                </div>
+              </Col>
+              <Col xs="3">
+                <small>
+                  {format(this.props.createdAt, "hh:mm")}{" "}
+                  <i className="fas fa-clock ml-2" />
+                </small>
+              </Col>
             </Row>
           </Link>
         );
       case "CREATE_NEW_EVENT":
-        return (
-          <Row>
-            <Col xs="1">
-              <i class="fas fa-plus-square" />
-            </Col>
-            <Col xs="auto">a</Col>
-          </Row>
-        );
+
       case "CREATE_NEW_ADMIN":
-        return (
-          <Row>
-            <Col xs="1">
-              <i class="fas fa-plus-square" />
-            </Col>
-            <Col xs="auto">a</Col>
-          </Row>
-        );
+
       case "JOIN_EVENT":
-        return (
-          <Row>
-            <Col xs="1">
-              <i class="fas fa-sign-in-alt" />
-            </Col>
-            <Col xs="auto">a</Col>
-          </Row>
-        );
+
       case "UNJOIN_EVENT":
-        return (
-          <Row>
-            <Col xs="1">
-              <i class="fas fa-user-minus" />
-            </Col>
-            <Col xs="auto">a</Col>
-          </Row>
-        );
+
       case "ATTENDANCE_EVENT":
-        return (
-          <Row>
-            <Col xs="1">
-              <i class="fas fa-calendar-check" />
-            </Col>
-            <Col xs="auto">a</Col>
-          </Row>
-        );
+
       case "CANCEL_ATTENDANCE_EVENT":
-        return (
-          <Row>
-            <Col xs="1">
-              <i class="fas fa-calendar-times" />
-            </Col>
-            <Col xs="auto">a</Col>
-          </Row>
-        );
+
       case "REQUEST_VERIFY_ACCOUNT":
       case "ACCEPT_VERIFY_ACCOUNT":
       case "UNVERIFIED_ACCOUNT":
@@ -127,6 +138,35 @@ class HistoryCard extends Component {
       case "BAN_ACCOUNT":
       case "UNBAN_ACCOUNT":
       case "DONATE_EVENT":
+        return (
+          <Link to={`/eventMore/${this.props.object._id}`}>
+            <Row>
+              <Col xs="1">
+                <i class="fas fa-comments" />
+              </Col>
+              <Col xs="8">
+                <div>
+                  Bạn đã <b>quyên góp</b> cho sự kiện
+                  <span style={{ color: "red" }} className="ml-2">
+                    {this.props.object.title}
+                  </span>
+                </div>
+                <div>
+                  <small>
+                    <i className="far fa-calendar-alt mr-2" />
+                    {format(this.props.createdAt, "DD-MM-YYYY")}
+                  </small>
+                </div>
+              </Col>
+              <Col xs="3">
+                <small>
+                  {format(this.props.createdAt, "hh:mm")}{" "}
+                  <i className="fas fa-clock ml-2" />
+                </small>
+              </Col>
+            </Row>
+          </Link>
+        );
       case "VERIFIED_DONATE":
       case "REPORT":
     }
@@ -141,10 +181,6 @@ class HistoryCard extends Component {
   }
 }
 
-const mapStateToProps = ({
-  auth: {
-    user: { thisUser }
-  }
-}) => ({ thisUser });
+const mapStateToProps = ({ auth: { user } }) => ({ thisUser: user });
 
 export default withRouter(connect(mapStateToProps)(HistoryCard));
