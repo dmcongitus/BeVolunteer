@@ -94,8 +94,17 @@ class Notifications extends Component {
     }
   };
   render() {
-    return (
+    return this.props.notif.isRead ===
+    (
       <PopoverBody className="notifi-header">
+        {this.renderNotifi(this.props.notif)}
+        {/* {console.log(this.props.notif)} */}
+      </PopoverBody>
+    ) ? null : (
+      <PopoverBody
+        className="notifi-header"
+        style={{ background: "palegreen" }}
+      >
         {this.renderNotifi(this.props.notif)}
         {/* {console.log(this.props.notif)} */}
       </PopoverBody>
