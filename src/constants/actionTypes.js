@@ -17,3 +17,5 @@ export const GET_ME_FAILED = "GET_ME_FAILED";
 
 export const APPEND_NOTIF = "APPEND_NOTIF";
 export const GET_NOTIF = "GET_NOTIF";
+
+export const LEVEL_UP_USER = "LEVEL_UP_USER";
