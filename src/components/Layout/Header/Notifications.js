@@ -30,10 +30,10 @@ class Notifications extends Component {
   };
   render() {
     return (
-      <PopoverBody className="notifi-header">
+      <div className="notifi-header">
         {this.renderNotifi(this.props.notif)}
         {console.log(this.props.notif)}
-      </PopoverBody>
+      </div>
     );
   }
 }

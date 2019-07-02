@@ -20,6 +20,7 @@ class History extends Component {
   render() {
       return (
           <PageLayout title="Lịch sử họat động">
+              {console.log(this.state.data)}
               {this.state.data.map((data) => <HistoryCard key={data.id} {...data}></HistoryCard>)}
           </PageLayout>
       );

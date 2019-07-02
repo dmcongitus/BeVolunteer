@@ -138,15 +138,7 @@ class Header extends React.Component {
 
                 {console.log(notifications)}
              
-                  {notifications.map(notif => (
-					//   <Notifi notif = {notif}>
-
-					//   </Notifi>
-                   <div>
-					   {console.log(notif)}
-				   </div>
-					
-                  ))}
+				  {/* {notifications.map(notif =>)} */}
               
               </UncontrolledPopover>
 
