@@ -110,12 +110,18 @@ class Header extends React.Component {
               </NavLink>
               <button
                 className="nav-item active"
-                style={{ all: "unset" }}
+                style={{ all: "unset", cursor: "pointer" }}
                 id="PopoverFocus"
               >
                 <a className="nav-link">
                   <i className="fa fa-bell">
-                    <span className="badge badge-info">11</span>
+                    <span className="badge badge-info">
+                      {
+                        notifications.filter(notif => {
+                          return notif.isRead == false;
+                        }).length
+                      }
+                    </span>
                   </i>
                   <Translate id="header.noti">Thông báo</Translate>
                 </a>
@@ -131,25 +137,27 @@ class Header extends React.Component {
                 </PopoverHeader>
 
                 {console.log(notifications)}
-                {notifications.map(notif => (
-                  <PopoverBody className="notifi-header">
-                    <div className="item-center">
-                      <div>
-                        <img
-                          className="img-user-postCard rounded-circle"
-                          src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
-                          alt="UserAvatar"
-                          style={{ width: "30px", height: "30px" }}
-                        />
+                <div>
+                  {notifications.map(notif => (
+                    <PopoverBody className="notifi-header">
+                      <div className="item-center">
+                        <div>
+                          <img
+                            className="img-user-postCard rounded-circle"
+                            src="https://lolstatic-a.akamaihd.net/site/mount-targon/079694fdf251b5e7de788d9ab439d401d31ae160/img/champions/pantheon/pantheon-hero-mobile.jpg"
+                            alt="UserAvatar"
+                            style={{ width: "30px", height: "30px" }}
+                          />
+                        </div>
+                        <div className="ml-2">
+                          <Translate id="header.text1">Sự kiện </Translate>
+                          <b> Xuân tình nguyện</b>{" "}
+                          <Translate id="header.text2">đã bắt đầu</Translate>
+                        </div>
                       </div>
-                      <div className="ml-2">
-                        <Translate id="header.text1">Sự kiện </Translate>
-                        <b> Xuân tình nguyện</b>{" "}
-                        <Translate id="header.text2">đã bắt đầu</Translate>
-                      </div>
-                    </div>
-                  </PopoverBody>
-                ))}
+                    </PopoverBody>
+                  ))}
+                </div>
               </UncontrolledPopover>
 
               <li className="nav-item active" onClick={this.log_out}>

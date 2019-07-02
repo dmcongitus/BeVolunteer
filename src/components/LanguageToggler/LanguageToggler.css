@@ -1,0 +1,7 @@
+.lang-icon img{
+    height: 1.5rem;
+    width: auto;
+}
+.lang-icon:hover{
+    cursor: pointer;
+}
