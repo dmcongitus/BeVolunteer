@@ -13,23 +13,29 @@ export default function authReducer(state = initialState, action) {
 
         case actionTypes.LOGIN_USER_FAILED:
             return { ...state, isAuthenticated: false, user: {} };
-        
+
         case actionTypes.LOGOUT_USER:
             return { ...state, isAuthenticated: false, user: undefined };
-        
+
         case actionTypes.UPDATE_USER_INFO:
-            return { ...state, user: { ...state.user} };
-        
+            return { ...state, user: { ...state.user } };
+
         case actionTypes.UPLOAD_AVATAR:
             const user = state.user
             user.avatar = action.payload
-            return {...state, user}
+            return { ...state, user }
 
         case actionTypes.GET_ME_SUCCESSFULLY:
             return { ...state, isAuthenticated: true, ...action.payload };
 
         case actionTypes.GET_ME_FAILED:
-                return { ...state, isAuthenticated: false, user: {} };
+            return { ...state, isAuthenticated: false, user: {} };
+
+        case actionTypes.LEVEL_UP_USER: {
+            const { user } = state;
+            user.exp += 1
+            return { ...state, user }
+        }
 
         default:
             return state;

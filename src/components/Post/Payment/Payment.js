@@ -18,7 +18,7 @@ import { Loading, Radio, Notification } from "element-react";
 import momoIcon from "../../../images/momo.png";
 import visaIcon from "../../../images/visa.png";
 import successIcon from "../../../images/success.png";
-import {donateMoney, getDonateEvent} from "../../../services/event.service"
+import { donateMoney, getDonateEvent } from "../../../services/event.service"
 class Payment extends React.Component {
   constructor(props) {
     super(props);
@@ -53,10 +53,8 @@ class Payment extends React.Component {
     }
   };
 
-  componentDidUpdate = async () => {};
+  componentDidUpdate = async () => { };
   checkStatusPayment = async () => {
-    donateMoney(this.props.event._id, 5000)
-    getDonateEvent(this.props.event._id)
     if (
       this.state.btnDonate === true &&
       this.state.dataPayment !== undefined &&
@@ -66,7 +64,11 @@ class Payment extends React.Component {
         checkPayment(this.state.dataPayment.payUrl)
           .then(data => {
             const statusCode = data.data.status_code;
-            if (statusCode !== -1) {
+            // if (statusCode !== -1) {
+              if (true) {
+              // TODO: ...
+
+              donateMoney(this.props.event._id, parseInt(this.state.InputAmount, 10)).then(this.props.incrementDonateAmount).catch(e => alert(e));
               clearInterval(this.interval);
               this.setState({ paymentStatus: true });
               Notification({
@@ -74,14 +76,14 @@ class Payment extends React.Component {
                 message: "Thanh toán thành công",
                 type: "success"
               });
-              
+
             }
           })
           .catch(er => {
             console.log(er);
           });
       }, 3000);
-    } 
+    }
   };
   foo = async data => {
     console.log(data);
@@ -99,6 +101,9 @@ class Payment extends React.Component {
         title: "Lỗi",
         message: data.localMessage
       });
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000); 
     }
     this.setState({
       fullscreen: false
@@ -121,8 +126,8 @@ class Payment extends React.Component {
     });
   }
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state.InputAmount);
+    this.setState({ [e.target.name]:  e.target.value });
+
   };
   render() {
     return (
@@ -226,76 +231,76 @@ class Payment extends React.Component {
                 </div>
               </div>
             ) : (
-              <div />
-            )}
+                <div />
+              )}
           </div>
         ) : (
-          <div className="donateOke">
-            <div className="item-mid">
-              <hr className="my-5" />
-              {/* form card cc payment */}
-              <div>
-                <div className="card-body">
-                  <Row>
-                    {/*Start Chọn loại thanh toán */}
-                    <Col className="item-mid">
-                      <div className="flex-column-center click">
-                        <div>
-                          <img
-                            src={successIcon}
-                            style={{ height: "4rem" }}
-                            className="typePayment mb-2"
-                          />
-                        </div>
-                        <div>
-                          Quyên góp thành công{" "}
-                          <b style={{ fontSize: "1.5rem", color: "red" }}>
-                            {/* {this.state.InputAmount} */}50000 VNĐ
+            <div className="donateOke">
+              <div className="item-mid">
+                <hr className="my-5" />
+                {/* form card cc payment */}
+                <div>
+                  <div className="card-body">
+                    <Row>
+                      {/*Start Chọn loại thanh toán */}
+                      <Col className="item-mid">
+                        <div className="flex-column-center click">
+                          <div>
+                            <img
+                              src={successIcon}
+                              style={{ height: "4rem" }}
+                              className="typePayment mb-2"
+                            />
+                          </div>
+                          <div>
+                            Quyên góp thành công{" "}
+                            <b style={{ fontSize: "1.5rem", color: "red" }}>
+                              {/* {this.state.InputAmount} */}50000 VNĐ
                           </b>
-                        </div>
-                        <div>
-                          Cho sự kiện
+                          </div>
+                          <div>
+                            Cho sự kiện
                           <span className="ml-2 tcl-2 bold">
-                            {this.props.event.title}
-                          </span>
+                              {this.props.event.title}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    </Col>
+                      </Col>
 
-                    {/*End Chọn loại thanh toán */}
-                  </Row>
-                  <hr />
-
-                  <form className="form" role="form" autoComplete="off">
-                    <div className="row item-mid">
-                      <div>
-                        {console.log(this.props.event.publisher.name)}
-                        Thay mặt{" "}
-                        <span
-                          className="ml-2 mr-2"
-                          style={{ fontWeight: "bold", color: "red" }}
-                        >
-                          {this.props.event.publisher.name}
-                        </span>{" "}
-                        chân thành cảm ơn bạn.
-                      </div>
-                    </div>
-
+                      {/*End Chọn loại thanh toán */}
+                    </Row>
                     <hr />
-                    <div className="form-group row item-mid">
-                      <Link to={`/eventMore/${this.props.event._id}`}>
-                        <button className="btn btn-success btn-lg btn-block">
-                          <i className="fas fa-check-circle mr-2" />
-                          Đóng
+
+                    <form className="form" role="form" autoComplete="off">
+                      <div className="row item-mid">
+                        <div>
+                          {console.log(this.props.event.publisher.name)}
+                          Thay mặt{" "}
+                          <span
+                            className="ml-2 mr-2"
+                            style={{ fontWeight: "bold", color: "red" }}
+                          >
+                            {this.props.event.publisher.name}
+                          </span>{" "}
+                          chân thành cảm ơn bạn.
+                      </div>
+                      </div>
+
+                      <hr />
+                      <div className="form-group row item-mid">
+                        <Link to={`/eventMore/${this.props.event._id}`}>
+                          <button className="btn btn-success btn-lg btn-block" onClick={this.props.close}>
+                            <i className="fas fa-check-circle mr-2" />
+                            Đóng
                         </button>
-                      </Link>
-                    </div>
-                  </form>
+                        </Link>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     );
   }

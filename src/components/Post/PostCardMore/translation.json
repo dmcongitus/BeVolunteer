@@ -12,6 +12,10 @@
             "Number Volunteer: ",
             "Số lượng: "
         ],
+        "totalDonateAmount": [
+            "Total donate amount: ",
+            "Tiền quyên góp"
+        ],
         "from": [
             "From",
             "Từ"

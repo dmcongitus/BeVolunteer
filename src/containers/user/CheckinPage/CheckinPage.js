@@ -50,9 +50,11 @@ class CheckinPage extends Component {
       DateFomart,
       this.props.username
     );
-    if (checkList.length !== 0) {
+    if (checkList.data.length !== 0) {
+      // TODO:
       CheckinUserByCode(eventId, checkList.data[0]._id, code);
     }
+    this.props.history.push(`/eventMore/${eventId}`);
   };
   getStatusCheckinToday = async eventId => {
     const DateFomart = await format(new Date(), "YYYY-MM-DD").toString();
