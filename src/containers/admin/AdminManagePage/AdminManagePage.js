@@ -6,16 +6,9 @@ import { connect } from "react-redux";
 import { banUser, unbanUser } from "../../../services/user.service";
 import { getAdminsManger, delelteAdmin } from "../../../services/admin.service";
 import {
-    TabContent,
-    TabPane,
     Nav,
     NavItem,
     NavLink,
-    Card,
-    CardTitle,
-    CardText,
-    Row,
-    Col,
     Input
 } from "reactstrap";
 import classnames from "classnames";
@@ -83,7 +76,7 @@ class AdminManagePage extends Component {
         await this.setState(prevState => {
         const newAccounts = [...prevState.accounts];
         for (let i = 0; i < newAccounts.length; i++) {
-            if (newAccounts[i].username == username) {
+            if (newAccounts[i].username === username) {
             newAccounts[i].isBanned = true;
             }
         }
@@ -101,7 +94,7 @@ class AdminManagePage extends Component {
         this.setState(prevState => {
         const newAccounts = [...prevState.accounts];
         for (let i = 0; i < newAccounts.length; i++) {
-            if (newAccounts[i].username == username) {
+            if (newAccounts[i].username === username) {
                 newAccounts[i].isBanned = false;
             }
         }

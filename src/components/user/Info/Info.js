@@ -6,17 +6,15 @@ import * as userActions from "../../../actions/user.actions";
 
 import "./Info.css";
 
-import profileIcon from "../../../images/profile.png";
-import cancelIcon from "../../../images/cancel.png";
+
 import editIcon from "../../../images/edit.png";
 import identityImage from "../../../images/identity.png";
-import { userInfo } from "os";
 import { withLocalize, Translate } from "react-localize-redux";
 import infoTranslations from './translation.json';
 import { withRouter } from "react-router";
 
-import { Alert, Badge } from "reactstrap";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Alert } from "reactstrap";
+import { Button, FormGroup, Label, Input, FormText } from "reactstrap";
 var permissionArr = { USER: "Cá nhân", ORG: "Tổ chức" };
 
 class MeComponent extends Component {
@@ -285,6 +283,8 @@ class MeComponent extends Component {
                     <li className="UpdateProfile__Main__FieldItem">
                     <div className="UpdateProfile__Main__FieldName"><Translate id="info.type">Loại</Translate></div>
                     <FormGroup>
+                    <Translate>
+              {({ translate }) => (
                         <Input
                         type="select"
                         name="permission"
@@ -292,9 +292,12 @@ class MeComponent extends Component {
                         value={this.state.profiles["permission"]}
                         disabled={this.props.user.isVerified === true}
                         >
-                        <option value="USER">{per}</option>
-                        <option value="ORG">{org}</option>
-                        </Input>
+             
+          
+                        <option value="USER">{translate("info.personal")}</option>
+                        <option value="ORG">{translate("info.organization")}</option>
+                        </Input>    )}
+            </Translate>
                     </FormGroup>
                     </li>
                 </ul>

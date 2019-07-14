@@ -112,7 +112,7 @@ class HomePage extends Component {
         })
         .catch(e => console.log(e));
     };
-
+   
     render() {
         const t = <Translate id="homepage.post">BÀI ĐĂNG</Translate>
 
@@ -135,6 +135,7 @@ class HomePage extends Component {
                     successReport={this.successReport}
                     joinToEvent={this.joinToEvent}
                     unjoinEvent={this.unjoinEvent}
+                   
                     />
                 </div>
                 ))}

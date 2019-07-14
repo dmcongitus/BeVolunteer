@@ -182,7 +182,7 @@ class PostCard extends React.Component {
                 <Row>
                     <Col>
                         <div className="item-mid pb-3">
-                            <div className="pl-2 pr-3">{this.props.description}</div>
+                            <div className="pl-2 pr-3 test" style={{textAlign:"justify"}}>{this.props.description}</div>
                         </div>
                     </Col>
                 </Row>
@@ -198,7 +198,7 @@ class PostCard extends React.Component {
                                 className="post-album"
                             />
                         ) : null}
-                        {this.state.items.length == 2 ? (
+                        {this.state.items.length === 2 ? (
                             <Row>
                                 <Col xs="6" style={{ paddingRight: "2px", paddingLeft: "0" }}>
                                     <div>

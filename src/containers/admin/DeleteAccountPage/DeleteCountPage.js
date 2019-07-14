@@ -9,16 +9,9 @@ import {
   unbanUser
 } from "../../../services/user.service";
 import {
-    TabContent,
-    TabPane,
     Nav,
     NavItem,
     NavLink,
-    Card,
-    CardTitle,
-    CardText,
-    Row,
-    Col,
     Input
 } from "reactstrap";
 import { withLocalize, Translate } from "react-localize-redux";
@@ -74,7 +67,7 @@ class DeleteAccountPage extends Component {
         await this.setState(prevState => {
         const newAccounts = [...prevState.accounts];
         for (let i = 0; i < newAccounts.length; i++) {
-            if (newAccounts[i].username == username) {
+            if (newAccounts[i].username === username) {
             newAccounts[i].isBanned = true;
             }
         }
@@ -92,7 +85,7 @@ class DeleteAccountPage extends Component {
         this.setState(prevState => {
         const newAccounts = [...prevState.accounts];
         for (let i = 0; i < newAccounts.length; i++) {
-            if (newAccounts[i].username == username) {
+            if (newAccounts[i].username === username) {
             newAccounts[i].isBanned = false;
             }
         }

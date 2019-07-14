@@ -4,41 +4,47 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { withLocalize, Translate } from "react-localize-redux";
 import { Link } from "react-router-dom";
+
 class Notifications extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = { error: false };
   }
+
   //src={`/resources/${this.props.filenames}`}
+  componentDidCatch = () => {
+    this.setState({ error: true });
+  };
   renderNotifi = data => {
     switch (data.notificationType) {
       case "COMMENT_ON_POST":
         return (
-          <Link to={`/post/${data.object._id}`}>
-            <div className="item-center">
-              <div>
-                <img
-                  className="img-user-postCard rounded-circle"
-                  src={`/resources/${data.user.avatar}`}
-                  alt="UserAvatar"
-                  style={{ width: "30px", height: "30px" }}
-                />
-              </div>
-              <div className="ml-2">
-                <b> {data.user.name}</b> đã bình luận về bài viết
-                {data.object.user === this.props._id ? (
-                  <span> của bạn</span>
-                ) : null}
-              </div>
+          <div
+            className="item-center"
+            onClick={()=>this.props.isReaded(data._id, `/post/${data.object._id}`)}
+          >
+            <div>
+              <img
+                className="img-user-postCard rounded-circle"
+                src={`/resources/${data.user.avatar}`}
+                alt="UserAvatar"
+                style={{ width: "30px", height: "30px" }}
+              />
             </div>
-          </Link>
+            <div className="ml-2">
+              <b> {data.user.name}</b> đã bình luận về bài viết
+              {data.object.user === this.props._id ? (
+                <span> của bạn</span>
+              ) : null}
+            </div>
+          </div>
         );
 
       case "ACCEPT_VERIFY_ACCOUNT":
         return (
-          <Link to={`/me`}>
-            <div className="item-center">
+         
+            <div className="item-center" onClick={()=>this.props.isReaded(data._id, `/me`)}>
               <div>
                 <img
                   className="img-user-postCard rounded-circle"
@@ -52,7 +58,7 @@ class Notifications extends Component {
                 <b> xác thực</b> bởi <b>{data.user.name}</b>
               </div>
             </div>
-          </Link>
+     
         );
       case "CREATE_NEW_POST":
       case "CREATE_NEW_EVENT":
@@ -69,8 +75,8 @@ class Notifications extends Component {
       case "BAN_ACCOUNT":
       case "START_EVENT":
         return (
-          <Link to={`/eventMore/${data.object._id}`}>
-            <div className="item-center">
+         
+            <div className="item-center" onClick={()=>this.props.isReaded(data._id, `/eventMore/${data.object._id}`)}>
               <div>
                 <img
                   className="img-user-postCard rounded-circle"
@@ -84,7 +90,7 @@ class Notifications extends Component {
                 <b>{data.object.title}</b> đã bắt đầu
               </div>
             </div>
-          </Link>
+         
         );
       case "END_EVENT":
       case "UNBAN_ACCOUNT":
@@ -94,21 +100,26 @@ class Notifications extends Component {
     }
   };
   render() {
-    return this.props.notif.isRead ===
-    (
-      <PopoverBody className="notifi-header">
-        {this.renderNotifi(this.props.notif)}
-        {/* {console.log(this.props.notif)} */}
-      </PopoverBody>
-    ) ? null : (
-      <PopoverBody
-        className="notifi-header"
-        style={{ background: "palegreen" }}
-      >
-        {this.renderNotifi(this.props.notif)}
-        {/* {console.log(this.props.notif)} */}
-      </PopoverBody>
-    );
+   
+     if(this.props.notif!== undefined){
+        return this.props.notif.isRead === true ? (
+          <PopoverBody className="notifi-header">
+            {/* {this.renderNotifi(this.props.notif)} */}
+            {/* {console.log(this.props.notif)} */}
+            <div>đã đọc</div>
+          </PopoverBody>
+        ) : (
+          <PopoverBody
+            className="notifi-header"
+            style={{ background: "palegreen" }}
+          >
+            {/* {this.renderNotifi(this.props.notif)} */}
+            {/* {console.log(this.props.notif)} */}
+            <div>chưa đọc</div>
+          </PopoverBody>
+        );
+        }
+        return (<div>test</div>)
   }
 }
 
@@ -118,6 +129,4 @@ const mapStateToProps = ({
   }
 }) => ({ _id });
 
-export default withRouter(
-  connect(mapStateToProps)(withLocalize(Notifications))
-);
+export default Notifications;

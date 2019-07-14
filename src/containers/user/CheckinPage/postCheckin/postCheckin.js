@@ -240,7 +240,9 @@ class PostCheckin extends React.Component {
                     </Col>
 
                     <Col xs="6" className="textMedia pl-0">
-                        <Alert color="success">{this.props.description}</Alert>
+                        <Alert color="success" style={{textAlign:"justify"}}><div className="test">
+{this.props.description}
+                        </div></Alert>
 
                         <div className="item-right">
                             {this.props.type === "EVENT" && (

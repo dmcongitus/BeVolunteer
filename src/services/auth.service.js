@@ -23,3 +23,11 @@ export function getUser(username, password, loginType) {
         method: 'get'
     })
 }
+
+export function putExp(id, point) {
+    return request({
+        url: `/exp/`+id,
+        method: 'put',
+        data: point
+    })
+}

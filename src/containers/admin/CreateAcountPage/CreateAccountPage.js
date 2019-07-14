@@ -5,8 +5,7 @@ import {
     Form,
     FormGroup,
     Label,
-    Input,
-    FormText
+    Input
 } from "reactstrap";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import "./CreateAccountPage.css";
@@ -54,7 +53,7 @@ class CreateAccountPage extends Component {
         e.preventDefault();
         try {
     
-        const data = await createAdmin({ ...this.state });
+        createAdmin({ ...this.state });
         } catch (error) {
         console.error(error);
         }

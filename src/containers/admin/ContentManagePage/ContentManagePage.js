@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import HistoryCard from "../../../components/admin/HistoryCard/HistoryCard";
+import HistoryCard from "../../../components/admin/Report/HistoryCard";
 import "./ContentManagePage.css";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 
@@ -21,10 +21,12 @@ class ContentManagePage extends Component {
         data: []
     };
 
-    deleteReportfun(id){
+    deleteReportfun = (id) =>{
         deleteReport(id)
+
         getReports()
         .then(data => {
+            console.log(data);
         this.setState(data);
         })
         .catch(e => console.log(e));

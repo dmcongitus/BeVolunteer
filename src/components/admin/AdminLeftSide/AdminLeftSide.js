@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
 import { Row, Col } from "reactstrap";
 import {
-  mapPermissionToText,
   mapPermissionToSelections
 } from "../../../configs/permission";
 import man from "../../../images/man.png"

@@ -1,5 +1,6 @@
 .main-layout {
-  background-image: url("../../images/bgl.jpg");
+  /* background-image: url("../../images/bgl.jpg"); */
+    background-image: url("../../images/Subtle-Prism\ \(1\).svg");
   background-size: 100% auto;
   background-attachment: fixed;
   min-height: 100vh;

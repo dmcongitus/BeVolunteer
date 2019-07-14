@@ -7,17 +7,13 @@ import logo from "../../../images/volunteer.png";
 import logoText from "../../../images/volunteerText.png";
 import * as authActions from "../../../actions/auth.action";
 import "./Header.css";
-
+import { readNotification } from "../../../services/notifications.service";
 import { withLocalize, Translate } from "react-localize-redux";
 import headerTranslations from "./translation.json";
 import Notifi from "./Notifications"
 import {
-  Button,
-  Row,
-  Popover,
   UncontrolledPopover,
   PopoverHeader,
-  PopoverBody
 } from "reactstrap";
 
 import LanguageToggler from "../../LanguageToggler/LanguageToggler";
@@ -33,6 +29,13 @@ class Header extends React.Component {
     };
     this.props.addTranslation(headerTranslations);
   }
+  onClickNotifi = (id, url) => {
+    {
+      console.log("isRead");
+    }
+    readNotification(id);
+    this.props.history.push(url);
+  };
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -50,13 +53,16 @@ class Header extends React.Component {
     const { notifications } = this.props;
 
     const search = <Translate id="header.search">Tìm kiếm</Translate>;
-    { console.log("aas") }
+   
     return (
       <div>
         <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark ">
+          <Link to={`/`}>
           <img src={logo} alt="Logo" style={{ height: "5rem" }} />
           <img src={logoText} style={{ height: "5rem" }} />
 
+          </Link>
+          
           <form className="form-inline my-2 my-lg-0">
             <Translate>
               {({ translate }) => (
@@ -118,7 +124,7 @@ class Header extends React.Component {
                     <span className="badge badge-info">
                       {
                         notifications.filter(notif => {
-                          return notif.isRead == false;
+                          return notif.isRead === false;
                         }).length
                       }
                     </span>
@@ -135,9 +141,8 @@ class Header extends React.Component {
                 <PopoverHeader>
                   <Translate id="header.noti">Thông báo</Translate>
                 </PopoverHeader>
-                    {console.log(notifications)}
                 {notifications.map(notif => (
-                     <Notifi notif = {notif} />
+                     <Notifi notif = {notif} isReaded = {this.onClickNotifi}/>
                 ))}
 
               </UncontrolledPopover>

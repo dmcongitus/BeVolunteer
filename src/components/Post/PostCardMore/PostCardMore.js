@@ -209,7 +209,7 @@ class PostCardMore extends React.Component {
                       className="post-album-more"
                     />
                   )}
-                  {this.props.filenames.length == 2 ? (
+                  {this.props.filenames.length === 2 ? (
                 <Row>
                     <Col xs="6" style={{ paddingRight: "2px", paddingLeft: "0" }}>
                     <div>

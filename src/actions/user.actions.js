@@ -1,5 +1,6 @@
 import * as userServices from "../services/user.service";
 import * as actionTypes from "../constants/actionTypes";
+import * as authService from "../services/auth.service"
 
 export function verifyUser(identityCard) {
     return async (dispatch, getState) => {
@@ -25,8 +26,11 @@ export function uploadAvatar(avatar) {
 }
 
 export function levelUpUser() {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         // TODO: 
+        const { auth: { user: { _id } } } = getState()
+        console.log(_id)
+        authService.putExp(_id,1)
         dispatch({ type: actionTypes.LEVEL_UP_USER })
     }
 }

@@ -1,45 +1,25 @@
 import React, { Component, createRef } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import * as authActions from "../../../actions/auth.action";
-import { Container, Row, Col, Alert } from "reactstrap";
+import { Row, Col} from "reactstrap";
 import { withRouter } from "react-router";
 import { Redirect } from "react-router-dom";
-import DatePicker from "react-datepicker";
 import "./EditEvent.css";
 import Select from "react-select";
-import Moment from "react-moment";
 import moment from "moment";
-import profileIcon from "../../../images/profile.png";
-import cancelIcon from "../../../images/cancel.png";
-import editIcon from "../../../images/edit.png";
-import identityImage from "../../../images/identity.png";
-import { userInfo } from "os";
 import { editEvent } from "../../../services/event.service";
 import { getAllUsers } from "../../../services/user.service";
 import { withLocalize, Translate } from "react-localize-redux";
 import editEventTranslations from './translation.json';
 
 import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
+
   Button,
   Form,
   FormGroup,
   Label,
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-  Dropdown,
-  DropdownMenu,
-  DropdownToggle,
   Input,
   InputGroupAddon,
-  InputGroup
 } from "reactstrap";
 
 import {} from "reactstrap";

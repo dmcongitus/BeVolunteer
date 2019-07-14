@@ -1,7 +1,7 @@
 import request from './request'
 
 export function getNewfeed(page) {
-    if(page==0){
+    if(page===0){
         return request({
             url:`/newsfeed`,
             method: 'get'

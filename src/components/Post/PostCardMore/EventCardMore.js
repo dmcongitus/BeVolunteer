@@ -334,7 +334,7 @@ class EventCardMore extends React.Component {
             </Col>
           </Row>
           <Row className="item-mid">
-            <div className="pl-4 pr-4 pb-2">{this.props.description}</div>
+            <div className="pl-4 pr-4 pb-2" style={{textAlign:"justify"}}>{this.props.description}</div>
           </Row>
 
           <div style={{ width: "100%" }}>

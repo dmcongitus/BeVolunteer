@@ -1,10 +1,18 @@
-.check-user{
-    color: darkgreen;
+.check-user {
+  color: darkgreen;
 }
 
-.img-user-postCard{
-    height: 3rem;
-    width: 3rem;
-    object-fit: cover;
-} 
+.img-user-postCard {
+  height: 3rem;
+  width: 3rem;
+  object-fit: cover;
+}
 
+div.textTruncate {
+    white-space: nowrap; 
+    width: 27rem; 
+    overflow: hidden;
+    text-overflow:ellipsis;
+  }
+  
+ 

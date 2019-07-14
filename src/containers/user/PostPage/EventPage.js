@@ -55,7 +55,7 @@ class PostPage extends Component {
   };
 
   componentDidUpdate = async (prevProps) => {
-    if (this.props.match.params.eventId != prevProps.match.params.eventId) {
+    if (this.props.match.params.eventId !== prevProps.match.params.eventId) {
       try {
         const { data } = await getSpecificEvents(this.props.match.params.eventId);
         

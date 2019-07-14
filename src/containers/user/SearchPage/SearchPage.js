@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Post from "../../../components/Post/PostCard/PostCard";
-
+import { reportPost } from "../../../services/post.service";
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
 import { getNewfeed } from "../../../services/newfeed";
 import { connect } from "react-redux";
@@ -13,7 +13,15 @@ class SearchPage extends Component {
     searchTxt: "",
   };
 
-  
+  successReport(reporter, object, objectModel, content) {
+    const data = {
+      reporter: reporter,
+      object: object,
+      objectModel: objectModel,
+      content: content
+    };
+    reportPost(data);
+  }
   componentDidMount = () => {
     this.setState({ searchTxt: this.props.match.params.searchText });
     getNewfeed(0)
@@ -68,7 +76,7 @@ class SearchPage extends Component {
         
         {this.state.data.map(post =>
           this.mySearch(post, this.props.match.params.searchText) === true ? (
-            <Post key={post.id} {...post} />
+            <Post key={post.id} {...post}  successReport={this.successReport} />
           ) : null
         )}
       </PageLayout>

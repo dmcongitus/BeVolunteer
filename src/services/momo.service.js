@@ -2,9 +2,6 @@ import Axios from "axios";
 const uuidv1 = require("uuid/v1");
 const https = require("https");
 //parameters send to MoMo get get payUrl
-var endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-var hostname = "https://test-payment.momo.vn";
-var path = "/gw_payment/transactionProcessor";
 var partnerCode = "MOMO";
 var accessKey = "F8BBA842ECF85";
 var serectkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";

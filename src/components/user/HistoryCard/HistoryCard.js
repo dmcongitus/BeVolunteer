@@ -14,7 +14,8 @@ class HistoryCard extends Component {
     switch (type) {
       case "PLACE":
         return <span>địa điểm</span>;
-
+      case "EVENT":
+          return <span>Sự kiện</span>;
       default:
         break;
     }
@@ -54,8 +55,11 @@ class HistoryCard extends Component {
           </Link>
         );
       case "COMMENT_ON_EVENT":
+       
+      
         return (
-          <Link to={`/eventMore/${this.props.object._id}`}>
+          // <Link to={`/eventMore/${this.props.object._id}`}>
+          <Link>
             <Row>
               <Col xs="1">
                 <i class="fas fa-comments" />
@@ -88,12 +92,13 @@ class HistoryCard extends Component {
             </Row>
           </Link>
         );
+        break;
       case "CREATE_NEW_POST":
         return (
           <Link to={`/post/${this.props.object._id}`}>
             <Row>
               <Col xs="1">
-                <i class="fas fa-comments" />
+              <i class="fas fa-folder-plus"></i>
               </Col>
               <Col xs="8">
                 <div>
@@ -142,7 +147,7 @@ class HistoryCard extends Component {
           <Link to={`/eventMore/${this.props.object._id}`}>
             <Row>
               <Col xs="1">
-                <i class="fas fa-comments" />
+              <i class="fas fa-bug"></i>
               </Col>
               <Col xs="8">
                 <div>
@@ -169,6 +174,34 @@ class HistoryCard extends Component {
         );
       case "VERIFIED_DONATE":
       case "REPORT":
+          return (
+            <Link to={`/`}>
+              <Row>
+                <Col xs="1">
+                  <i class="fas fa-comments" />
+                </Col>
+                <Col xs="8">
+                  <div>
+                    Bạn đã <b>báo cáo</b> một bài viết
+                    <span style={{ color: "red" }} className="ml-2">
+                      {this.props.object.title}
+                    </span>
+                  </div>
+                  <div>
+                    <small>
+                      <i className="far fa-calendar-alt mr-2" />
+                      {format(this.props.createdAt, "DD-MM-YYYY")}
+                    </small>
+                  </div>
+                </Col>
+                <Col xs="3">
+                  <small>
+                    {format(this.props.createdAt, "hh:mm")}{" "}
+                    <i className="fas fa-clock ml-2" />
+                  </small>
+                </Col>
+              </Row>
+            </Link>)
     }
   };
   render() {

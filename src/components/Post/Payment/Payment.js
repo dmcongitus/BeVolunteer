@@ -65,7 +65,7 @@ class Payment extends React.Component {
           .then(data => {
             const statusCode = data.data.status_code;
             // if (statusCode !== -1) {
-              if (true) {
+              if (statusCode !== -1) {
               // TODO: ...
 
               donateMoney(this.props.event._id, parseInt(this.state.InputAmount, 10)).then(this.props.incrementDonateAmount).catch(e => alert(e));

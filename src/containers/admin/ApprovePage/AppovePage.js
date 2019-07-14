@@ -6,8 +6,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Col,
-  Row
 } from "reactstrap";
 
 import PageLayout from "../../../layouts/PageLayout/PageLayout";
@@ -170,8 +168,8 @@ class appovePage extends Component {
                     <Button
                         color="success"
                         className="ml-2"
-                        onClick={() =>
-                        this.onAccountVerify(this.state.activeAccount.username)
+                        onClick={() => {
+                        this.onAccountVerify(this.state.activeAccount.username)}
                         }
                     >
                         <i className="fas fa-check-circle icon-button" />
