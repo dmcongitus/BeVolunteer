@@ -286,3 +286,11 @@ font-size: 16px;
 .header-postCard i{
 font-size: 17px;
 }
+
+
+.greetings{
+width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

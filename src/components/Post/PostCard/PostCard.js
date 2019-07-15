@@ -182,7 +182,7 @@ class PostCard extends React.Component {
                 <Row>
                     <Col>
                         <div className="item-mid pb-3">
-                            <div className="pl-2 pr-3 test" style={{textAlign:"justify"}}>{this.props.description}</div>
+                        <div className="pl-2 pr-3 test" style={{textAlign:"justify"}}>{this.props.description}</div>
                         </div>
                     </Col>
                 </Row>

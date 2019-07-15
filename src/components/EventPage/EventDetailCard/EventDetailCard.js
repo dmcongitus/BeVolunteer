@@ -278,9 +278,12 @@ class EventDetailCard extends React.Component {
                                 <p>
                                     {"Mô tả sự kiện: "}
                                 </p> 
-                                <p className="ml-1">
+                                <div className="greetings">
+                               
                                     {this.props.description}
-                                </p>
+                              
+                                </div>
+                              
                             </Row>
 
                             <Row>
