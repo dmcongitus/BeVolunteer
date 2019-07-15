@@ -25,6 +25,7 @@ class Notifications extends Component {
             onClick={()=>this.props.isReaded(data._id, `/post/${data.object._id}`)}
           >
             <div>
+           
               <img
                 className="img-user-postCard rounded-circle"
                 src={`/resources/${data.user.avatar}`}
@@ -104,7 +105,7 @@ class Notifications extends Component {
      if(this.props.notif!== undefined){
         return this.props.notif.isRead === true ? (
           <PopoverBody className="notifi-header">
-            {/* {this.renderNotifi(this.props.notif)} */}
+            {this.renderNotifi(this.props.notif)}
             {/* {console.log(this.props.notif)} */}
             <div>đã đọc</div>
           </PopoverBody>
@@ -113,8 +114,8 @@ class Notifications extends Component {
             className="notifi-header"
             style={{ background: "palegreen" }}
           >
-            {/* {this.renderNotifi(this.props.notif)} */}
-            {/* {console.log(this.props.notif)} */}
+            {this.renderNotifi(this.props.notif)}
+           
             <div>chưa đọc</div>
           </PopoverBody>
         );

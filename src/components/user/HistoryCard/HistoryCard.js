@@ -94,6 +94,7 @@ class HistoryCard extends Component {
         );
         break;
       case "CREATE_NEW_POST":
+       
         return (
           <Link to={`/post/${this.props.object._id}`}>
             <Row>
@@ -207,7 +208,7 @@ class HistoryCard extends Component {
   render() {
     return (
       <div className="history-Card">
-        {/* {console.log(this.props)} */}
+        {console.log(this.props)}
         {this.renderHistory(this.props)}
       </div>
     );

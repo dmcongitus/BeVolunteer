@@ -3,6 +3,7 @@ export default (function () {
     let instance;
 
     function getInstance() {
+     
         if (!instance) instance = Socket('/');
         return instance;
     }

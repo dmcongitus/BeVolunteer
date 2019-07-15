@@ -42,6 +42,7 @@ class HomePage extends Component {
     componentDidMount = () => {
         getNewfeed(1)
             .then(data => {
+                console.log("aaaaaaaaaaa",data);
             this.setState(data);
             })
             .catch(e => console.log(e));
@@ -115,7 +116,7 @@ class HomePage extends Component {
    
     render() {
         const t = <Translate id="homepage.post">BÀI ĐĂNG</Translate>
-
+       
         return (
             <PageLayout
             title={t}
@@ -123,11 +124,12 @@ class HomePage extends Component {
             onPostTypeChanged={this.onPostTypeChanged}
             >
             <div id="header">
+                
                 {this.props.permission === "USER" && (
                 <NewPost style={{ zIndex: 50, position: "relative" }} />
                 )}
 
-                {this.state.data.map(post => (
+                {this.state.data.length>0 ? (this.state.data.map(post => (
                 <div className="hoverPostCard" key={post._id}>
                     <Post
                     key={post.id}
@@ -138,7 +140,7 @@ class HomePage extends Component {
                    
                     />
                 </div>
-                ))}
+                ))):null}
             </div>
             </PageLayout>
         );
